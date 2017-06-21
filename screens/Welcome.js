@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import {View, Text, StyleSheet} from 'react-native'
 import {ButtonGroup} from 'react-native-elements'
 
-import {setLanguagePreference} from '../redux/actions'
+import {setLanguagePreference} from '../redux/actions/actions'
 
 class Welcome extends Component {
   constructor(props) {
