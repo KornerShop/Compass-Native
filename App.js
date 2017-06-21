@@ -6,6 +6,7 @@ import {
   StackNavigation
 } from '@expo/ex-navigation';
 import Router from './navigation/Router';
+import Welcome from './screens/Welcome';
 
 export default class App extends React.Component {
   render() {
