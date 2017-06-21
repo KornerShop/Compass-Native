@@ -1,7 +1,7 @@
-import {wicEligible} from '../initialState'
+import initState from '../initialState'
 import {TOGGLE_WIC_ELIGIBILITY} from '../actions/types'
 
-export default (state = wicEligible, {type, payload}) => {
+export default (state = initState.wicEligible, {type, payload}) => {
   switch (type) {
     case TOGGLE_WIC_ELIGIBILITY:
       return payload

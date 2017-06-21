@@ -1,7 +1,7 @@
-import {zipcode} from '../initialState'
-import {UPDATE_ZIPCODE} from '../action/types'
+import initState from '../initialState'
+import {UPDATE_ZIPCODE} from '../actions/types'
 
-export default (state = zipcode, {type, payload}) => {
+export default (state = initState.zipcode, {type, payload}) => {
   switch (type) {
     case UPDATE_ZIPCODE:
       return payload

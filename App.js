@@ -26,7 +26,7 @@ export default class App extends React.Component {
   }
   render() {
     return this.state.started
-      ? this.renderRoot.call(this, NavigationProvider)
-      : this.renderRoot.call(this, Welcome)
+      ? this.renderRoot(NavigationProvider)
+      : this.renderRoot(Welcome)
   }
 }

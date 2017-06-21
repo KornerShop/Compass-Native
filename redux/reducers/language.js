@@ -1,7 +1,7 @@
-import {language} from '../initialState'
-import {SET_LANGUAGE_PREFERENCE} from '../action/types'
+import initState from '../initialState'
+import {SET_LANGUAGE_PREFERENCE} from '../actions/types'
 
-export default (state = language, {type, payload}) => {
+export default (state = initState.language, {type, payload}) => {
   switch (type) {
     case SET_LANGUAGE_PREFERENCE:
       return payload

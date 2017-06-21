@@ -33,12 +33,10 @@ class Welcome extends Component {
 
 const styles = StyleSheet.create({})
 
-const mapStateToProps = ({language}) => {
-  language
-}
+const mapStateToProps = ({language}) => ({language})
 
-const mapDispatchToProps = dispatch => {
-  setLanguagePreference: bindActionCreators(setLanguagePreference, dispatch)
-}
+const mapDispatchToProps = dispatch => ({
+  setLanguagePreference: bindActionCreators(setLanguagePreference, dispatch),
+})
 
-export default connect()(Welcome)
+export default connect(mapStateToProps, mapDispatchToProps)(Welcome)
