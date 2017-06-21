@@ -1,4 +1,5 @@
 import React from 'react';
+import Welcome from '../screens/Welcome';
 import Maps from '../screens/Map';
 import Snap from '../screens/Snap';
 import Wic from '../screens/Wic';
@@ -11,6 +12,8 @@ import {
 import { FontAwesome } from '@expo/vector-icons';
 
 export default createRouter(() => ({
+	// for debugging purposes
+  welcome: () => Welcome,
   maps: () => Maps,
   snap: () => Snap,
   wic: () => Wic,
