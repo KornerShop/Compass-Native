@@ -1,21 +1,17 @@
-import React from 'react';
-import Welcome from '../screens/Welcome';
-import Maps from '../screens/Map';
-import Snap from '../screens/Snap';
-import Wic from '../screens/Wic';
-import RootNavigation from './RootNavigation';
+import React from 'react'
+import Welcome from '../screens/Welcome'
+import Maps from '../screens/Map'
+import Snap from '../screens/Snap'
+import Wic from '../screens/Wic'
+import RootNavigation from './RootNavigation'
 
-import {
-  createRouter,
-} from '@expo/ex-navigation';
+import {createRouter} from '@expo/ex-navigation'
 
-import { FontAwesome } from '@expo/vector-icons';
+import {FontAwesome} from '@expo/vector-icons'
 
 export default createRouter(() => ({
-	// for debugging purposes
-  welcome: () => Welcome,
   maps: () => Maps,
   snap: () => Snap,
   wic: () => Wic,
-  rootNavigation: () => RootNavigation
-}));
+  rootNavigation: () => RootNavigation,
+}))

@@ -1,20 +1,32 @@
 import React from 'react'
-import {StyleSheet, Text, View} from 'react-native';
-import {
-  NavigationProvider,
-  TabNavigation,
-  StackNavigation
-} from '@expo/ex-navigation';
-import Router from './navigation/Router';
-import Welcome from './screens/Welcome';
+import {StyleSheet, Text, View} from 'react-native'
+import {Provider} from 'react-redux'
+
+import NavigationProvider from './components/NavigationProvider'
+import Welcome from './screens/Welcome'
+
+import store from './redux/store'
 
 export default class App extends React.Component {
-  render() {
+  constructor() {
+    super()
+    this.state = {
+      started: false,
+    }
+  }
+  toggleStart() {
+    this.setState({started: !this.state.started})
+  }
+  renderRoot(Component) {
     return (
-       <NavigationProvider router={Router}>
-        <StackNavigation initialRoute={Router.getRoute('rootNavigation')} />
-      </NavigationProvider>
+      <Provider store={store}>
+        <Component toggleStart={this.toggleStart.bind(this)} />
+      </Provider>
     )
   }
+  render() {
+    return this.state.started
+      ? this.renderRoot.call(this, NavigationProvider)
+      : this.renderRoot.call(this, Welcome)
+  }
 }
-
