@@ -1,32 +1,16 @@
 import React from 'react'
-import {StyleSheet, Text, View} from 'react-native'
 import {Provider} from 'react-redux'
 
-import NavigationProvider from './components/NavigationProvider'
-import Welcome from './screens/Welcome'
+import Main from './src/Main'
 
-import store from './redux/store'
+import store from './src/redux/store'
 
 export default class App extends React.Component {
-  constructor() {
-    super()
-    this.state = {
-      started: false,
-    }
-  }
-  toggleStart() {
-    this.setState({started: !this.state.started})
-  }
-  renderRoot(Component) {
+  render() {
     return (
       <Provider store={store}>
-        <Component toggleStart={this.toggleStart.bind(this)} />
+        <Main />
       </Provider>
     )
-  }
-  render() {
-    return this.state.started
-      ? this.renderRoot(NavigationProvider)
-      : this.renderRoot(Welcome)
   }
 }
