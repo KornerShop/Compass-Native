@@ -1,23 +1,19 @@
 import React from 'react'
-import {StyleSheet, Text, View} from 'react-native'
+import {StyleSheet, Text, View} from 'react-native';
+import {
+  NavigationProvider,
+  TabNavigation,
+  StackNavigation
+} from '@expo/ex-navigation';
+import Router from './navigation/Router';
 
 export default class App extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
-      </View>
+       <NavigationProvider router={Router}>
+        <StackNavigation initialRoute={Router.getRoute('rootNavigation')} />
+      </NavigationProvider>
     )
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-})
