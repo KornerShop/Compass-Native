@@ -150,7 +150,7 @@ export default class Wic extends React.Component {
           title="Submit"
           accessibilityLabel="Submit to find out your eligibility"
           onPress={e => {
-            e.preventDefault
+            e.preventDefault()
             // set buttonGroup validitay to false (red border && color if false) and bail out
             if ([0, 1].includes(this.state.lifeEvents)) {
               // dispatch && re-render
