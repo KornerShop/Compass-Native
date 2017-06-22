@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
-import {View, Text, StyleSheet} from 'react-native'
+import {View, Text, StyleSheet, AsyncStorage} from 'react-native'
 import {ButtonGroup} from 'react-native-elements'
 
 import {setLanguagePreference} from '../redux/actions/actions'
@@ -10,12 +10,13 @@ class Welcome extends Component {
   constructor(props) {
     super(props)
   }
-  // Updates language preference, triggering the tabbed UI to render
-  updateIndex(idx) {
-    // Dispatch action to change the language key on our redux store,
-    // which would hopefully update the 'selected' on line 26
-    // if it doesn't, let's talk
+  async updateIndex(idx) {
     const language = idx === 1 ? 'es' : 'en'
+    try {
+      await AsyncStorage.setItem('language', language)
+    } catch (error) {
+      console.warn(error)
+    }
     this.props.setLanguagePreference(language)
     this.props.toggleStart()
   }
