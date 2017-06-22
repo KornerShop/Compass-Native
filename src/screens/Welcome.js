@@ -32,9 +32,7 @@ class Welcome extends Component {
   }
 }
 
-const styles = StyleSheet.create({})
-
-const mapStateToProps = ({language}) => ({language})
+const mapStateToProps = ({language, orientation}) => ({language, orientation})
 
 const mapDispatchToProps = dispatch => ({
   setLanguagePreference: bindActionCreators(setLanguagePreference, dispatch),

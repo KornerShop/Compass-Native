@@ -1,139 +1,199 @@
 import React from 'react'
 import styled from 'styled-components/native'
-import {View, Button, Text, TextInput, StyleSheet, Platform} from 'react-native'
+import {
+  View,
+  ScrollView,
+  Button,
+  Text,
+  TextInput,
+  StyleSheet,
+  Platform,
+  Dimensions,
+} from 'react-native'
 import {ButtonGroup} from 'react-native-elements'
 
 const StyledInput = styled.TextInput`
-  height: 40px;
-  border: ${props => (props.valid ? '1px solid #7C7A7A' : '1px solid tomato')};
+  font-size: 18px;
+  font-weight: 300;
   color: ${props => (props.valid ? '#7C7A7A' : 'tomato')};
-  padding: 10px;
+  height: 30px;
 `
 
 const StyledContainer = styled.View`
   flex: 1;
-  justify-content: space-around;
-  padding: 35px;
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+`
+const InputWrapper = styled.View`
+  border: ${props => (props.valid ? '1px solid #7C7A7A' : '1px solid tomato')};
+  border-radius: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding:10px;
+`
+
+const LifeEventText = styled.Text`
+  text-align: center;
+  font-size: 18;
+  font-weight: 300;
+  margin-top: 15;
+  margin-bottom: 10;
 `
 
 export default props =>
   <StyledContainer>
-    <Text>Enter Zip code</Text>
-    <StyledInput
-      value={props.zip}
-      valid={props.zipValid}
-      maxLength={5}
-      returnKeyType="done"
-      keyboardType={`${Platform.OS === 'ios'
-        ? 'numbers-and-punctuation'
-        : 'numeric'}`}
-      onChangeText={zip => {
-        props.updateState({zip})
-        if (/^9[0-6]\d\d\d$/.test(zip)) {
-          return props.updateState({
-            zipValid: true,
-            formValid: true,
-          })
-        }
-        props.updateState({
-          zipValid: false,
-          formValid: false,
-        })
-      }}
-    />
-    <Text>
-      Household size (excluding member that is age 60+, or is disabled)
-    </Text>
-    <StyledInput
-      value={props.familySize}
-      valid={props.familySizeValid}
-      returnKeyType="done"
-      keyboardType={`${Platform.OS === 'ios'
-        ? 'numbers-and-punctuation'
-        : 'numeric'}`}
-      onChangeText={familySize => {
-        props.updateState({familySize})
-        if (familySize > 0 && familySize < 11) {
-          return props.updateState({
-            familySizeValid: true,
-            formValid: true,
-          })
-        }
-        props.updateState({
-          familySizeValid: false,
-          formValid: false,
-        })
-      }}
-    />
-    <Text>Monthly income (including social security) in dollars $</Text>
-    <StyledInput
-      value={props.income}
-      valid={props.incomeValid}
-      returnKeyType="done"
-      keyboardType={`${Platform.OS === 'ios'
-        ? 'numbers-and-punctuation'
-        : 'numeric'}`}
-      onChangeText={income => {
-        props.updateState({income})
-        if (
-          /^(?!\(.*[^)]$|[^(].*\)$)\(?\$?(0|[1-9]\d{0,2}(,?\d{3})?)(\.\d\d?)?\)?$/.test(
-            parseInt(income)
-          )
-        ) {
-          return props.updateState({
-            incomeValid: true,
-            formValid: true,
-          })
-        }
-        props.updateState({
-          incomeValid: false,
-          formValid: false,
-        })
-      }}
-    />
-    <Text>
-      Does at least one of the following describe someone in your household:{' '}
-      1) pregnant 2) has had a baby (or been pregnant) within the last 6
-      months
-      3) is currently breastfeeding a baby that is less than 12 months old
-      4) is a baby, child or foster child under the age of 5?{' '}
-    </Text>
-    <ButtonGroup
-      buttons={['Yes', 'No']}
-      selectedIndex={props.lifeEvents}
-      onPress={props.updateLifeEvents}
-      textStyle={{
-        color: props.lifeEventsValid ? 'mediumturquoise' : 'tomato',
-        fontWeight: 'bold',
-      }}
-      innerBorderStyle={{
-        color: props.lifeEventsValid ? 'mediumturquoise' : 'tomato',
-        width: 3,
-      }}
-      containerStyle={{
-        height: 50,
-        borderWidth: 3,
-        borderRadius: 30,
-        borderColor: props.lifeEventsValid ? 'mediumturquoise' : 'tomato',
-        backgroundColor: 'transparent',
-        marginTop: 15,
-      }}
-      selectedTextStyle={{color: 'white'}}
-      selectedBackgroundColor="mediumturquoise"
-    />
+    <ScrollView
+      showsVerticalScrollIndicator={false}
+      keyboardDismissMode="on-drag"
+      contentContainerStyle={{
+        justifyContent: 'space-between',
+      }}>
+      <Text
+        style={{
+          fontWeight: 'bold',
+          fontSize: 25,
+          textAlign: 'center',
+          paddingVertical: 25,
+        }}>
+        Determine whether you're{' '}
+        <Text style={{fontStyle: 'italic'}}>likely</Text> to be eligible for WIC
+      </Text>
+      <InputWrapper valid={props.zipValid}>
+        <StyledInput
+          placeholder="Zip Code"
+          placeholderTextColor="#90A4AE"
+          value={props.zip}
+          valid={props.zipValid}
+          maxLength={5}
+          returnKeyType="done"
+          keyboardType={`${Platform.OS === 'ios'
+            ? 'numbers-and-punctuation'
+            : 'numeric'}`}
+          onChangeText={zip => {
+            props.updateState({zip})
+            if (/^9[0-6]\d\d\d$/.test(zip)) {
+              return props.updateState({
+                zipValid: true,
+                formValid: true,
+              })
+            }
+            props.updateState({
+              zipValid: false,
+              formValid: false,
+            })
+          }}
+        />
+      </InputWrapper>
+      <InputWrapper valid={props.familySizeValid}>
+        <StyledInput
+          placeholder="Household Size"
+          placeholderTextColor="#90A4AE"
+          value={props.familySize}
+          valid={props.familySizeValid}
+          returnKeyType="done"
+          keyboardType={`${Platform.OS === 'ios'
+            ? 'numbers-and-punctuation'
+            : 'numeric'}`}
+          onChangeText={familySize => {
+            props.updateState({familySize})
+            if (familySize > 0 && familySize < 11) {
+              return props.updateState({
+                familySizeValid: true,
+                formValid: true,
+              })
+            }
+            props.updateState({
+              familySizeValid: false,
+              formValid: false,
+            })
+          }}
+        />
+      </InputWrapper>
+      <InputWrapper valid={props.incomeValid}>
+        <StyledInput
+          placeholder="Monthly Income/Social Security"
+          placeholderTextColor="#90A4AE"
+          value={props.income}
+          valid={props.incomeValid}
+          returnKeyType="done"
+          keyboardType={`${Platform.OS === 'ios'
+            ? 'numbers-and-punctuation'
+            : 'numeric'}`}
+          onChangeText={income => {
+            props.updateState({income})
+            if (
+              /^(?!\(.*[^)]$|[^(].*\)$)\(?\$?(0|[1-9]\d{0,2}(,?\d{3})?)(\.\d\d?)?\)?$/.test(
+                parseInt(income)
+              )
+            ) {
+              return props.updateState({
+                incomeValid: true,
+                formValid: true,
+              })
+            }
+            props.updateState({
+              incomeValid: false,
+              formValid: false,
+            })
+          }}
+        />
+      </InputWrapper>
+      <LifeEventText>
+        Are you pregnant and/or have a child under the age of 5?{' '}
+      </LifeEventText>
+      <ButtonGroup
+        buttons={['Yes', 'No']}
+        selectedIndex={props.lifeEvents}
+        onPress={props.updateLifeEvents}
+        textStyle={{
+          color: props.lifeEventsValid ? 'mediumturquoise' : 'tomato',
+          fontWeight: 'bold',
+          fontSize: 18,
+        }}
+        innerBorderStyle={{
+          color: props.lifeEventsValid ? 'mediumturquoise' : 'tomato',
+          width: 3,
+        }}
+        containerStyle={{
+          height: 50,
+          borderWidth: 3,
+          borderRadius: 30,
+          borderColor: props.lifeEventsValid ? 'mediumturquoise' : 'tomato',
+          backgroundColor: 'transparent',
+          marginTop: 15,
+        }}
+        selectedTextStyle={{color: 'white'}}
+        selectedBackgroundColor="mediumturquoise"
+      />
 
-    <Button
-      title="Submit"
-      accessibilityLabel="Submit to find out your eligibility"
-      onPress={e => {
-        e.preventDefault()
-        if ([0, 1].includes(props.lifeEvents)) {
-          // dispatch && re-render
-        }
-        return props.updateState({
-          lifeEventsValid: false,
-          formValid: false,
-        })
-      }}
-    />
+      <Button
+        title="Submit"
+        accessibilityLabel="Submit to find out your eligibility"
+        onPress={() => {
+          console.warn('...')
+          console.warn(JSON.stringify(Dimensions.get('window')))
+          if ([0, 1].includes(props.lifeEvents)) {
+            props.updateState({
+              lifeEventsValid: true,
+              formValid: true,
+            })
+          } else {
+            props.updateState({
+              lifeEventsValid: false,
+              formValid: false,
+            })
+          }
+          if (props.formValid) {
+            props.checkEligibility(
+              props.lifeEvents,
+              props.familySize,
+              props.income
+            )
+          } else {
+            return null
+          }
+        }}
+      />
+    </ScrollView>
   </StyledContainer>
