@@ -4,7 +4,7 @@ import {ButtonGroup} from 'react-native-elements'
 import styled from 'styled-components/native'
 
 const StyledInput = styled.TextInput`
-  height: 40;
+  height: 40px;
   border: ${props => (props.valid ? '1px solid #7C7A7A' : '1px solid tomato')};
   color: ${props => (props.valid ? '#7C7A7A' : 'tomato')};
   padding: 10px;
@@ -23,13 +23,19 @@ export default class Wic extends React.Component {
       zip: '',
       familySize: '',
       income: '',
-      lifeEvents: '',
+      lifeEvents: 5,
       zipValid: true,
       familySizeValid: true,
       incomeValid: true,
       lifeEventsValid: true,
       formValid: true,
     }
+  }
+  updateLifeEvents(idx) {
+    this.setState({
+      lifeEvents: idx,
+      lifeEventsValid: true,
+    })
   }
   render() {
     return (
@@ -114,13 +120,45 @@ export default class Wic extends React.Component {
           3) is currently breastfeeding a baby that is less than 12 months old
           4) is a baby, child or foster child under the age of 5?{' '}
         </Text>
-        <ButtonGroup buttons={['Yes', 'No']} containerStyle={{height: 50}} />
+        <ButtonGroup
+          buttons={['Yes', 'No']}
+          selectedIndex={this.state.lifeEvents}
+          onPress={this.updateLifeEvents.bind(this)}
+          textStyle={{
+            color: this.state.lifeEventsValid ? 'mediumturquoise' : 'tomato',
+            fontWeight: 'bold',
+          }}
+          innerBorderStyle={{
+            color: this.state.lifeEventsValid ? 'mediumturquoise' : 'tomato',
+            width: 3,
+          }}
+          containerStyle={{
+            height: 50,
+            borderWidth: 3,
+            borderRadius: 30,
+            borderColor: this.state.lifeEventsValid
+              ? 'mediumturquoise'
+              : 'tomato',
+            backgroundColor: 'transparent',
+            marginTop: 15,
+          }}
+          selectedTextStyle={{color: 'white'}}
+          selectedBackgroundColor="mediumturquoise"
+        />
 
         <Button
           title="Submit"
           accessibilityLabel="Submit to find out your eligibility"
           onPress={e => {
-            e.preventDefault
+            e.preventDefault()
+            // set buttonGroup validitay to false (red border && color if false) and bail out
+            if ([0, 1].includes(this.state.lifeEvents)) {
+              // dispatch && re-render
+            }
+            return this.setState({
+              lifeEventsValid: false,
+              formValid: false,
+            })
           }}
         />
       </StyledContainer>
