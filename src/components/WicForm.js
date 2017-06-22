@@ -12,10 +12,43 @@ import {
 } from 'react-native'
 import {ButtonGroup} from 'react-native-elements'
 
+const styleSwitch = (prop, cssIfValid, cssIfInvalid) => {
+  switch (prop) {
+    case '':
+      return cssIfValid
+    case true:
+      return cssIfValid
+    case false:
+      return cssIfInvalid
+  }
+}
+
+const textInputColor = prop => {
+  switch (prop) {
+    case '':
+      return '#7C7A7A'
+    case true:
+      return '#7C7A7A'
+    case false:
+      return 'tomato'
+  }
+}
+
+const textInputWrapperColor = prop => {
+  switch (prop) {
+    case '':
+      return '1px solid #7C7A7A'
+    case true:
+      return '1px solid #7C7A7A'
+    case false:
+      return '1px solid tomato'
+  }
+}
+
 const StyledInput = styled.TextInput`
   font-size: 18px;
   font-weight: 300;
-  color: ${props => (props.valid ? '#7C7A7A' : 'tomato')};
+  color: ${props => textInputColor(props.valid)}
   height: 30px;
 `
 
@@ -26,7 +59,7 @@ const StyledContainer = styled.View`
   padding-right: 20px;
 `
 const InputWrapper = styled.View`
-  border: ${props => (props.valid ? '1px solid #7C7A7A' : '1px solid tomato')};
+  border: ${props => textInputWrapperColor(props.valid)};
   border-radius: 5px;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -40,6 +73,9 @@ const LifeEventText = styled.Text`
   margin-top: 15;
   margin-bottom: 10;
 `
+
+// if submit and form values '', make them invalid and thus red
+// style placeholder buttons on Eligible and Ineligible and have them re-set state, thus rendering form
 
 export default props =>
   <StyledContainer>
@@ -75,12 +111,10 @@ export default props =>
             if (/^9[0-6]\d\d\d$/.test(zip)) {
               return props.updateState({
                 zipValid: true,
-                formValid: true,
               })
             }
             props.updateState({
               zipValid: false,
-              formValid: false,
             })
           }}
         />
@@ -100,12 +134,10 @@ export default props =>
             if (familySize > 0 && familySize < 11) {
               return props.updateState({
                 familySizeValid: true,
-                formValid: true,
               })
             }
             props.updateState({
               familySizeValid: false,
-              formValid: false,
             })
           }}
         />
@@ -129,12 +161,10 @@ export default props =>
             ) {
               return props.updateState({
                 incomeValid: true,
-                formValid: true,
               })
             }
             props.updateState({
               incomeValid: false,
-              formValid: false,
             })
           }}
         />
@@ -147,19 +177,31 @@ export default props =>
         selectedIndex={props.lifeEvents}
         onPress={props.updateLifeEvents}
         textStyle={{
-          color: props.lifeEventsValid ? 'mediumturquoise' : 'tomato',
+          color: styleSwitch(
+            props.lifeEventsValid,
+            'mediumturquoise',
+            'tomato'
+          ),
           fontWeight: 'bold',
           fontSize: 18,
         }}
         innerBorderStyle={{
-          color: props.lifeEventsValid ? 'mediumturquoise' : 'tomato',
+          color: styleSwitch(
+            props.lifeEventsValid,
+            'mediumturquoise',
+            'tomato'
+          ),
           width: 3,
         }}
         containerStyle={{
           height: 50,
           borderWidth: 3,
           borderRadius: 30,
-          borderColor: props.lifeEventsValid ? 'mediumturquoise' : 'tomato',
+          borderColor: styleSwitch(
+            props.lifeEventsValid,
+            'mediumturquoise',
+            'tomato'
+          ),
           backgroundColor: 'transparent',
           marginTop: 15,
         }}
@@ -171,20 +213,20 @@ export default props =>
         title="Submit"
         accessibilityLabel="Submit to find out your eligibility"
         onPress={() => {
-          console.warn('...')
-          console.warn(JSON.stringify(Dimensions.get('window')))
           if ([0, 1].includes(props.lifeEvents)) {
             props.updateState({
               lifeEventsValid: true,
-              formValid: true,
             })
           } else {
             props.updateState({
               lifeEventsValid: false,
-              formValid: false,
             })
           }
-          if (props.formValid) {
+          if (
+            props.lifeEventsValid &&
+            props.familySizeValid &&
+            props.incomeValid
+          ) {
             props.checkEligibility(
               props.lifeEvents,
               props.familySize,

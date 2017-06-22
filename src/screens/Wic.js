@@ -1,17 +1,20 @@
-import React from 'react'
+import React, {Component} from 'react'
 import {AsyncStorage} from 'react-native'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 
-import WicForm from '../components/WicForm'
 import {updateWicEligibility} from '../redux/actions/actions'
+
+import WicForm from '../components/WicForm'
+import Eligible from '../components/Eligible'
+import Ineligible from '../components/Ineligible'
 // Todo:
 // Connect to Redux and push eligibility to store -> done
 // Persist eligibility to async storage -> done
 // Conditionally render "you're eligible && you're not eligible components"
 // Add 'check again' component to retry
 
-class Wic extends React.Component {
+class Wic extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -19,12 +22,10 @@ class Wic extends React.Component {
       familySize: '',
       income: '',
       lifeEvents: 5,
-      zipValid: true,
-      familySizeValid: true,
-      incomeValid: true,
-      lifeEventsValid: true,
-      // shouldn't this start as false?
-      formValid: false,
+      zipValid: '',
+      familySizeValid: '',
+      incomeValid: '',
+      lifeEventsValid: '',
     }
   }
   updateState(obj) {
@@ -40,14 +41,14 @@ class Wic extends React.Component {
   checkEligibility(lifeEvents, familySize, income) {
     const qualifyingIncomes = [
       0,
-      1832,
-      2470,
-      3108,
-      3747,
-      4385,
-      5023,
-      5663,
-      6304,
+      1832.0,
+      2470.0,
+      3108.0,
+      3747.0,
+      4385.0,
+      5023.0,
+      5663.0,
+      6304.0,
     ]
     if (
       lifeEvents === 0 &&
@@ -69,23 +70,30 @@ class Wic extends React.Component {
   }
 
   render() {
-    return (
-      <WicForm
-        orientation={this.props.orientation}
-        zip={this.state.zip}
-        zipValid={this.state.zipValid}
-        familySize={this.state.familySize}
-        familySizeValid={this.state.familySizeValid}
-        income={this.state.income}
-        incomeValid={this.state.incomeValid}
-        lifeEvents={this.state.lifeEvents}
-        formValid={this.state.formValid}
-        lifeEventsValid={this.state.lifeEventsValid}
-        updateLifeEvents={this.updateLifeEvents.bind(this)}
-        updateState={this.updateState.bind(this)}
-        checkEligibility={this.checkEligibility.bind(this)}
-      />
-    )
+    switch (this.props.wicEligible) {
+      case 0:
+        return (
+          <WicForm
+            orientation={this.props.orientation}
+            zip={this.state.zip}
+            zipValid={this.state.zipValid}
+            familySize={this.state.familySize}
+            familySizeValid={this.state.familySizeValid}
+            income={this.state.income}
+            incomeValid={this.state.incomeValid}
+            lifeEvents={this.state.lifeEvents}
+            formValid={this.state.formValid}
+            lifeEventsValid={this.state.lifeEventsValid}
+            updateLifeEvents={this.updateLifeEvents.bind(this)}
+            updateState={this.updateState.bind(this)}
+            checkEligibility={this.checkEligibility.bind(this)}
+          />
+        )
+      case 1:
+        return <Eligible />
+      case 2:
+        return <Ineligible />
+    }
   }
 }
 
