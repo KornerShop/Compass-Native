@@ -2,11 +2,18 @@ import React from 'react'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 
-import {AsyncStorage, ActivityIndicator, View, StyleSheet} from 'react-native'
+import {
+  AsyncStorage,
+  ActivityIndicator,
+  View,
+  StyleSheet,
+  Dimensions,
+} from 'react-native'
 
 import NavigationProvider from './components/NavigationProvider'
 import Welcome from './screens/Welcome'
 
+import {updateOrientation} from './redux/actions/actions'
 import {setLanguagePreference} from './redux/actions/actions'
 
 class Main extends React.Component {
@@ -21,6 +28,8 @@ class Main extends React.Component {
     this.setState({started: !this.state.started})
   }
   async componentWillMount() {
+    // not ideal, but this action is necessary for getting the initial orientation of the device
+    this.props.updateOrientation(Dimensions.get('window'))
     try {
       const language = await AsyncStorage.getItem('language')
       this.setState({
@@ -36,6 +45,15 @@ class Main extends React.Component {
       console.warn(error)
     }
   }
+  renderRoot(Component) {
+    return (
+      <View
+        style={{flex: 1}}
+        onLayout={() => this.props.updateOrientation(Dimensions.get('window'))}>
+        <Component toggleStart={this.toggleStart.bind(this)} />
+      </View>
+    )
+  }
   render() {
     if (this.state.isLoading) {
       return (
@@ -45,12 +63,13 @@ class Main extends React.Component {
       )
     }
     return this.state.started
-      ? <NavigationProvider />
-      : <Welcome toggleStart={this.toggleStart.bind(this)} />
+      ? this.renderRoot(NavigationProvider)
+      : this.renderRoot(Welcome)
   }
 }
 
 const mapDispatchToProps = dispatch => ({
+  updateOrientation: bindActionCreators(updateOrientation, dispatch),
   setLanguagePreference: bindActionCreators(setLanguagePreference, dispatch),
 })
 

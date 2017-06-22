@@ -4,5 +4,11 @@ export default {
   zipcode: '',
   snapOffices: [],
   wicOffices: [],
-  wicEligible: false,
+  wicEligible: 0,
+  orientation: '',
 }
+
+// wicEligible states
+// 0: eligibility not determined
+// 1: eligible
+// 2: not eligible
