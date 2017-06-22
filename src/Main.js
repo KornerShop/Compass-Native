@@ -62,4 +62,5 @@ const styles = StyleSheet.create({
     backgroundColor: 'papayawhip',
   },
 })
+
 export default connect(null, mapDispatchToProps)(Main)
