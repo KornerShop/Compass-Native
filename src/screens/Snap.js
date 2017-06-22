@@ -1,21 +1,18 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React, {Component} from 'react';
+import {WebView} from 'react-native';
+import {connect} from 'react-redux';
 
-export default class Snap extends React.Component {
+class Snap extends Component {
   render() {
+    const host =  'https://getcalfresh.org/en/apply'
+    const url = this.props.language === 'en'? host : `${host}?new_locale=es`
     return(
-      <View style ={styles.container}>
-        <Text style ={styles.text}>Snap!</Text>
-      </View>
+      <WebView source={{uri:url}}/>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    padding: 100
-  },
-  text: {
-    fontSize:43
-  }
-})
+
+const mapStateToProps = ({language}) => ({language});
+
+export default connect(mapStateToProps)(Snap)
