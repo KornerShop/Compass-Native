@@ -1,6 +1,7 @@
 import React from 'react'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
+import styled from 'styled-components/native'
 
 import {
   AsyncStorage,
@@ -15,6 +16,12 @@ import Welcome from './screens/Welcome'
 
 import {updateOrientation} from './redux/actions/actions'
 import {setLanguagePreference} from './redux/actions/actions'
+
+const ActivityIndicatorWrapper = styled.View`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+`
 
 class Main extends React.Component {
   constructor() {
@@ -41,8 +48,8 @@ class Main extends React.Component {
         })
         setLanguagePreference(language)
       }
-    } catch (error) {
-      console.warn(error)
+    } catch (err) {
+      console.warn(err)
     }
   }
   renderRoot(Component) {
@@ -57,9 +64,9 @@ class Main extends React.Component {
   render() {
     if (this.state.isLoading) {
       return (
-        <View style={styles.loader}>
+        <ActivityIndicatorWrapper>
           <ActivityIndicator color="tomato" size="large" />
-        </View>
+        </ActivityIndicatorWrapper>
       )
     }
     return this.state.started
@@ -71,15 +78,6 @@ class Main extends React.Component {
 const mapDispatchToProps = dispatch => ({
   updateOrientation: bindActionCreators(updateOrientation, dispatch),
   setLanguagePreference: bindActionCreators(setLanguagePreference, dispatch),
-})
-
-const styles = StyleSheet.create({
-  loader: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'papayawhip',
-  },
 })
 
 export default connect(null, mapDispatchToProps)(Main)

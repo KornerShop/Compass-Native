@@ -74,17 +74,11 @@ const LifeEventText = styled.Text`
   margin-bottom: 10;
 `
 
-// if you submit and *any* of the form values '', make them invalid and thus red
-// style placeholder buttons on Eligible and Ineligible and have them re-set state, thus rendering form
-
 export default props =>
   <StyledContainer>
     <ScrollView
       showsVerticalScrollIndicator={false}
-      keyboardDismissMode="on-drag"
-      contentContainerStyle={{
-        justifyContent: 'space-between',
-      }}>
+      keyboardDismissMode="on-drag">
       <Text
         style={{
           fontWeight: 'bold',
@@ -219,6 +213,7 @@ export default props =>
             })
           }
           if (
+            props.zipValid &&
             props.lifeEventsValid &&
             props.familySizeValid &&
             props.incomeValid

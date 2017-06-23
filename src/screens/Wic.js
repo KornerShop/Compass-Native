@@ -9,9 +9,6 @@ import WicForm from '../components/WicForm'
 import Eligible from '../components/Eligible'
 import Ineligible from '../components/Ineligible'
 
-// Todo:
-// Add 'check again' component to retry
-
 class Wic extends Component {
   constructor(props) {
     super(props)
@@ -35,7 +32,7 @@ class Wic extends Component {
       lifeEventsValid: true,
     })
   }
-
+  // determines eligibility and then stores it in AsyncStorage
   checkEligibility(lifeEvents, familySize, income) {
     const qualifyingIncomes = [
       0,
@@ -58,15 +55,6 @@ class Wic extends Component {
       this.props.updateWicEligibility(2)
     }
   }
-
-  async setStorage() {
-    try {
-      await AsyncStorage.setItem('wicEligible', wicEligible)
-    } catch (error) {
-      console.warn(error)
-    }
-  }
-
   render() {
     switch (this.props.wicEligible) {
       case 0:
