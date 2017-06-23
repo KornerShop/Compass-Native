@@ -8,10 +8,8 @@ import {updateWicEligibility} from '../redux/actions/actions'
 import WicForm from '../components/WicForm'
 import Eligible from '../components/Eligible'
 import Ineligible from '../components/Ineligible'
+
 // Todo:
-// Connect to Redux and push eligibility to store -> done
-// Persist eligibility to async storage -> done
-// Conditionally render "you're eligible && you're not eligible components"
 // Add 'check again' component to retry
 
 class Wic extends Component {

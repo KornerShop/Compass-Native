@@ -28,7 +28,7 @@ class Main extends React.Component {
     this.setState({started: !this.state.started})
   }
   async componentWillMount() {
-    // not ideal, but this action is necessary for getting the initial orientation of the device
+    // Not ideal, but this action is necessary for getting the initial orientation of the device
     this.props.updateOrientation(Dimensions.get('window'))
     try {
       const language = await AsyncStorage.getItem('language')

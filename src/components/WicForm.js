@@ -74,7 +74,7 @@ const LifeEventText = styled.Text`
   margin-bottom: 10;
 `
 
-// if submit and form values '', make them invalid and thus red
+// if you submit and *any* of the form values '', make them invalid and thus red
 // style placeholder buttons on Eligible and Ineligible and have them re-set state, thus rendering form
 
 export default props =>
@@ -217,10 +217,6 @@ export default props =>
             props.updateState({
               lifeEventsValid: true,
             })
-          } else {
-            props.updateState({
-              lifeEventsValid: false,
-            })
           }
           if (
             props.lifeEventsValid &&
@@ -233,7 +229,12 @@ export default props =>
               props.income
             )
           } else {
-            return null
+            return props.updateState({
+              zipValid: false,
+              familySizeValid: false,
+              incomeValid: false,
+              lifeEventsValid: false,
+            })
           }
         }}
       />
