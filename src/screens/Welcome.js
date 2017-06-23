@@ -6,6 +6,17 @@ import {ButtonGroup} from 'react-native-elements'
 
 import {setLanguagePreference} from '../redux/actions/actions'
 
+// design welcome screen
+// uncomment out get AsyncStorage in Main.js
+// map
+// translations
+// submit button on form
+// lock in form style
+// eligible and ineligible screens
+// organize code
+// tests
+// smile - we can do it!
+
 class Welcome extends Component {
   constructor(props) {
     super(props)
