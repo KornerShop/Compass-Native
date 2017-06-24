@@ -50,7 +50,7 @@ class Main extends React.Component {
       console.warn(err)
     }
   }
-  async componentWillMount() {
+  componentWillMount() {
     // Not ideal, but this action is necessary for getting the initial orientation of the device
     this.props.updateOrientation(Dimensions.get('window'))
   }

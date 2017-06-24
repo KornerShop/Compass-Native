@@ -16,6 +16,6 @@ export default combineReducers({
   snapOffices,
   wicOffices,
   wicEligible,
-  location,
   orientation,
+  location,
 })

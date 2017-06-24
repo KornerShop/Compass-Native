@@ -2,8 +2,8 @@ export default {
   language: 'en',
   locationPermission: false,
   location: {
-    latitude: 37.78825,
-    longitude: -122.4324,
+    latitude: 38.74221,
+    longitude: -108.06896,
     latitudeDelta: 0.0922,
     longitudeDelta: 0.0421,
   },
