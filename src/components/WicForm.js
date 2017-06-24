@@ -37,9 +37,9 @@ const textInputColor = prop => {
 const textInputWrapperColor = prop => {
   switch (prop) {
     case '':
-      return '1px solid #7C7A7A'
+      return '1px solid papayawhip'
     case true:
-      return '1px solid #7C7A7A'
+      return '1px solid papayawhip'
     case false:
       return '1px solid tomato'
   }
@@ -48,7 +48,7 @@ const textInputWrapperColor = prop => {
 const StyledInput = styled.TextInput`
   font-size: 18px;
   font-weight: 300;
-  color: ${props => textInputColor(props.valid)}
+  color: ${props => textInputColor(props.valid)};
   height: 30px;
 `
 
@@ -61,9 +61,9 @@ const StyledContainer = styled.View`
 const InputWrapper = styled.View`
   border: ${props => textInputWrapperColor(props.valid)};
   border-radius: 5px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  padding:10px;
+	padding: 10px;
+  margin: 20px;
+  background-color: papayawhip;
 `
 
 const LifeEventText = styled.Text`

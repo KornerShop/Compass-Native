@@ -1,12 +1,12 @@
 import React, {Component} from 'react'
 import {
-	Image,
-	View,
-	Text,
-	StyleSheet,
-	Dimensions,
-	StatusBar,
-	TouchableHighlight,
+  Image,
+  View,
+  Text,
+  StyleSheet,
+  Dimensions,
+  StatusBar,
+  TouchableHighlight,
 } from 'react-native'
 import styled from 'styled-components/native'
 
@@ -28,50 +28,50 @@ const OfficeText = styled.Text`
 `
 
 export default class Office extends Component {
-	render() {
-		return (
-			<View style={{flex: 1, flexDirection: 'column'}}>
-				<StatusBar barStyle="light-content" />
-				<View style={{flex: 0.5}}>
-					<TouchableHighlight
-						style={{flex: 1}}
-						onPress={() => this.props.toggleModalVisibility}>
-						<ImageContainer
-							height={this.props.height / 2}
-							width={this.props.width}
-							source={require('../assets/snap1.jpg')}
-							resizeMode="cover">
-							<OfficeText>
-								CalFresh
-							</OfficeText>
-						</ImageContainer>
-					</TouchableHighlight>
-				</View>
-				<View style={{flex: 0.5}}>
-					<TouchableHighlight
-						style={{flex: 1}}
-						onPress={() => {
-							console.warn('pressed')
-							// zipmodal here
-						}}>
-						<ImageContainer
-							height={this.props.height / 2}
-							width={this.props.width}
-							source={require('../assets/wic1.jpg')}
-							resizeMode="cover">
-							<OfficeText>
-								WIC
-							</OfficeText>
-						</ImageContainer>
-					</TouchableHighlight>
-				</View>
-				<ZipModal
-					zipValid={this.props.zipValid}
-					updateZipCode={this.props.updateZipCode}
-					modalVisible={this.props.modalVisible}
-					updateState={this.props.updateState}
-				/>
-			</View>
-		)
-	}
+  render() {
+    return (
+      <View style={{flex: 1, flexDirection: 'column'}}>
+        <StatusBar barStyle="light-content" />
+        <View style={{flex: 0.5}}>
+          <TouchableHighlight
+            style={{flex: 1}}
+            onPress={() => this.props.toggleModalVisiblity()}>
+            <ImageContainer
+              height={this.props.height / 2}
+              width={this.props.width}
+              source={require('../assets/snap1.jpg')}
+              resizeMode="cover">
+              <OfficeText>
+                CalFresh
+              </OfficeText>
+            </ImageContainer>
+          </TouchableHighlight>
+        </View>
+        <View style={{flex: 0.5}}>
+          <TouchableHighlight
+            style={{flex: 1}}
+            onPress={() => {
+              console.warn('pressed')
+              this.props.toggleModalVisiblity()
+            }}>
+            <ImageContainer
+              height={this.props.height / 2}
+              width={this.props.width}
+              source={require('../assets/wic1.jpg')}
+              resizeMode="cover">
+              <OfficeText>
+                WIC
+              </OfficeText>
+            </ImageContainer>
+          </TouchableHighlight>
+        </View>
+        <ZipModal
+          zipValid={this.props.zipValid}
+          updateZipCode={this.props.updateZipCode}
+          modalVisible={this.props.modalVisible}
+          updateState={this.props.updateState}
+        />
+      </View>
+    )
+  }
 }
