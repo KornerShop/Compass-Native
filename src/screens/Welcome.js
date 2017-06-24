@@ -87,7 +87,7 @@ class Welcome extends Component {
     return (
       <Image
         onLoad={() => this.setState({isLoading: false})}
-        source={require('../assets/shopper.jpg')}
+        source={require('../assets/shopper.png')}
         tintColor={'red'}
         style={{
           flex: 1,
