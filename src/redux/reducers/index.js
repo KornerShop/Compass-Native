@@ -6,12 +6,14 @@ import zipcode from './zipcode'
 import snapOffices from './snapOffices'
 import wicOffices from './wicOffices'
 import wicEligible from './wicEligible'
+import updateLocation from './location'
 
 export default combineReducers({
-  language,
-  locationPermission,
-  zipcode,
-  snapOffices,
-  wicOffices,
-  wicEligible,
+	language,
+	locationPermission,
+	zipcode,
+	snapOffices,
+	wicOffices,
+	wicEligible,
+	updateLocation,
 })

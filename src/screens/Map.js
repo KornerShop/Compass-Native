@@ -1,26 +1,28 @@
 import React from 'react'
 import {View, Text, StyleSheet} from 'react-native'
 import {connect} from 'react-redux'
+import {bindActionCreators} from 'redux'
+import {MapView} from 'expo'
+import {updateLocation} from '../redux/actions/actions'
 
 class Map extends React.Component {
+  constructor(props) {
+    super(props)
+  }
   render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.text}>MAP!</Text>
-      </View>
-    )
+    console.warn(JSON.stringify(this.props.location, null, 2))
+    return <MapView style={{flex: 1}} initialRegion={this.props.location} />
   }
 }
 
-const mapStateToProps = ({language, orientation}) => ({language, orientation})
-
-const styles = StyleSheet.create({
-  container: {
-    padding: 100,
-  },
-  text: {
-    fontSize: 43,
-  },
+const mapStateToProps = ({language, orientation, location}) => ({
+  language,
+  orientation,
+  location,
 })
 
-export default connect(mapStateToProps)(Map)
+const mapDispatchToProps = dispatch => ({
+  updateLocation: bindActionCreators(updateLocation, dispatch),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Map)

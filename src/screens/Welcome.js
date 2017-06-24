@@ -3,11 +3,13 @@ import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import {
   Image,
+  View,
   Text,
   StyleSheet,
   AsyncStorage,
   Dimensions,
   ActivityIndicator,
+  StatusBar,
 } from 'react-native'
 import {FontAwesome} from '@expo/vector-icons'
 import {ButtonGroup} from 'react-native-elements'
@@ -85,54 +87,57 @@ class Welcome extends Component {
   }
   render() {
     return (
-      <Image
-        onLoad={() => this.setState({isLoading: false})}
-        source={require('../assets/shopper.png')}
-        tintColor={'red'}
-        style={{
-          flex: 1,
-          height: this.state.height,
-          width: this.state.width,
-          resizeMode: 'cover',
-        }}
-        onLayout={() => {
-          this.setState({
-            height: Dimensions.get('window').height,
-            width: Dimensions.get('window').width,
-          })
-        }}>
-        {this.state.isLoading
-          ? <ActivityIndicatorWrapper>
-              <ActivityIndicator color="tomato" size="large" />
-            </ActivityIndicatorWrapper>
-          : <WelcomeUIContainer>
-              <Logo>
-                C<FontAwesome name="compass" size={52} color="white" />mpass
-              </Logo>
-              <ButtonGroup
-                onPress={this.updateIndex.bind(this)}
-                selectedIndex={this.state.selectedLanguage}
-                buttons={['English', 'Español']}
-                textStyle={{color: 'white', fontSize: 22, fontWeight: 'bold'}}
-                selectedTextStyle={{color: 'slategray'}}
-                innerBorderStyle={{
-                  color: 'white',
-                  width: 4,
-                }}
-                containerStyle={{
-                  height: 60,
-                  marginTop: 30,
-                  backgroundColor: 'transparent',
-                  borderWidth: 4,
-                  borderRadius: 7,
-                  borderColor: 'white',
-                  width: 300,
-                  alignSelf: 'center',
-                }}
-                selectedBackgroundColor="white"
-              />
-            </WelcomeUIContainer>}
-      </Image>
+      <View style={{flex: 1}}>
+        <StatusBar barStyle="light-content" />
+        <Image
+          onLoad={() => this.setState({isLoading: false})}
+          source={require('../assets/shopper.jpg')}
+          tintColor={'red'}
+          style={{
+            flex: 1,
+            height: this.state.height,
+            width: this.state.width,
+            resizeMode: 'cover',
+          }}
+          onLayout={() => {
+            this.setState({
+              height: Dimensions.get('window').height,
+              width: Dimensions.get('window').width,
+            })
+          }}>
+          {this.state.isLoading
+            ? <ActivityIndicatorWrapper>
+                <ActivityIndicator color="tomato" size="large" />
+              </ActivityIndicatorWrapper>
+            : <WelcomeUIContainer>
+                <Logo>
+                  C<FontAwesome name="compass" size={52} color="white" />mpass
+                </Logo>
+                <ButtonGroup
+                  onPress={this.updateIndex.bind(this)}
+                  selectedIndex={this.state.selectedLanguage}
+                  buttons={['English', 'Español']}
+                  textStyle={{color: 'white', fontSize: 22, fontWeight: 'bold'}}
+                  selectedTextStyle={{color: 'slategray'}}
+                  innerBorderStyle={{
+                    color: 'white',
+                    width: 4,
+                  }}
+                  containerStyle={{
+                    height: 60,
+                    marginTop: 30,
+                    backgroundColor: 'transparent',
+                    borderWidth: 4,
+                    borderRadius: 7,
+                    borderColor: 'white',
+                    width: 300,
+                    alignSelf: 'center',
+                  }}
+                  selectedBackgroundColor="white"
+                />
+              </WelcomeUIContainer>}
+        </Image>
+      </View>
     )
   }
 }

@@ -22,3 +22,7 @@ export const updateWicEligibility = eligible =>
 
 export const updateOrientation = dimensions =>
 	createAction(types.UPDATE_ORIENTATION)(getOrientation(dimensions))
+
+export const updateLocation = location => {
+	createAction(types.UPDATE_LOCATION)(location)
+}
