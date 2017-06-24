@@ -5,7 +5,7 @@ const headers = {
 
 const checkStatus = response => {
   if (response.status >= 200 && response.status < 300) {
-    return response
+    return true
   } else {
     const error = new Error(response.statusText)
     error.response = response
@@ -13,7 +13,9 @@ const checkStatus = response => {
   }
 }
 
-const parseJSON = response => response.json()
-
-export const get = uri =>
-  fetch(uri, {headers}).then(checkStatus).then(parseJSON)
+export const get = async uri => {
+  const response = await fetch(uri, {headers})
+  if (checkStatus(response)) {
+    return await response.json()
+  }
+}

@@ -26,7 +26,7 @@ export const updateOrientation = dimensions =>
   createAction(types.UPDATE_ORIENTATION)(getLayoutInfo(dimensions))
 
 export const updateLocation = location => {
-  createAction(types.UPDATE_LOCATION)(regionFrom(location))
+  createAction(types.UPDATE_LOCATION)(location)
 }
 
 export const updateOffice = office => createAction(types.UPDATE_OFFICE)(office)
