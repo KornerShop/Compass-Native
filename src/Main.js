@@ -34,24 +34,26 @@ class Main extends React.Component {
   toggleStart() {
     this.setState({started: !this.state.started})
   }
-  // async componentWillMount() {
-  //   // Not ideal, but this action is necessary for getting the initial orientation of the device
-  //   this.props.updateOrientation(Dimensions.get('window'))
-  //   try {
-  //     const language = await AsyncStorage.getItem('language')
-  //     this.setState({
-  //       isLoading: false,
-  //     })
-  //     if (language) {
-  //       this.setState({
-  //         started: true,
-  //       })
-  //       setLanguagePreference(language)
-  //     }
-  //   } catch (err) {
-  //     console.warn(err)
-  //   }
-  // }
+  async getLanguage() {
+    try {
+      const language = await AsyncStorage.getItem('language')
+      this.setState({
+        isLoading: false,
+      })
+      if (language) {
+        this.setState({
+          started: true,
+        })
+        setLanguagePreference(language)
+      }
+    } catch (err) {
+      console.warn(err)
+    }
+  }
+  async componentWillMount() {
+    // Not ideal, but this action is necessary for getting the initial orientation of the device
+    this.props.updateOrientation(Dimensions.get('window'))
+  }
   renderRoot(Component) {
     return (
       <View
@@ -62,13 +64,13 @@ class Main extends React.Component {
     )
   }
   render() {
-    if (this.state.isLoading) {
-      return (
-        <ActivityIndicatorWrapper>
-          <ActivityIndicator color="tomato" size="large" />
-        </ActivityIndicatorWrapper>
-      )
-    }
+    // if (this.state.isLoading) {
+    //   return (
+    //     <ActivityIndicatorWrapper>
+    //       <ActivityIndicator color="tomato" size="large" />
+    //     </ActivityIndicatorWrapper>
+    //   )
+    // }
     return this.state.started
       ? this.renderRoot(NavigationProvider)
       : this.renderRoot(Welcome)
