@@ -11,10 +11,20 @@ export default {
   snapOffices: [],
   wicOffices: [],
   wicEligible: 0,
-  orientation: '',
+  orientation: {
+    view: '',
+    height: '',
+    width: '',
+  },
+  office: 0,
 }
 
 // wicEligible states
 // 0: eligibility not determined
 // 1: eligible
 // 2: not eligible
+
+// office states
+// 0: no choice
+// 1: Map
+

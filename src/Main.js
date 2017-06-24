@@ -17,6 +17,8 @@ import Welcome from './screens/Welcome'
 import {updateOrientation} from './redux/actions/actions'
 import {setLanguagePreference} from './redux/actions/actions'
 
+import {cacheImages} from './utilities/cacheAssetsAsync'
+
 const ActivityIndicatorWrapper = styled.View`
   flex: 1;
   justify-content: center;
@@ -50,9 +52,21 @@ class Main extends React.Component {
       console.warn(err)
     }
   }
+
+  async _loadAssetsAsync() {
+    await cacheImages([
+      require('./assets/shopper.png'),
+      require('./assets/snap1.jpg'),
+      require('./assets/wic1.jpg'),
+    ])
+    this.setState({
+      isLoading: false,
+    })
+  }
   componentWillMount() {
     // Not ideal, but this action is necessary for getting the initial orientation of the device
     this.props.updateOrientation(Dimensions.get('window'))
+    this._loadAssetsAsync()
   }
   renderRoot(Component) {
     return (
@@ -64,13 +78,13 @@ class Main extends React.Component {
     )
   }
   render() {
-    // if (this.state.isLoading) {
-    //   return (
-    //     <ActivityIndicatorWrapper>
-    //       <ActivityIndicator color="tomato" size="large" />
-    //     </ActivityIndicatorWrapper>
-    //   )
-    // }
+    if (this.state.isLoading) {
+      return (
+        <ActivityIndicatorWrapper>
+          <ActivityIndicator color="tomato" size="large" />
+        </ActivityIndicatorWrapper>
+      )
+    }
     return this.state.started
       ? this.renderRoot(NavigationProvider)
       : this.renderRoot(Welcome)

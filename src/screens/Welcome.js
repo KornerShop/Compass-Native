@@ -15,8 +15,6 @@ import {FontAwesome} from '@expo/vector-icons'
 import {ButtonGroup} from 'react-native-elements'
 import styled from 'styled-components/native'
 
-import {cacheImages} from '../utilities/cacheAssetsAsync'
-
 import {setLanguagePreference} from '../redux/actions/actions'
 
 // map
@@ -64,13 +62,9 @@ class Welcome extends Component {
     this.state = {
       isLoading: true,
       selectedLanguage: 2,
-      height: Dimensions.get('window').height,
-      width: Dimensions.get('window').width,
     }
   }
-  async _loadAssetsAsync() {
-    await cacheImages([require('../assets/shopper.png')])
-  }
+
   async updateIndex(idx) {
     this.setState({selectedLanguage: idx})
     const language = idx === 1 ? 'es' : 'en'
@@ -82,9 +76,7 @@ class Welcome extends Component {
     this.props.setLanguagePreference(language)
     this.props.toggleStart()
   }
-  componentWillMount() {
-    this._loadAssetsAsync()
-  }
+
   render() {
     return (
       <View style={{flex: 1}}>
@@ -95,15 +87,9 @@ class Welcome extends Component {
           tintColor={'red'}
           style={{
             flex: 1,
-            height: this.state.height,
-            width: this.state.width,
+            height: this.props.orientation.height,
+            width: this.props.orientation.width,
             resizeMode: 'cover',
-          }}
-          onLayout={() => {
-            this.setState({
-              height: Dimensions.get('window').height,
-              width: Dimensions.get('window').width,
-            })
           }}>
           {this.state.isLoading
             ? <ActivityIndicatorWrapper>

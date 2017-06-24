@@ -8,14 +8,16 @@ import wicOffices from './wicOffices'
 import wicEligible from './wicEligible'
 import location from './location'
 import orientation from './orientation'
+import office from './office'
 
 export default combineReducers({
-  language,
-  locationPermission,
-  zipcode,
-  snapOffices,
-  wicOffices,
-  wicEligible,
-  orientation,
-  location,
+	language,
+	locationPermission,
+	zipcode,
+	snapOffices,
+	wicOffices,
+	wicEligible,
+	orientation,
+	location,
+	office,
 })

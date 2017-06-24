@@ -18,16 +18,19 @@ export default class RootNavigation extends React.Component {
     return (
       <TabNavigation
         id="main"
-        initialTab="maps"
+        initialTab="resources"
         navigatorUID="main"
-        initialTab="maps">
+        initialTab="resources">
         <TabItem
-          id="maps"
+          id="resources"
           renderIcon={isSelected =>
             Platform.OS === 'ios'
               ? <Ionicons name="md-compass" size={32} color="tomato" />
               : <Ionicons name="ios-locate" size={32} color="tomato" />}>
-          <StackNavigation id="map" initialRoute={Router.getRoute('maps')} />
+          <StackNavigation
+            id="resources"
+            initialRoute={Router.getRoute('resources')}
+          />
         </TabItem>
         <TabItem
           id="snap"
