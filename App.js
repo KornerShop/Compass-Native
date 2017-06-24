@@ -6,11 +6,11 @@ import Main from './src/Main'
 import store from './src/redux/store'
 
 export default class App extends React.Component {
-	render() {
-		return (
-			<Provider store={store}>
-				<Main />
-			</Provider>
-		)
-	}
+  render() {
+    return (
+      <Provider store={store}>
+        <Main />
+      </Provider>
+    )
+  }
 }

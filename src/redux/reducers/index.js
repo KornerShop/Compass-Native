@@ -11,13 +11,13 @@ import orientation from './orientation'
 import office from './office'
 
 export default combineReducers({
-	language,
-	locationPermission,
-	zipcode,
-	snapOffices,
-	wicOffices,
-	wicEligible,
-	orientation,
-	location,
-	office,
+  language,
+  locationPermission,
+  zipcode,
+  snapOffices,
+  wicOffices,
+  wicEligible,
+  orientation,
+  location,
+  office,
 })
