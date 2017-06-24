@@ -52,7 +52,7 @@ const WelcomeUIContainer = styled.View`
 const Logo = styled.Text`
   text-align: center;
   font-size: 65;
-  font-weight: 500;
+  font-weight: 300;
   color: white;
   background-color: transparent;
   margin-bottom: 30
@@ -91,7 +91,7 @@ class Welcome extends Component {
         <StatusBar barStyle="light-content" />
         <Image
           onLoad={() => this.setState({isLoading: false})}
-          source={require('../assets/shopper.jpg')}
+          source={require('../assets/shopper.png')}
           tintColor={'red'}
           style={{
             flex: 1,
@@ -111,23 +111,23 @@ class Welcome extends Component {
               </ActivityIndicatorWrapper>
             : <WelcomeUIContainer>
                 <Logo>
-                  C<FontAwesome name="compass" size={52} color="white" />mpass
+                  C<FontAwesome name="compass" size={50} color="white" />mpass
                 </Logo>
                 <ButtonGroup
                   onPress={this.updateIndex.bind(this)}
                   selectedIndex={this.state.selectedLanguage}
                   buttons={['English', 'Español']}
-                  textStyle={{color: 'white', fontSize: 22, fontWeight: 'bold'}}
+                  textStyle={{color: 'white', fontSize: 18, fontWeight: 'bold'}}
                   selectedTextStyle={{color: 'slategray'}}
                   innerBorderStyle={{
                     color: 'white',
-                    width: 4,
+                    width: 3,
                   }}
                   containerStyle={{
                     height: 60,
                     marginTop: 30,
                     backgroundColor: 'transparent',
-                    borderWidth: 4,
+                    borderWidth: 3,
                     borderRadius: 7,
                     borderColor: 'white',
                     width: 300,

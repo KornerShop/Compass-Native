@@ -10,7 +10,6 @@ class Map extends React.Component {
     super(props)
   }
   render() {
-    console.warn(JSON.stringify(this.props.location, null, 2))
     return <MapView style={{flex: 1}} initialRegion={this.props.location} />
   }
 }
