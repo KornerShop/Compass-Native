@@ -13,11 +13,9 @@ class Wic extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      zip: '',
       familySize: '',
       income: '',
       lifeEvents: 5,
-      zipValid: '',
       familySizeValid: '',
       incomeValid: '',
       lifeEventsValid: '',
@@ -61,8 +59,6 @@ class Wic extends Component {
         return (
           <WicForm
             orientation={this.props.orientation}
-            zip={this.state.zip}
-            zipValid={this.state.zipValid}
             familySize={this.state.familySize}
             familySizeValid={this.state.familySizeValid}
             income={this.state.income}

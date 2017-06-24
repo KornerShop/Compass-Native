@@ -7,7 +7,7 @@ export default {
     latitudeDelta: 0.0922,
     longitudeDelta: 0.0421,
   },
-  zipcode: '',
+  zipCode: '',
   snapOffices: [],
   wicOffices: [],
   wicEligible: 0,
@@ -26,5 +26,5 @@ export default {
 
 // office states
 // 0: no choice
-// 1: Map
-
+// 1: SNAP
+// 2: WIC

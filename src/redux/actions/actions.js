@@ -10,7 +10,8 @@ export const setLanguagePreference = pref =>
 export const toggleLocationPermission = perm =>
 	createAction(types.TOGGLE_LOCATION_PERMISSION)(perm)
 
-export const updateZipcode = zip => createAction(types.UPDATE_ZIPCODE)(zip)
+export const updateZipCode = zipCode =>
+	createAction(types.UPDATE_ZIPCODE)(zipCode)
 
 export const populateSnapOffices = offices =>
 	createAction(types.POPULATE_SNAP_OFFICES)(offices)

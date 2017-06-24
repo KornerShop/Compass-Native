@@ -8,8 +8,9 @@ import {
 	StatusBar,
 	TouchableHighlight,
 } from 'react-native'
-
 import styled from 'styled-components/native'
+
+import ZipModal from './ZipModal'
 
 const ImageContainer = styled.Image`
 	flex: 1;
@@ -34,9 +35,7 @@ export default class Office extends Component {
 				<View style={{flex: 0.5}}>
 					<TouchableHighlight
 						style={{flex: 1}}
-						onPress={() => {
-							console.warn('pressed')
-						}}>
+						onPress={() => this.props.toggleModalVisibility}>
 						<ImageContainer
 							height={this.props.height / 2}
 							width={this.props.width}
@@ -53,6 +52,7 @@ export default class Office extends Component {
 						style={{flex: 1}}
 						onPress={() => {
 							console.warn('pressed')
+							// zipmodal here
 						}}>
 						<ImageContainer
 							height={this.props.height / 2}
@@ -65,6 +65,12 @@ export default class Office extends Component {
 						</ImageContainer>
 					</TouchableHighlight>
 				</View>
+				<ZipModal
+					zipValid={this.props.zipValid}
+					updateZipCode={this.props.updateZipCode}
+					modalVisible={this.props.modalVisible}
+					updateState={this.props.updateState}
+				/>
 			</View>
 		)
 	}

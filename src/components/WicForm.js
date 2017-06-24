@@ -89,30 +89,6 @@ export default props =>
         Determine whether you're{' '}
         <Text style={{fontStyle: 'italic'}}>likely</Text> to be eligible for WIC
       </Text>
-      <InputWrapper valid={props.zipValid}>
-        <StyledInput
-          placeholder="Zip Code"
-          placeholderTextColor="#90A4AE"
-          value={props.zip}
-          valid={props.zipValid}
-          maxLength={5}
-          returnKeyType="done"
-          keyboardType={`${Platform.OS === 'ios'
-            ? 'numbers-and-punctuation'
-            : 'numeric'}`}
-          onChangeText={zip => {
-            props.updateState({zip})
-            if (/^9[0-6]\d\d\d$/.test(zip)) {
-              return props.updateState({
-                zipValid: true,
-              })
-            }
-            props.updateState({
-              zipValid: false,
-            })
-          }}
-        />
-      </InputWrapper>
       <InputWrapper valid={props.familySizeValid}>
         <StyledInput
           placeholder="Household Size"

@@ -4,7 +4,8 @@ import {bindActionCreators} from 'redux'
 import {Permissions, Location} from 'expo'
 
 import Office from '../components/Office'
-import {updateOffice} from '../redux/actions/actions'
+
+import {updateOffice, updateZipCode} from '../redux/actions/actions'
 import {dispatchUpdateLocation} from '../redux/actions/actionCreators'
 
 class Resources extends Component {
@@ -12,7 +13,11 @@ class Resources extends Component {
 		super()
 		this.state = {
 			modalVisible: false,
+			zipValid: '',
 		}
+	}
+	updateState(obj) {
+		this.setState(obj)
 	}
 	toggleModalVisiblity() {
 		this.setState({
@@ -58,6 +63,10 @@ class Resources extends Component {
 					getLocationAsync={this.getLocationAsync}
 					updateOffice={this.props.updateOffice}
 					toggleModalVisiblity={this.toggleModalVisiblity.bind(this)}
+					modalVisible={this.state.modalVisible}
+					zipValid={this.state.zipValid}
+					updateZipCode={this.props.updateZipCode}
+					updateState={this.updateState.bind(this)}
 				/>
 			)
 		}
@@ -65,16 +74,24 @@ class Resources extends Component {
 	}
 }
 
-const mapStateToProps = ({language, orientation, office, location}) => ({
+const mapStateToProps = ({
 	language,
 	orientation,
 	office,
 	location,
+	zipCode,
+}) => ({
+	language,
+	orientation,
+	office,
+	location,
+	zipCode,
 })
 
 const mapDispatchToProps = dispatch => ({
 	updateOffice: bindActionCreators(updateOffice, dispatch),
 	dispatchUpdateLocation: bindActionCreators(dispatchUpdateLocation, dispatch),
+	updateZipCode: bindActionCreators(updateZipCode, dispatch),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Resources)
