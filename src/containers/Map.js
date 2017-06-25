@@ -1,11 +1,11 @@
 import React, {Component} from 'react'
+import {oneOf, array, func} from 'prop-types'
 import {connect} from 'react-redux'
 import {View, Text, StyleSheet, Alert} from 'react-native'
 import {MapView} from 'expo'
 
 import {dispatchUpdateLocation} from '../redux/actions/actionCreators'
 
-// you might need a custom callout here (more info about locale/link to device's map)
 class Map extends Component {
   constructor(props) {
     super(props)
@@ -35,6 +35,13 @@ class Map extends Component {
       </MapView>
     )
   }
+}
+
+Map.propTypes = {
+  fetchOffices: func.isRequired,
+  office: oneOf([0, 1, 2]).isRequired,
+  snapOffices: array.isRequired,
+  wicOffices: array.isRequired,
 }
 
 const mapStateToProps = ({office, snapOffices, wicOffices}) => ({

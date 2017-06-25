@@ -1,7 +1,7 @@
-import React from 'react'
+import React, {Component} from 'react'
+import {func} from 'prop-types'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
-import styled from 'styled-components/native'
 
 import {
   AsyncStorage,
@@ -11,21 +11,16 @@ import {
   Dimensions,
 } from 'react-native'
 
-import NavigationProvider from './components/NavigationProvider'
+import NavigationProvider from './containers/NavigationProvider'
 import Welcome from './screens/Welcome'
+import {ActivityIndicatorWrapper} from './components/styled/Styled'
 
 import {updateOrientation} from './redux/actions/actions'
 import {setLanguagePreference} from './redux/actions/actions'
 
 import {cacheImages} from './utilities/cacheAssetsAsync'
 
-const ActivityIndicatorWrapper = styled.View`
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-`
-
-class Main extends React.Component {
+class Main extends Component {
   constructor() {
     super()
     this.state = {
@@ -89,6 +84,11 @@ class Main extends React.Component {
       ? this.renderRoot(NavigationProvider)
       : this.renderRoot(Welcome)
   }
+}
+
+Main.propTypes = {
+  updateOrientation: func.isRequired,
+  setLanguagePreference: func.isRequired,
 }
 
 const mapDispatchToProps = dispatch => ({

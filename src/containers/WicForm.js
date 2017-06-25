@@ -1,5 +1,6 @@
 import React from 'react'
-import styled from 'styled-components/native'
+import {oneOf, string, bool} from 'prop-types'
+
 import {
   View,
   ScrollView,
@@ -10,85 +11,32 @@ import {
   Platform,
   Dimensions,
 } from 'react-native'
+
 import {ButtonGroup} from 'react-native-elements'
 
-const styleSwitch = (prop, cssIfValid, cssIfInvalid) => {
-  switch (prop) {
-    case '':
-      return cssIfValid
-    case true:
-      return cssIfValid
-    case false:
-      return cssIfInvalid
-  }
-}
+import {
+  styleSwitch,
+  StyledContainer,
+  FormHeader,
+  textInputColor,
+  textInputWrapperColor,
+  OfficeText,
+  StyledInput,
+  InputWrapper,
+  LifeEventText,
+} from '../components/styled/Styled'
 
-const textInputColor = prop => {
-  switch (prop) {
-    case '':
-      return '#7C7A7A'
-    case true:
-      return '#7C7A7A'
-    case false:
-      return 'tomato'
-  }
-}
+import SubmitButton from '../components/SubmitButton'
 
-const textInputWrapperColor = prop => {
-  switch (prop) {
-    case '':
-      return '1px solid papayawhip'
-    case true:
-      return '1px solid papayawhip'
-    case false:
-      return '1px solid tomato'
-  }
-}
-
-const StyledInput = styled.TextInput`
-  font-size: 18px;
-  font-weight: 300;
-  color: ${props => textInputColor(props.valid)};
-  height: 30px;
-`
-
-const StyledContainer = styled.View`
-  flex: 1;
-  padding-top: 20px;
-  padding-left: 20px;
-  padding-right: 20px;
-`
-const InputWrapper = styled.View`
-  border: ${props => textInputWrapperColor(props.valid)};
-  border-radius: 5px;
-	padding: 10px;
-  margin: 20px;
-  background-color: papayawhip;
-`
-
-const LifeEventText = styled.Text`
-  text-align: center;
-  font-size: 18;
-  font-weight: 300;
-  margin-top: 15;
-  margin-bottom: 10;
-`
-
-export default props =>
+const WicForm = props =>
   <StyledContainer>
     <ScrollView
       showsVerticalScrollIndicator={false}
       keyboardDismissMode="on-drag">
-      <Text
-        style={{
-          fontWeight: 'bold',
-          fontSize: 25,
-          textAlign: 'center',
-          paddingVertical: 25,
-        }}>
+      <FormHeader>
         Determine whether you're{' '}
         <Text style={{fontStyle: 'italic'}}>likely</Text> to be eligible for WIC
-      </Text>
+      </FormHeader>
       <InputWrapper valid={props.familySizeValid}>
         <StyledInput
           placeholder="Household Size"
@@ -178,10 +126,7 @@ export default props =>
         selectedTextStyle={{color: 'white'}}
         selectedBackgroundColor="mediumturquoise"
       />
-
-      <Button
-        title="Submit"
-        accessibilityLabel="Submit to find out your eligibility"
+      <SubmitButton
         onPress={() => {
           if ([0, 1].includes(props.lifeEvents)) {
             props.updateState({
@@ -189,7 +134,6 @@ export default props =>
             })
           }
           if (
-            props.zipValid &&
             props.lifeEventsValid &&
             props.familySizeValid &&
             props.incomeValid
@@ -201,7 +145,6 @@ export default props =>
             )
           } else {
             return props.updateState({
-              zipValid: false,
               familySizeValid: false,
               incomeValid: false,
               lifeEventsValid: false,
@@ -211,3 +154,14 @@ export default props =>
       />
     </ScrollView>
   </StyledContainer>
+
+WicForm.propTypes = {
+  familySize: string.isRequired,
+  income: string.isRequired,
+  lifeEvents: oneOf([0, 1, 2]),
+  familySizeValid: bool.isRequired,
+  incomeValid: bool.isRequired,
+  lifeEventsValid: bool.isRequired,
+}
+
+export default WicForm

@@ -1,26 +1,27 @@
 import React, {Component} from 'react'
+import {oneOf, number, bool, object, func, shape, array} from 'prop-types'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {Permissions, Location} from 'expo'
 
-import Office from '../components/Office'
-import Map from '../components/Map'
+import Office from '../containers/Office'
+import Map from '../containers/Map'
 
 import {updateOffice, updateZipCode} from '../redux/actions/actions'
 import {updateLocation, fetchOffices} from '../redux/actions/actionCreators'
 
 class Resources extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       modalVisible: false,
-      zipValid: '',
+      zipValid: true,
     }
   }
   updateState(obj) {
     this.setState(obj)
   }
-  _toggleModalVisiblity() {
+  toggleModalVisiblity() {
     this.setState({
       modalVisible: !this.state.modalVisible,
     })
@@ -34,7 +35,7 @@ class Resources extends Component {
         Permissions.LOCATION
       )
       if (newStatus !== 'granted') {
-        _toggleModalVisiblity()
+        toggleModalVisiblity()
       } else {
         var {coords: location} = await Location.getCurrentPositionAsync({
           enableHighAccuracy: true,
@@ -64,6 +65,8 @@ class Resources extends Component {
           updateZipCode={this.props.updateZipCode}
           updateState={this.updateState.bind(this)}
           fetchOffices={this.props.fetchOffices}
+          toggleModalVisibility={this.toggleModalVisiblity.bind(this)}
+          zipCode={this.props.zipCode}
         />
       )
     } else {
@@ -75,6 +78,25 @@ class Resources extends Component {
       )
     }
   }
+}
+
+Resources.propTypes = {
+  language: oneOf(['en', 'es']).isRequired,
+  orientation: object.isRequired,
+  office: oneOf([0, 1, 2]).isRequired,
+  location: shape({
+    latitude: number.isRequired,
+    longitude: number.isRequired,
+    latitudeDelta: number.isRequired,
+    longitudeDelta: number.isRequired,
+  }).isRequired,
+  zipCode: number.isRequired,
+  snapOffices: array.isRequired,
+  wicOffices: array.isRequired,
+  // updateZipCode: func.isRequied,
+  updateOffice: func.isRequired,
+  updateLocation: func.isRequired,
+  fetchOffices: func.isRequired,
 }
 
 const mapStateToProps = ({
@@ -96,9 +118,9 @@ const mapStateToProps = ({
 })
 
 const mapDispatchToProps = dispatch => ({
+  updateZipCode: bindActionCreators(updateZipCode, dispatch),
   updateOffice: bindActionCreators(updateOffice, dispatch),
   updateLocation: bindActionCreators(updateLocation, dispatch),
-  updateZipCode: bindActionCreators(updateZipCode, dispatch),
   fetchOffices: bindActionCreators(fetchOffices, dispatch),
 })
 
