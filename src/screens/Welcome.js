@@ -17,7 +17,9 @@ import styled from 'styled-components/native'
 
 import {setLanguagePreference} from '../redux/actions/actions'
 
-// map
+// update office state
+// custom marker views
+// Modal: update location state; update office state
 // translations
 // submit button on form
 // lock in form style

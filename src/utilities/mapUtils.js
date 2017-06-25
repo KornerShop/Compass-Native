@@ -1,10 +1,15 @@
+import {MAPS_API_KEY} from './config'
 import {get} from './fetch'
 
 export const fetchZipCodeCoords = zip => {
-  const data = get()
+  const data = get(
+    `https://maps.googleapis.com/maps/api/geocode/json?address=${zip}&key=${MAPS_API_KEY}`
+  )
+  return data.results[0].geometry.location
 }
 
-// https://maps.googleapis.com/maps/api/geocode/json?address=95404&key=AIzaSyCgsIvh_6KHhGiGv8XHfTP2rUm_T42eH2E
-
-// export const get = uri =>
-//   fetch(uri, {headers}).then(checkStatus).then(parseJSON)
+export const fetchResults = async (latitude, longitude, keyword) => {
+  const uri = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${latitude},${longitude}&radius=50000&keyword=${keyword}&key=${MAPS_API_KEY}`
+  const data = await get(uri)
+  return data.results
+}

@@ -6,13 +6,8 @@ import {Permissions, Location} from 'expo'
 import Office from '../components/Office'
 import Map from '../components/Map'
 
-import {
-  updateOffice,
-  updateZipCode,
-  populateSnapOffices,
-  populateWicOffices,
-} from '../redux/actions/actions'
-import {dispatchUpdateLocation} from '../redux/actions/actionCreators'
+import {updateOffice, updateZipCode} from '../redux/actions/actions'
+import {updateLocation, fetchOffices} from '../redux/actions/actionCreators'
 
 class Resources extends Component {
   constructor() {
@@ -54,33 +49,30 @@ class Resources extends Component {
       latitude: location.latitude,
       longitude: location.longitude,
     }
-    this.props.dispatchUpdateLocation(payload)
+    this.props.updateLocation(payload)
   }
-  // update office state
-  // Modal: update location state; update office state
   render() {
-    switch (this.props.office) {
-      case 0:
-        return (
-          <Office
-            height={this.props.orientation.height}
-            width={this.props.orientation.width}
-            getLocationAsync={this.getLocationAsync.bind(this)}
-            updateOffice={this.props.updateOffice}
-            modalVisible={this.state.modalVisible}
-            zipValid={this.state.zipValid}
-            updateZipCode={this.props.updateZipCode}
-            updateState={this.updateState.bind(this)}
-          />
-        )
-      case 1:
-        return (
-          <Map offices={this.props.snapOffices} region={this.props.location} />
-        )
-      case 2:
-        return (
-          <Map offices={this.props.wicOffices} region={this.props.location} />
-        )
+    if (this.props.office === 0) {
+      return (
+        <Office
+          height={this.props.orientation.height}
+          width={this.props.orientation.width}
+          getLocationAsync={this.getLocationAsync.bind(this)}
+          updateOffice={this.props.updateOffice}
+          modalVisible={this.state.modalVisible}
+          zipValid={this.state.zipValid}
+          updateZipCode={this.props.updateZipCode}
+          updateState={this.updateState.bind(this)}
+          fetchOffices={this.props.fetchOffices}
+        />
+      )
+    } else {
+      return (
+        <Map
+          fetchOffices={this.props.fetchOffices}
+          region={this.props.location}
+        />
+      )
     }
   }
 }
@@ -105,10 +97,9 @@ const mapStateToProps = ({
 
 const mapDispatchToProps = dispatch => ({
   updateOffice: bindActionCreators(updateOffice, dispatch),
-  dispatchUpdateLocation: bindActionCreators(dispatchUpdateLocation, dispatch),
+  updateLocation: bindActionCreators(updateLocation, dispatch),
   updateZipCode: bindActionCreators(updateZipCode, dispatch),
-  populateSnapOffices: bindActionCreators(populateSnapOffices, dispatch),
-  populateWicOffices: bindActionCreators(populateWicOffices, dispatch),
+  fetchOffices: bindActionCreators(fetchOffices, dispatch),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Resources)
