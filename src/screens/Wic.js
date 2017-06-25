@@ -15,7 +15,7 @@ class Wic extends Component {
     this.state = {
       familySize: '',
       income: '',
-      lifeEvents: 5,
+      lifeEvents: 2,
       familySizeValid: '',
       incomeValid: '',
       lifeEventsValid: '',

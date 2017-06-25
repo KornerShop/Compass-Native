@@ -17,9 +17,14 @@ import styled from 'styled-components/native'
 
 import {setLanguagePreference} from '../redux/actions/actions'
 
+// modify deltas (larger view)
 // update office state
 // custom marker views
+// link to native maps:
+// - https://stackoverflow.com/questions/43214062/open-maps-google-maps-in-react-native
+// - https://facebook.github.io/react-native/docs/linking.html
 // Modal: update location state; update office state
+// - https://developers.google.com/maps/documentation/geocoding/start
 // translations
 // submit button on form
 // lock in form style

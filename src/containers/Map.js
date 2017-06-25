@@ -5,7 +5,6 @@ import {MapView} from 'expo'
 
 import {dispatchUpdateLocation} from '../redux/actions/actionCreators'
 
-// you might need a custom callout here (more info about locale/link to device's map)
 class Map extends Component {
   constructor(props) {
     super(props)
@@ -35,6 +34,13 @@ class Map extends Component {
       </MapView>
     )
   }
+}
+
+Map.propTypes = {
+  fetchOffices: func.isRequired,
+  office: string.isRequired,
+  snapOffices: array.isRequired,
+  wicOffices: array.isRequired,
 }
 
 const mapStateToProps = ({office, snapOffices, wicOffices}) => ({
