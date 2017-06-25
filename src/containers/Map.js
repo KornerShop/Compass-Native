@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {oneOf, array, func} from 'prop-types'
 import {connect} from 'react-redux'
-import {View, Text, StyleSheet, Alert} from 'react-native'
+import {Platform, Link, View, Text, StyleSheet, Alert} from 'react-native'
 import {MapView} from 'expo'
 
 import {dispatchUpdateLocation} from '../redux/actions/actionCreators'
@@ -14,22 +14,58 @@ class Map extends Component {
     await this.props.fetchOffices()
   }
   render() {
-    const offices = this.props.office === 0
+    const colors = [
+      'coral',
+      'crimson',
+      'aquamarine',
+      'darkturquoise',
+      'deeppink',
+      'indianred',
+      'mediumspringgreen',
+      'sandybrown',
+      'plum',
+      'tomato',
+      'aqua',
+      'palevioletred',
+      'salmon',
+    ]
+    const offices = this.props.office === 1
       ? this.props.snapOffices
       : this.props.wicOffices
     return (
-      <MapView style={{flex: 1}} provider="google" region={this.props.region}>
-        {offices.map(marker => {
+      <MapView
+        style={{flex: 1}}
+        provider={Platform.OS === 'ios' ? null : 'google'}
+        region={this.props.region}>
+        {offices.map(office => {
           return (
             <MapView.Marker
-              key={marker.id}
+              pinColor={colors[Math.floor(Math.random() * colors.length)]}
+              key={office.id}
               coordinate={{
-                latitude: marker.geometry.location.lat,
-                longitude: marker.geometry.location.lng,
-              }}
-              title={marker.name}
-              description={marker.vicinity}
-            />
+                latitude: office.latitude,
+                longitude: office.longitude,
+              }}>
+              <MapView.Callout>
+                <View
+                  style={{
+                    height: 100,
+                    flex: 1,
+                    justifyContent: 'center',
+                    width: 300,
+                  }}>
+                  <Text style={{fontWeight: 'bold', marginBottom: 10}}>
+                    {office.name}
+                  </Text>
+                  <Text style={{color: 'royalblue', marginBottom: 10}}>
+                    {office.phone_local}
+                  </Text>
+                  <Text>
+                    {office.address}
+                  </Text>
+                </View>
+              </MapView.Callout>
+            </MapView.Marker>
           )
         })}
       </MapView>
