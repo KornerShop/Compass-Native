@@ -2,7 +2,7 @@ import {combineReducers} from 'redux'
 
 import language from './language'
 import locationPermission from './locationPermission'
-import zipcode from './zipcode'
+import zipCode from './zipCode'
 import snapOffices from './snapOffices'
 import wicOffices from './wicOffices'
 import wicEligible from './wicEligible'
@@ -13,7 +13,7 @@ import office from './office'
 export default combineReducers({
   language,
   locationPermission,
-  zipcode,
+  zipCode,
   snapOffices,
   wicOffices,
   wicEligible,

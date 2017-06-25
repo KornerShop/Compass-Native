@@ -31,7 +31,7 @@ const Eligible = props =>
     </ScrollView>
   </StyledContainer>
 
-Eligibile.propTypes = {
+Eligible.propTypes = {
   updateWicEligibility: func.isRequired,
 }
 

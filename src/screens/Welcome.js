@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import {func, object} from 'prop-types'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import {
@@ -19,7 +20,7 @@ import {setLanguagePreference} from '../redux/actions/actions'
 
 // modify deltas (larger view)
 // update office state
-// custom marker views
+// custom marker views (at least get Link'd phone number on the marker...)
 // link to native maps:
 // - https://stackoverflow.com/questions/43214062/open-maps-google-maps-in-react-native
 // - https://facebook.github.io/react-native/docs/linking.html
@@ -37,31 +38,16 @@ import {setLanguagePreference} from '../redux/actions/actions'
 // look into reprecussions of ejecting w/ regard to pushing to app stores
 // smile - we can do it!
 
-const ActivityIndicatorWrapper = styled.View`
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-`
+import {
+  ActivityIndicatorWrapper,
+  WelcomeUIWrapper,
+  Logo,
+} from '../components/styled/Styled'
 
 const BackgroundImage = props =>
   <Image>
     {props.children}
   </Image>
-
-const WelcomeUIContainer = styled.View`
-  flex: 1;
-  justify-content: center;
-  align-content: center;
-`
-
-const Logo = styled.Text`
-  text-align: center;
-  font-size: 65;
-  font-weight: 300;
-  color: white;
-  background-color: transparent;
-  margin-bottom: 30
-`
 
 class Welcome extends Component {
   constructor(props) {
@@ -83,7 +69,6 @@ class Welcome extends Component {
     this.props.setLanguagePreference(language)
     this.props.toggleStart()
   }
-
   render() {
     return (
       <View style={{flex: 1}}>
@@ -102,7 +87,7 @@ class Welcome extends Component {
             ? <ActivityIndicatorWrapper>
                 <ActivityIndicator color="tomato" size="large" />
               </ActivityIndicatorWrapper>
-            : <WelcomeUIContainer>
+            : <WelcomeUIWrapper>
                 <Logo>
                   C<FontAwesome name="compass" size={50} color="white" />mpass
                 </Logo>
@@ -128,11 +113,17 @@ class Welcome extends Component {
                   }}
                   selectedBackgroundColor="white"
                 />
-              </WelcomeUIContainer>}
+              </WelcomeUIWrapper>}
         </Image>
       </View>
     )
   }
+}
+
+Welcome.propTypes = {
+  setLanguagePreference: func.isRequired,
+  toggleStart: func.isRequired,
+  orientation: object.isRequired,
 }
 
 const mapStateToProps = ({orientation}) => ({orientation})

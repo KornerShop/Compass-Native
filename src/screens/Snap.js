@@ -1,32 +1,30 @@
-import React, {Component} from 'react'
+import React from 'react'
+import {oneOf} from 'prop-types'
 import {ActivityIndicator, WebView} from 'react-native'
 import {connect} from 'react-redux'
-import styled from 'styled-components/native'
 
-const ActivityIndicatorWrapper = styled.View`
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-`
+import {ActivityIndicatorWrapper} from '../components/styled/Styled'
 
-class Snap extends Component {
-  render() {
-    const host = 'https://getcalfresh.org/en/apply'
-    const url = this.props.language === 'en' ? host : `${host}?new_locale=es`
-    return (
-      <WebView
-        source={{uri: url}}
-        startInLoadingState={true}
-        renderLoading={() => {
-          return (
-            <ActivityIndicatorWrapper>
-              <ActivityIndicator color="tomato" size="large" />
-            </ActivityIndicatorWrapper>
-          )
-        }}
-      />
-    )
-  }
+const Snap = props => {
+  const host = 'https://getcalfresh.org/en/apply'
+  const url = props.language === 'en' ? host : `${host}?new_locale=es`
+  return (
+    <WebView
+      source={{uri: url}}
+      startInLoadingState={true}
+      renderLoading={() => {
+        return (
+          <ActivityIndicatorWrapper>
+            <ActivityIndicator color="tomato" size="large" />
+          </ActivityIndicatorWrapper>
+        )
+      }}
+    />
+  )
+}
+
+Snap.propTypes = {
+  language: oneOf(['en', 'es']),
 }
 
 const mapStateToProps = ({language}) => ({language})

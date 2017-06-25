@@ -1,13 +1,14 @@
 import React, {Component} from 'react'
+import {object, func, oneOf} from 'prop-types'
 import {AsyncStorage} from 'react-native'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 
 import {updateWicEligibility} from '../redux/actions/actions'
 
-import WicForm from '../components/WicForm'
-import Eligible from '../components/Eligible'
-import Ineligible from '../components/Ineligible'
+import WicForm from '../containers/WicForm'
+import Eligible from '../containers/Eligible'
+import Ineligible from '../containers/Ineligible'
 
 class Wic extends Component {
   constructor(props) {
@@ -16,9 +17,9 @@ class Wic extends Component {
       familySize: '',
       income: '',
       lifeEvents: 2,
-      familySizeValid: '',
-      incomeValid: '',
-      lifeEventsValid: '',
+      familySizeValid: true,
+      incomeValid: true,
+      lifeEventsValid: true,
     }
   }
   updateState(obj) {
@@ -77,6 +78,12 @@ class Wic extends Component {
         return <Ineligible />
     }
   }
+}
+
+Wic.propTypes = {
+  wicEligible: oneOf([0, 1, 2]).isRequired,
+  orientation: object.isRequired,
+  updateWicEligibility: func.isRequired,
 }
 
 const mapStateToProps = ({wicEligible, orientation}) => ({

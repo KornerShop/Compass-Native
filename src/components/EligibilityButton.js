@@ -1,6 +1,8 @@
 import React from 'react'
 import {func} from 'prop-types'
 
+import {Button} from 'react-native-elements'
+
 const EligibilityButton = props =>
   <Button
     fontSize={22}
@@ -20,8 +22,8 @@ const EligibilityButton = props =>
     onPress={() => props.updateWicEligibility(0)}
   />
 
-EligbilityButton.propTypes = {
+EligibilityButton.propTypes = {
   updateWicEligibility: func.isRequired,
 }
 
-export default EligbilityButton
+export default EligibilityButton

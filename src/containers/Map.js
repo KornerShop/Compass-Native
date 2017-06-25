@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import {oneOf, array, func} from 'prop-types'
 import {connect} from 'react-redux'
 import {View, Text, StyleSheet, Alert} from 'react-native'
 import {MapView} from 'expo'
@@ -38,7 +39,7 @@ class Map extends Component {
 
 Map.propTypes = {
   fetchOffices: func.isRequired,
-  office: string.isRequired,
+  office: oneOf([0, 1, 2]).isRequired,
   snapOffices: array.isRequired,
   wicOffices: array.isRequired,
 }

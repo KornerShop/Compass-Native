@@ -1,5 +1,5 @@
 import React from 'react'
-import 'prop-types'
+import {oneOf, string, bool} from 'prop-types'
 
 import {
   View,
@@ -12,8 +12,12 @@ import {
   Dimensions,
 } from 'react-native'
 
+import {ButtonGroup} from 'react-native-elements'
+
 import {
   styleSwitch,
+  StyledContainer,
+  FormHeader,
   textInputColor,
   textInputWrapperColor,
   OfficeText,
@@ -22,21 +26,17 @@ import {
   LifeEventText,
 } from '../components/styled/Styled'
 
-export default props =>
+import SubmitButton from '../components/SubmitButton'
+
+const WicForm = props =>
   <StyledContainer>
     <ScrollView
       showsVerticalScrollIndicator={false}
       keyboardDismissMode="on-drag">
-      <Text
-        style={{
-          fontWeight: 'bold',
-          fontSize: 25,
-          textAlign: 'center',
-          paddingVertical: 25,
-        }}>
+      <FormHeader>
         Determine whether you're{' '}
         <Text style={{fontStyle: 'italic'}}>likely</Text> to be eligible for WIC
-      </Text>
+      </FormHeader>
       <InputWrapper valid={props.familySizeValid}>
         <StyledInput
           placeholder="Household Size"
@@ -154,3 +154,14 @@ export default props =>
       />
     </ScrollView>
   </StyledContainer>
+
+WicForm.propTypes = {
+  familySize: string.isRequired,
+  income: string.isRequired,
+  lifeEvents: oneOf([0, 1, 2]),
+  familySizeValid: bool.isRequired,
+  incomeValid: bool.isRequired,
+  lifeEventsValid: bool.isRequired,
+}
+
+export default WicForm

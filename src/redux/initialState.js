@@ -7,7 +7,7 @@ export default {
     latitudeDelta: 0.0922,
     longitudeDelta: 0.0421,
   },
-  zipCode: '',
+  zipCode: 94110,
   snapOffices: [],
   wicOffices: [],
   wicEligible: 0,
