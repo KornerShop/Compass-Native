@@ -35,7 +35,10 @@ export default class Office extends Component {
         <View style={{flex: 0.5}}>
           <TouchableHighlight
             style={{flex: 1}}
-            onPress={() => this.props.toggleModalVisiblity()}>
+            onPress={async () => {
+              await this.props.getLocationAsync()
+              this.props.updateOffice(1)
+            }}>
             <ImageContainer
               height={this.props.height / 2}
               width={this.props.width}
@@ -50,9 +53,9 @@ export default class Office extends Component {
         <View style={{flex: 0.5}}>
           <TouchableHighlight
             style={{flex: 1}}
-            onPress={() => {
-              console.warn('pressed')
-              this.props.toggleModalVisiblity()
+            onPress={async () => {
+              await this.props.getLocationAsync()
+              this.props.updateOffice(2)
             }}>
             <ImageContainer
               height={this.props.height / 2}

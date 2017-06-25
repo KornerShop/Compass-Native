@@ -6,8 +6,8 @@ export default (state = initState.location, {type, payload}) => {
     case UPDATE_LOCATION:
       return {
         ...state,
-        latitute: payload.latitude,
-        logitude: payload.longitude,
+        latitude: payload.latitude,
+        longitude: payload.longitude,
       }
     default:
       return state

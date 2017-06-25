@@ -1,4 +1,6 @@
 import React, {Component} from 'react'
+import styled from 'styled-components/native'
+
 import {
   Modal,
   TouchableHighlight,
@@ -6,9 +8,9 @@ import {
   Text,
   TextInput,
   Platform,
-  Button,
+  ScrollView,
 } from 'react-native'
-import styled from 'styled-components/native'
+import {Button} from 'react-native-elements'
 
 const textInputColor = prop => {
   switch (prop) {
@@ -43,7 +45,7 @@ const InputWrapper = styled.View`
 const StyledInput = styled.TextInput`
   font-size: 18px;
   font-weight: 300;
-  color: ${props => textInputColor(props.valid)}
+  color: ${props => textInputColor(props.valid)};
   height: 30px;
 `
 
@@ -55,77 +57,68 @@ export default class ZipModal extends Component {
         animationType="slide"
         visible={this.props.modalVisible}
         onRequestClose={this.props.toggleModalVisibility}>
-        <View style={{flex: 1, justifyContent: 'center'}}>
-          <Text
-            style={{
-              fontWeight: 'bold',
-              fontSize: 25,
-              textAlign: 'center',
-              paddingHorizontal: 25,
-            }}>
-            Find offices near you
-          </Text>
-          <Text style={{fontSize: 30, textAlign: 'center', marginTop: 20}}>
-            📍
-          </Text>
-          <InputWrapper valid={this.props.zipValid}>
-            <StyledInput
-              placeholder="Zip Code"
-              placeholderTextColor="#90A4AE"
-              value={this.props.zipCode}
-              valid={this.props.zipValid}
-              maxLength={5}
-              returnKeyType="done"
-              keyboardType={`${Platform.OS === 'ios'
-                ? 'numbers-and-punctuation'
-                : 'numeric'}`}
-              onChangeText={zipCode => {
-                this.props.updateZipCode(zipCode)
-                if (/^9[0-6]\d\d\d$/.test(zipCode)) {
-                  return this.props.updateState({
-                    zipValid: true,
+        <ScrollView contentContainerStyle={{flex: 1, justifyContent: 'center'}}>
+          <View style={{flex: 1, justifyContent: 'center'}}>
+            <Text
+              style={{
+                fontWeight: 'bold',
+                fontSize: 25,
+                textAlign: 'center',
+                paddingHorizontal: 25,
+              }}>
+              Find Offices Near You
+            </Text>
+            <Text style={{fontSize: 30, textAlign: 'center', marginTop: 20}}>
+              📍
+            </Text>
+            <InputWrapper valid={this.props.zipValid}>
+              <StyledInput
+                placeholder="Zip Code"
+                placeholderTextColor="#90A4AE"
+                value={this.props.zipCode}
+                valid={this.props.zipValid}
+                maxLength={5}
+                returnKeyType="done"
+                keyboardType={`${Platform.OS === 'ios'
+                  ? 'numbers-and-punctuation'
+                  : 'numeric'}`}
+                onChangeText={zipCode => {
+                  this.props.updateZipCode(zipCode)
+                  if (/^9[0-6]\d\d\d$/.test(zipCode)) {
+                    return this.props.updateState({
+                      zipValid: true,
+                    })
+                  }
+                  this.props.updateState({
+                    zipValid: false,
                   })
+                }}
+              />
+            </InputWrapper>
+            <Button
+              title="Submit"
+              raised
+              textStyle={{color: 'white'}}
+              buttonStyle={{
+                backgroundColor: 'tomato',
+              }}
+              containerViewStyle={{
+                marginRight: 30,
+                marginLeft: 30,
+                borderRadius: 5,
+              }}
+              borderRadius={5}
+              fontSize={18}
+              accessibilityLabel="Find offices near you"
+              onPress={() => {
+                if (this.props.zipValid) {
+                  // call geocode api, get location, push it to store, change whatever you need to in order to re-render
                 }
-                this.props.updateState({
-                  zipValid: false,
-                })
+                return null
               }}
             />
-          </InputWrapper>
-          <Button
-            title="Submit"
-            style={{
-              backGroundColor: 'tomato',
-            }}
-            accessibilityLabel="Find offices near you"
-            onPress={() => {
-              if ([0, 1].includes(props.lifeEvents)) {
-                props.updateState({
-                  lifeEventsValid: true,
-                })
-              }
-              if (
-                props.zipValid &&
-                props.lifeEventsValid &&
-                props.familySizeValid &&
-                props.incomeValid
-              ) {
-                props.checkEligibility(
-                  props.lifeEvents,
-                  props.familySize,
-                  props.income
-                )
-              } else {
-                return props.updateState({
-                  zipValid: false,
-                  familySizeValid: false,
-                  incomeValid: false,
-                  lifeEventsValid: false,
-                })
-              }
-            }}
-          />
-        </View>
+          </View>
+        </ScrollView>
       </Modal>
     )
   }

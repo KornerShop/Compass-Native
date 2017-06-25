@@ -4,9 +4,10 @@ import {bindActionCreators} from 'redux'
 import {Permissions, Location} from 'expo'
 
 import Office from '../components/Office'
+import Map from '../components/Map'
 
 import {updateOffice, updateZipCode} from '../redux/actions/actions'
-import {dispatchUpdateLocation} from '../redux/actions/actionCreators'
+import {updateLocation, fetchOffices} from '../redux/actions/actionCreators'
 
 class Resources extends Component {
   constructor() {
@@ -19,13 +20,12 @@ class Resources extends Component {
   updateState(obj) {
     this.setState(obj)
   }
-  toggleModalVisiblity() {
+  _toggleModalVisiblity() {
     this.setState({
       modalVisible: !this.state.modalVisible,
     })
   }
   async getLocationAsync() {
-    let location
     const {status: currentStatus} = await Permissions.getAsync(
       Permissions.LOCATION
     )
@@ -34,43 +34,46 @@ class Resources extends Component {
         Permissions.LOCATION
       )
       if (newStatus !== 'granted') {
-        // zip code
-        console.warn('not granted')
+        _toggleModalVisiblity()
       } else {
-        location = await Location.getCurrentPositionAsync({
+        var {coords: location} = await Location.getCurrentPositionAsync({
           enableHighAccuracy: true,
-        }).coords
+        })
       }
     } else {
-      location = await Location.getCurrentPositionAsync({
+      var {coords: location} = await Location.getCurrentPositionAsync({
         enableHighAccuracy: true,
-      }).coords
+      })
     }
-    this.props.dispatchUpdateLocation({
+    const payload = {
       latitude: location.latitude,
       longitude: location.longitude,
-    })
+    }
+    this.props.updateLocation(payload)
   }
-  // ask for location
-  // or modal for zip code
-  // update location state; update office state
   render() {
     if (this.props.office === 0) {
       return (
         <Office
           height={this.props.orientation.height}
           width={this.props.orientation.width}
-          getLocationAsync={this.getLocationAsync}
+          getLocationAsync={this.getLocationAsync.bind(this)}
           updateOffice={this.props.updateOffice}
-          toggleModalVisiblity={this.toggleModalVisiblity.bind(this)}
           modalVisible={this.state.modalVisible}
           zipValid={this.state.zipValid}
           updateZipCode={this.props.updateZipCode}
           updateState={this.updateState.bind(this)}
+          fetchOffices={this.props.fetchOffices}
+        />
+      )
+    } else {
+      return (
+        <Map
+          fetchOffices={this.props.fetchOffices}
+          region={this.props.location}
         />
       )
     }
-    return <Map office={this.props.office} location={this.props.location} />
   }
 }
 
@@ -80,18 +83,23 @@ const mapStateToProps = ({
   office,
   location,
   zipCode,
+  snapOffices,
+  wicOffices,
 }) => ({
   language,
   orientation,
   office,
   location,
   zipCode,
+  snapOffices,
+  wicOffices,
 })
 
 const mapDispatchToProps = dispatch => ({
   updateOffice: bindActionCreators(updateOffice, dispatch),
-  dispatchUpdateLocation: bindActionCreators(dispatchUpdateLocation, dispatch),
+  updateLocation: bindActionCreators(updateLocation, dispatch),
   updateZipCode: bindActionCreators(updateZipCode, dispatch),
+  fetchOffices: bindActionCreators(fetchOffices, dispatch),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Resources)
