@@ -18,8 +18,6 @@ import styled from 'styled-components/native'
 
 import {setLanguagePreference} from '../redux/actions/actions'
 
-// modify deltas (larger view)
-// update office state
 // custom marker views (at least get Link'd phone number on the marker...)
 // link to native maps:
 // - https://stackoverflow.com/questions/43214062/open-maps-google-maps-in-react-native
