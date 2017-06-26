@@ -45,7 +45,7 @@ const Office = props =>
         <ImageContainer
           height={props.height / 2}
           width={props.width}
-          source={require('../assets/wic1.jpg')}
+          source={require('../assets/wic1.jpeg')}
           resizeMode="cover">
           <OfficeText>
             WIC

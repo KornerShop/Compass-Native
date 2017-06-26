@@ -3,6 +3,7 @@ import {oneOf, bool, array, func} from 'prop-types'
 import {connect} from 'react-redux'
 import {
   Platform,
+  TouchableHighlight,
   Link,
   View,
   Text,
@@ -11,7 +12,7 @@ import {
   ActivityIndicator,
 } from 'react-native'
 import {MapView} from 'expo'
-
+import {Foundation} from '@expo/vector-icons'
 import {ActivityIndicatorWrapper} from '../components/styled/Styled'
 
 import {dispatchUpdateLocation} from '../redux/actions/actionCreators'
@@ -44,6 +45,20 @@ class Map extends Component {
       : this.props.wicOffices
     if (!this.props.mapLoading) {
       return (
+        // <TouchableHighlight
+        //   activeOpacity={0.5}
+        //   style={{
+        //     display: 'flex',
+        //     flexDirection: 'column',
+        //     justifyContent: 'center',
+        //     alignItems: 'center',
+        //     backgroundColor: 'tomato',
+        //     height: 60,
+        //     width: 60,
+        //     borderRadius: 30,
+        //   }}>
+        //   <Foundation name="refresh" size={22} color="white" />
+        // </TouchableHighlight>
         <MapView
           style={{flex: 1}}
           provider={Platform.OS === 'ios' ? null : 'google'}
