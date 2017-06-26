@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {string, number, bool, func} from 'prop-types'
+import {string, number, bool, func, oneOf} from 'prop-types'
 
 import {
   Image,
@@ -54,6 +54,7 @@ const Office = props =>
       </TouchableHighlight>
     </View>
     <ZipModal
+      language={props.language}
       zipCode={props.zipCode}
       zipValid={props.zipValid}
       updateZipCode={props.updateZipCode}
@@ -78,6 +79,7 @@ Office.propTypes = {
   fetchOffices: func.isRequired,
   toggleLocationProvided: func.isRequired,
   toggleModalVisibility: func.isRequired,
+  language: oneOf(['en', 'es']).isRequired,
 }
 
 export default Office

@@ -59,6 +59,7 @@ class Wic extends Component {
       case 0:
         return (
           <WicForm
+            language={this.props.language}
             orientation={this.props.orientation}
             familySize={this.state.familySize}
             familySizeValid={this.state.familySizeValid}
@@ -73,9 +74,9 @@ class Wic extends Component {
           />
         )
       case 1:
-        return <Eligible />
+        return <Eligible language={this.props.language} />
       case 2:
-        return <Ineligible />
+        return <Ineligible language={this.props.language} />
     }
   }
 }
@@ -84,11 +85,13 @@ Wic.propTypes = {
   wicEligible: oneOf([0, 1, 2]).isRequired,
   orientation: object.isRequired,
   updateWicEligibility: func.isRequired,
+  language: oneOf(['es', 'en']).isRequired,
 }
 
-const mapStateToProps = ({wicEligible, orientation}) => ({
+const mapStateToProps = ({wicEligible, orientation, language}) => ({
   wicEligible,
   orientation,
+  language,
 })
 
 const mapDispatchToProps = dispatch => ({

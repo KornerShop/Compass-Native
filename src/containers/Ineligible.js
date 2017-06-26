@@ -1,5 +1,5 @@
 import React from 'react'
-import {func} from 'prop-types'
+import {func, oneOf} from 'prop-types'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 
@@ -11,32 +11,42 @@ import {updateWicEligibility} from '../redux/actions/actions'
 import {StyledContainer, FormHeader} from '../components/styled/Styled'
 import EligibilityButton from '../components/EligibilityButton'
 
-const Ineligible = props =>
-  <StyledContainer>
-    <ScrollView
-      showsVerticalScrollIndicator={false}
-      keyboardDismissMode="on-drag"
-      contentContainerStyle={{
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}>
-      <FormHeader>
-        You may be ineligible, but you do have options. Go to a local office to
-        learn more.{' '}
-      </FormHeader>
-      <Text
-        style={{
-          fontSize: 80,
-          marginVertical: 120,
+import localizedStrings from '../utilities/localization'
+
+const Ineligible = props => {
+  localizedStrings.setLanguage(props.language)
+  return (
+    <StyledContainer>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        keyboardDismissMode="on-drag"
+        contentContainerStyle={{
+          alignItems: 'center',
+          justifyContent: 'center',
         }}>
-        🏢
-      </Text>
-      <EligibilityButton updateWicEligibility={props.updateWicEligibility} />
-    </ScrollView>
-  </StyledContainer>
+        <FormHeader>
+          {localizedStrings.ineligible.header}
+        </FormHeader>
+        <Text
+          style={{
+            fontSize: 80,
+            marginVertical: 120,
+          }}>
+          🏢
+        </Text>
+        <EligibilityButton
+          title={localizedStrings.buttons.recheck}
+          accessibility={localizedStrings.buttons.accessibilityRecheck}
+          updateWicEligibility={props.updateWicEligibility}
+        />
+      </ScrollView>
+    </StyledContainer>
+  )
+}
 
 Ineligible.propTypes = {
   updateWicEligibility: func.isRequired,
+  language: oneOf(['es', 'en']).isRequired,
 }
 
 const mapDispatchToProps = dispatch => ({
