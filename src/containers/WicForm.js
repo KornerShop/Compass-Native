@@ -32,7 +32,7 @@ const WicForm = props =>
   <StyledContainer>
     <ScrollView
       showsVerticalScrollIndicator={false}
-      keyboardDismissMode="on-drag">
+    keyboardDismissMode="on-drag">
       <FormHeader>
         Determine whether you're{' '}
         <Text style={{fontStyle: 'italic'}}>likely</Text> to be eligible for WIC
@@ -41,6 +41,7 @@ const WicForm = props =>
         <StyledInput
           placeholder="Household Size"
           placeholderTextColor="#90A4AE"
+          underlineColorAndroid="rgba(0,0,0,0)"
           value={props.familySize}
           valid={props.familySizeValid}
           returnKeyType="done"
@@ -64,6 +65,7 @@ const WicForm = props =>
         <StyledInput
           placeholder="Monthly Income/Social Security"
           placeholderTextColor="#90A4AE"
+          underlineColorAndroid="rgba(0,0,0,0)"
           value={props.income}
           valid={props.incomeValid}
           returnKeyType="done"

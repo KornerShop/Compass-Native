@@ -18,10 +18,6 @@ import styled from 'styled-components/native'
 
 import {setLanguagePreference} from '../redux/actions/actions'
 
-// custom marker views (at least get Link'd phone number on the marker...)
-// link to native maps:
-// - https://stackoverflow.com/questions/43214062/open-maps-google-maps-in-react-native
-// - https://facebook.github.io/react-native/docs/linking.html
 // Modal: update location state; update office state
 // - https://developers.google.com/maps/documentation/geocoding/start
 // translations
@@ -34,6 +30,9 @@ import {setLanguagePreference} from '../redux/actions/actions'
 // organize code
 // tests
 // look into reprecussions of ejecting w/ regard to pushing to app stores
+// eject out so you can link to phone number (https://css-tricks.com/the-current-state-of-telephone-links/) && native map (react native Link component)
+// - https://stackoverflow.com/questions/43214062/open-maps-google-maps-in-react-native
+// - https://facebook.github.io/react-native/docs/linking.html
 // smile - we can do it!
 
 import {

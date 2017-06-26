@@ -1,9 +1,9 @@
 import {MAPS_API_KEY} from './config'
 import {get} from './fetch'
 
-export const fetchZipCodeCoords = zip => {
-  const data = get(
-    `https://maps.googleapis.com/maps/api/geocode/json?address=${zip}&key=${MAPS_API_KEY}`
+export const fetchZipCodeCoords = async zip => {
+  const data = await get(
+    `https://maps.googleapis.com/maps/api/geocode/json?components=postal_code:${zip}|country:US&key=${MAPS_API_KEY}`
   )
   return data.results[0].geometry.location
 }

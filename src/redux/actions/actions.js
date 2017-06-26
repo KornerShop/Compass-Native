@@ -7,8 +7,8 @@ import getLayoutInfo from '../../utilities/orientation'
 export const setLanguagePreference = pref =>
   createAction(types.SET_LANGUAGE_PREFERENCE)(pref)
 
-export const toggleLocationPermission = perm =>
-  createAction(types.TOGGLE_LOCATION_PERMISSION)(perm)
+export const toggleLocationProvided = provided =>
+  createAction(types.TOGGLE_LOCATION_PROVIDED)(provided)
 
 export const updateZipCode = zipCode =>
   createAction(types.UPDATE_ZIPCODE)(zipCode)

@@ -1,13 +1,14 @@
 export default {
   language: 'en',
-  locationPermission: false,
+  locationProvided: false,
+  mapLoading: false,
   location: {
-    latitude: 38.74221,
-    longitude: -108.06896,
+    latitude: 0,
+    longitude: 0,
     latitudeDelta: 0.4,
     longitudeDelta: 0.4,
   },
-  zipCode: 94110,
+  zipCode: '',
   snapOffices: [],
   wicOffices: [],
   wicEligible: 0,
