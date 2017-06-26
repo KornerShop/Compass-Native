@@ -24,9 +24,8 @@ import {setLanguagePreference} from '../redux/actions/actions'
 // lock in form style
 // eligible and ineligible screens
 // test on Android
+// take stock of issues
 // uncomment out get AsyncStorage in Main.js
-// take stock of issues, re-organize via waffle
-// organize code
 // tests
 // look into reprecussions of ejecting w/ regard to pushing to app stores
 // eject out so you can link to phone number (https://css-tricks.com/the-current-state-of-telephone-links/) && native map (react native Link component)
