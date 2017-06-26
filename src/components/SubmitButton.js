@@ -18,7 +18,7 @@ const SubmitButton = props =>
     }}
     borderRadius={5}
     fontSize={18}
-    accessibilityLabel="Find offices near you"
+    accessibilityLabel={props.accessibility}
     onPress={props.onPress}
   />
 

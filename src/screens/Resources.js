@@ -78,6 +78,7 @@ class Resources extends Component {
     if (this.props.locationProvided === false) {
       return (
         <Office
+          language={this.props.language}
           height={this.props.orientation.height}
           width={this.props.orientation.width}
           getLocationAsync={this.getLocationAsync.bind(this)}

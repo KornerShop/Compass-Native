@@ -28,7 +28,7 @@ import {
 
 import SubmitButton from '../components/SubmitButton'
 
-import languageStrings from '../utilities/localization'
+import localizedStrings from '../utilities/localization'
 
 const WicForm = props => {
   localizedStrings.setLanguage(props.language)
@@ -96,7 +96,7 @@ const WicForm = props => {
           {localizedStrings.wic.lifeEvents}
         </LifeEventText>
         <ButtonGroup
-          buttons={[{localizedStrings.wic.yes}, {localizedStrings.wic.no}]}
+          buttons={[localizedStrings.wic.yes, localizedStrings.wic.no]}
           selectedIndex={props.lifeEvents}
           onPress={props.updateLifeEvents}
           textStyle={{
