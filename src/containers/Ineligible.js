@@ -8,7 +8,7 @@ import {Button} from 'react-native-elements'
 
 import {updateWicEligibility} from '../redux/actions/actions'
 
-import {StyledContainer} from '../components/styled/Styled'
+import {StyledContainer, FormHeader} from '../components/styled/Styled'
 import EligibilityButton from '../components/EligibilityButton'
 
 const Ineligible = props =>
@@ -20,12 +20,16 @@ const Ineligible = props =>
         alignItems: 'center',
         justifyContent: 'center',
       }}>
+      <FormHeader>
+        You may be ineligible, but you do have options. Go to a local office to
+        learn more.{' '}
+      </FormHeader>
       <Text
         style={{
-          fontSize: 100,
+          fontSize: 80,
           marginVertical: 120,
         }}>
-        👎
+        🏢
       </Text>
       <EligibilityButton updateWicEligibility={props.updateWicEligibility} />
     </ScrollView>

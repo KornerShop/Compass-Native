@@ -18,9 +18,8 @@ import styled from 'styled-components/native'
 
 import {setLanguagePreference} from '../redux/actions/actions'
 
-// Modal: update location state; update office state
-// - https://developers.google.com/maps/documentation/geocoding/start
 // translations
+// what to bring for WIC eligible (eligible / ineligible component)
 // submit button on form
 // lock in form style
 // eligible and ineligible screens
