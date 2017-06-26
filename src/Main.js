@@ -52,7 +52,7 @@ class Main extends Component {
     await cacheImages([
       require('./assets/shopper.png'),
       require('./assets/snap1.jpg'),
-      require('./assets/wic1.jpg'),
+      require('./assets/wic1.jpeg'),
     ])
     this.setState({
       isLoading: false,
