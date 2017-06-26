@@ -18,31 +18,11 @@ import styled from 'styled-components/native'
 
 import {setLanguagePreference} from '../redux/actions/actions'
 
-// translations
-// what to bring for WIC eligible (eligible / ineligible component)
-// submit button on form
-// lock in form style
-// eligible and ineligible screens
-// test on Android
-// take stock of issues
-// uncomment out get AsyncStorage in Main.js
-// tests
-// look into reprecussions of ejecting w/ regard to pushing to app stores
-// eject out so you can link to phone number (https://css-tricks.com/the-current-state-of-telephone-links/) && native map (react native Link component)
-// - https://stackoverflow.com/questions/43214062/open-maps-google-maps-in-react-native
-// - https://facebook.github.io/react-native/docs/linking.html
-// smile - we can do it!
-
 import {
   ActivityIndicatorWrapper,
   WelcomeUIWrapper,
   Logo,
 } from '../components/styled/Styled'
-
-const BackgroundImage = props =>
-  <Image>
-    {props.children}
-  </Image>
 
 class Welcome extends Component {
   constructor(props) {
@@ -71,7 +51,6 @@ class Welcome extends Component {
         <Image
           onLoad={() => this.setState({isLoading: false})}
           source={require('../assets/shopper.png')}
-          tintColor={'red'}
           style={{
             flex: 1,
             height: this.props.orientation.height,

@@ -66,8 +66,6 @@ export const InputWrapper = styled.View`
   padding-bottom: 10;
   padding-left: 10;
   padding-right: 10;
-  margin-top: 20;
-  margin-bottom: 20;
   margin-left: 20;
   margin-right: 20;
   background-color: papayawhip;
@@ -77,22 +75,18 @@ export const LifeEventText = styled.Text`
   text-align: center;
   font-size: 18;
   font-weight: 300;
-  margin-top: 15;
-  margin-bottom: 10;
 `
 
 export const FormHeader = styled.Text`
   font-weight: bold;
-  font-size: 25;
+  font-size: 20;
   text-align: center;
-  padding-top: 25;
-  padding-bottom: 25;
+  padding-bottom: 10;
 `
 
 export const ZipModalEmoji = styled.Text`
   font-size: 30;
   text-align: center;
-  margin-top: 20;
 `
 
 export const ActivityIndicatorWrapper = styled.View`

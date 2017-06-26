@@ -12,8 +12,8 @@ const SubmitButton = props =>
       backgroundColor: 'tomato',
     }}
     containerViewStyle={{
-      marginRight: 30,
-      marginLeft: 30,
+      marginRight: 20,
+      marginLeft: 20,
       borderRadius: 5,
     }}
     borderRadius={5}

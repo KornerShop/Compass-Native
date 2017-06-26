@@ -1,6 +1,4 @@
-import LocalizedStrings from 'react-localization'
-
-const localizedStrings = new LocalizedStrings({
+export default {
   en: {
     wic: {
       header: "Determine whether you're likely to be eligible for WIC",
@@ -51,10 +49,8 @@ const localizedStrings = new LocalizedStrings({
     buttons: {
       submit: 'Enviar',
       accessibilitySubmit: 'Encuentre oficinas cerca de usted',
-      recheck: 'Volver a comprobar',
+      recheck: 'Volver ',
       accessibilityRecheck: 'Revise su elegibilidad nuevamente',
     },
   },
-})
-
-export default localizedStrings
+}

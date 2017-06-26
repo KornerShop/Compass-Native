@@ -1,23 +1,23 @@
 import React from 'react'
-import {func, string} from 'prop-types'
+import {string, func} from 'prop-types'
 
 import {Button} from 'react-native-elements'
 
 const EligibilityButton = props =>
   <Button
-    fontSize={22}
+    title={props.title}
+    raised
+    textStyle={{color: 'white'}}
     buttonStyle={{
-      paddingVertical: 15,
-      paddingHorizontal: 60,
+      backgroundColor: 'tomato',
     }}
     containerViewStyle={{
-      borderRadius: 60,
+      marginRight: 20,
+      marginLeft: 20,
+      borderRadius: 5,
     }}
-    backgroundColor="tomato"
-    borderRadius={60}
-    color="white"
-    raised={false}
-    title={props.title}
+    borderRadius={5}
+    fontSize={18}
     accessibilityLabel={props.accessibility}
     onPress={() => props.updateWicEligibility(0)}
   />
@@ -25,6 +25,7 @@ const EligibilityButton = props =>
 EligibilityButton.propTypes = {
   updateWicEligibility: func.isRequired,
   accessibility: string.isRequired,
+  title: string.isRequired,
 }
 
 export default EligibilityButton

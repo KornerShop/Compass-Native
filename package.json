@@ -25,7 +25,6 @@
     "expo": "^17.0.0",
     "prop-types": "^15.5.10",
     "react": "16.0.0-alpha.6",
-    "react-localization": "^0.0.17",
     "react-native": "^0.44.0",
     "react-native-elements": "^0.13.0",
     "react-redux": "^5.0.5",

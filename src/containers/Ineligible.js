@@ -13,36 +13,34 @@ import EligibilityButton from '../components/EligibilityButton'
 
 import localizedStrings from '../utilities/localization'
 
-const Ineligible = props => {
-  localizedStrings.setLanguage(props.language)
-  return (
-    <StyledContainer>
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        keyboardDismissMode="on-drag"
-        contentContainerStyle={{
-          alignItems: 'center',
-          justifyContent: 'center',
+const Ineligible = props =>
+  <StyledContainer>
+    <ScrollView
+      showsVerticalScrollIndicator={false}
+      keyboardDismissMode="on-drag"
+      contentContainerStyle={{
+        flex: 1,
+        justifyContent: 'space-around',
+      }}>
+      <FormHeader>
+        {localizedStrings[props.language].ineligible.header}
+      </FormHeader>
+      <Text
+        style={{
+          fontSize: 80,
+          textAlign: 'center',
         }}>
-        <FormHeader>
-          {localizedStrings.ineligible.header}
-        </FormHeader>
-        <Text
-          style={{
-            fontSize: 80,
-            marginVertical: 120,
-          }}>
-          🏢
-        </Text>
-        <EligibilityButton
-          title={localizedStrings.buttons.recheck}
-          accessibility={localizedStrings.buttons.accessibilityRecheck}
-          updateWicEligibility={props.updateWicEligibility}
-        />
-      </ScrollView>
-    </StyledContainer>
-  )
-}
+        🏢
+      </Text>
+      <EligibilityButton
+        title={localizedStrings[props.language].buttons.recheck}
+        accessibility={
+          localizedStrings[props.language].buttons.accessibilityRecheck
+        }
+        updateWicEligibility={props.updateWicEligibility}
+      />
+    </ScrollView>
+  </StyledContainer>
 
 Ineligible.propTypes = {
   updateWicEligibility: func.isRequired,
