@@ -6,7 +6,7 @@ import {connect} from 'react-redux'
 import {ScrollView, Text, StyleSheet} from 'react-native'
 import {Button} from 'react-native-elements'
 
-import {updateWicEligibility} from '../redux/actions/actions'
+import {updateWicEligibility, FormHeader} from '../redux/actions/actions'
 
 import {StyledContainer} from '../components/styled/Styled'
 import EligibilityButton from '../components/EligibilityButton'
@@ -20,9 +20,12 @@ const Eligible = props =>
         alignItems: 'center',
         justifyContent: 'space-around',
       }}>
+      <FormHeader>
+        You may be eligible! Go to a local office to confirm.{' '}
+      </FormHeader>
       <Text
         style={{
-          fontSize: 100,
+          fontSize: 80,
           marginVertical: 120,
         }}>
         👍

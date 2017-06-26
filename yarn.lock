@@ -4372,6 +4372,10 @@ react-devtools-core@^2.0.8:
     shell-quote "^1.6.1"
     ws "^2.0.3"
 
+react-localization@^0.0.17:
+  version "0.0.17"
+  resolved "https://registry.yarnpkg.com/react-localization/-/react-localization-0.0.17.tgz#047d5580e39bf88d56ad09c2eb248c16a135eaa2"
+
 react-mixin@^3.0.5:
   version "3.0.5"
   resolved "https://registry.yarnpkg.com/react-mixin/-/react-mixin-3.0.5.tgz#e0b7b6713fdc9ddc429267df808b6ac5184c6706"
