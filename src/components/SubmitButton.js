@@ -1,11 +1,11 @@
 import React from 'react'
-import {func} from 'prop-types'
+import {string, func} from 'prop-types'
 
 import {Button} from 'react-native-elements'
 
 const SubmitButton = props =>
   <Button
-    title="Submit"
+    title={props.title}
     raised
     textStyle={{color: 'white'}}
     buttonStyle={{
@@ -23,6 +23,8 @@ const SubmitButton = props =>
   />
 
 SubmitButton.propTypes = {
+  title: string.isRequired,
+  accessibility: string.isRequired,
   onPress: func.isRequired,
 }
 
