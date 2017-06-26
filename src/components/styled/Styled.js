@@ -56,6 +56,7 @@ export const StyledInput = styled.TextInput`
   font-weight: 300;
   color: ${props => textInputColor(props.valid)};
   height: 30;
+  border-color: papayawhip;
 `
 
 export const InputWrapper = styled.View`
