@@ -21,7 +21,7 @@ class Map extends Component {
   constructor(props) {
     super(props)
   }
-  async componentWillMount() {
+  async componentDidMount() {
     await this.props.fetchOffices()
   }
   render() {

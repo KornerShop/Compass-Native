@@ -28,7 +28,7 @@ const Office = props =>
           height={props.height / 2}
           width={props.width}
           source={require('../assets/snap1.jpg')}
-          resizeMode="cover">
+        resizeMode="cover">
           <OfficeText>
             CalFresh
           </OfficeText>
