@@ -1,5 +1,10 @@
 import React, {Component} from 'react'
-import {oneOf, bool, array, func} from 'prop-types'
+import {
+  oneOf,
+  bool,
+  array,
+  func,
+} from 'prop-types'
 import {connect} from 'react-redux'
 import {
   Platform,
@@ -13,7 +18,9 @@ import {
 } from 'react-native'
 import {MapView} from 'expo'
 import {Foundation} from '@expo/vector-icons'
+
 import {ActivityIndicatorWrapper} from '../components/styled/Styled'
+import MarkerView from '../components/MarkerView'
 
 import {dispatchUpdateLocation} from '../redux/actions/actionCreators'
 
@@ -40,9 +47,10 @@ class Map extends Component {
       'palevioletred',
       'salmon',
     ]
-    const offices = this.props.office === 1
-      ? this.props.snapOffices
-      : this.props.wicOffices
+    const offices =
+      this.props.office === 1
+        ? this.props.snapOffices
+        : this.props.wicOffices
     if (!this.props.mapLoading) {
       return (
         // <TouchableHighlight
@@ -61,39 +69,30 @@ class Map extends Component {
         // </TouchableHighlight>
         <MapView
           style={{flex: 1}}
-          provider={Platform.OS === 'ios' ? null : 'google'}
+          provider={
+            Platform.OS === 'ios'
+              ? null
+              : 'google'
+          }
           region={this.props.region}>
           {offices.map(office => {
             return (
               <MapView.Marker
-                pinColor={colors[Math.floor(Math.random() * colors.length)]}
+                pinColor={
+                  colors[
+                    Math.floor(
+                      Math.random() *
+                        colors.length
+                    )
+                  ]
+                }
                 key={office.id}
                 coordinate={{
                   latitude: office.latitude,
                   longitude: office.longitude,
                 }}>
                 <MapView.Callout>
-                  <View
-                    style={{
-                      flex: 1,
-                      justifyContent: 'center',
-                      width: 300,
-                    }}>
-                    <Text
-                      style={{
-                        fontWeight: 'bold',
-                        marginTop: 10,
-                        marginBottom: 10,
-                      }}>
-                      {office.name}
-                    </Text>
-                    <Text style={{color: 'royalblue', marginBottom: 10}}>
-                      {office.phone_local}
-                    </Text>
-                    <Text style={{marginBottom: 10}}>
-                      {office.address}
-                    </Text>
-                  </View>
+                  <MarkerView {...office} />
                 </MapView.Callout>
               </MapView.Marker>
             )
@@ -103,7 +102,10 @@ class Map extends Component {
     } else {
       return (
         <ActivityIndicatorWrapper>
-          <ActivityIndicator color="tomato" size="large" />
+          <ActivityIndicator
+            color="tomato"
+            size="large"
+          />
         </ActivityIndicatorWrapper>
       )
     }
