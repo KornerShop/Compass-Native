@@ -1,10 +1,5 @@
 import React, {Component} from 'react'
-import {
-  oneOf,
-  bool,
-  array,
-  func,
-} from 'prop-types'
+import {oneOf, object, bool, array, func} from 'prop-types'
 import {connect} from 'react-redux'
 import {
   Platform,
@@ -21,8 +16,6 @@ import {Foundation} from '@expo/vector-icons'
 
 import {ActivityIndicatorWrapper} from '../components/styled/Styled'
 import MarkerView from '../components/MarkerView'
-
-import {dispatchUpdateLocation} from '../redux/actions/actionCreators'
 
 class Map extends Component {
   constructor(props) {
@@ -48,16 +41,14 @@ class Map extends Component {
       'salmon',
     ]
     const offices =
-      this.props.office === 1
-        ? this.props.snapOffices
-        : this.props.wicOffices
+      this.props.office === 1 ? this.props.snapOffices : this.props.wicOffices
     if (!this.props.mapLoading) {
       return (
         // <TouchableHighlight
         //   activeOpacity={0.5}
         //   style={{
         //     display: 'flex',
-        //     flexDirection: 'column',
+        //     f``lexDirection: 'column',
         //     justifyContent: 'center',
         //     alignItems: 'center',
         //     backgroundColor: 'tomato',
@@ -69,30 +60,21 @@ class Map extends Component {
         // </TouchableHighlight>
         <MapView
           style={{flex: 1}}
-          provider={
-            Platform.OS === 'ios'
-              ? null
-              : 'google'
-          }
-          region={this.props.region}>
+          provider={Platform.OS === 'ios' ? null : 'google'}
+          region={this.props.region}
+        >
           {offices.map(office => {
             return (
               <MapView.Marker
-                pinColor={
-                  colors[
-                    Math.floor(
-                      Math.random() *
-                        colors.length
-                    )
-                  ]
-                }
+                pinColor={colors[Math.floor(Math.random() * colors.length)]}
                 key={office.id}
                 coordinate={{
-                  latitude: office.latitude,
-                  longitude: office.longitude,
-                }}>
+                  latitude: office.lat,
+                  longitude: office.lng,
+                }}
+              >
                 <MapView.Callout>
-                  <MarkerView {...office} />
+                  <MarkerView {...office} location={this.props.location} />
                 </MapView.Callout>
               </MapView.Marker>
             )
@@ -102,10 +84,7 @@ class Map extends Component {
     } else {
       return (
         <ActivityIndicatorWrapper>
-          <ActivityIndicator
-            color="tomato"
-            size="large"
-          />
+          <ActivityIndicator color="tomato" size="large" />
         </ActivityIndicatorWrapper>
       )
     }
@@ -113,6 +92,7 @@ class Map extends Component {
 }
 
 Map.propTypes = {
+  location: object.isRequired,
   fetchOffices: func.isRequired,
   office: oneOf([0, 1, 2]).isRequired,
   snapOffices: array.isRequired,
