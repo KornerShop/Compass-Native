@@ -1,15 +1,18 @@
 export default {
   en: {
     wic: {
-      header: "Determine whether you're likely to be eligible for WIC",
+      header:
+        "Determine whether you're likely to be eligible for WIC",
       householdSize: 'Household Size',
       income: 'Monthly Income/Social Security',
-      lifeEvents: 'Are you pregnant and/or have a child under the age of 5?',
+      lifeEvents:
+        'Are you pregnant and/or have a child under the age of 5?',
       yes: 'Yes',
       no: 'No',
     },
     eligible: {
-      header: 'You may be eligible! Go to a local office to confirm',
+      header:
+        'You may be eligible! Go to a local office to confirm',
     },
     ineligible: {
       header:
@@ -21,22 +24,28 @@ export default {
     },
     buttons: {
       submit: 'Submit',
-      accessibilitySubmit: 'Find offices near you',
+      accessibilitySubmit:
+        'Find offices near you',
       recheck: 'Recheck',
-      accessibilityRecheck: 'Check your eligiblity again',
+      accessibilityRecheck:
+        'Check your eligiblity again',
     },
   },
   es: {
     wic: {
-      header: 'Determine si es probable que sea elegible para WIC',
+      header:
+        'Determine si es probable que sea elegible para WIC',
       householdSize: 'Tamaño del hogar',
-      income: 'Ingreso Mensual / Seguridad Social',
-      lifeEvents: '¿Está usted embarazada y / o tiene un hijo menor de 5 años?',
+      income:
+        'Ingreso Mensual / Seguridad Social',
+      lifeEvents:
+        '¿Está usted embarazada y / o tiene un hijo menor de 5 años?',
       yes: 'Sí',
       no: 'No',
     },
     eligible: {
-      header: '¡Puede ser elegible! Ir a una oficina local para confirmar',
+      header:
+        '¡Puede ser elegible! Ir a una oficina local para confirmar',
     },
     ineligible: {
       header:
@@ -48,9 +57,11 @@ export default {
     },
     buttons: {
       submit: 'Enviar',
-      accessibilitySubmit: 'Encuentre oficinas cerca de usted',
-      recheck: 'Volver ',
-      accessibilityRecheck: 'Revise su elegibilidad nuevamente',
+      accessibilitySubmit:
+        'Encuentre oficinas cerca de usted',
+      recheck: 'Cambiar',
+      accessibilityRecheck:
+        'Revise su elegibilidad nuevamente',
     },
   },
 }

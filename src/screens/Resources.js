@@ -21,7 +21,10 @@ import {
   updateZipCode,
   toggleLocationProvided,
 } from '../redux/actions/actions'
-import {updateLocation, fetchOffices} from '../redux/actions/actionCreators'
+import {
+  updateLocation,
+  fetchOffices,
+} from '../redux/actions/actionCreators'
 
 class Resources extends Component {
   constructor(props) {
@@ -40,12 +43,16 @@ class Resources extends Component {
     })
   }
   async getLocationAsync() {
-    const {status: currentStatus} = await Permissions.getAsync(
+    const {
+      status: currentStatus,
+    } = await Permissions.getAsync(
       Permissions.LOCATION
     )
     if (currentStatus !== 'granted') {
       // if app doesn't already have the user's location permission
-      const {status: newStatus} = await Permissions.askAsync(
+      const {
+        status: newStatus,
+      } = await Permissions.askAsync(
         Permissions.LOCATION
       )
       if (newStatus !== 'granted') {
@@ -53,9 +60,13 @@ class Resources extends Component {
         this.toggleModalVisibility()
       } else {
         // if user is giving us location permission for the first time
-        var {coords: location} = await Location.getCurrentPositionAsync({
-          enableHighAccuracy: true,
-        })
+        var {
+          coords: location,
+        } = await Location.getCurrentPositionAsync(
+          {
+            enableHighAccuracy: true,
+          }
+        )
         this.props.updateLocation({
           latitude: location.latitude,
           longitude: location.longitude,
@@ -64,7 +75,9 @@ class Resources extends Component {
       }
     } else {
       // app already has user's location
-      var {coords: location} = await Location.getCurrentPositionAsync({
+      var {
+        coords: location,
+      } = await Location.getCurrentPositionAsync({
         enableHighAccuracy: true,
       })
       this.props.updateLocation({
@@ -81,29 +94,49 @@ class Resources extends Component {
           language={this.props.language}
           height={this.props.orientation.height}
           width={this.props.orientation.width}
-          getLocationAsync={this.getLocationAsync.bind(this)}
+          getLocationAsync={this.getLocationAsync.bind(
+            this
+          )}
           updateOffice={this.props.updateOffice}
           modalVisible={this.state.modalVisible}
           zipValid={this.state.zipValid}
           updateZipCode={this.props.updateZipCode}
-          updateState={this.updateState.bind(this)}
+          updateState={this.updateState.bind(
+            this
+          )}
           fetchOffices={this.props.fetchOffices}
           zipCode={this.props.zipCode}
-          toggleLocationProvided={this.props.toggleLocationProvided}
-          toggleModalVisibility={this.toggleModalVisibility.bind(this)}
+          toggleLocationProvided={
+            this.props.toggleLocationProvided
+          }
+          toggleModalVisibility={this.toggleModalVisibility.bind(
+            this
+          )}
         />
       )
     } else {
       // location hasn't been provided
       return (
         <Map
+          language={this.props.language}
           location={this.props.location}
           office={this.props.office}
+          updateOffice={this.props.updateOffice}
           snapOffices={this.props.snapOffices}
           wicOffices={this.props.wicOffices}
           fetchOffices={this.props.fetchOffices}
           region={this.props.location}
           mapLoading={this.props.mapLoading}
+          updateOffice={this.props.updateOffice}
+          modalVisible={this.state.modalVisible}
+          zipValid={this.state.zipValid}
+          updateZipCode={this.props.updateZipCode}
+          updateState={this.updateState.bind(
+            this
+          )}
+          toggleModalVisibility={
+            props.toggleModalVisibility
+          }
         />
       )
     }
@@ -154,11 +187,29 @@ const mapStateToProps = ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  updateZipCode: bindActionCreators(updateZipCode, dispatch),
-  updateOffice: bindActionCreators(updateOffice, dispatch),
-  updateLocation: bindActionCreators(updateLocation, dispatch),
-  fetchOffices: bindActionCreators(fetchOffices, dispatch),
-  toggleLocationProvided: bindActionCreators(toggleLocationProvided, dispatch),
+  updateZipCode: bindActionCreators(
+    updateZipCode,
+    dispatch
+  ),
+  updateOffice: bindActionCreators(
+    updateOffice,
+    dispatch
+  ),
+  updateLocation: bindActionCreators(
+    updateLocation,
+    dispatch
+  ),
+  fetchOffices: bindActionCreators(
+    fetchOffices,
+    dispatch
+  ),
+  toggleLocationProvided: bindActionCreators(
+    toggleLocationProvided,
+    dispatch
+  ),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Resources)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Resources)
