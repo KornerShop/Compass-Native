@@ -97,6 +97,7 @@ class Resources extends Component {
       // location hasn't been provided
       return (
         <Map
+          location={this.props.location}
           office={this.props.office}
           snapOffices={this.props.snapOffices}
           wicOffices={this.props.wicOffices}
