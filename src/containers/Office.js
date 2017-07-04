@@ -1,5 +1,11 @@
 import React, {Component} from 'react'
-import {string, number, bool, func, oneOf} from 'prop-types'
+import {
+  string,
+  number,
+  bool,
+  func,
+  oneOf,
+} from 'prop-types'
 
 import {
   Image,
@@ -12,10 +18,14 @@ import {
 } from 'react-native'
 
 import ZipModal from './ZipModal'
-import {ImageContainer, OfficeText} from '../components/styled/Styled'
+import {
+  ImageContainer,
+  OfficeText,
+} from '../components/styled/Styled'
 
 const Office = props =>
-  <View style={{flex: 1, flexDirection: 'column'}}>
+  <View
+    style={{flex: 1, flexDirection: 'column'}}>
     <StatusBar barStyle="light-content" />
     <View style={{flex: 0.5}}>
       <TouchableHighlight
@@ -28,10 +38,8 @@ const Office = props =>
           height={props.height / 2}
           width={props.width}
           source={require('../assets/snap1.jpg')}
-        resizeMode="cover">
-          <OfficeText>
-            CalFresh
-          </OfficeText>
+          resizeMode="cover">
+          <OfficeText>CalFresh</OfficeText>
         </ImageContainer>
       </TouchableHighlight>
     </View>
@@ -47,9 +55,7 @@ const Office = props =>
           width={props.width}
           source={require('../assets/wic1.jpeg')}
           resizeMode="cover">
-          <OfficeText>
-            WIC
-          </OfficeText>
+          <OfficeText>WIC</OfficeText>
         </ImageContainer>
       </TouchableHighlight>
     </View>
@@ -61,8 +67,12 @@ const Office = props =>
       modalVisible={props.modalVisible}
       updateState={props.updateState}
       fetchOffices={props.fetchOffices}
-      toggleLocationProvided={props.toggleLocationProvided}
-      toggleModalVisibility={props.toggleModalVisibility}
+      toggleLocationProvided={
+        props.toggleLocationProvided
+      }
+      toggleModalVisibility={
+        props.toggleModalVisibility
+      }
     />
   </View>
 
