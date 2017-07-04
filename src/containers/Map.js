@@ -1,10 +1,5 @@
 import React, {Component} from 'react'
-import {
-  oneOf,
-  bool,
-  array,
-  func,
-} from 'prop-types'
+import {oneOf, bool, array, func} from 'prop-types'
 import {connect} from 'react-redux'
 import {
   Platform,
@@ -48,9 +43,7 @@ class Map extends Component {
       'salmon',
     ]
     const offices =
-      this.props.office === 1
-        ? this.props.snapOffices
-        : this.props.wicOffices
+      this.props.office === 1 ? this.props.snapOffices : this.props.wicOffices
     if (!this.props.mapLoading) {
       return (
         // <TouchableHighlight
@@ -69,28 +62,19 @@ class Map extends Component {
         // </TouchableHighlight>
         <MapView
           style={{flex: 1}}
-          provider={
-            Platform.OS === 'ios'
-              ? null
-              : 'google'
-          }
-          region={this.props.region}>
+          provider={Platform.OS === 'ios' ? null : 'google'}
+          region={this.props.region}
+        >
           {offices.map(office => {
             return (
               <MapView.Marker
-                pinColor={
-                  colors[
-                    Math.floor(
-                      Math.random() *
-                        colors.length
-                    )
-                  ]
-                }
+                pinColor={colors[Math.floor(Math.random() * colors.length)]}
                 key={office.id}
                 coordinate={{
-                  latitude: office.latitude,
-                  longitude: office.longitude,
-                }}>
+                  latitude: office.lat,
+                  longitude: office.lng,
+                }}
+              >
                 <MapView.Callout>
                   <MarkerView {...office} />
                 </MapView.Callout>
@@ -102,10 +86,7 @@ class Map extends Component {
     } else {
       return (
         <ActivityIndicatorWrapper>
-          <ActivityIndicator
-            color="tomato"
-            size="large"
-          />
+          <ActivityIndicator color="tomato" size="large" />
         </ActivityIndicatorWrapper>
       )
     }
