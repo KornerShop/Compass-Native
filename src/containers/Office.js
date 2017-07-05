@@ -1,11 +1,5 @@
 import React, {Component} from 'react'
-import {
-  string,
-  number,
-  bool,
-  func,
-  oneOf,
-} from 'prop-types'
+import {string, number, bool, func, oneOf} from 'prop-types'
 
 import {
   Image,
@@ -17,64 +11,63 @@ import {
   TouchableHighlight,
 } from 'react-native'
 
+import LinearGrad from '../components/LinearGradient'
 import ZipModal from './ZipModal'
-import {
-  ImageContainer,
-  OfficeText,
-} from '../components/styled/Styled'
+import {ImageContainer, OfficeText} from '../components/styled/Styled'
 
 const Office = props =>
-  <View
-    style={{flex: 1, flexDirection: 'column'}}>
-    <StatusBar barStyle="light-content" />
-    <View style={{flex: 0.5}}>
-      <TouchableHighlight
-        style={{flex: 1}}
-        onPress={async () => {
-          props.updateOffice(1)
-          await props.getLocationAsync()
-        }}>
-        <ImageContainer
-          height={props.height / 2}
-          width={props.width}
-          source={require('../assets/snap1.jpg')}
-          resizeMode="cover">
-          <OfficeText>CalFresh</OfficeText>
-        </ImageContainer>
-      </TouchableHighlight>
+  <LinearGrad>
+    <View style={{flex: 1, flexDirection: 'column'}}>
+      <StatusBar barStyle="light-content" />
+      <View style={{flex: 0.5, marginTop: 20}}>
+        <TouchableHighlight
+          style={{flex: 1}}
+          onPress={async () => {
+            props.updateOffice(1)
+            await props.getLocationAsync()
+          }}
+        >
+          <ImageContainer
+            height={props.height / 2}
+            width={props.width - 30}
+            source={require('../assets/snap1.jpg')}
+            resizeMode="cover"
+          >
+            <OfficeText>CalFresh</OfficeText>
+          </ImageContainer>
+        </TouchableHighlight>
+      </View>
+      <View style={{flex: 0.5, marginTop: 20, marginBottom: 10}}>
+        <TouchableHighlight
+          style={{flex: 1}}
+          onPress={async () => {
+            props.updateOffice(2)
+            await props.getLocationAsync()
+          }}
+        >
+          <ImageContainer
+            height={props.height / 2}
+            width={props.width - 30}
+            source={require('../assets/wic1.jpeg')}
+            resizeMode="cover"
+          >
+            <OfficeText>WIC</OfficeText>
+          </ImageContainer>
+        </TouchableHighlight>
+      </View>
+      <ZipModal
+        language={props.language}
+        zipCode={props.zipCode}
+        zipValid={props.zipValid}
+        updateZipCode={props.updateZipCode}
+        modalVisible={props.modalVisible}
+        updateState={props.updateState}
+        fetchOffices={props.fetchOffices}
+        toggleLocationProvided={props.toggleLocationProvided}
+        toggleModalVisibility={props.toggleModalVisibility}
+      />
     </View>
-    <View style={{flex: 0.5}}>
-      <TouchableHighlight
-        style={{flex: 1}}
-        onPress={async () => {
-          props.updateOffice(2)
-          await props.getLocationAsync()
-        }}>
-        <ImageContainer
-          height={props.height / 2}
-          width={props.width}
-          source={require('../assets/wic1.jpeg')}
-          resizeMode="cover">
-          <OfficeText>WIC</OfficeText>
-        </ImageContainer>
-      </TouchableHighlight>
-    </View>
-    <ZipModal
-      language={props.language}
-      zipCode={props.zipCode}
-      zipValid={props.zipValid}
-      updateZipCode={props.updateZipCode}
-      modalVisible={props.modalVisible}
-      updateState={props.updateState}
-      fetchOffices={props.fetchOffices}
-      toggleLocationProvided={
-        props.toggleLocationProvided
-      }
-      toggleModalVisibility={
-        props.toggleModalVisibility
-      }
-    />
-  </View>
+  </LinearGrad>
 
 Office.propTypes = {
   getLocationAsync: func.isRequired,

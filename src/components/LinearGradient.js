@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {LinearGradient} from 'expo'
 
-const LinearGradient = props => {
+const LinearGrad = props => {
   return (
     <LinearGradient
       colors={['#304352', '#d7d2cc']}
@@ -15,4 +15,4 @@ const LinearGradient = props => {
   )
 }
 
-export default LinearGradient
+export default LinearGrad
