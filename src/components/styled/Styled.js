@@ -32,6 +32,8 @@ export const textInputWrapperColor = prop => {
 
 export const StyledContainer = styled.View`
   flex: 1;
+  margin-top: 15;
+  background-color: white;
   padding-top: 20;
   padding-left: 20;
   padding-right: 20;

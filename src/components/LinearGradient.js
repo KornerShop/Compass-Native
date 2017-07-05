@@ -7,7 +7,7 @@ const LinearGrad = props => {
       colors={['#304352', '#d7d2cc']}
       style={{
         flex: 1,
-        padding: 15,
+        padding: 18,
       }}
     >
       {props.children}
