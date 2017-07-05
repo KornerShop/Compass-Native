@@ -27,3 +27,8 @@ Code for America's Get CalFresh project has allowed thousands of CA residents to
 * Present this data to those who can best utilize it (government agencies/food banks etc.)
 
 Though this app is not on the Apple or GooglePlay store, yet, that is the end goal once our product is complete. 
+
+
+<p align="center">
+  <img src="/readme.jpg?raw=true" alt="Screen shot of my homescreen"/>
+</p>
