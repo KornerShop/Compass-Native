@@ -32,22 +32,24 @@ export const textInputWrapperColor = prop => {
 
 export const StyledContainer = styled.View`
   flex: 1;
+  margin-top: 15;
+  background-color: white;
   padding-top: 20;
   padding-left: 20;
   padding-right: 20;
 `
 export const ImageContainer = styled.Image`
-	flex: 1;
-	justify-content: center;
-	align-items: center;
-	width: ${props => props.width};
-	height: ${props => props.height};
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  width: ${props => props.width};
+  height: ${props => props.height};
 `
 
 export const OfficeText = styled.Text`
-	font-size: 65;
+  font-size: 60;
   font-weight: 300;
-  color: white;
+  color: #d7d2cc;
   background-color: transparent;
 `
 
@@ -107,5 +109,5 @@ export const Logo = styled.Text`
   font-weight: 300;
   color: white;
   background-color: transparent;
-  margin-bottom: 30
+  margin-bottom: 30;
 `

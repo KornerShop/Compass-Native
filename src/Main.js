@@ -67,7 +67,8 @@ class Main extends Component {
     return (
       <View
         style={{flex: 1}}
-        onLayout={() => this.props.updateOrientation(Dimensions.get('window'))}>
+        onLayout={() => this.props.updateOrientation(Dimensions.get('window'))}
+      >
         <Component toggleStart={this.toggleStart.bind(this)} />
       </View>
     )
@@ -76,7 +77,7 @@ class Main extends Component {
     if (this.state.isLoading) {
       return (
         <ActivityIndicatorWrapper>
-          <ActivityIndicator color="tomato" size="large" />
+          <ActivityIndicator color="#00897b" size="large" />
         </ActivityIndicatorWrapper>
       )
     }
