@@ -37,17 +37,17 @@ export const StyledContainer = styled.View`
   padding-right: 20;
 `
 export const ImageContainer = styled.Image`
-	flex: 1;
-	justify-content: center;
-	align-items: center;
-	width: ${props => props.width};
-	height: ${props => props.height};
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  width: ${props => props.width};
+  height: ${props => props.height};
 `
 
 export const OfficeText = styled.Text`
-	font-size: 65;
+  font-size: 60;
   font-weight: 300;
-  color: white;
+  color: #d7d2cc;
   background-color: transparent;
 `
 
@@ -107,5 +107,5 @@ export const Logo = styled.Text`
   font-weight: 300;
   color: white;
   background-color: transparent;
-  margin-bottom: 30
+  margin-bottom: 30;
 `

@@ -56,10 +56,11 @@ class Welcome extends Component {
             height: this.props.orientation.height,
             width: this.props.orientation.width,
             resizeMode: 'cover',
-          }}>
+          }}
+        >
           {this.state.isLoading
             ? <ActivityIndicatorWrapper>
-                <ActivityIndicator color="tomato" size="large" />
+                <ActivityIndicator color="#00897b" size="large" />
               </ActivityIndicatorWrapper>
             : <WelcomeUIWrapper>
                 <Logo>

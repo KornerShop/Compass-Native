@@ -18,7 +18,7 @@ import {ButtonGroup, Button} from 'react-native-elements'
 import ZipModal from './ZipModal'
 import {ActivityIndicatorWrapper} from '../components/styled/Styled'
 import MarkerView from '../components/MarkerView'
-import LinearGradient from '../components/LinearGradient'
+import LinearGrad from '../components/LinearGradient'
 
 import localizedStrings from '../utilities/localization'
 
@@ -58,8 +58,8 @@ class Map extends Component {
       this.props.office === 1 ? this.props.snapOffices : this.props.wicOffices
     if (!this.props.mapLoading) {
       return (
-        <LinearGradient>
-          <StatusBar hidden={true} />
+        <LinearGrad>
+          <StatusBar barStyle="light-content" />
           <ButtonGroup
             onPress={this.updateIndex.bind(this)}
             buttons={[
@@ -69,22 +69,22 @@ class Map extends Component {
             ]}
             selectedIndex={this.props.office === 1 ? 0 : 1}
             textStyle={{
-              color: 'white',
-              fontWeight: 'bold',
-              fontSize: 20,
+              color: '#d7d2cc',
+              fontSize: 18,
             }}
             innerBorderStyle={{
               width: 0,
             }}
             containerStyle={{
               alignSelf: 'center',
-              marginTop: 0,
-              marginBottom: 0,
-              borderWidth: 0,
-              // borderColor: '#d7d2cc',
+              marginTop: 10,
+              marginBottom: 10,
+              borderWidth: 2,
+              borderColor: '#d7d2cc',
               backgroundColor: 'transparent',
               height: 55,
               width: this.props.orientation.width - 30,
+              borderRadius: 5,
             }}
             selectedTextStyle={{
               color: '#304352',
@@ -126,12 +126,12 @@ class Map extends Component {
             toggleLocationProvided={this.props.toggleLocationProvided}
             toggleModalVisibility={this.props.toggleModalVisibility}
           />
-        </LinearGradient>
+        </LinearGrad>
       )
     } else {
       return (
         <ActivityIndicatorWrapper>
-          <ActivityIndicator color="tomato" size="large" />
+          <ActivityIndicator color="#00897b" size="large" />
         </ActivityIndicatorWrapper>
       )
     }
