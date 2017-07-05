@@ -1,12 +1,5 @@
 import React, {Component} from 'react'
-import {
-  string,
-  oneOf,
-  object,
-  bool,
-  array,
-  func,
-} from 'prop-types'
+import {string, oneOf, object, bool, array, func} from 'prop-types'
 import {connect} from 'react-redux'
 
 import {
@@ -20,11 +13,12 @@ import {
 } from 'react-native'
 import {MapView} from 'expo'
 import {Foundation} from '@expo/vector-icons'
-import {ButtonGroup} from 'react-native-elements'
+import {ButtonGroup, Button} from 'react-native-elements'
 
 import ZipModal from './ZipModal'
 import {ActivityIndicatorWrapper} from '../components/styled/Styled'
 import MarkerView from '../components/MarkerView'
+import LinearGradient from '../components/LinearGradient'
 
 import localizedStrings from '../utilities/localization'
 
@@ -61,91 +55,61 @@ class Map extends Component {
       'salmon',
     ]
     const offices =
-      this.props.office === 1
-        ? this.props.snapOffices
-        : this.props.wicOffices
+      this.props.office === 1 ? this.props.snapOffices : this.props.wicOffices
     if (!this.props.mapLoading) {
       return (
-        <View
-          style={{
-            flex: 1,
-            // backgroundColor:
-            //   Platform.OS === 'ios'
-            //     ? '#F9F5ED'
-            //     : '#F0EDE5',
-            marginTop: 0,
-            backgroundColor: 'mediumturquoise',
-          }}>
+        <LinearGradient>
           <StatusBar hidden={true} />
           <ButtonGroup
             onPress={this.updateIndex.bind(this)}
             buttons={[
               'Calfresh',
               'WIC',
-              localizedStrings[
-                this.props.language
-              ].buttons.recheck,
+              localizedStrings[this.props.language].buttons.recheck,
             ]}
-            selectedIndex={
-              this.props.office === 1 ? 0 : 1
-            }
+            selectedIndex={this.props.office === 1 ? 0 : 1}
             textStyle={{
               color: 'white',
               fontWeight: 'bold',
               fontSize: 20,
             }}
             innerBorderStyle={{
-              color: 'mediumturquoise',
-              width: 3,
+              width: 0,
             }}
             containerStyle={{
               alignSelf: 'center',
               marginTop: 0,
               marginBottom: 0,
               borderWidth: 0,
-              borderColor: 'white',
+              // borderColor: '#d7d2cc',
               backgroundColor: 'transparent',
               height: 55,
-              width: this.props.orientation.width,
+              width: this.props.orientation.width - 30,
             }}
             selectedTextStyle={{
-              color: 'mediumturquoise',
+              color: '#304352',
             }}
-            selectedBackgroundColor="white"
+            selectedBackgroundColor="#d7d2cc"
           />
           <MapView
             style={{
               flex: 1,
             }}
-            provider={
-              Platform.OS === 'ios'
-                ? null
-                : 'google'
-            }
-            region={this.props.location}>
+            provider={Platform.OS === 'ios' ? null : 'google'}
+            region={this.props.location}
+          >
             {offices.map(office => {
               return (
                 <MapView.Marker
-                  pinColor={
-                    colors[
-                      Math.floor(
-                        Math.random() *
-                          colors.length
-                      )
-                    ]
-                  }
+                  pinColor={colors[Math.floor(Math.random() * colors.length)]}
                   key={office.id}
                   coordinate={{
                     latitude: office.lat,
                     longitude: office.lng,
-                  }}>
+                  }}
+                >
                   <MapView.Callout>
-                    <MarkerView
-                      {...office}
-                      location={
-                        this.props.location
-                      }
-                    />
+                    <MarkerView {...office} location={this.props.location} />
                   </MapView.Callout>
                 </MapView.Marker>
               )
@@ -155,28 +119,19 @@ class Map extends Component {
             language={this.props.language}
             zipCode={this.props.zipCode}
             zipValid={this.props.zipValid}
-            updateZipCode={
-              this.props.updateZipCode
-            }
+            updateZipCode={this.props.updateZipCode}
             modalVisible={this.props.modalVisible}
             updateState={this.props.updateState}
             fetchOffices={this.props.fetchOffices}
-            toggleLocationProvided={
-              this.props.toggleLocationProvided
-            }
-            toggleModalVisibility={
-              this.props.toggleModalVisibility
-            }
+            toggleLocationProvided={this.props.toggleLocationProvided}
+            toggleModalVisibility={this.props.toggleModalVisibility}
           />
-        </View>
+        </LinearGradient>
       )
     } else {
       return (
         <ActivityIndicatorWrapper>
-          <ActivityIndicator
-            color="tomato"
-            size="large"
-          />
+          <ActivityIndicator color="tomato" size="large" />
         </ActivityIndicatorWrapper>
       )
     }
