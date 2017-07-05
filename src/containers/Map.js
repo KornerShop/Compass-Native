@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {
+  string,
   oneOf,
   object,
   bool,
@@ -10,7 +11,7 @@ import {connect} from 'react-redux'
 
 import {
   Platform,
-  Switch,
+  StatusBar,
   Link,
   View,
   Text,
@@ -20,6 +21,8 @@ import {
 import {MapView} from 'expo'
 import {Foundation} from '@expo/vector-icons'
 import {ButtonGroup} from 'react-native-elements'
+
+import ZipModal from './ZipModal'
 import {ActivityIndicatorWrapper} from '../components/styled/Styled'
 import MarkerView from '../components/MarkerView'
 
@@ -31,6 +34,7 @@ class Map extends Component {
   }
   async updateIndex(idx) {
     if (idx === 2) {
+      this.props.toggleModalVisibility()
     } else {
       const officeNum = idx === 0 ? 1 : 2
       this.props.updateOffice(officeNum)
@@ -65,11 +69,14 @@ class Map extends Component {
         <View
           style={{
             flex: 1,
-            backgroundColor:
-              Platform.OS === 'ios'
-                ? '#F9F5ED'
-                : '#F0EDE5',
+            // backgroundColor:
+            //   Platform.OS === 'ios'
+            //     ? '#F9F5ED'
+            //     : '#F0EDE5',
+            marginTop: 0,
+            backgroundColor: 'mediumturquoise',
           }}>
+          <StatusBar hidden={true} />
           <ButtonGroup
             onPress={this.updateIndex.bind(this)}
             buttons={[
@@ -83,26 +90,28 @@ class Map extends Component {
               this.props.office === 1 ? 0 : 1
             }
             textStyle={{
-              color: 'mediumturquoise',
+              color: 'white',
               fontWeight: 'bold',
-              fontSize: 15,
+              fontSize: 20,
             }}
             innerBorderStyle={{
               color: 'mediumturquoise',
+              width: 3,
             }}
             containerStyle={{
               alignSelf: 'center',
-              marginTop: 35,
-              borderWidth: 3,
-              borderRadius: 5,
-              borderColor: 'mediumturquoise',
+              marginTop: 0,
+              marginBottom: 0,
+              borderWidth: 0,
+              borderColor: 'white',
               backgroundColor: 'transparent',
-              height: 40,
-              marginLeft: 30,
-              marginRight: 30,
+              height: 55,
+              width: this.props.orientation.width,
             }}
-            selectedTextStyle={{color: 'white'}}
-            selectedBackgroundColor="mediumturquoise"
+            selectedTextStyle={{
+              color: 'mediumturquoise',
+            }}
+            selectedBackgroundColor="white"
           />
           <MapView
             style={{
@@ -113,7 +122,7 @@ class Map extends Component {
                 ? null
                 : 'google'
             }
-            region={this.props.region}>
+            region={this.props.location}>
             {offices.map(office => {
               return (
                 <MapView.Marker
@@ -143,18 +152,20 @@ class Map extends Component {
             })}
           </MapView>
           <ZipModal
-            language={props.language}
-            zipCode={props.zipCode}
-            zipValid={props.zipValid}
-            updateZipCode={props.updateZipCode}
-            modalVisible={props.modalVisible}
-            updateState={props.updateState}
-            fetchOffices={props.fetchOffices}
+            language={this.props.language}
+            zipCode={this.props.zipCode}
+            zipValid={this.props.zipValid}
+            updateZipCode={
+              this.props.updateZipCode
+            }
+            modalVisible={this.props.modalVisible}
+            updateState={this.props.updateState}
+            fetchOffices={this.props.fetchOffices}
             toggleLocationProvided={
-              props.toggleLocationProvided
+              this.props.toggleLocationProvided
             }
             toggleModalVisibility={
-              props.toggleModalVisibility
+              this.props.toggleModalVisibility
             }
           />
         </View>
@@ -173,6 +184,7 @@ class Map extends Component {
 }
 
 Map.propTypes = {
+  orientation: object.isRequired,
   language: oneOf(['en', 'es']).isRequired,
   location: object.isRequired,
   fetchOffices: func.isRequired,
@@ -181,6 +193,13 @@ Map.propTypes = {
   snapOffices: array.isRequired,
   wicOffices: array.isRequired,
   mapLoading: bool.isRequired,
+  modalVisible: bool.isRequired,
+  zipCode: string.isRequired,
+  zipValid: bool.isRequired,
+  updateZipCode: func.isRequired,
+  updateState: func.isRequired,
+  toggleModalVisibility: func.isRequired,
+  toggleLocationProvided: func.isRequired,
 }
 
 export default Map

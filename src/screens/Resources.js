@@ -118,6 +118,7 @@ class Resources extends Component {
       // location hasn't been provided
       return (
         <Map
+          orientation={this.props.orientation}
           language={this.props.language}
           location={this.props.location}
           office={this.props.office}
@@ -125,17 +126,20 @@ class Resources extends Component {
           snapOffices={this.props.snapOffices}
           wicOffices={this.props.wicOffices}
           fetchOffices={this.props.fetchOffices}
-          region={this.props.location}
           mapLoading={this.props.mapLoading}
           updateOffice={this.props.updateOffice}
           modalVisible={this.state.modalVisible}
+          zipCode={this.props.zipCode}
           zipValid={this.state.zipValid}
           updateZipCode={this.props.updateZipCode}
           updateState={this.updateState.bind(
             this
           )}
-          toggleModalVisibility={
-            props.toggleModalVisibility
+          toggleModalVisibility={this.toggleModalVisibility.bind(
+            this
+          )}
+          toggleLocationProvided={
+            this.props.toggleLocationProvided
           }
         />
       )

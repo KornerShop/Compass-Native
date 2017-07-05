@@ -1,5 +1,10 @@
 import React from 'react'
-import {string, number, bool, func} from 'prop-types'
+import {
+  string,
+  number,
+  bool,
+  func,
+} from 'prop-types'
 
 import {
   Modal,
@@ -28,7 +33,11 @@ const ZipModal = props =>
     animationType="slide"
     visible={props.modalVisible}
     onRequestClose={props.toggleModalVisibility}>
-    <ScrollView contentContainerStyle={{flex: 1, justifyContent: 'center'}}>
+    <ScrollView
+      contentContainerStyle={{
+        flex: 1,
+        justifyContent: 'center',
+      }}>
       <View
         style={{
           flex: 1,
@@ -37,14 +46,18 @@ const ZipModal = props =>
           paddingHorizontal: 20,
         }}>
         <FormHeader>
-          {localizedStrings[props.language].zipModal.header}
+          {
+            localizedStrings[props.language]
+              .zipModal.header
+          }
         </FormHeader>
-        <ZipModalEmoji>
-          📍
-        </ZipModalEmoji>
+        <ZipModalEmoji>📍</ZipModalEmoji>
         <InputWrapper valid={props.zipValid}>
           <StyledInput
-            placeholder={localizedStrings[props.language].zipModal.zipCode}
+            placeholder={
+              localizedStrings[props.language]
+                .zipModal.zipCode
+            }
             placeholderTextColor="#90A4AE"
             underlineColorAndroid="rgba(0,0,0,0)"
             value={props.zipCode}
@@ -56,7 +69,9 @@ const ZipModal = props =>
               : 'numeric'}`}
             onChangeText={zipCode => {
               props.updateZipCode(zipCode)
-              if (/^9[0-6]\d\d\d$/.test(zipCode)) {
+              if (
+                /^9[0-6]\d\d\d$/.test(zipCode)
+              ) {
                 return props.updateState({
                   zipValid: true,
                 })
@@ -68,14 +83,19 @@ const ZipModal = props =>
           />
         </InputWrapper>
         <SubmitButton
-          title={localizedStrings[props.language].buttons.submit}
+          title={
+            localizedStrings[props.language]
+              .buttons.submit
+          }
           accessibility={
-            localizedStrings[props.language].buttons.accessibilitySubmit
+            localizedStrings[props.language]
+              .buttons.accessibilitySubmit
           }
           onPress={() => {
             if (props.zipValid && props.zipCode) {
               props.fetchOffices(true)
               props.toggleLocationProvided(true)
+              props.toggleModalVisibility()
             }
             return null
           }}
