@@ -8,39 +8,44 @@ import {Button} from 'react-native-elements'
 
 import {updateWicEligibility} from '../redux/actions/actions'
 
+import LinearGrad from '../components/LinearGradient'
 import {StyledContainer, FormHeader} from '../components/styled/Styled'
 import EligibilityButton from '../components/EligibilityButton'
 
 import localizedStrings from '../utilities/localization'
 
 const Eligible = props =>
-  <StyledContainer>
-    <ScrollView
-      showsVerticalScrollIndicator={false}
-      keyboardDismissMode="on-drag"
-      contentContainerStyle={{
-        flex: 1,
-        justifyContent: 'space-around',
-      }}>
-      <FormHeader>
-        {localizedStrings[props.language].eligible.header}
-      </FormHeader>
-      <Text
-        style={{
-          fontSize: 80,
-          textAlign: 'center',
-        }}>
-        👍
-      </Text>
-      <EligibilityButton
-        title={localizedStrings[props.language].buttons.recheck}
-        accessibility={
-          localizedStrings[props.language].buttons.accessibilityRecheck
-        }
-        updateWicEligibility={props.updateWicEligibility}
-      />
-    </ScrollView>
-  </StyledContainer>
+  <LinearGrad>
+    <StyledContainer>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        keyboardDismissMode="on-drag"
+        contentContainerStyle={{
+          flex: 1,
+          justifyContent: 'space-around',
+        }}
+      >
+        <FormHeader>
+          {localizedStrings[props.language].eligible.header}
+        </FormHeader>
+        <Text
+          style={{
+            fontSize: 80,
+            textAlign: 'center',
+          }}
+        >
+          👍
+        </Text>
+        <EligibilityButton
+          title={localizedStrings[props.language].buttons.recheck}
+          accessibility={
+            localizedStrings[props.language].buttons.accessibilityRecheck
+          }
+          updateWicEligibility={props.updateWicEligibility}
+        />
+      </ScrollView>
+    </StyledContainer>
+  </LinearGrad>
 
 Eligible.propTypes = {
   updateWicEligibility: func.isRequired,
