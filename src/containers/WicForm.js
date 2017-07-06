@@ -138,11 +138,19 @@ const WicForm = props =>
             localizedStrings[props.language].buttons.accessibilitySubmit
           }
           onPress={() => {
+            // check life event button group validity
             if ([0, 1].includes(props.lifeEvents)) {
+              // if selected then valid
               props.updateState({
                 lifeEventsValid: true,
               })
+            } else {
+              // else return not valid
+              props.updateState({
+                lifeEventsValid: false,
+              })
             }
+            // check eligibility if we have a valid input for all three sections
             if (
               props.lifeEventsValid &&
               props.familySizeValid &&
@@ -153,12 +161,32 @@ const WicForm = props =>
                 props.familySize,
                 props.income
               )
-            } else {
-              return props.updateState({
-                familySizeValid: false,
-                incomeValid: false,
-                lifeEventsValid: false,
+              // & reset form when they press submit button && formValidity
+              props.updateState({
+                familySize: '',
+                income: '',
+                lifeEvents: 2,
+                lifeEventsValid: null,
+                familySizeValid: null,
+                incomeValid: null,
               })
+              // if not a valid form check to see which input is invalid
+            } else {
+              if (props.lifeEventsValid === null) {
+                return props.updateState({
+                  lifeEventsValid: false,
+                })
+              }
+              if (props.familySizeValid === null) {
+                return props.updateState({
+                  familySizeValid: false,
+                })
+              }
+              if (props.incomeValid === null) {
+                return props.updateState({
+                  incomeValid: false,
+                })
+              }
             }
           }}
         />
@@ -170,9 +198,9 @@ WicForm.propTypes = {
   familySize: string.isRequired,
   income: string.isRequired,
   lifeEvents: oneOf([0, 1, 2]),
-  familySizeValid: bool.isRequired,
-  incomeValid: bool.isRequired,
-  lifeEventsValid: bool.isRequired,
+  // familySizeValid: bool.isRequired,
+  // incomeValid: bool.isRequired,
+  // lifeEventsValid: bool.isRequired,
   language: oneOf(['en', 'es']),
 }
 

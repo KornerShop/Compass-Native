@@ -5,6 +5,8 @@ import {View, Text, Image} from 'react-native'
 
 export const styleSwitch = (prop, cssIfValid, cssIfInvalid) => {
   switch (prop) {
+    case null:
+      return cssIfValid
     case true:
       return cssIfValid
     case false:
@@ -14,6 +16,8 @@ export const styleSwitch = (prop, cssIfValid, cssIfInvalid) => {
 
 export const textInputColor = prop => {
   switch (prop) {
+    case null:
+      return '#7C7A7A'
     case true:
       return '#7C7A7A'
     case false:
@@ -23,6 +27,8 @@ export const textInputColor = prop => {
 
 export const textInputWrapperColor = prop => {
   switch (prop) {
+    case null:
+      return '1px solid papayawhip'
     case true:
       return '1px solid papayawhip'
     case false:
