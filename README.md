@@ -2,8 +2,6 @@
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
 # Compass-Native ⭐
-Using React Native we're developing a mobile app designed to point those in need towards the state resources they need.
-
 Compass is an iOS/Android app designed to people to the California State resources they need (At present: SNAP (Calfresh) & WIC)
 
 ## What problem are we solving?
