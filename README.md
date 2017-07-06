@@ -2,7 +2,7 @@
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
 # Compass-Native ⭐
-Compass is an iOS/Android app designed to point people to the California State resources they need (At present: SNAP (Calfresh) & WIC)
+Compass is an iOS/Android app designed to point people to the California State resources they need.
 
 ## What problem are we solving?
 According to the U.S Census Bureau, 38,398,077 (about 16%) Californian residents live in poverty. Of that 16%, 20% of those individuals speak Spanish. The Public Policy Institute of California indicates that some of the most important safety nets for these families are CalFresh (SNAP/Food Stamps) and WIC (Women Infant and Children). Contrary to popular belief and political rhetoric, these resources are vastly underutilized. 1,111,897 individuals benefited from WIC resources as of by 2016. Moreover, 21,311,383 individuals are currently enrolled in SNAP. But, this means about 15 million individuals who are eligible for assistance aren’t receiving any. Maybe they don’t know they are eligible or maybe they don’t know where to look? Maybe the process itself feels too overwhelming and spread out.
