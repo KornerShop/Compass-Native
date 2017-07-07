@@ -17,9 +17,9 @@ class Wic extends Component {
       familySize: '',
       income: '',
       lifeEvents: 2,
-      familySizeValid: true,
-      incomeValid: true,
-      lifeEventsValid: true,
+      familySizeValid: null,
+      incomeValid: null,
+      lifeEventsValid: null,
     }
   }
   updateState(obj) {

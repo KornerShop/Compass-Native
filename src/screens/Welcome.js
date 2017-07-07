@@ -56,34 +56,49 @@ class Welcome extends Component {
             height: this.props.orientation.height,
             width: this.props.orientation.width,
             resizeMode: 'cover',
-          }}
-        >
+          }}>
           {this.state.isLoading
             ? <ActivityIndicatorWrapper>
-                <ActivityIndicator color="#00897b" size="large" />
+                <ActivityIndicator
+                  color="#00897b"
+                  size="large"
+                />
               </ActivityIndicatorWrapper>
             : <WelcomeUIWrapper>
                 <Logo>
-                  C<FontAwesome name="compass" size={50} color="white" />mpass
+                  C<FontAwesome
+                    name="compass"
+                    size={47}
+                    color="white"
+                  />mpass
                 </Logo>
                 <ButtonGroup
                   onPress={this.updateIndex.bind(this)}
-                  selectedIndex={this.state.selectedLanguage}
+                  selectedIndex={
+                    this.state.selectedLanguage
+                  }
                   buttons={['English', 'Español']}
-                  textStyle={{color: 'white', fontSize: 18, fontWeight: 'bold'}}
-                  selectedTextStyle={{color: 'slategray'}}
+                  textStyle={{
+                    color: 'white',
+                    fontSize: 18,
+                    fontWeight: 'bold',
+                  }}
+                  borderRadius={3}
+                  selectedTextStyle={{
+                    color: '#2c2c2c',
+                  }}
                   innerBorderStyle={{
                     color: 'white',
                     width: 3,
                   }}
                   containerStyle={{
-                    height: 60,
+                    height: 50,
                     marginTop: 30,
                     backgroundColor: 'transparent',
                     borderWidth: 3,
-                    borderRadius: 7,
+                    borderRadius: 3,
                     borderColor: 'white',
-                    width: 300,
+                    width: 265,
                     alignSelf: 'center',
                   }}
                   selectedBackgroundColor="white"
@@ -101,10 +116,17 @@ Welcome.propTypes = {
   orientation: object.isRequired,
 }
 
-const mapStateToProps = ({orientation}) => ({orientation})
-
-const mapDispatchToProps = dispatch => ({
-  setLanguagePreference: bindActionCreators(setLanguagePreference, dispatch),
+const mapStateToProps = ({orientation}) => ({
+  orientation,
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Welcome)
+const mapDispatchToProps = dispatch => ({
+  setLanguagePreference: bindActionCreators(
+    setLanguagePreference,
+    dispatch
+  ),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(
+  Welcome
+)
