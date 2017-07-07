@@ -1,5 +1,12 @@
 import React, {Component} from 'react'
-import {string, oneOf, object, bool, array, func} from 'prop-types'
+import {
+  string,
+  oneOf,
+  object,
+  bool,
+  array,
+  func,
+} from 'prop-types'
 import {connect} from 'react-redux'
 
 import {
@@ -18,7 +25,6 @@ import {ButtonGroup, Button} from 'react-native-elements'
 import ZipModal from './ZipModal'
 import {ActivityIndicatorWrapper} from '../components/styled/Styled'
 import MarkerView from '../components/MarkerView'
-import LinearGrad from '../components/LinearGradient'
 
 import localizedStrings from '../utilities/localization'
 
@@ -55,61 +61,88 @@ class Map extends Component {
       'salmon',
     ]
     const offices =
-      this.props.office === 1 ? this.props.snapOffices : this.props.wicOffices
+      this.props.office === 1
+        ? this.props.snapOffices
+        : this.props.wicOffices
     if (!this.props.mapLoading) {
       return (
-        <LinearGrad>
+        <View
+          style={{
+            flex: 1,
+            paddingTop: 10,
+            paddingBottom: 5,
+            paddingHorizontal: 5,
+            backgroundColor: '#2C2C2C',
+          }}>
           <StatusBar barStyle="light-content" />
           <ButtonGroup
             onPress={this.updateIndex.bind(this)}
             buttons={[
               'Calfresh',
               'WIC',
-              localizedStrings[this.props.language].buttons.recheck,
+              localizedStrings[this.props.language].buttons
+                .recheck,
             ]}
             selectedIndex={this.props.office === 1 ? 0 : 1}
             textStyle={{
-              color: '#d7d2cc',
-              fontSize: 18,
+              color: 'white',
+              fontSize: 16,
+              fontFamily: 'merriweather-sans',
+            }}
+            borderRadius={2}
+            buttonStyle={{
+              borderWidth: 1,
+              borderColor: 'white',
             }}
             innerBorderStyle={{
-              width: 0,
+              width: 1,
+              color: 'white',
             }}
             containerStyle={{
               alignSelf: 'center',
-              marginTop: 10,
+              marginTop: 20,
               marginBottom: 10,
-              borderWidth: 2,
-              borderColor: '#d7d2cc',
+              borderWidth: 1,
+              borderColor: 'white',
               backgroundColor: 'transparent',
-              height: 55,
-              width: this.props.orientation.width - 30,
-              borderRadius: 5,
+              width: this.props.orientation.width - 10,
+              borderRadius: 2,
             }}
             selectedTextStyle={{
               color: '#304352',
+              borderRadius: 2,
             }}
-            selectedBackgroundColor="#d7d2cc"
+            selectedBackgroundColor="white"
           />
           <MapView
             style={{
               flex: 1,
+              borderRadius: 2,
             }}
-            provider={Platform.OS === 'ios' ? null : 'google'}
-            region={this.props.location}
-          >
+            provider={
+              Platform.OS === 'ios' ? null : 'google'
+            }
+            region={this.props.location}>
             {offices.map(office => {
               return (
                 <MapView.Marker
-                  pinColor={colors[Math.floor(Math.random() * colors.length)]}
+                  pinColor={
+                    colors[
+                      Math.floor(
+                        Math.random() * colors.length
+                      )
+                    ]
+                  }
                   key={office.id}
                   coordinate={{
                     latitude: office.lat,
                     longitude: office.lng,
-                  }}
-                >
+                  }}>
                   <MapView.Callout>
-                    <MarkerView {...office} location={this.props.location} />
+                    <MarkerView
+                      {...office}
+                      location={this.props.location}
+                    />
                   </MapView.Callout>
                 </MapView.Marker>
               )
@@ -123,10 +156,14 @@ class Map extends Component {
             modalVisible={this.props.modalVisible}
             updateState={this.props.updateState}
             fetchOffices={this.props.fetchOffices}
-            toggleLocationProvided={this.props.toggleLocationProvided}
-            toggleModalVisibility={this.props.toggleModalVisibility}
+            toggleLocationProvided={
+              this.props.toggleLocationProvided
+            }
+            toggleModalVisibility={
+              this.props.toggleModalVisibility
+            }
           />
-        </LinearGrad>
+        </View>
       )
     } else {
       return (

@@ -3,7 +3,11 @@ import styled from 'styled-components/native'
 
 import {View, Text, Image} from 'react-native'
 
-export const styleSwitch = (prop, cssIfValid, cssIfInvalid) => {
+export const styleSwitch = (
+  prop,
+  cssIfValid,
+  cssIfInvalid
+) => {
   switch (prop) {
     case null:
       return cssIfValid
@@ -25,6 +29,17 @@ export const textInputColor = prop => {
   }
 }
 
+export const textInputColorZip = prop => {
+  switch (prop) {
+    case null:
+      return 'white'
+    case true:
+      return 'white'
+    case false:
+      return 'tomato'
+  }
+}
+
 export const textInputWrapperColor = prop => {
   switch (prop) {
     case null:
@@ -33,6 +48,17 @@ export const textInputWrapperColor = prop => {
       return '1px solid papayawhip'
     case false:
       return '1px solid tomato'
+  }
+}
+
+export const textInputWrapperColorZip = prop => {
+  switch (prop) {
+    case null:
+      return '2px solid white'
+    case true:
+      return '2px solid white'
+    case false:
+      return '2px solid tomato'
   }
 }
 
@@ -53,18 +79,23 @@ export const ImageContainer = styled.Image`
 `
 
 export const OfficeText = styled.Text`
-  font-size: 60;
-  font-weight: 300;
-  color: #d7d2cc;
+  font-size: 50;
+  color: white;
   background-color: transparent;
 `
 
 export const StyledInput = styled.TextInput`
-  font-size: 18;
+  font-size: 15;
   font-weight: 300;
   color: ${props => textInputColor(props.valid)};
   height: 30;
   border-color: papayawhip;
+`
+
+export const StyledInputZip = StyledInput.extend`
+  font-size: 20;
+  font-weight: 600;
+  color: ${props => textInputColorZip(props.valid)};
 `
 
 export const InputWrapper = styled.View`
@@ -74,9 +105,17 @@ export const InputWrapper = styled.View`
   padding-bottom: 10;
   padding-left: 10;
   padding-right: 10;
-  margin-left: 20;
-  margin-right: 20;
   background-color: papayawhip;
+`
+
+export const ZipModalInputWrapper = InputWrapper.extend`
+  border: ${props => textInputWrapperColorZip(props.valid)};
+  border-top-width: 0;
+  border-left-width: 0;
+  border-right-width: 0;
+  margin-left: 10;
+  margin-right: 10;
+  background-color: transparent;
 `
 
 export const LifeEventText = styled.Text`
@@ -87,20 +126,17 @@ export const LifeEventText = styled.Text`
 
 export const FormHeader = styled.Text`
   font-weight: bold;
-  font-size: 20;
+  font-size: ${props => (props.zip ? 35 : 20)};
   text-align: center;
   padding-bottom: 10;
-`
-
-export const ZipModalEmoji = styled.Text`
-  font-size: 30;
-  text-align: center;
+  color: ${props => (props.zip ? 'white' : '#2C2C2C')};
 `
 
 export const ActivityIndicatorWrapper = styled.View`
   flex: 1;
   justify-content: center;
   align-items: center;
+  background-color: #2c2c2c;
 `
 
 export const WelcomeUIWrapper = styled.View`
@@ -116,4 +152,5 @@ export const Logo = styled.Text`
   color: white;
   background-color: transparent;
   margin-bottom: 30;
+  font-family: merriweather-sans;
 `

@@ -11,63 +11,145 @@ import {
   TouchableHighlight,
 } from 'react-native'
 
-import LinearGrad from '../components/LinearGradient'
-import ZipModal from './ZipModal'
-import {ImageContainer, OfficeText} from '../components/styled/Styled'
+import {Icon, Button} from 'react-native-elements'
 
-const Office = props =>
-  <LinearGrad>
-    <View style={{flex: 1, flexDirection: 'column'}}>
-      <StatusBar barStyle="light-content" />
-      <View style={{flex: 0.5, marginTop: 20}}>
+import ZipModal from './ZipModal'
+import {
+  ImageContainer,
+  OfficeText,
+} from '../components/styled/Styled'
+
+import localizedStrings from '../utilities/localization'
+
+const Office = props => {
+  const officeChosen = async officeNum => {
+    props.updateOffice(officeNum)
+    await props.getLocationAsync()
+  }
+  return (
+    <View
+      style={{
+        flex: 1,
+        backgroundColor: '#2C2C2C',
+      }}>
+      <View
+        style={{
+          flex: 1,
+          flexDirection: 'column',
+        }}>
+        <StatusBar barStyle="light-content" />
         <TouchableHighlight
-          style={{flex: 1}}
-          onPress={async () => {
-            props.updateOffice(1)
-            await props.getLocationAsync()
+          style={{
+            flex: 0.5,
+            marginTop: 25,
+            marginLeft: 5,
+            marginRight: 5,
           }}
-        >
+          onPress={officeChosen.bind(null, 1)}>
           <ImageContainer
+            borderRadius={2}
             height={props.height / 2}
-            width={props.width - 30}
+            width={props.width - 10}
             source={require('../assets/snap1.jpg')}
-            resizeMode="cover"
-          >
-            <OfficeText>CalFresh</OfficeText>
+            resizeMode="cover">
+            <OfficeText
+              style={{
+                fontFamily: 'merriweather-sans',
+              }}>
+              CalFresh
+            </OfficeText>
+            <Button
+              raised
+              icon={{
+                color: '#2C2C2C',
+                type: 'ionicon',
+                name: 'ios-nutrition',
+                size: 30,
+              }}
+              borderRadius={2}
+              containerViewStyle={{
+                borderRadius: 2,
+                marginTop: 20,
+              }}
+              buttonStyle={{
+                paddingHorizontal: 30,
+              }}
+              color="#2C2C2C"
+              backgroundColor="white"
+              title={localizedStrings[
+                props.language
+              ].buttons.office.toUpperCase()}
+              fontFamily="merriweather-sans"
+              onPress={officeChosen.bind(null, 1)}
+            />
           </ImageContainer>
         </TouchableHighlight>
-      </View>
-      <View style={{flex: 0.5, marginTop: 20, marginBottom: 10}}>
         <TouchableHighlight
-          style={{flex: 1}}
-          onPress={async () => {
-            props.updateOffice(2)
-            await props.getLocationAsync()
+          style={{
+            flex: 0.5,
+            marginTop: 5,
+            marginLeft: 5,
+            marginRight: 5,
+            marginBottom: 10,
           }}
-        >
+          onPress={officeChosen.bind(null, 2)}>
           <ImageContainer
+            borderRadius={2}
             height={props.height / 2}
-            width={props.width - 30}
+            width={props.width - 10}
             source={require('../assets/wic1.jpeg')}
-            resizeMode="cover"
-          >
-            <OfficeText>WIC</OfficeText>
+            resizeMode="cover">
+            <OfficeText
+              style={{
+                fontFamily: 'merriweather-sans',
+              }}>
+              WIC
+            </OfficeText>
+            <Button
+              raised
+              icon={{
+                color: '#2C2C2C',
+                type: 'ionicon',
+                name: 'ios-woman',
+                size: 30,
+              }}
+              borderRadius={2}
+              containerViewStyle={{
+                borderRadius: 2,
+                marginTop: 20,
+              }}
+              buttonStyle={{
+                paddingHorizontal: 30,
+              }}
+              color="#2C2C2C"
+              backgroundColor="white"
+              title={localizedStrings[
+                props.language
+              ].buttons.office.toUpperCase()}
+              fontFamily="merriweather-sans"
+              onPress={officeChosen.bind(null, 2)}
+            />
           </ImageContainer>
         </TouchableHighlight>
+        <ZipModal
+          language={props.language}
+          zipCode={props.zipCode}
+          zipValid={props.zipValid}
+          updateZipCode={props.updateZipCode}
+          modalVisible={props.modalVisible}
+          updateState={props.updateState}
+          fetchOffices={props.fetchOffices}
+          toggleLocationProvided={
+            props.toggleLocationProvided
+          }
+          toggleModalVisibility={
+            props.toggleModalVisibility
+          }
+        />
       </View>
-      <ZipModal
-        language={props.language}
-        zipCode={props.zipCode}
-        zipValid={props.zipValid}
-        updateZipCode={props.updateZipCode}
-        modalVisible={props.modalVisible}
-        updateState={props.updateState}
-        fetchOffices={props.fetchOffices}
-        toggleLocationProvided={props.toggleLocationProvided}
-        toggleModalVisibility={props.toggleModalVisibility}
-      />
     </View>
-  </LinearGrad>
+  )
+}
 
 Office.propTypes = {
   getLocationAsync: func.isRequired,

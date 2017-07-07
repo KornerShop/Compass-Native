@@ -10,6 +10,7 @@ import {
   StyleSheet,
   Platform,
   Dimensions,
+  StatusBar,
 } from 'react-native'
 
 import {ButtonGroup} from 'react-native-elements'
@@ -26,13 +27,20 @@ import {
   LifeEventText,
 } from '../components/styled/Styled'
 
-import LinearGrad from '../components/LinearGradient'
 import SubmitButton from '../components/SubmitButton'
 
 import localizedStrings from '../utilities/localization'
 
 const WicForm = props =>
-  <LinearGrad>
+  <View
+    style={{
+      flex: 1,
+      paddingTop: 10,
+      paddingBottom: 5,
+      paddingHorizontal: 5,
+      backgroundColor: '#2C2C2C',
+    }}>
+    <StatusBar barStyle="light-content" />
     <StyledContainer>
       <ScrollView
         showsVerticalScrollIndicator={false}
@@ -40,14 +48,18 @@ const WicForm = props =>
         contentContainerStyle={{
           flex: 1,
           justifyContent: 'space-around',
-        }}
-      >
+          paddingHorizontal: 5,
+          paddingVertical: 25,
+        }}>
         <FormHeader>
           {localizedStrings[props.language].wic.header}
         </FormHeader>
         <InputWrapper valid={props.familySizeValid}>
           <StyledInput
-            placeholder={localizedStrings[props.language].wic.householdSize}
+            placeholder={
+              localizedStrings[props.language].wic
+                .householdSize
+            }
             placeholderTextColor="#90A4AE"
             underlineColorAndroid="rgba(0,0,0,0)"
             value={props.familySize}
@@ -71,7 +83,9 @@ const WicForm = props =>
         </InputWrapper>
         <InputWrapper valid={props.incomeValid}>
           <StyledInput
-            placeholder={localizedStrings[props.language].wic.income}
+            placeholder={
+              localizedStrings[props.language].wic.income
+            }
             placeholderTextColor="#90A4AE"
             underlineColorAndroid="rgba(0,0,0,0)"
             value={props.income}
@@ -108,16 +122,23 @@ const WicForm = props =>
           selectedIndex={props.lifeEvents}
           onPress={props.updateLifeEvents}
           textStyle={{
-            color: styleSwitch(props.lifeEventsValid, '#00897b', 'tomato'),
+            color: styleSwitch(
+              props.lifeEventsValid,
+              '#00897b',
+              'tomato'
+            ),
             fontWeight: 'bold',
             fontSize: 18,
           }}
           innerBorderStyle={{
-            color: styleSwitch(props.lifeEventsValid, '#00897b', 'tomato'),
+            color: styleSwitch(
+              props.lifeEventsValid,
+              '#00897b',
+              'tomato'
+            ),
             width: 3,
           }}
           containerStyle={{
-            height: 50,
             borderWidth: 3,
             borderRadius: 5,
             borderColor: styleSwitch(
@@ -133,9 +154,12 @@ const WicForm = props =>
           selectedBackgroundColor="#00897b"
         />
         <SubmitButton
-          title={localizedStrings[props.language].buttons.submit}
+          title={
+            localizedStrings[props.language].buttons.submit
+          }
           accessibility={
-            localizedStrings[props.language].buttons.accessibilitySubmit
+            localizedStrings[props.language].buttons
+              .accessibilitySubmit
           }
           onPress={() => {
             // check life event button group validity
@@ -192,7 +216,7 @@ const WicForm = props =>
         />
       </ScrollView>
     </StyledContainer>
-  </LinearGrad>
+  </View>
 
 WicForm.propTypes = {
   familySize: string.isRequired,
