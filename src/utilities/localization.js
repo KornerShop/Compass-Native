@@ -24,11 +24,10 @@ export default {
     },
     buttons: {
       submit: 'Submit',
-      accessibilitySubmit:
-        'Find offices near you',
+      accessibilitySubmit: 'Find offices near you',
       recheck: 'Recheck',
-      accessibilityRecheck:
-        'Check your eligiblity again',
+      accessibilityRecheck: 'Check your eligiblity again',
+      office: 'Find Offices',
     },
   },
   es: {
@@ -36,8 +35,7 @@ export default {
       header:
         'Determine si es probable que sea elegible para WIC',
       householdSize: 'Tamaño del hogar',
-      income:
-        'Ingreso Mensual / Seguridad Social',
+      income: 'Ingreso Mensual / Seguridad Social',
       lifeEvents:
         '¿Está usted embarazada y / o tiene un hijo menor de 5 años?',
       yes: 'Sí',
@@ -58,10 +56,11 @@ export default {
     buttons: {
       submit: 'Enviar',
       accessibilitySubmit:
-        'Encuentre oficinas cerca de usted',
+        'Encuentra oficinas cerca de usted',
       recheck: 'Cambiar',
       accessibilityRecheck:
         'Revise su elegibilidad nuevamente',
+      office: 'Encuentra Oficinas',
     },
   },
 }

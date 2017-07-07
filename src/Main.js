@@ -18,7 +18,10 @@ import {ActivityIndicatorWrapper} from './components/styled/Styled'
 import {updateOrientation} from './redux/actions/actions'
 import {setLanguagePreference} from './redux/actions/actions'
 
-import {cacheImages} from './utilities/cacheAssetsAsync'
+import {
+  cacheImages,
+  cacheFonts,
+} from './utilities/cacheAssetsAsync'
 
 class Main extends Component {
   constructor() {
@@ -33,7 +36,9 @@ class Main extends Component {
   }
   async getLanguage() {
     try {
-      const language = await AsyncStorage.getItem('language')
+      const language = await AsyncStorage.getItem(
+        'language'
+      )
       this.setState({
         isLoading: false,
       })
@@ -54,11 +59,14 @@ class Main extends Component {
       require('./assets/snap1.jpg'),
       require('./assets/wic1.jpeg'),
     ])
+    await cacheFonts({
+      'merriweather-sans': require('./assets/fonts/MerriweatherSans-Regular.ttf'),
+    })
     this.setState({
       isLoading: false,
     })
   }
-  componentWillMount() {
+  async componentDidMount() {
     // Not ideal, but this action is necessary for getting the initial orientation of the device
     this.props.updateOrientation(Dimensions.get('window'))
     this._loadAssetsAsync()
@@ -67,9 +75,13 @@ class Main extends Component {
     return (
       <View
         style={{flex: 1}}
-        onLayout={() => this.props.updateOrientation(Dimensions.get('window'))}
-      >
-        <Component toggleStart={this.toggleStart.bind(this)} />
+        onLayout={() =>
+          this.props.updateOrientation(
+            Dimensions.get('window')
+          )}>
+        <Component
+          toggleStart={this.toggleStart.bind(this)}
+        />
       </View>
     )
   }
@@ -93,8 +105,14 @@ Main.propTypes = {
 }
 
 const mapDispatchToProps = dispatch => ({
-  updateOrientation: bindActionCreators(updateOrientation, dispatch),
-  setLanguagePreference: bindActionCreators(setLanguagePreference, dispatch),
+  updateOrientation: bindActionCreators(
+    updateOrientation,
+    dispatch
+  ),
+  setLanguagePreference: bindActionCreators(
+    setLanguagePreference,
+    dispatch
+  ),
 })
 
 export default connect(null, mapDispatchToProps)(Main)
