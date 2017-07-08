@@ -21,6 +21,9 @@ class Wic extends Component {
       incomeValid: null,
       lifeEventsValid: null,
     }
+    this.updateLifeEvents = this.updateLifeEvents.bind(this)
+    this.updateState = this.updateState.bind(this)
+    this.checkEligibility = this.checkEligibility.bind(this)
   }
   updateState(obj) {
     this.setState(obj)
@@ -68,9 +71,9 @@ class Wic extends Component {
             lifeEvents={this.state.lifeEvents}
             formValid={this.state.formValid}
             lifeEventsValid={this.state.lifeEventsValid}
-            updateLifeEvents={this.updateLifeEvents.bind(this)}
-            updateState={this.updateState.bind(this)}
-            checkEligibility={this.checkEligibility.bind(this)}
+            updateLifeEvents={this.updateLifeEvents}
+            updateState={this.updateState}
+            checkEligibility={this.checkEligibility}
           />
         )
       case 1:
@@ -88,14 +91,23 @@ Wic.propTypes = {
   language: oneOf(['es', 'en']).isRequired,
 }
 
-const mapStateToProps = ({wicEligible, orientation, language}) => ({
+const mapStateToProps = ({
+  wicEligible,
+  orientation,
+  language,
+}) => ({
   wicEligible,
   orientation,
   language,
 })
 
 const mapDispatchToProps = dispatch => ({
-  updateWicEligibility: bindActionCreators(updateWicEligibility, dispatch),
+  updateWicEligibility: bindActionCreators(
+    updateWicEligibility,
+    dispatch
+  ),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Wic)
+export default connect(mapStateToProps, mapDispatchToProps)(
+  Wic
+)
