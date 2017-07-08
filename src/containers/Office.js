@@ -45,7 +45,7 @@ const Office = props => {
             marginLeft: 5,
             marginRight: 5,
           }}
-          onPress={officeChosen.bind(null, 1)}>
+          onPress={() => this.officeChosen(1)}>
           <ImageContainer
             borderRadius={2}
             height={props.height / 2}
@@ -80,7 +80,7 @@ const Office = props => {
                 props.language
               ].buttons.office.toUpperCase()}
               fontFamily="merriweather-sans"
-              onPress={officeChosen.bind(null, 1)}
+              onPress={() => this.officeChosen(1)}
             />
           </ImageContainer>
         </TouchableHighlight>
@@ -92,7 +92,7 @@ const Office = props => {
             marginRight: 5,
             marginBottom: 10,
           }}
-          onPress={officeChosen.bind(null, 2)}>
+          onPress={() => this.officeChosen(2)}>
           <ImageContainer
             borderRadius={2}
             height={props.height / 2}
