@@ -33,6 +33,13 @@ class Resources extends Component {
       modalVisible: false,
       zipValid: true,
     }
+    this.getLocationAsync = this.getLocationAsync.bind(this)
+    this.updateState = this.updateState.bind(this)
+    this.toggleModalVisibility.bind(this)
+    this.updateState.bind(this)
+    this.toggleModalVisibility = this.toggleModalVisibility.bind(
+      this
+    )
   }
   updateState(obj) {
     this.setState(obj)
@@ -45,16 +52,12 @@ class Resources extends Component {
   async getLocationAsync() {
     const {
       status: currentStatus,
-    } = await Permissions.getAsync(
-      Permissions.LOCATION
-    )
+    } = await Permissions.getAsync(Permissions.LOCATION)
     if (currentStatus !== 'granted') {
       // if app doesn't already have the user's location permission
       const {
         status: newStatus,
-      } = await Permissions.askAsync(
-        Permissions.LOCATION
-      )
+      } = await Permissions.askAsync(Permissions.LOCATION)
       if (newStatus !== 'granted') {
         // if user has denied app their location
         this.toggleModalVisibility()
@@ -62,11 +65,9 @@ class Resources extends Component {
         // if user is giving us location permission for the first time
         var {
           coords: location,
-        } = await Location.getCurrentPositionAsync(
-          {
-            enableHighAccuracy: true,
-          }
-        )
+        } = await Location.getCurrentPositionAsync({
+          enableHighAccuracy: true,
+        })
         this.props.updateLocation({
           latitude: location.latitude,
           longitude: location.longitude,
@@ -94,24 +95,18 @@ class Resources extends Component {
           language={this.props.language}
           height={this.props.orientation.height}
           width={this.props.orientation.width}
-          getLocationAsync={this.getLocationAsync.bind(
-            this
-          )}
+          getLocationAsync={this.getLocationAsync}
           updateOffice={this.props.updateOffice}
           modalVisible={this.state.modalVisible}
           zipValid={this.state.zipValid}
           updateZipCode={this.props.updateZipCode}
-          updateState={this.updateState.bind(
-            this
-          )}
+          updateState={this.updateState}
           fetchOffices={this.props.fetchOffices}
           zipCode={this.props.zipCode}
           toggleLocationProvided={
             this.props.toggleLocationProvided
           }
-          toggleModalVisibility={this.toggleModalVisibility.bind(
-            this
-          )}
+          toggleModalVisibility={this.toggleModalVisibility}
         />
       )
     } else {
@@ -132,12 +127,8 @@ class Resources extends Component {
           zipCode={this.props.zipCode}
           zipValid={this.state.zipValid}
           updateZipCode={this.props.updateZipCode}
-          updateState={this.updateState.bind(
-            this
-          )}
-          toggleModalVisibility={this.toggleModalVisibility.bind(
-            this
-          )}
+          updateState={this.updateState}
+          toggleModalVisibility={this.toggleModalVisibility}
           toggleLocationProvided={
             this.props.toggleLocationProvided
           }
@@ -195,25 +186,18 @@ const mapDispatchToProps = dispatch => ({
     updateZipCode,
     dispatch
   ),
-  updateOffice: bindActionCreators(
-    updateOffice,
-    dispatch
-  ),
+  updateOffice: bindActionCreators(updateOffice, dispatch),
   updateLocation: bindActionCreators(
     updateLocation,
     dispatch
   ),
-  fetchOffices: bindActionCreators(
-    fetchOffices,
-    dispatch
-  ),
+  fetchOffices: bindActionCreators(fetchOffices, dispatch),
   toggleLocationProvided: bindActionCreators(
     toggleLocationProvided,
     dispatch
   ),
 })
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Resources)
+export default connect(mapStateToProps, mapDispatchToProps)(
+  Resources
+)
