@@ -31,6 +31,7 @@ class Welcome extends Component {
       isLoading: true,
       selectedLanguage: 2,
     }
+    this.updateIndex = this.updateIndex.bind(this)
   }
 
   async updateIndex(idx) {
@@ -73,7 +74,7 @@ class Welcome extends Component {
                   />mpass
                 </Logo>
                 <ButtonGroup
-                  onPress={this.updateIndex.bind(this)}
+                  onPress={this.updateIndex}
                   selectedIndex={
                     this.state.selectedLanguage
                   }

@@ -31,6 +31,7 @@ import localizedStrings from '../utilities/localization'
 class Map extends Component {
   constructor(props) {
     super(props)
+    this.updateIndex = this.updateIndex.bind(this)
   }
   async updateIndex(idx) {
     if (idx === 2) {
@@ -76,7 +77,7 @@ class Map extends Component {
           }}>
           <StatusBar barStyle="light-content" />
           <ButtonGroup
-            onPress={this.updateIndex.bind(this)}
+            onPress={this.updateIndex}
             buttons={[
               'Calfresh',
               'WIC',

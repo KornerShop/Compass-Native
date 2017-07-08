@@ -30,6 +30,7 @@ class Main extends Component {
       started: false,
       isLoading: true,
     }
+    this.toggleStart = this.toggleStart.bind(this)
   }
   toggleStart() {
     this.setState({started: !this.state.started})
@@ -79,9 +80,7 @@ class Main extends Component {
           this.props.updateOrientation(
             Dimensions.get('window')
           )}>
-        <Component
-          toggleStart={this.toggleStart.bind(this)}
-        />
+        <Component toggleStart={this.toggleStart} />
       </View>
     )
   }
