@@ -7,7 +7,7 @@ import {
   object,
   func,
   shape,
-  array,
+  array
 } from 'prop-types'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
@@ -19,71 +19,67 @@ import Map from '../containers/Map'
 import {
   updateOffice,
   updateZipCode,
-  toggleLocationProvided,
+  toggleLocationProvided
 } from '../redux/actions/actions'
-import {
-  updateLocation,
-  fetchOffices,
-} from '../redux/actions/actionCreators'
+import {updateLocation} from '../redux/actions/actions'
+import {fetchOffices} from '../redux/actions/actionCreators'
 
 class Resources extends Component {
   constructor(props) {
     super(props)
     this.state = {
       modalVisible: false,
-      zipValid: true,
+      zipValid: true
     }
     this.getLocationAsync = this.getLocationAsync.bind(this)
     this.updateState = this.updateState.bind(this)
     this.toggleModalVisibility.bind(this)
     this.updateState.bind(this)
-    this.toggleModalVisibility = this.toggleModalVisibility.bind(
-      this
-    )
+    this.toggleModalVisibility = this.toggleModalVisibility.bind(this)
   }
   updateState(obj) {
     this.setState(obj)
   }
   toggleModalVisibility() {
     this.setState({
-      modalVisible: !this.state.modalVisible,
+      modalVisible: !this.state.modalVisible
     })
   }
   async getLocationAsync() {
-    const {
-      status: currentStatus,
-    } = await Permissions.getAsync(Permissions.LOCATION)
+    const {status: currentStatus} = await Permissions.getAsync(
+      Permissions.LOCATION
+    )
     if (currentStatus !== 'granted') {
       // if app doesn't already have the user's location permission
-      const {
-        status: newStatus,
-      } = await Permissions.askAsync(Permissions.LOCATION)
+      const {status: newStatus} = await Permissions.askAsync(
+        Permissions.LOCATION
+      )
       if (newStatus !== 'granted') {
         // if user has denied app their location
         this.toggleModalVisibility()
       } else {
         // if user is giving us location permission for the first time
         var {
-          coords: location,
+          coords: location
         } = await Location.getCurrentPositionAsync({
-          enableHighAccuracy: true,
+          enableHighAccuracy: true
         })
         this.props.updateLocation({
           latitude: location.latitude,
-          longitude: location.longitude,
+          longitude: location.longitude
         })
         this.props.toggleLocationProvided(true)
       }
     } else {
       // app already has user's location
       var {
-        coords: location,
+        coords: location
       } = await Location.getCurrentPositionAsync({
-        enableHighAccuracy: true,
+        enableHighAccuracy: true
       })
       this.props.updateLocation({
         latitude: location.latitude,
-        longitude: location.longitude,
+        longitude: location.longitude
       })
       this.props.toggleLocationProvided(true)
     }
@@ -103,9 +99,7 @@ class Resources extends Component {
           updateState={this.updateState}
           fetchOffices={this.props.fetchOffices}
           zipCode={this.props.zipCode}
-          toggleLocationProvided={
-            this.props.toggleLocationProvided
-          }
+          toggleLocationProvided={this.props.toggleLocationProvided}
           toggleModalVisibility={this.toggleModalVisibility}
         />
       )
@@ -129,9 +123,7 @@ class Resources extends Component {
           updateZipCode={this.props.updateZipCode}
           updateState={this.updateState}
           toggleModalVisibility={this.toggleModalVisibility}
-          toggleLocationProvided={
-            this.props.toggleLocationProvided
-          }
+          toggleLocationProvided={this.props.toggleLocationProvided}
         />
       )
     }
@@ -146,7 +138,7 @@ Resources.propTypes = {
     latitude: number.isRequired,
     longitude: number.isRequired,
     latitudeDelta: number.isRequired,
-    longitudeDelta: number.isRequired,
+    longitudeDelta: number.isRequired
   }).isRequired,
   zipCode: string.isRequired,
   snapOffices: array.isRequired,
@@ -156,7 +148,7 @@ Resources.propTypes = {
   updateLocation: func.isRequired,
   fetchOffices: func.isRequired,
   locationProvided: bool.isRequired,
-  mapLoading: bool.isRequired,
+  mapLoading: bool.isRequired
 }
 
 const mapStateToProps = ({
@@ -168,7 +160,7 @@ const mapStateToProps = ({
   zipCode,
   snapOffices,
   wicOffices,
-  mapLoading,
+  mapLoading
 }) => ({
   locationProvided,
   language,
@@ -178,26 +170,18 @@ const mapStateToProps = ({
   zipCode,
   snapOffices,
   wicOffices,
-  mapLoading,
+  mapLoading
 })
 
 const mapDispatchToProps = dispatch => ({
-  updateZipCode: bindActionCreators(
-    updateZipCode,
-    dispatch
-  ),
+  updateZipCode: bindActionCreators(updateZipCode, dispatch),
   updateOffice: bindActionCreators(updateOffice, dispatch),
-  updateLocation: bindActionCreators(
-    updateLocation,
-    dispatch
-  ),
+  updateLocation: bindActionCreators(updateLocation, dispatch),
   fetchOffices: bindActionCreators(fetchOffices, dispatch),
   toggleLocationProvided: bindActionCreators(
     toggleLocationProvided,
     dispatch
-  ),
+  )
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  Resources
-)
+export default connect(mapStateToProps, mapDispatchToProps)(Resources)
