@@ -8,7 +8,7 @@ import {
   ActivityIndicator,
   View,
   StyleSheet,
-  Dimensions,
+  Dimensions
 } from 'react-native'
 
 import NavigationProvider from './containers/NavigationProvider'
@@ -18,17 +18,14 @@ import {ActivityIndicatorWrapper} from './components/styled/Styled'
 import {updateOrientation} from './redux/actions/actions'
 import {setLanguagePreference} from './redux/actions/actions'
 
-import {
-  cacheImages,
-  cacheFonts,
-} from './utilities/cacheAssetsAsync'
+import {cacheImages, cacheFonts} from './utilities/cacheAssetsAsync'
 
 class Main extends Component {
   constructor() {
     super()
     this.state = {
       started: false,
-      isLoading: true,
+      isLoading: true
     }
     this.toggleStart = this.toggleStart.bind(this)
   }
@@ -37,15 +34,13 @@ class Main extends Component {
   }
   async getLanguage() {
     try {
-      const language = await AsyncStorage.getItem(
-        'language'
-      )
+      const language = await AsyncStorage.getItem('language')
       this.setState({
-        isLoading: false,
+        isLoading: false
       })
       if (language) {
         this.setState({
-          started: true,
+          started: true
         })
         setLanguagePreference(language)
       }
@@ -58,13 +53,13 @@ class Main extends Component {
     await cacheImages([
       require('./assets/shopper.png'),
       require('./assets/snap1.jpg'),
-      require('./assets/wic1.jpeg'),
+      require('./assets/wic1.jpeg')
     ])
     await cacheFonts({
-      'merriweather-sans': require('./assets/fonts/MerriweatherSans-Regular.ttf'),
+      'merriweather-sans': require('./assets/fonts/MerriweatherSans-Regular.ttf')
     })
     this.setState({
-      isLoading: false,
+      isLoading: false
     })
   }
   async componentDidMount() {
@@ -77,9 +72,7 @@ class Main extends Component {
       <View
         style={{flex: 1}}
         onLayout={() =>
-          this.props.updateOrientation(
-            Dimensions.get('window')
-          )}>
+          this.props.updateOrientation(Dimensions.get('window'))}>
         <Component toggleStart={this.toggleStart} />
       </View>
     )
@@ -100,18 +93,17 @@ class Main extends Component {
 
 Main.propTypes = {
   updateOrientation: func.isRequired,
-  setLanguagePreference: func.isRequired,
+  setLanguagePreference: func.isRequired
 }
 
 const mapDispatchToProps = dispatch => ({
-  updateOrientation: bindActionCreators(
-    updateOrientation,
-    dispatch
-  ),
+  updateOrientation: bindActionCreators(updateOrientation, dispatch),
   setLanguagePreference: bindActionCreators(
     setLanguagePreference,
     dispatch
-  ),
+  )
 })
+
+export const Unwrapped = Main
 
 export default connect(null, mapDispatchToProps)(Main)
