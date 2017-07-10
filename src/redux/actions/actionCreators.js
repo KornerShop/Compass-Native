@@ -11,10 +11,11 @@ import {
 } from '../../utilities/mapUtils'
 
 const updateOffices = (dispatch, officeNum) => {
+  const offices = await fetchResults(latitude, longitude, keyword)
   if (officeNum === 1) {
-    dispatch(populateSNAP())
+    dispatch(populateSNAP(offices))
   } else {
-    dispatch(populateWIC())
+    dispatch(populateWIC(offices))
   }
   dispatch(updateMapLoading(false))
 }
