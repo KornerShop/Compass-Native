@@ -1,13 +1,6 @@
-import React, {Component} from 'react'
-import {
-  string,
-  oneOf,
-  object,
-  bool,
-  array,
-  func,
-} from 'prop-types'
-import {connect} from 'react-redux'
+import React, { Component } from 'react';
+import { string, oneOf, object, bool, array, func } from 'prop-types';
+import { connect } from 'react-redux';
 
 import {
   Platform,
@@ -16,34 +9,34 @@ import {
   View,
   Text,
   StyleSheet,
-  ActivityIndicator,
-} from 'react-native'
-import {MapView} from 'expo'
-import {Foundation} from '@expo/vector-icons'
-import {ButtonGroup, Button} from 'react-native-elements'
+  ActivityIndicator
+} from 'react-native';
+import { MapView } from 'expo';
+import { Foundation } from '@expo/vector-icons';
+import { ButtonGroup, Button } from 'react-native-elements';
 
-import ZipModal from './ZipModal'
-import {ActivityIndicatorWrapper} from '../components/styled/Styled'
-import MarkerView from '../components/MarkerView'
+import ZipModal from './ZipModal';
+import { ActivityIndicatorWrapper } from '../components/styled/Styled';
+import MarkerView from '../components/MarkerView';
 
-import localizedStrings from '../utilities/localization'
+import localizedStrings from '../utilities/localization';
 
 class Map extends Component {
   constructor(props) {
-    super(props)
-    this.updateIndex = this.updateIndex.bind(this)
+    super(props);
+    this.updateIndex = this.updateIndex.bind(this);
   }
   async updateIndex(idx) {
     if (idx === 2) {
-      this.props.toggleModalVisibility()
+      this.props.toggleModalVisibility();
     } else {
-      const officeNum = idx === 0 ? 1 : 2
-      this.props.updateOffice(officeNum)
-      await this.props.fetchOffices()
+      const officeNum = idx === 0 ? 1 : 2;
+      this.props.updateOffice(officeNum);
+      await this.props.fetchOffices();
     }
   }
   async componentDidMount() {
-    await this.props.fetchOffices()
+    await this.props.fetchOffices();
   }
   render() {
     const colors = [
@@ -59,45 +52,46 @@ class Map extends Component {
       'tomato',
       'aqua',
       'palevioletred',
-      'salmon',
-    ]
+      'salmon'
+    ];
     const offices =
       this.props.office === 1
         ? this.props.snapOffices
-        : this.props.wicOffices
+        : this.props.wicOffices;
     if (!this.props.mapLoading) {
       return (
         <View
+          accessible={true}
           style={{
             flex: 1,
             paddingTop: 10,
             paddingBottom: 5,
             paddingHorizontal: 5,
-            backgroundColor: '#2C2C2C',
-          }}>
+            backgroundColor: '#2C2C2C'
+          }}
+        >
           <StatusBar barStyle="light-content" />
           <ButtonGroup
             onPress={this.updateIndex}
             buttons={[
               'Calfresh',
               'WIC',
-              localizedStrings[this.props.language].buttons
-                .recheck,
+              localizedStrings[this.props.language].buttons.recheck
             ]}
             selectedIndex={this.props.office === 1 ? 0 : 1}
             textStyle={{
               color: 'white',
               fontSize: 16,
-              fontFamily: 'merriweather-sans',
+              fontFamily: 'merriweather-sans'
             }}
             borderRadius={2}
             buttonStyle={{
               borderWidth: 1,
-              borderColor: 'white',
+              borderColor: 'white'
             }}
             innerBorderStyle={{
               width: 1,
-              color: 'white',
+              color: 'white'
             }}
             containerStyle={{
               alignSelf: 'center',
@@ -107,38 +101,34 @@ class Map extends Component {
               borderColor: 'white',
               backgroundColor: 'transparent',
               width: this.props.orientation.width - 10,
-              borderRadius: 2,
+              borderRadius: 2
             }}
             selectedTextStyle={{
               color: '#304352',
-              borderRadius: 2,
+              borderRadius: 2
             }}
             selectedBackgroundColor="white"
           />
           <MapView
             style={{
               flex: 1,
-              borderRadius: 2,
+              borderRadius: 2
             }}
-            provider={
-              Platform.OS === 'ios' ? null : 'google'
-            }
-            region={this.props.location}>
+            provider={Platform.OS === 'ios' ? null : 'google'}
+            region={this.props.location}
+          >
             {offices.map(office => {
               return (
                 <MapView.Marker
                   pinColor={
-                    colors[
-                      Math.floor(
-                        Math.random() * colors.length
-                      )
-                    ]
+                    colors[Math.floor(Math.random() * colors.length)]
                   }
                   key={office.id}
                   coordinate={{
                     latitude: office.lat,
-                    longitude: office.lng,
-                  }}>
+                    longitude: office.lng
+                  }}
+                >
                   <MapView.Callout>
                     <MarkerView
                       {...office}
@@ -146,7 +136,7 @@ class Map extends Component {
                     />
                   </MapView.Callout>
                 </MapView.Marker>
-              )
+              );
             })}
           </MapView>
           <ZipModal
@@ -157,21 +147,17 @@ class Map extends Component {
             modalVisible={this.props.modalVisible}
             updateState={this.props.updateState}
             fetchOffices={this.props.fetchOffices}
-            toggleLocationProvided={
-              this.props.toggleLocationProvided
-            }
-            toggleModalVisibility={
-              this.props.toggleModalVisibility
-            }
+            toggleLocationProvided={this.props.toggleLocationProvided}
+            toggleModalVisibility={this.props.toggleModalVisibility}
           />
         </View>
-      )
+      );
     } else {
       return (
         <ActivityIndicatorWrapper>
           <ActivityIndicator color="#00897b" size="large" />
         </ActivityIndicatorWrapper>
-      )
+      );
     }
   }
 }
@@ -192,7 +178,7 @@ Map.propTypes = {
   updateZipCode: func.isRequired,
   updateState: func.isRequired,
   toggleModalVisibility: func.isRequired,
-  toggleLocationProvided: func.isRequired,
-}
+  toggleLocationProvided: func.isRequired
+};
 
-export default Map
+export default Map;

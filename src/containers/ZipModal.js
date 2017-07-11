@@ -1,5 +1,5 @@
-import React from 'react'
-import {string, number, bool, func} from 'prop-types'
+import React from 'react';
+import { string, number, bool, func } from 'prop-types';
 
 import {
   Modal,
@@ -7,33 +7,36 @@ import {
   View,
   Text,
   TextInput,
-  Platform,
-} from 'react-native'
+  Platform
+} from 'react-native';
 
 import {
   FormHeader,
   StyledInputZip,
-  ZipModalInputWrapper,
-} from '../components/styled/Styled'
+  ZipModalInputWrapper
+} from '../components/styled/Styled';
 
-import SubmitButton from '../components/SubmitButton'
+import SubmitButton from '../components/SubmitButton';
 
-import localizedStrings from '../utilities/localization'
+import localizedStrings from '../utilities/localization';
 
 const ZipModal = props =>
   <Modal
-    style={{flex: 1}}
+    style={{ flex: 1 }}
     animationType="slide"
     visible={props.modalVisible}
-    onRequestClose={props.toggleModalVisibility}>
+    onRequestClose={props.toggleModalVisibility}
+  >
     <View
+      accessible={true}
       style={{
         flex: 1,
         justifyContent: 'space-around',
         paddingVertical: 100,
         paddingHorizontal: 20,
-        backgroundColor: '#00897b',
-      }}>
+        backgroundColor: '#00897b'
+      }}
+    >
       <FormHeader zip>
         {localizedStrings[props.language].zipModal.header}
       </FormHeader>
@@ -41,8 +44,7 @@ const ZipModal = props =>
         <StyledInputZip
           zip
           placeholder={
-            localizedStrings[props.language].zipModal
-              .zipCode
+            localizedStrings[props.language].zipModal.zipCode
           }
           placeholderTextColor="white"
           underlineColorAndroid="rgba(0,0,0,0)"
@@ -54,38 +56,35 @@ const ZipModal = props =>
             ? 'numbers-and-punctuation'
             : 'numeric'}`}
           onChangeText={zipCode => {
-            props.updateZipCode(zipCode)
+            props.updateZipCode(zipCode);
             if (/^9[0-6]\d\d\d$/.test(zipCode)) {
               return props.updateState({
-                zipValid: true,
-              })
+                zipValid: true
+              });
             }
             props.updateState({
-              zipValid: false,
-            })
+              zipValid: false
+            });
           }}
         />
       </ZipModalInputWrapper>
       <SubmitButton
         zip
-        title={
-          localizedStrings[props.language].buttons.submit
-        }
+        title={localizedStrings[props.language].buttons.submit}
         accessibility={
-          localizedStrings[props.language].buttons
-            .accessibilitySubmit
+          localizedStrings[props.language].buttons.accessibilitySubmit
         }
         onPress={() => {
           if (props.zipValid && props.zipCode) {
-            props.fetchOffices(true)
-            props.toggleLocationProvided(true)
-            props.toggleModalVisibility()
+            props.fetchOffices(true);
+            props.toggleLocationProvided(true);
+            props.toggleModalVisibility();
           }
-          return null
+          return null;
         }}
       />
     </View>
-  </Modal>
+  </Modal>;
 
 ZipModal.propTypes = {
   modalVisible: bool.isRequired,
@@ -94,7 +93,7 @@ ZipModal.propTypes = {
   updateZipCode: func.isRequired,
   updateState: func.isRequired,
   fetchOffices: func.isRequired,
-  toggleModalVisibility: func.isRequired,
-}
+  toggleModalVisibility: func.isRequired
+};
 
-export default ZipModal
+export default ZipModal;
