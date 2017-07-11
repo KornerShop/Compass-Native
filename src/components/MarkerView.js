@@ -1,23 +1,31 @@
-import React from 'react'
-import {string, number, object} from 'prop-types'
-import {View, Text} from 'react-native'
+import React from 'react';
+import { string, number, object } from 'prop-types';
+import { View, Text } from 'react-native';
 
-import Anchor from './Anchor'
-import MapBrowser from './MapBrowser'
+import Anchor from './Anchor';
+import MapBrowser from './MapBrowser';
 
-const MarkerView = ({location, lat, lng, name, phone_local, address, id}) =>
+const MarkerView = ({
+  location,
+  lat,
+  lng,
+  name,
+  phone_local,
+  address,
+  id
+}) =>
   <View
     style={{
       flex: 1,
       justifyContent: 'center',
-      width: 300,
+      width: 300
     }}
   >
     <Text
       style={{
         fontWeight: 'bold',
         marginTop: 10,
-        marginBottom: 10,
+        marginBottom: 10
       }}
     >
       {name}
@@ -25,7 +33,7 @@ const MarkerView = ({location, lat, lng, name, phone_local, address, id}) =>
     <Text
       style={{
         color: 'royalblue',
-        marginBottom: 10,
+        marginBottom: 10
       }}
     >
       {phone_local}
@@ -38,16 +46,16 @@ const MarkerView = ({location, lat, lng, name, phone_local, address, id}) =>
       officeLat={lat}
       officeLng={lng}
     />
-  </View>
+  </View>;
 
 MarkerView.propTypes = {
   location: object.isRequired,
   name: string.isRequired,
-  phone_local: string.isRequired,
+  phone_local: string,
   address: string.isRequired,
   lat: number.isRequired,
   lng: number.isRequired,
-  id: string.isRequired,
-}
+  id: string.isRequired
+};
 
-export default MarkerView
+export default MarkerView;
