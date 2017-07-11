@@ -28,7 +28,7 @@ const ZipModal = props =>
     onRequestClose={props.toggleModalVisibility}
   >
     <View
-      accessible={true}
+      accessible={false}
       style={{
         flex: 1,
         justifyContent: 'space-around',
@@ -75,6 +75,14 @@ const ZipModal = props =>
           localizedStrings[props.language].buttons.accessibilitySubmit
         }
         onPress={() => {
+          if (props.zipValid && props.zipCode) {
+            props.fetchOffices(true);
+            props.toggleLocationProvided(true);
+            props.toggleModalVisibility();
+          }
+          return null;
+        }}
+        onAccessibilityTap={() => {
           if (props.zipValid && props.zipCode) {
             props.fetchOffices(true);
             props.toggleLocationProvided(true);
