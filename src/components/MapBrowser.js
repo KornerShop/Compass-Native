@@ -1,7 +1,7 @@
-import React from 'react'
-import {string, number, object} from 'prop-types'
-import {Text, Button, AsyncStorage} from 'react-native'
-import {WebBrowser} from 'expo'
+import React from 'react';
+import { string, number, object } from 'prop-types';
+import { Text, Button, AsyncStorage } from 'react-native';
+import { WebBrowser } from 'expo';
 
 const MapBrowser = ({
   name,
@@ -9,22 +9,28 @@ const MapBrowser = ({
   officeLat,
   officeLng,
   place_id,
-  location,
+  location
 }) => {
   const _handlepress = async () => {
-    const {latitude: lat, longitude: lng} = location
+    const { latitude: lat, longitude: lng } = location;
     const url =
       lat === 0 && lng === 0
         ? `https://www.google.com/maps/search/?api=1&query=${officeLat},${officeLng}&query_place_id=${place_id}`
         : `https://www.google.com/maps/dir/?api=1&origin=${lat},${lng}&destination=${name.replace(
             /\s/g,
             '+'
-          )}&destination_place_id=${place_id}&travelmode=transit`
-    await WebBrowser.openBrowserAsync(url)
-  }
+          )}&destination_place_id=${place_id}&travelmode=transit`;
+    await WebBrowser.openBrowserAsync(url);
+  };
 
-  return <Button title={address} onPress={_handlepress} />
-}
+  return (
+    <Button
+      onAccessibilityTap={_handlepress}
+      title={address}
+      onPress={_handlepress}
+    />
+  );
+};
 
 MapBrowser.propTypes = {
   name: string.isRequired,
@@ -32,7 +38,7 @@ MapBrowser.propTypes = {
   officeLat: number.isRequired,
   officeLng: number.isRequired,
   place_id: string.isRequired,
-  location: object.isRequired,
-}
+  location: object.isRequired
+};
 
-export default MapBrowser
+export default MapBrowser;

@@ -61,7 +61,7 @@ class Map extends Component {
     if (!this.props.mapLoading) {
       return (
         <View
-          accessible={true}
+          accessible={false}
           style={{
             flex: 1,
             paddingTop: 10,
@@ -72,6 +72,10 @@ class Map extends Component {
         >
           <StatusBar barStyle="light-content" />
           <ButtonGroup
+            onAccessibilityTap={() => {
+              this.updateIndex;
+            }}
+            accessibilityTraits="button"
             onPress={this.updateIndex}
             buttons={[
               'Calfresh',
@@ -120,6 +124,7 @@ class Map extends Component {
             {offices.map(office => {
               return (
                 <MapView.Marker
+                  accessibilityLabels="button"
                   pinColor={
                     colors[Math.floor(Math.random() * colors.length)]
                   }

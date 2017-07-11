@@ -18,7 +18,6 @@ import localizedStrings from '../utilities/localization';
 
 const Ineligible = props =>
   <View
-    accessible={true}
     style={{
       flex: 1,
       paddingTop: 20,
@@ -48,6 +47,8 @@ const Ineligible = props =>
           🏢
         </Text>
         <EligibilityButton
+          language={props.language}
+          ineligible
           title={localizedStrings[props.language].buttons.recheck}
           accessibility={
             localizedStrings[props.language].buttons

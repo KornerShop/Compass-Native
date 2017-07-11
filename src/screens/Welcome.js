@@ -44,7 +44,6 @@ class Welcome extends Component {
     }
     this.props.setLanguagePreference(language);
     this.props.toggleStart();
-    console.warn('somethin');
   }
   render() {
     return (
