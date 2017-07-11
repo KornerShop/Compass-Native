@@ -28,6 +28,7 @@ const Office = props => {
   };
   return (
     <View
+      accessible={true}
       style={{
         flex: 1,
         backgroundColor: '#2C2C2C'

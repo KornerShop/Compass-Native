@@ -1,7 +1,7 @@
-import React, {Component} from 'react'
-import {func, object} from 'prop-types'
-import {bindActionCreators} from 'redux'
-import {connect} from 'react-redux'
+import React, { Component } from 'react';
+import { func, object } from 'prop-types';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import {
   Image,
   View,
@@ -10,62 +10,61 @@ import {
   AsyncStorage,
   Dimensions,
   ActivityIndicator,
-  StatusBar,
-} from 'react-native'
-import {FontAwesome} from '@expo/vector-icons'
-import {ButtonGroup} from 'react-native-elements'
-import styled from 'styled-components/native'
+  StatusBar
+} from 'react-native';
+import { FontAwesome } from '@expo/vector-icons';
+import { ButtonGroup } from 'react-native-elements';
+import styled from 'styled-components/native';
 
-import {setLanguagePreference} from '../redux/actions/actions'
+import { setLanguagePreference } from '../redux/actions/actions';
 
 import {
   ActivityIndicatorWrapper,
   WelcomeUIWrapper,
-  Logo,
-} from '../components/styled/Styled'
+  Logo
+} from '../components/styled/Styled';
 
 class Welcome extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       isLoading: true,
-      selectedLanguage: 2,
-    }
-    this.updateIndex = this.updateIndex.bind(this)
+      selectedLanguage: 2
+    };
+    this.updateIndex = this.updateIndex.bind(this);
   }
 
   async updateIndex(idx) {
-    this.setState({selectedLanguage: idx})
-    const language = idx === 1 ? 'es' : 'en'
+    this.setState({ selectedLanguage: idx });
+    const language = idx === 1 ? 'es' : 'en';
     try {
-      await AsyncStorage.setItem('language', language)
+      await AsyncStorage.setItem('language', language);
     } catch (error) {
-      console.warn(error)
+      console.warn(error);
     }
-    this.props.setLanguagePreference(language)
-    this.props.toggleStart()
+    this.props.setLanguagePreference(language);
+    this.props.toggleStart();
+    console.warn('somethin');
   }
   render() {
     return (
-      <View style={{flex: 1}}>
+      <View style={{ flex: 1 }}>
         <StatusBar barStyle="light-content" />
         <Image
-          onLoad={() => this.setState({isLoading: false})}
+          onLoad={() => this.setState({ isLoading: false })}
           source={require('../assets/shopper.png')}
           style={{
             flex: 1,
             height: this.props.orientation.height,
             width: this.props.orientation.width,
-            resizeMode: 'cover',
-          }}>
+            resizeMode: 'cover'
+          }}
+        >
           {this.state.isLoading
             ? <ActivityIndicatorWrapper>
-                <ActivityIndicator
-                  color="#00897b"
-                  size="large"
-                />
+                <ActivityIndicator color="#00897b" size="large" />
               </ActivityIndicatorWrapper>
-            : <WelcomeUIWrapper>
+            : <WelcomeUIWrapper accessible={false}>
                 <Logo>
                   C<FontAwesome
                     name="compass"
@@ -74,23 +73,27 @@ class Welcome extends Component {
                   />mpass
                 </Logo>
                 <ButtonGroup
+                  accessibilityLabel={'Select a language'}
+                  accessibilityLabels="button"
+                  onAccessibilityTap={() => {
+                    this.updateIndex;
+                  }}
+                  accessibilityTraits="button"
                   onPress={this.updateIndex}
-                  selectedIndex={
-                    this.state.selectedLanguage
-                  }
+                  selectedIndex={this.state.selectedLanguage}
                   buttons={['English', 'Español']}
                   textStyle={{
                     color: 'white',
                     fontSize: 18,
-                    fontWeight: 'bold',
+                    fontWeight: 'bold'
                   }}
                   borderRadius={3}
                   selectedTextStyle={{
-                    color: '#2c2c2c',
+                    color: '#2c2c2c'
                   }}
                   innerBorderStyle={{
                     color: 'white',
-                    width: 3,
+                    width: 3
                   }}
                   containerStyle={{
                     height: 50,
@@ -100,34 +103,32 @@ class Welcome extends Component {
                     borderRadius: 3,
                     borderColor: 'white',
                     width: 265,
-                    alignSelf: 'center',
+                    alignSelf: 'center'
                   }}
                   selectedBackgroundColor="white"
                 />
               </WelcomeUIWrapper>}
         </Image>
       </View>
-    )
+    );
   }
 }
 
 Welcome.propTypes = {
   setLanguagePreference: func.isRequired,
   toggleStart: func.isRequired,
-  orientation: object.isRequired,
-}
+  orientation: object.isRequired
+};
 
-const mapStateToProps = ({orientation}) => ({
-  orientation,
-})
+const mapStateToProps = ({ orientation }) => ({
+  orientation
+});
 
 const mapDispatchToProps = dispatch => ({
   setLanguagePreference: bindActionCreators(
     setLanguagePreference,
     dispatch
-  ),
-})
+  )
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  Welcome
-)
+export default connect(mapStateToProps, mapDispatchToProps)(Welcome);
