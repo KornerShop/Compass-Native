@@ -1,19 +1,18 @@
-import React from 'react'
-import {oneOf} from 'prop-types'
+import React from 'react';
+import { oneOf } from 'prop-types';
 import {
   View,
   StatusBar,
   ActivityIndicator,
   WebView,
-} from 'react-native'
-import {connect} from 'react-redux'
+} from 'react-native';
+import { connect } from 'react-redux';
 
-import {ActivityIndicatorWrapper} from '../components/styled/Styled'
+import { ActivityIndicatorWrapper } from '../components/styled/Styled';
 
-const Snap = props => {
-  const host = 'https://getcalfresh.org/en/apply'
-  const url =
-    props.language === 'en' ? host : `${host}?new_locale=es`
+const Snap = ({ language }) => {
+  const host = 'https://getcalfresh.org/en/apply';
+  const url = language === 'en' ? host : `${host}?new_locale=es`;
   return (
     <View
       style={{
@@ -22,31 +21,29 @@ const Snap = props => {
         paddingBottom: 5,
         paddingHorizontal: 5,
         backgroundColor: '#2C2C2C',
-      }}>
+      }}
+    >
       <StatusBar barStyle="light-content" />
       <WebView
         borderRadius={10}
-        source={{uri: url}}
-        style={{marginTop: 15}}
-        startInLoadingState={true}
+        source={{ uri: url }}
+        style={{ marginTop: 15 }}
+        startInLoadingState
         renderLoading={() =>
           <ActivityIndicatorWrapper>
-            <ActivityIndicator
-              color="#00897b"
-              size="large"
-            />
+            <ActivityIndicator color="#00897b" size="large" />
           </ActivityIndicatorWrapper>}
       />
     </View>
-  )
-}
+  );
+};
 
 Snap.propTypes = {
-  language: oneOf(['en', 'es']),
-}
+  language: oneOf(['en', 'es']).isRequired,
+};
 
-const mapStateToProps = ({language}) => ({
+const mapStateToProps = ({ language }) => ({
   language,
-})
+});
 
-export default connect(mapStateToProps)(Snap)
+export default connect(mapStateToProps)(Snap);

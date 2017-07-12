@@ -1,5 +1,5 @@
-import {MAPS_API_KEY} from './config'
-import {get} from './fetch'
+import MAPS_API_KEY from './config'
+import get from './fetch'
 
 export const fetchZipCodeCoords = async zip => {
   const data = await get(

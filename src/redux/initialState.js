@@ -13,9 +13,10 @@ export default {
   wicOffices: [],
   wicEligible: 0,
   orientation: {
-    view: '',
+    scale: '',
     height: '',
     width: '',
+    fontScale: ''
   },
   office: 0,
 }

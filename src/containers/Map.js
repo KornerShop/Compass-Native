@@ -65,6 +65,8 @@ class Map extends Component {
       this.props.office === 1
         ? this.props.snapOffices
         : this.props.wicOffices
+    console.warn(`snap: ${JSON.stringify(this.props.snapOffices, null, 2)}`)
+    console.warn(`wic: ${JSON.stringify(this.props.wicOffices, null, 2)}`)
     if (!this.props.mapLoading) {
       return (
         <View
