@@ -59,7 +59,7 @@ class Welcome extends Component {
             ? <ActivityIndicatorWrapper>
               <ActivityIndicator color="#00897b" size="large" />
             </ActivityIndicatorWrapper>
-            : <WelcomeUIWrapper>
+            : <WelcomeUIWrapper accessible={false}>
               <Logo>
                 C<FontAwesome
                   name="compass"
@@ -68,31 +68,37 @@ class Welcome extends Component {
                  />mpass
               </Logo>
               <ButtonGroup
+                accessibilityLabel={'Select a language'}
+                accessibilityLabels="button"
+                onAccessibilityTap={() => {
+                  this.updateIndex;
+                }}
+                accessibilityTraits="button"
                 onPress={this.updateIndex}
                 selectedIndex={this.state.selectedLanguage}
                 buttons={['English', 'Español']}
                 textStyle={{
-                    color: 'white',
-                    fontSize: 18,
-                    fontWeight: 'bold',
+                  color: 'white',
+                  fontSize: 18,
+                  fontWeight: 'bold'
                 }}
                 borderRadius={3}
                 selectedTextStyle={{
-                    color: '#2c2c2c',
+                  color: '#2c2c2c'
                 }}
                 innerBorderStyle={{
-                    color: 'white',
-                    width: 3,
+                  color: 'white',
+                  width: 3
                 }}
                 containerStyle={{
-                    height: 50,
+                  height: 50,
                     marginTop: 30,
                     backgroundColor: 'transparent',
                     borderWidth: 3,
                     borderRadius: 3,
                     borderColor: 'white',
                     width: 265,
-                    alignSelf: 'center',
+                  alignSelf: 'center',
                 }}
                 selectedBackgroundColor="white"
               />

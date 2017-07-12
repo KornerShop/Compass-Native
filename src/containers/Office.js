@@ -1,5 +1,5 @@
-import React, {Component} from 'react'
-import {string, number, bool, func, oneOf} from 'prop-types'
+import React, { Component } from 'react';
+import { string, number, bool, func, oneOf } from 'prop-types';
 
 import {
   Image,
@@ -8,54 +8,60 @@ import {
   StyleSheet,
   Dimensions,
   StatusBar,
-  TouchableHighlight,
-} from 'react-native'
+  TouchableHighlight
+} from 'react-native';
 
-import {Icon, Button} from 'react-native-elements'
+import { Icon, Button } from 'react-native-elements';
 
-import ZipModal from './ZipModal'
+import ZipModal from './ZipModal';
 import {
   ImageContainer,
-  OfficeText,
-} from '../components/styled/Styled'
+  OfficeText
+} from '../components/styled/Styled';
 
-import localizedStrings from '../utilities/localization'
+import localizedStrings from '../utilities/localization';
 
 const Office = props => {
   const officeChosen = async officeNum => {
-    props.updateOffice(officeNum)
-    await props.getLocationAsync()
-  }
+    props.updateOffice(officeNum);
+    await props.getLocationAsync();
+  };
   return (
     <View
+      accessible={true}
       style={{
         flex: 1,
-        backgroundColor: '#2C2C2C',
-      }}>
+        backgroundColor: '#2C2C2C'
+      }}
+    >
       <View
         style={{
           flex: 1,
-          flexDirection: 'column',
-        }}>
+          flexDirection: 'column'
+        }}
+      >
         <StatusBar barStyle="light-content" />
         <TouchableHighlight
           style={{
             flex: 0.5,
             marginTop: 25,
             marginLeft: 5,
-            marginRight: 5,
+            marginRight: 5
           }}
-          onPress={() => this.officeChosen(1)}>
+          onPress={() => officeChosen(1)}
+        >
           <ImageContainer
             borderRadius={2}
             height={props.height / 2}
             width={props.width - 10}
             source={require('../assets/snap1.jpg')}
-            resizeMode="cover">
+            resizeMode="cover"
+          >
             <OfficeText
               style={{
-                fontFamily: 'merriweather-sans',
-              }}>
+                fontFamily: 'merriweather-sans'
+              }}
+            >
               CalFresh
             </OfficeText>
             <Button
@@ -64,15 +70,15 @@ const Office = props => {
                 color: '#2C2C2C',
                 type: 'ionicon',
                 name: 'ios-nutrition',
-                size: 30,
+                size: 30
               }}
               borderRadius={2}
               containerViewStyle={{
                 borderRadius: 2,
-                marginTop: 20,
+                marginTop: 20
               }}
               buttonStyle={{
-                paddingHorizontal: 30,
+                paddingHorizontal: 30
               }}
               color="#2C2C2C"
               backgroundColor="white"
@@ -80,7 +86,7 @@ const Office = props => {
                 props.language
               ].buttons.office.toUpperCase()}
               fontFamily="merriweather-sans"
-              onPress={() => this.officeChosen(1)}
+              onPress={() => officeChosen(1)}
             />
           </ImageContainer>
         </TouchableHighlight>
@@ -90,19 +96,22 @@ const Office = props => {
             marginTop: 5,
             marginLeft: 5,
             marginRight: 5,
-            marginBottom: 10,
+            marginBottom: 10
           }}
-          onPress={() => this.officeChosen(2)}>
+          onPress={() => officeChosen(2)}
+        >
           <ImageContainer
             borderRadius={2}
             height={props.height / 2}
             width={props.width - 10}
             source={require('../assets/wic1.jpeg')}
-            resizeMode="cover">
+            resizeMode="cover"
+          >
             <OfficeText
               style={{
-                fontFamily: 'merriweather-sans',
-              }}>
+                fontFamily: 'merriweather-sans'
+              }}
+            >
               WIC
             </OfficeText>
             <Button
@@ -111,15 +120,15 @@ const Office = props => {
                 color: '#2C2C2C',
                 type: 'ionicon',
                 name: 'ios-woman',
-                size: 30,
+                size: 30
               }}
               borderRadius={2}
               containerViewStyle={{
                 borderRadius: 2,
-                marginTop: 20,
+                marginTop: 20
               }}
               buttonStyle={{
-                paddingHorizontal: 30,
+                paddingHorizontal: 30
               }}
               color="#2C2C2C"
               backgroundColor="white"
@@ -139,17 +148,13 @@ const Office = props => {
           modalVisible={props.modalVisible}
           updateState={props.updateState}
           fetchOffices={props.fetchOffices}
-          toggleLocationProvided={
-            props.toggleLocationProvided
-          }
-          toggleModalVisibility={
-            props.toggleModalVisibility
-          }
+          toggleLocationProvided={props.toggleLocationProvided}
+          toggleModalVisibility={props.toggleModalVisibility}
         />
       </View>
     </View>
-  )
-}
+  );
+};
 
 Office.propTypes = {
   getLocationAsync: func.isRequired,
@@ -164,7 +169,7 @@ Office.propTypes = {
   fetchOffices: func.isRequired,
   toggleLocationProvided: func.isRequired,
   toggleModalVisibility: func.isRequired,
-  language: oneOf(['en', 'es']).isRequired,
-}
+  language: oneOf(['en', 'es']).isRequired
+};
 
-export default Office
+export default Office;

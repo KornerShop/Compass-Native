@@ -1,66 +1,62 @@
-import React from 'react'
-import styled from 'styled-components/native'
+import React from 'react';
+import styled from 'styled-components/native';
 
-import {View, Text, Image} from 'react-native'
+import { View, Text, Image, TouchableHighlight } from 'react-native';
 
-export const styleSwitch = (
-  prop,
-  cssIfValid,
-  cssIfInvalid
-) => {
+export const styleSwitch = (prop, cssIfValid, cssIfInvalid) => {
   switch (prop) {
     case null:
-      return cssIfValid
+      return cssIfValid;
     case true:
-      return cssIfValid
+      return cssIfValid;
     case false:
-      return cssIfInvalid
+      return cssIfInvalid;
   }
-}
+};
 
 export const textInputColor = prop => {
   switch (prop) {
     case null:
-      return '#7C7A7A'
+      return '#7C7A7A';
     case true:
-      return '#7C7A7A'
+      return '#7C7A7A';
     case false:
-      return 'tomato'
+      return 'tomato';
   }
-}
+};
 
 export const textInputColorZip = prop => {
   switch (prop) {
     case null:
-      return 'white'
+      return 'white';
     case true:
-      return 'white'
+      return 'white';
     case false:
-      return 'tomato'
+      return 'tomato';
   }
-}
+};
 
 export const textInputWrapperColor = prop => {
   switch (prop) {
     case null:
-      return '1px solid papayawhip'
+      return '1px solid papayawhip';
     case true:
-      return '1px solid papayawhip'
+      return '1px solid papayawhip';
     case false:
-      return '1px solid tomato'
+      return '1px solid tomato';
   }
-}
+};
 
 export const textInputWrapperColorZip = prop => {
   switch (prop) {
     case null:
-      return '2px solid white'
+      return '2px solid white';
     case true:
-      return '2px solid white'
+      return '2px solid white';
     case false:
-      return '2px solid tomato'
+      return '2px solid tomato';
   }
-}
+};
 
 export const StyledContainer = styled.View`
   flex: 1;
@@ -69,20 +65,20 @@ export const StyledContainer = styled.View`
   padding-top: 20;
   padding-left: 20;
   padding-right: 20;
-`
+`;
 export const ImageContainer = styled.Image`
   flex: 1;
   justify-content: center;
   align-items: center;
   width: ${props => props.width};
   height: ${props => props.height};
-`
+`;
 
 export const OfficeText = styled.Text`
   font-size: 50;
   color: white;
   background-color: transparent;
-`
+`;
 
 export const StyledInput = styled.TextInput`
   font-size: 15;
@@ -90,13 +86,13 @@ export const StyledInput = styled.TextInput`
   color: ${props => textInputColor(props.valid)};
   height: 30;
   border-color: papayawhip;
-`
+`;
 
 export const StyledInputZip = StyledInput.extend`
   font-size: 20;
   font-weight: 600;
   color: ${props => textInputColorZip(props.valid)};
-`
+`;
 
 export const InputWrapper = styled.View`
   border: ${props => textInputWrapperColor(props.valid)};
@@ -106,7 +102,7 @@ export const InputWrapper = styled.View`
   padding-left: 10;
   padding-right: 10;
   background-color: papayawhip;
-`
+`;
 
 export const ZipModalInputWrapper = InputWrapper.extend`
   border: ${props => textInputWrapperColorZip(props.valid)};
@@ -116,13 +112,13 @@ export const ZipModalInputWrapper = InputWrapper.extend`
   margin-left: 10;
   margin-right: 10;
   background-color: transparent;
-`
+`;
 
 export const LifeEventText = styled.Text`
   text-align: center;
   font-size: 18;
   font-weight: 300;
-`
+`;
 
 export const FormHeader = styled.Text`
   font-weight: bold;
@@ -130,20 +126,20 @@ export const FormHeader = styled.Text`
   text-align: center;
   padding-bottom: 10;
   color: ${props => (props.zip ? 'white' : '#2C2C2C')};
-`
+`;
 
 export const ActivityIndicatorWrapper = styled.View`
   flex: 1;
   justify-content: center;
   align-items: center;
   background-color: #2c2c2c;
-`
+`;
 
 export const WelcomeUIWrapper = styled.View`
   flex: 1;
   justify-content: center;
   align-content: center;
-`
+`;
 
 export const Logo = styled.Text`
   text-align: center;
@@ -153,4 +149,4 @@ export const Logo = styled.Text`
   background-color: transparent;
   margin-bottom: 30;
   font-family: merriweather-sans;
-`
+`;
