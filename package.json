@@ -37,7 +37,7 @@
     "@expo/ex-navigation": "^3.0.0",
     "@expo/vector-icons": "^5.0.0",
     "expo": "^17.0.0",
-    "isomorphic-fetch": "^2.2.1",
+    "portable-fetch": "^3.0.0",
     "prop-types": "^15.5.10",
     "react": "16.0.0-alpha.6",
     "react-native": "^0.44.0",

@@ -1,4 +1,4 @@
-import isoFetch from 'isomorphic-fetch';
+import portableFetch from 'portable-fetch';
 
 const headers = {
   'Content-Type': 'application/json',
@@ -15,7 +15,7 @@ const checkStatus = response => {
 };
 
 export default async uri => {
-  const response = await isoFetch(uri, { headers });
+  const response = await portableFetch(uri, { headers });
   if (checkStatus(response)) {
     const results = await response.json();
     return results;
