@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`orientation 1`] = `
+Object {
+  "height": 683.4285714285714,
+  "view": "portrait",
+  "width": 411.42857142857144,
+}
+`;
