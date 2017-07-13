@@ -29,6 +29,34 @@ const mockFetchZipCodeCoords = () =>
     );
   });
 
+const mockFetchResults = () =>
+  new Promise(resolve =>
+    setTimeout(
+      () =>
+        resolve([
+          {
+            address: '2550 Paulin Dr # 1, Santa Rosa, CA 95403, USA',
+            id: 'ChIJWcnjX3c4hIAReEaEIu-h5Dg',
+            lat: 38.464769,
+            lng: -122.721573,
+            name: 'Sonoma County Human Services Department',
+            phone_intl: '+1 877-699-6868',
+            phone_local: '(877) 699-6868',
+          },
+          {
+            address: '520 Mendocino Ave, Santa Rosa, CA 95402, USA',
+            id: 'ChIJ2S8f1PhHhIARUVCsEnyrOEw',
+            lat: 38.443262,
+            lng: -122.715587,
+            name: 'Sonoma County Economic Assistance 2',
+            phone_intl: '+1 877-699-6868',
+            phone_local: '(877) 699-6868',
+          },
+        ]),
+      250,
+    ),
+  );
+
 describe('async actions', () => {
   test('fetchOffices dispatches correct actions w/ zip', async () => {
     const {
@@ -72,30 +100,9 @@ describe('async actions', () => {
     });
   });
 
-  test('updateOffices dispatches correct actions', () => {
-    const expectedActions = [
-      populateSNAP([
-        {
-          address: '2550 Paulin Dr # 1, Santa Rosa, CA 95403, USA',
-          id: 'ChIJWcnjX3c4hIAReEaEIu-h5Dg',
-          lat: 38.464769,
-          lng: -122.721573,
-          name: 'Sonoma County Human Services Department',
-          phone_intl: '+1 877-699-6868',
-          phone_local: '(877) 699-6868',
-        },
-        {
-          address: '520 Mendocino Ave, Santa Rosa, CA 95402, USA',
-          id: 'ChIJ2S8f1PhHhIARUVCsEnyrOEw',
-          lat: 38.443262,
-          lng: -122.715587,
-          name: 'Sonoma County Economic Assistance 2',
-          phone_intl: '+1 877-699-6868',
-          phone_local: '(877) 699-6868',
-        },
-      ]),
-      updateMapLoading(false),
-    ];
+  test('updateOffices dispatches correct actions', async () => {
+    const offices = await mockFetchResults();
+    const expectedActions = [populateSNAP(offices), updateMapLoading(false)];
     const store = mockStore({
       ...initState,
       mapLoading: true,
