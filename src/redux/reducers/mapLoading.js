@@ -1,11 +1,11 @@
-import initState from '../initialState'
-import {TOGGLE_MAP_LOADING} from '../actions/types'
+import initState from '../initialState';
+import { TOGGLE_MAP_LOADING } from '../actions/types';
 
-export default (state = initState.mapLoading, {type, payload}) => {
+export default (state = initState.mapLoading, { type, payload }) => {
   switch (type) {
     case TOGGLE_MAP_LOADING:
-      return payload
+      return payload;
     default:
-      return state
+      return state;
   }
-}
+};

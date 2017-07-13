@@ -1,7 +1,4 @@
-import React from 'react';
 import styled from 'styled-components/native';
-
-import { View, Text, Image, TouchableHighlight } from 'react-native';
 
 export const styleSwitch = (prop, cssIfValid, cssIfInvalid) => {
   switch (prop) {
@@ -11,6 +8,8 @@ export const styleSwitch = (prop, cssIfValid, cssIfInvalid) => {
       return cssIfValid;
     case false:
       return cssIfInvalid;
+    default:
+      return '';
   }
 };
 
@@ -22,6 +21,8 @@ export const textInputColor = prop => {
       return '#7C7A7A';
     case false:
       return 'tomato';
+    default:
+      return '';
   }
 };
 
@@ -33,6 +34,8 @@ export const textInputColorZip = prop => {
       return 'white';
     case false:
       return 'tomato';
+    default:
+      return '';
   }
 };
 
@@ -44,6 +47,8 @@ export const textInputWrapperColor = prop => {
       return '1px solid papayawhip';
     case false:
       return '1px solid tomato';
+    default:
+      return '';
   }
 };
 
@@ -55,6 +60,8 @@ export const textInputWrapperColorZip = prop => {
       return '2px solid white';
     case false:
       return '2px solid tomato';
+    default:
+      return '';
   }
 };
 
@@ -66,6 +73,7 @@ export const StyledContainer = styled.View`
   padding-left: 20;
   padding-right: 20;
 `;
+
 export const ImageContainer = styled.Image`
   flex: 1;
   justify-content: center;

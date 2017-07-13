@@ -1,35 +1,22 @@
-import React from 'react'
-import {oneOf, string, bool} from 'prop-types'
+import React from 'react';
+import { oneOf, string, bool, func } from 'prop-types';
 
-import {
-  View,
-  ScrollView,
-  Button,
-  Text,
-  TextInput,
-  StyleSheet,
-  Platform,
-  Dimensions,
-  StatusBar,
-} from 'react-native'
+import { View, ScrollView, Platform, StatusBar } from 'react-native';
 
-import {ButtonGroup} from 'react-native-elements'
+import { ButtonGroup } from 'react-native-elements';
 
 import {
   styleSwitch,
   StyledContainer,
   FormHeader,
-  textInputColor,
-  textInputWrapperColor,
-  OfficeText,
   StyledInput,
   InputWrapper,
   LifeEventText,
-} from '../components/styled/Styled'
+} from '../components/styled/Styled';
 
-import SubmitButton from '../components/SubmitButton'
+import SubmitButton from '../components/SubmitButton';
 
-import localizedStrings from '../utilities/localization'
+import localizedStrings from '../utilities/localization';
 
 const WicForm = props =>
   <View
@@ -39,7 +26,8 @@ const WicForm = props =>
       paddingBottom: 5,
       paddingHorizontal: 5,
       backgroundColor: '#2C2C2C',
-    }}>
+    }}
+  >
     <StatusBar barStyle="light-content" />
     <StyledContainer>
       <ScrollView
@@ -50,15 +38,15 @@ const WicForm = props =>
           justifyContent: 'space-around',
           paddingHorizontal: 5,
           paddingVertical: 25,
-        }}>
+        }}
+      >
         <FormHeader>
           {localizedStrings[props.language].wic.header}
         </FormHeader>
         <InputWrapper valid={props.familySizeValid}>
           <StyledInput
             placeholder={
-              localizedStrings[props.language].wic
-                .householdSize
+              localizedStrings[props.language].wic.householdSize
             }
             placeholderTextColor="#90A4AE"
             underlineColorAndroid="rgba(0,0,0,0)"
@@ -69,23 +57,21 @@ const WicForm = props =>
               ? 'numbers-and-punctuation'
               : 'numeric'}`}
             onChangeText={familySize => {
-              props.updateState({familySize})
+              props.updateState({ familySize });
               if (familySize > 0 && familySize < 11) {
                 return props.updateState({
                   familySizeValid: true,
-                })
+                });
               }
-              props.updateState({
+              return props.updateState({
                 familySizeValid: false,
-              })
+              });
             }}
           />
         </InputWrapper>
         <InputWrapper valid={props.incomeValid}>
           <StyledInput
-            placeholder={
-              localizedStrings[props.language].wic.income
-            }
+            placeholder={localizedStrings[props.language].wic.income}
             placeholderTextColor="#90A4AE"
             underlineColorAndroid="rgba(0,0,0,0)"
             value={props.income}
@@ -95,19 +81,19 @@ const WicForm = props =>
               ? 'numbers-and-punctuation'
               : 'numeric'}`}
             onChangeText={income => {
-              props.updateState({income})
+              props.updateState({ income });
               if (
                 /^(?!\(.*[^)]$|[^(].*\)$)\(?\$?(0|[1-9]\d{0,2}(,?\d{3})?)(\.\d\d?)?\)?$/.test(
-                  parseInt(income)
+                  parseInt(income),
                 )
               ) {
                 return props.updateState({
                   incomeValid: true,
-                })
+                });
               }
-              props.updateState({
+              return props.updateState({
                 incomeValid: false,
-              })
+              });
             }}
           />
         </InputWrapper>
@@ -125,7 +111,7 @@ const WicForm = props =>
             color: styleSwitch(
               props.lifeEventsValid,
               '#00897b',
-              'tomato'
+              'tomato',
             ),
             fontWeight: 'bold',
             fontSize: 18,
@@ -134,7 +120,7 @@ const WicForm = props =>
             color: styleSwitch(
               props.lifeEventsValid,
               '#00897b',
-              'tomato'
+              'tomato',
             ),
             width: 3,
           }}
@@ -144,19 +130,17 @@ const WicForm = props =>
             borderColor: styleSwitch(
               props.lifeEventsValid,
               '#00897b',
-              'tomato'
+              'tomato',
             ),
             backgroundColor: 'transparent',
             marginRight: 20,
             marginLeft: 20,
           }}
-          selectedTextStyle={{color: 'white'}}
+          selectedTextStyle={{ color: 'white' }}
           selectedBackgroundColor="#00897b"
         />
         <SubmitButton
-          title={
-            localizedStrings[props.language].buttons.submit
-          }
+          title={localizedStrings[props.language].buttons.submit}
           accessibility={
             localizedStrings[props.language].buttons
               .accessibilitySubmit
@@ -167,12 +151,12 @@ const WicForm = props =>
               // if selected then valid
               props.updateState({
                 lifeEventsValid: true,
-              })
+              });
             } else {
               // else return not valid
               props.updateState({
                 lifeEventsValid: false,
-              })
+              });
             }
             // check eligibility if we have a valid input for all three sections
             if (
@@ -183,49 +167,52 @@ const WicForm = props =>
               props.checkEligibility(
                 props.lifeEvents,
                 props.familySize,
-                props.income
-              )
+                props.income,
+              );
               // & reset form when they press submit button && formValidity
-              props.updateState({
+              return props.updateState({
                 familySize: '',
                 income: '',
                 lifeEvents: 2,
                 lifeEventsValid: null,
                 familySizeValid: null,
                 incomeValid: null,
-              })
+              });
               // if not a valid form check to see which input is invalid
-            } else {
-              if (props.lifeEventsValid === null) {
-                return props.updateState({
-                  lifeEventsValid: false,
-                })
-              }
-              if (props.familySizeValid === null) {
-                return props.updateState({
-                  familySizeValid: false,
-                })
-              }
-              if (props.incomeValid === null) {
-                return props.updateState({
-                  incomeValid: false,
-                })
-              }
             }
+            if (props.lifeEventsValid === null) {
+              return props.updateState({
+                  lifeEventsValid: false,
+              });
+            }
+            if (props.familySizeValid === null) {
+              return props.updateState({
+                  familySizeValid: false,
+              });
+            }
+            if (props.incomeValid === null) {
+              return props.updateState({
+                  incomeValid: false,
+              });
+            }
+
           }}
         />
       </ScrollView>
     </StyledContainer>
-  </View>
+  </View>;
 
 WicForm.propTypes = {
   familySize: string.isRequired,
   income: string.isRequired,
-  lifeEvents: oneOf([0, 1, 2]),
-  // familySizeValid: bool.isRequired,
-  // incomeValid: bool.isRequired,
-  // lifeEventsValid: bool.isRequired,
-  language: oneOf(['en', 'es']),
-}
+  lifeEvents: oneOf([0, 1, 2]).isRequired,
+  familySizeValid: bool,
+  incomeValid: bool,
+  lifeEventsValid: bool,
+  language: oneOf(['en', 'es']).isRequired,
+  updateState: func.isRequired,
+  checkEligibility: func.isRequired,
+  updateLifeEvents: func.isRequired,
+};
 
-export default WicForm
+export default WicForm;

@@ -1,11 +1,11 @@
-import initState from '../initialState'
-import {UPDATE_OFFICE} from '../actions/types'
+import initState from '../initialState';
+import { UPDATE_OFFICE } from '../actions/types';
 
-export default (state = initState.office, {type, payload}) => {
+export default (state = initState.office, { type, payload }) => {
   switch (type) {
     case UPDATE_OFFICE:
-      return payload
+      return payload;
     default:
-      return state
+      return state;
   }
-}
+};

@@ -1,5 +1,5 @@
 import React from 'react';
-import { string, func } from 'prop-types';
+import { string, bool, func, oneOf } from 'prop-types';
 import { View } from 'react-native';
 import { Button } from 'react-native-elements';
 import localizedStrings from '../utilities/localization';
@@ -11,12 +11,12 @@ const EligibilityButton = props =>
       raised
       textStyle={{ color: 'white' }}
       buttonStyle={{
-        backgroundColor: 'tomato'
+        backgroundColor: 'tomato',
       }}
       containerViewStyle={{
         marginRight: 20,
         marginLeft: 20,
-        borderRadius: 5
+        borderRadius: 5,
       }}
       borderRadius={5}
       fontSize={18}
@@ -32,7 +32,9 @@ const EligibilityButton = props =>
 
 EligibilityButton.propTypes = {
   updateWicEligibility: func.isRequired,
-  title: string.isRequired
+  title: string.isRequired,
+  language: oneOf(['en', 'es']).isRequired,
+  ineligible: bool.isRequired,
 };
 
 export default EligibilityButton;

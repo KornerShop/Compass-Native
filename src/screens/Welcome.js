@@ -1,27 +1,23 @@
 import React, { Component } from 'react';
-import { func, object } from 'prop-types';
+import { func, shape, number } from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import {
   Image,
   View,
-  Text,
-  StyleSheet,
   AsyncStorage,
-  Dimensions,
   ActivityIndicator,
-  StatusBar
+  StatusBar,
 } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { ButtonGroup } from 'react-native-elements';
-import styled from 'styled-components/native';
 
 import { setLanguagePreference } from '../redux/actions/actions';
 
 import {
   ActivityIndicatorWrapper,
   WelcomeUIWrapper,
-  Logo
+  Logo,
 } from '../components/styled/Styled';
 
 class Welcome extends Component {
@@ -29,7 +25,7 @@ class Welcome extends Component {
     super(props);
     this.state = {
       isLoading: true,
-      selectedLanguage: 2
+      selectedLanguage: 2,
     };
     this.updateIndex = this.updateIndex.bind(this);
   }
@@ -56,57 +52,57 @@ class Welcome extends Component {
             flex: 1,
             height: this.props.orientation.height,
             width: this.props.orientation.width,
-            resizeMode: 'cover'
+            resizeMode: 'cover',
           }}
         >
           {this.state.isLoading
             ? <ActivityIndicatorWrapper>
-                <ActivityIndicator color="#00897b" size="large" />
-              </ActivityIndicatorWrapper>
+              <ActivityIndicator color="#00897b" size="large" />
+            </ActivityIndicatorWrapper>
             : <WelcomeUIWrapper accessible={false}>
-                <Logo>
-                  C<FontAwesome
-                    name="compass"
-                    size={47}
-                    color="white"
-                  />mpass
-                </Logo>
-                <ButtonGroup
-                  accessibilityLabel={'Select a language'}
-                  accessibilityLabels="button"
-                  onAccessibilityTap={() => {
-                    this.updateIndex;
-                  }}
-                  accessibilityTraits="button"
-                  onPress={this.updateIndex}
-                  selectedIndex={this.state.selectedLanguage}
-                  buttons={['English', 'Español']}
-                  textStyle={{
-                    color: 'white',
-                    fontSize: 18,
-                    fontWeight: 'bold'
-                  }}
-                  borderRadius={3}
-                  selectedTextStyle={{
-                    color: '#2c2c2c'
-                  }}
-                  innerBorderStyle={{
-                    color: 'white',
-                    width: 3
-                  }}
-                  containerStyle={{
-                    height: 50,
+              <Logo>
+                C<FontAwesome
+                  name="compass"
+                  size={47}
+                  color="white"
+                 />mpass
+              </Logo>
+              <ButtonGroup
+                accessibilityLabel={'Select a language'}
+                accessibilityLabels="button"
+                onAccessibilityTap={() => {
+                  this.updateIndex;
+                }}
+                accessibilityTraits="button"
+                onPress={this.updateIndex}
+                selectedIndex={this.state.selectedLanguage}
+                buttons={['English', 'Español']}
+                textStyle={{
+                  color: 'white',
+                  fontSize: 18,
+                  fontWeight: 'bold'
+                }}
+                borderRadius={3}
+                selectedTextStyle={{
+                  color: '#2c2c2c'
+                }}
+                innerBorderStyle={{
+                  color: 'white',
+                  width: 3
+                }}
+                containerStyle={{
+                  height: 50,
                     marginTop: 30,
                     backgroundColor: 'transparent',
                     borderWidth: 3,
                     borderRadius: 3,
                     borderColor: 'white',
                     width: 265,
-                    alignSelf: 'center'
-                  }}
-                  selectedBackgroundColor="white"
-                />
-              </WelcomeUIWrapper>}
+                  alignSelf: 'center',
+                }}
+                selectedBackgroundColor="white"
+              />
+            </WelcomeUIWrapper>}
         </Image>
       </View>
     );
@@ -116,18 +112,23 @@ class Welcome extends Component {
 Welcome.propTypes = {
   setLanguagePreference: func.isRequired,
   toggleStart: func.isRequired,
-  orientation: object.isRequired
+  orientation: shape({
+    scale: number.isRequired,
+    height: number.isRequired,
+    width: number.isRequired,
+    fontScale: number.isRequired,
+  }).isRequired,
 };
 
 const mapStateToProps = ({ orientation }) => ({
-  orientation
+  orientation,
 });
 
 const mapDispatchToProps = dispatch => ({
   setLanguagePreference: bindActionCreators(
     setLanguagePreference,
-    dispatch
-  )
+    dispatch,
+  ),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Welcome);

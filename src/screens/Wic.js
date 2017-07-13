@@ -1,18 +1,19 @@
-import React, {Component} from 'react'
-import {object, func, oneOf} from 'prop-types'
-import {AsyncStorage} from 'react-native'
-import {bindActionCreators} from 'redux'
-import {connect} from 'react-redux'
+import React, { Component } from 'react';
+import { object, func, oneOf } from 'prop-types';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
-import {updateWicEligibility} from '../redux/actions/actions'
+import { View } from 'react-native';
 
-import WicForm from '../containers/WicForm'
-import Eligible from '../containers/Eligible'
-import Ineligible from '../containers/Ineligible'
+import { updateWicEligibility } from '../redux/actions/actions';
+
+import WicForm from '../containers/WicForm';
+import Eligible from '../containers/Eligible';
+import Ineligible from '../containers/Ineligible';
 
 class Wic extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       familySize: '',
       income: '',
@@ -20,19 +21,19 @@ class Wic extends Component {
       familySizeValid: null,
       incomeValid: null,
       lifeEventsValid: null,
-    }
-    this.updateLifeEvents = this.updateLifeEvents.bind(this)
-    this.updateState = this.updateState.bind(this)
-    this.checkEligibility = this.checkEligibility.bind(this)
+    };
+    this.updateLifeEvents = this.updateLifeEvents.bind(this);
+    this.updateState = this.updateState.bind(this);
+    this.checkEligibility = this.checkEligibility.bind(this);
   }
   updateState(obj) {
-    this.setState(obj)
+    this.setState(obj);
   }
   updateLifeEvents(idx) {
     this.setState({
       lifeEvents: idx,
       lifeEventsValid: true,
-    })
+    });
   }
   // determines eligibility and then stores it in AsyncStorage
   checkEligibility(lifeEvents, familySize, income) {
@@ -46,18 +47,19 @@ class Wic extends Component {
       5023.0,
       5663.0,
       6304.0,
-    ]
+    ];
     if (
       lifeEvents === 0 &&
       familySize <= 8 &&
       income <= qualifyingIncomes[familySize]
     ) {
-      this.props.updateWicEligibility(1)
+      this.props.updateWicEligibility(1);
     } else {
-      this.props.updateWicEligibility(2)
+      this.props.updateWicEligibility(2);
     }
   }
   render() {
+    console.warn(`props: ${this}`)
     switch (this.props.wicEligible) {
       case 0:
         return (
@@ -75,11 +77,13 @@ class Wic extends Component {
             updateState={this.updateState}
             checkEligibility={this.checkEligibility}
           />
-        )
+        );
       case 1:
-        return <Eligible language={this.props.language} />
+        return <Eligible language={this.props.language} />;
       case 2:
-        return <Ineligible language={this.props.language} />
+        return <Ineligible language={this.props.language} />;
+      default:
+        return <View style={{flex: 1}}/>;
     }
   }
 }
@@ -89,25 +93,19 @@ Wic.propTypes = {
   orientation: object.isRequired,
   updateWicEligibility: func.isRequired,
   language: oneOf(['es', 'en']).isRequired,
-}
+};
 
-const mapStateToProps = ({
+const mapStateToProps = ({ wicEligible, orientation, language }) => ({
   wicEligible,
   orientation,
   language,
-}) => ({
-  wicEligible,
-  orientation,
-  language,
-})
+});
 
 const mapDispatchToProps = dispatch => ({
   updateWicEligibility: bindActionCreators(
     updateWicEligibility,
-    dispatch
+    dispatch,
   ),
-})
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  Wic
-)
+export default connect(mapStateToProps, mapDispatchToProps)(Wic);

@@ -13,12 +13,13 @@ export default {
   wicOffices: [],
   wicEligible: 0,
   orientation: {
-    view: '',
+    scale: '',
     height: '',
     width: '',
+    fontScale: '',
   },
   office: 0,
-}
+};
 
 // wicEligible states
 // 0: eligibility not determined

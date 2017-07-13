@@ -2,21 +2,22 @@ import {
   updateMapLoading,
   updateLocation,
   populateSNAP,
-  populateWIC
+  populateWIC,
 } from './actions';
 
 import {
   fetchZipCodeCoords,
-  fetchResults
+  fetchResults,
 } from '../../utilities/mapUtils';
 
 const updateOffices = async (
   dispatch,
   officeNum,
   latitude,
-  longitude
+  longitude,
 ) => {
-  let keyword, action;
+  let keyword;
+  let action;
   if (officeNum === 1) {
     keyword = 'calfresh';
     action = populateSNAP;
@@ -29,19 +30,16 @@ const updateOffices = async (
   dispatch(updateMapLoading(false));
 };
 
-export const fetchOffices = bool => {
-  return async (dispatch, getState) => {
-    dispatch(updateMapLoading(true));
-    const { office, zipCode } = getState();
-    if (bool) {
-      var {
-        lat: latitude,
-        lng: longitude
-      } = await fetchZipCodeCoords(zipCode);
-    } else {
-      var { latitude, longitude } = getState().location;
-    }
-    dispatch(updateLocation({ latitude, longitude }));
-    updateOffices(dispatch, office, latitude, longitude);
-  };
+export default bool => async (dispatch, getState) => {
+  dispatch(updateMapLoading(true));
+  const { office, zipCode } = getState();
+  if (bool) {
+    var { lat: latitude, lng: longitude } = await fetchZipCodeCoords(
+      zipCode,
+    );
+  } else {
+    var { latitude, longitude } = getState().location;
+  }
+  dispatch(updateLocation({ latitude, longitude }));
+  updateOffices(dispatch, office, latitude, longitude);
 };

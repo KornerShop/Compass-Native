@@ -3,44 +3,43 @@ import { Ionicons } from '@expo/vector-icons';
 import {
   StackNavigation,
   TabNavigation,
-  TabNavigationItem as TabItem
+  TabNavigationItem as TabItem,
 } from '@expo/ex-navigation';
 import { Platform } from 'react-native';
 import Router from './Router';
 
 export default class RootNavigation extends Component {
+  static route = {
+    navigationBar: {
+      visible: false,
+    },
+  };
   constructor() {
     super();
     this.state = {
-      activeTab: 'Resources'
+      activeTab: 'Resources',
     };
   }
-  static route = {
-    navigationBar: {
-      visible: false
-    }
-  };
   render() {
     return (
       <TabNavigation
         id="main"
         initialTab="resources"
         navigatorUID="main"
-        initialTab="resources"
         tabBarStyle={{
           backgroundColor: '#2C2C2C',
-          borderTopWidth: 0
+          borderTopWidth: 0,
         }}
       >
         <TabItem
           id="resources"
-          renderIcon={isSelected =>
+          renderIcon={() =>
             Platform.OS === 'ios'
               ? <Ionicons name="md-compass" size={32} color="white" />
               : <Ionicons
-                  name="ios-locate"
-                  size={32}
-                  color="white"
+                name="ios-locate"
+                size={32}
+                color="white"
                 />}
         >
           <StackNavigation
@@ -50,7 +49,7 @@ export default class RootNavigation extends Component {
         </TabItem>
         <TabItem
           id="snap"
-          renderIcon={isSelected =>
+          renderIcon={() =>
             <Ionicons
               name="ios-nutrition-outline"
               size={32}
@@ -64,7 +63,7 @@ export default class RootNavigation extends Component {
         </TabItem>
         <TabItem
           id="wic"
-          renderIcon={isSelected =>
+          renderIcon={() =>
             <Ionicons
               name="ios-woman-outline"
               size={32}
