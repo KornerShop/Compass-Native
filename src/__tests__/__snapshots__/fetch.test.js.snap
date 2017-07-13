@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`fetch 1`] = `
+Promise {
+  "_40": 0,
+  "_55": null,
+  "_65": 0,
+  "_72": null,
+}
+`;
