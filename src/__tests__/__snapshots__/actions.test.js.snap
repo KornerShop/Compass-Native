@@ -1,0 +1,93 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`populateSNAP 1`] = `
+Object {
+  "payload": Array [
+    Object {
+      "address": "2550 Paulin Dr # 1, Santa Rosa, CA 95403, USA",
+      "id": "ChIJWcnjX3c4hIAReEaEIu-h5Dg",
+      "lat": 38.464769,
+      "lng": -122.721573,
+      "name": "Sonoma County Human Services Department",
+      "phone_intl": "+1 877-699-6868",
+      "phone_local": "(877) 699-6868",
+    },
+    Object {
+      "address": "520 Mendocino Ave, Santa Rosa, CA 95402, USA",
+      "id": "ChIJ2S8f1PhHhIARUVCsEnyrOEw",
+      "lat": 38.443262,
+      "lng": -122.715587,
+      "name": "Sonoma County Economic Assistance 2",
+      "phone_intl": "+1 877-699-6868",
+      "phone_local": "(877) 699-6868",
+    },
+  ],
+  "type": "POPULATE_SNAP_OFFICES",
+}
+`;
+
+exports[`setLanguagePreference 1`] = `
+Object {
+  "payload": "es",
+  "type": "SET_LANGUAGE_PREFERENCE",
+}
+`;
+
+exports[`toggleLocationProvided 1`] = `
+Object {
+  "payload": true,
+  "type": "TOGGLE_LOCATION_PROVIDED",
+}
+`;
+
+exports[`updateLocation 1`] = `
+Object {
+  "payload": Object {
+    "latitude": 38.5386881,
+    "latitudeDelta": 0.4,
+    "longitude": -122.695547,
+    "longitudeDelta": 0.4,
+  },
+  "type": "UPDATE_LOCATION",
+}
+`;
+
+exports[`updateMapLoading 1`] = `
+Object {
+  "payload": false,
+  "type": "TOGGLE_MAP_LOADING",
+}
+`;
+
+exports[`updateOffice 1`] = `
+Object {
+  "payload": 1,
+  "type": "UPDATE_OFFICE",
+}
+`;
+
+exports[`updateOrientation 1`] = `
+Object {
+  "payload": Object {
+    "fontScale": 1,
+    "height": 683.4285714285714,
+    "scale": 2.625,
+    "width": 411.42857142857144,
+  },
+  "type": "UPDATE_ORIENTATION",
+}
+`;
+
+exports[`updateWicEligibility 1`] = `
+Object {
+  "payload": 1,
+  "type": "UPDATE_WIC_ELIGIBILITY",
+}
+`;
+
+exports[`updateZipCode 1`] = `
+Object {
+  "payload": 95404,
+  "type": "UPDATE_ZIPCODE",
+}
+`;

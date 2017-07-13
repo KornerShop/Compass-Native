@@ -131,8 +131,8 @@ class Resources extends Component {
 
 Resources.defaultProps = {
   snapOffices: [],
-  wicOffices: []
-}
+  wicOffices: [],
+};
 
 Resources.propTypes = {
   language: oneOf(['en', 'es']).isRequired,
