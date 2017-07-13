@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`fetchResults 1`] = `
+Array [
+  Object {
+    "address": "2550 Paulin Dr # 1, Santa Rosa, CA 95403, USA",
+    "id": "ChIJWcnjX3c4hIAReEaEIu-h5Dg",
+    "lat": 38.464769,
+    "lng": -122.721573,
+    "name": "Sonoma County Human Services Department",
+    "phone_intl": "+1 877-699-6868",
+    "phone_local": "(877) 699-6868",
+  },
+  Object {
+    "address": "520 Mendocino Ave, Santa Rosa, CA 95402, USA",
+    "id": "ChIJ2S8f1PhHhIARUVCsEnyrOEw",
+    "lat": 38.443262,
+    "lng": -122.715587,
+    "name": "Sonoma County Economic Assistance 2",
+    "phone_intl": "+1 877-699-6868",
+    "phone_local": "(877) 699-6868",
+  },
+]
+`;
+
+exports[`fetchZipCodeCoords 1`] = `
+Object {
+  "lat": 38.5386881,
+  "lng": -122.695547,
+}
+`;

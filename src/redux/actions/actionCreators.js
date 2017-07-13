@@ -10,7 +10,7 @@ import {
   fetchResults,
 } from '../../utilities/mapUtils';
 
-const updateOffices = async (
+export const updateOffices = async (
   dispatch,
   officeNum,
   latitude,
@@ -30,7 +30,7 @@ const updateOffices = async (
   dispatch(updateMapLoading(false));
 };
 
-export default bool => async (dispatch, getState) => {
+export const fetchOffices = bool => async (dispatch, getState) => {
   dispatch(updateMapLoading(true));
   const { office, zipCode } = getState();
   if (bool) {

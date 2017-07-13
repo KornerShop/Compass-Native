@@ -1,3 +1,5 @@
+import isoFetch from 'isomorphic-fetch';
+
 const headers = {
   'Content-Type': 'application/json',
   Accept: 'application/json',
@@ -13,7 +15,7 @@ const checkStatus = response => {
 };
 
 export default async uri => {
-  const response = await fetch(uri, { headers });
+  const response = await isoFetch(uri, { headers });
   if (checkStatus(response)) {
     const results = await response.json();
     return results;
