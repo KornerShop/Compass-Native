@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { func } from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import SocketIOClient from 'socket.io-client';
 
 import {
   AsyncStorage,
@@ -31,6 +32,7 @@ class Main extends Component {
       started: false,
       isLoading: true,
     };
+    this.socket = SocketIOClient('http://localhost:8080');
     this.toggleStart = this.toggleStart.bind(this);
   }
   async componentDidMount() {
@@ -77,7 +79,7 @@ class Main extends Component {
         onLayout={() =>
           this.props.updateOrientation(Dimensions.get('window'))}
       >
-        <Comp toggleStart={this.toggleStart} />
+        <Comp socket={this.socket} toggleStart={this.toggleStart} />
       </View>
     );
   }
