@@ -21,7 +21,7 @@ import {
   toggleLocationProvided,
   updateLocation,
 } from '../redux/actions/actions';
-import fetchOffices from '../redux/actions/actionCreators';
+import { fetchOffices } from '../redux/actions/actionCreators';
 
 class Resources extends Component {
   constructor(props) {

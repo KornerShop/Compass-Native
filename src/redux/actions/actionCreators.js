@@ -40,6 +40,7 @@ export const fetchOffices = bool => async (dispatch, getState) => {
   } else {
     var { latitude, longitude } = getState().location;
   }
+  console.log(latitude, longitude);
   dispatch(updateLocation({ latitude, longitude }));
   updateOffices(dispatch, office, latitude, longitude);
 };
