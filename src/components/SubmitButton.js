@@ -1,5 +1,5 @@
 import React from 'react';
-import { string, func } from 'prop-types';
+import { string, bool, func } from 'prop-types';
 
 import { Button } from 'react-native-elements';
 
@@ -31,7 +31,7 @@ const SubmitButton = props =>
 SubmitButton.propTypes = {
   title: string.isRequired,
   onPress: func.isRequired,
-  zip: string,
+  zip: bool
 };
 
 export default SubmitButton;
