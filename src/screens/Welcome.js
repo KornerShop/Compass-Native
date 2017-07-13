@@ -33,6 +33,7 @@ class Welcome extends Component {
   async updateIndex(idx) {
     this.setState({ selectedLanguage: idx });
     const language = idx === 1 ? 'es' : 'en';
+    const languageForSocket = language === 'es' ? 'Spanish' : 'English'
     try {
       await AsyncStorage.setItem('language', language);
     } catch (error) {
@@ -40,6 +41,8 @@ class Welcome extends Component {
     }
     this.props.setLanguagePreference(language);
     this.props.toggleStart();
+    this.props.socket.emit('update-language', {lang: languageForSocket})
+    console.warn(languageForSocket)
   }
   render() {
     return (
