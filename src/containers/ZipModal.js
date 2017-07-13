@@ -1,19 +1,12 @@
 import React from 'react';
-import { string, number, bool, func } from 'prop-types';
+import { string, bool, func, oneOf } from 'prop-types';
 
-import {
-  Modal,
-  TouchableHighlight,
-  View,
-  Text,
-  TextInput,
-  Platform
-} from 'react-native';
+import { Modal, View, Platform } from 'react-native';
 
 import {
   FormHeader,
   StyledInputZip,
-  ZipModalInputWrapper
+  ZipModalInputWrapper,
 } from '../components/styled/Styled';
 
 import SubmitButton from '../components/SubmitButton';
@@ -34,7 +27,7 @@ const ZipModal = props =>
         justifyContent: 'space-around',
         paddingVertical: 100,
         paddingHorizontal: 20,
-        backgroundColor: '#00897b'
+        backgroundColor: '#00897b',
       }}
     >
       <FormHeader zip>
@@ -59,11 +52,11 @@ const ZipModal = props =>
             props.updateZipCode(zipCode);
             if (/^9[0-6]\d\d\d$/.test(zipCode)) {
               return props.updateState({
-                zipValid: true
+                zipValid: true,
               });
             }
-            props.updateState({
-              zipValid: false
+            return props.updateState({
+              zipValid: false,
             });
           }}
         />
@@ -101,7 +94,9 @@ ZipModal.propTypes = {
   updateZipCode: func.isRequired,
   updateState: func.isRequired,
   fetchOffices: func.isRequired,
-  toggleModalVisibility: func.isRequired
+  toggleModalVisibility: func.isRequired,
+  language: oneOf(['en', 'es']).isRequired,
+  toggleLocationProvided: func.isRequired,
 };
 
 export default ZipModal;

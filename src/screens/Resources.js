@@ -5,8 +5,8 @@ import {
   number,
   bool,
   func,
+  arrayOf,
   shape,
-  array,
 } from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -21,7 +21,7 @@ import {
   toggleLocationProvided,
   updateLocation,
 } from '../redux/actions/actions';
-import { fetchOffices } from '../redux/actions/actionCreators';
+import fetchOffices from '../redux/actions/actionCreators';
 
 class Resources extends Component {
   constructor(props) {
@@ -129,6 +129,11 @@ class Resources extends Component {
   }
 }
 
+Resources.defaultProps = {
+  snapOffices: [],
+  wicOffices: []
+}
+
 Resources.propTypes = {
   language: oneOf(['en', 'es']).isRequired,
   orientation: shape({
@@ -145,9 +150,29 @@ Resources.propTypes = {
     longitudeDelta: number.isRequired,
   }).isRequired,
   zipCode: string.isRequired,
-  snapOffices: array.isRequired,
-  wicOffices: array.isRequired,
-  updateZipCode: func.isRequied,
+  snapOffices: arrayOf(
+    shape({
+      id: string.isRequired,
+      lat: number.isRequired,
+      lng: number.isRequired,
+      name: string.isRequired,
+      address: string.isRequired,
+      phone_local: string,
+      phone_intl: string,
+    }).isRequired,
+  ),
+  wicOffices: arrayOf(
+    shape({
+      id: string.isRequired,
+      lat: number.isRequired,
+      lng: number.isRequired,
+      name: string.isRequired,
+      address: string.isRequired,
+      phone_local: string,
+      phone_intl: string,
+    }).isRequired,
+  ),
+  updateZipCode: func.isRequired,
   updateOffice: func.isRequired,
   updateLocation: func.isRequired,
   fetchOffices: func.isRequired,

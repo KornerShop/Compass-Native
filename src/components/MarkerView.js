@@ -1,9 +1,11 @@
 import React from 'react';
-import { string, number, object } from 'prop-types';
+import { string, number, shape } from 'prop-types';
 import { View, Text } from 'react-native';
 
 import Anchor from './Anchor';
 import MapBrowser from './MapBrowser';
+
+// apply anchor
 
 const MarkerView = ({
   location,
@@ -12,20 +14,20 @@ const MarkerView = ({
   name,
   phone_local,
   address,
-  id
+  id,
 }) =>
   <View
     style={{
       flex: 1,
       justifyContent: 'center',
-      width: 300
+      width: 300,
     }}
   >
     <Text
       style={{
         fontWeight: 'bold',
         marginTop: 10,
-        marginBottom: 10
+        marginBottom: 10,
       }}
     >
       {name}
@@ -33,10 +35,12 @@ const MarkerView = ({
     <Text
       style={{
         color: 'royalblue',
-        marginBottom: 10
+        marginBottom: 10,
       }}
     >
-      {phone_local}
+      <Anchor href={`tel: ${phone_local}`}>
+        {phone_local}
+      </Anchor>
     </Text>
     <MapBrowser
       name={name}
@@ -49,13 +53,18 @@ const MarkerView = ({
   </View>;
 
 MarkerView.propTypes = {
-  location: object.isRequired,
+  location: shape({
+    latitude: number.isRequired,
+    longitude: number.isRequired,
+    latitudeDelta: number.isRequired,
+    longitudeDelta: number.isRequired,
+  }).isRequired,
   name: string.isRequired,
   phone_local: string,
   address: string.isRequired,
   lat: number.isRequired,
   lng: number.isRequired,
-  id: string.isRequired
+  id: string.isRequired,
 };
 
 export default MarkerView;

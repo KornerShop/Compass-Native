@@ -59,6 +59,7 @@ class Wic extends Component {
     }
   }
   render() {
+    console.warn(`props: ${this}`)
     switch (this.props.wicEligible) {
       case 0:
         return (
@@ -82,7 +83,7 @@ class Wic extends Component {
       case 2:
         return <Ineligible language={this.props.language} />;
       default:
-        return <View />;
+        return <View style={{flex: 1}}/>;
     }
   }
 }

@@ -11,8 +11,7 @@ export default {
       no: 'No',
     },
     eligible: {
-      header:
-        'You may be eligible! Go to a local office to confirm',
+      header: 'You may be eligible! Go to a local office to confirm',
     },
     ineligible: {
       header:
@@ -32,8 +31,7 @@ export default {
   },
   es: {
     wic: {
-      header:
-        'Determine si es probable que sea elegible para WIC',
+      header: 'Determine si es probable que sea elegible para WIC',
       householdSize: 'Tamaño del hogar',
       income: 'Ingreso Mensual / Seguridad Social',
       lifeEvents:
@@ -55,12 +53,10 @@ export default {
     },
     buttons: {
       submit: 'Enviar',
-      accessibilitySubmit:
-        'Encuentra oficinas cerca de usted',
+      accessibilitySubmit: 'Encuentra oficinas cerca de usted',
       recheck: 'Cambiar',
-      accessibilityRecheck:
-        'Revise su elegibilidad nuevamente',
+      accessibilityRecheck: 'Revise su elegibilidad nuevamente',
       office: 'Encuentra Oficinas',
     },
   },
-}
+};

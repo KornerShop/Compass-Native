@@ -1,23 +1,23 @@
-import React from 'react'
-import {string, func} from 'prop-types'
-import {Linking, Text} from 'react-native'
+import React from 'react';
+import { string, func } from 'prop-types';
+import { Linking, Text } from 'react-native';
 
-const Anchor = ({href, onPress, children}) => {
-  const _handlePress = () => {
-    Linking.openURL(href)
-    onPress && onPress()
-  }
+const Anchor = ({ href, onPress, children }) => {
+  const handlePress = () => {
+    Linking.openURL(href);
+    onPress && onPress();
+  };
   return (
-    <Text onPress={_handlePress}>
+    <Text onPress={handlePress}>
       {children}
     </Text>
-  )
-}
+  );
+};
 
 Anchor.propTypes = {
   href: string.isRequired,
-  onPress: func.isRequired,
+  onPress: func,
   children: string.isRequired,
-}
+};
 
-export default Anchor
+export default Anchor;

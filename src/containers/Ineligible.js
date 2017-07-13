@@ -3,14 +3,13 @@ import { func, oneOf } from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { View, ScrollView, Text, StyleSheet } from 'react-native';
-import { Button } from 'react-native-elements';
+import { View, ScrollView, Text } from 'react-native';
 
 import { updateWicEligibility } from '../redux/actions/actions';
 
 import {
   StyledContainer,
-  FormHeader
+  FormHeader,
 } from '../components/styled/Styled';
 import EligibilityButton from '../components/EligibilityButton';
 
@@ -23,7 +22,7 @@ const Ineligible = props =>
       paddingTop: 20,
       paddingHorizontal: 5,
       paddingBottom: 5,
-      backgroundColor: '#2c2c2c'
+      backgroundColor: '#2c2c2c',
     }}
   >
     <StyledContainer>
@@ -32,7 +31,7 @@ const Ineligible = props =>
         keyboardDismissMode="on-drag"
         contentContainerStyle={{
           flex: 1,
-          justifyContent: 'space-around'
+          justifyContent: 'space-around',
         }}
       >
         <FormHeader>
@@ -41,10 +40,12 @@ const Ineligible = props =>
         <Text
           style={{
             fontSize: 80,
-            textAlign: 'center'
+            textAlign: 'center',
           }}
         >
-          🏢
+          <span role="img" aria-label="WIC Office">
+            🏢
+          </span>
         </Text>
         <EligibilityButton
           language={props.language}
@@ -62,14 +63,14 @@ const Ineligible = props =>
 
 Ineligible.propTypes = {
   updateWicEligibility: func.isRequired,
-  language: oneOf(['es', 'en']).isRequired
+  language: oneOf(['es', 'en']).isRequired,
 };
 
 const mapDispatchToProps = dispatch => ({
   updateWicEligibility: bindActionCreators(
     updateWicEligibility,
-    dispatch
-  )
+    dispatch,
+  ),
 });
 
 export default connect(null, mapDispatchToProps)(Ineligible);

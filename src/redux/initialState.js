@@ -16,10 +16,10 @@ export default {
     scale: '',
     height: '',
     width: '',
-    fontScale: ''
+    fontScale: '',
   },
   office: 0,
-}
+};
 
 // wicEligible states
 // 0: eligibility not determined
