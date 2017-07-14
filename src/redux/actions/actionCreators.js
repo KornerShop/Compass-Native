@@ -4,9 +4,12 @@ import {
   populateSNAP,
   populateWIC,
   setLanguagePreference,
+  updateOffice,
+  updateZipCode,
 } from './actions';
 
 import {
+  fetchZipCode,
   fetchZipCodeCoords,
   fetchResults,
 } from '../../utilities/mapUtils';
@@ -14,11 +17,31 @@ import {
 export const updateLanguage = (socket, lang) => dispatch => {
   socket.emit('update-language', {
     lang: lang === 'es' ? 'Spanish' : 'English',
-  }, () => {
-    console.warn('\n!!! EMISSION !!!\n');
   });
   dispatch(setLanguagePreference(lang));
-}
+};
+
+export const changeOffice = (socket, office) => dispatch => {
+  socket.emit('update-office', {
+    office: office === 1 ? 'SNAP' : 'WIC',
+  });
+  dispatch(updateOffice(office));
+};
+
+export const changeZipCode = (socket, zipCode) => dispatch => {
+  socket.emit('update-zip', {
+    zipCode,
+  });
+  dispatch(updateZipCode(zipCode));
+};
+
+export const changeLocation = (socket, location) => async dispatch => {
+  dispatch(updateLocation(location))
+  const zipCode = await fetchZipCode(location);
+  socket.emit('update-zip', {
+    zipCode,
+  });
+};
 
 export const updateOffices = async (
   dispatch,

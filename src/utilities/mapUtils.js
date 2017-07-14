@@ -1,6 +1,18 @@
 import MAPS_API_KEY from './config';
 import get from './fetch';
 
+export const findZipCode = arr => {
+  const targetObj = arr.find(obj => obj.types.includes('postal_code'));
+ 	return targetObj.short_name ? targetObj.short_name : targetObj.long_name;
+}
+
+export const fetchZipCode = async ({ latitude, longitude }) => {
+  const data = await get(
+    `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${MAPS_API_KEY}`
+  );
+  return findZipCode(data.results[0].address_components);
+};
+
 export const fetchZipCodeCoords = async zip => {
   const data = await get(
     `https://maps.googleapis.com/maps/api/geocode/json?components=postal_code:${zip}|country:US&key=${MAPS_API_KEY}`,

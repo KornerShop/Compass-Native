@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import SocketIOClient from 'socket.io-client';
 import {
   oneOf,
   string,
@@ -16,24 +17,21 @@ import Office from '../containers/Office';
 import Map from '../containers/Map';
 
 import {
-  updateOffice,
-  updateZipCode,
   toggleLocationProvided,
-  updateLocation,
 } from '../redux/actions/actions';
-import { fetchOffices } from '../redux/actions/actionCreators';
+import { changeOffice, changeZipCode, fetchOffices, changeLocation } from '../redux/actions/actionCreators';
 
 class Resources extends Component {
   constructor(props) {
     super(props);
     this.state = {
       modalVisible: false,
-      zipValid: true,
     };
+    this.socket = SocketIOClient('https://3c61af58.ngrok.io', {
+      transports: ['websocket']
+    });
     this.getLocationAsync = this.getLocationAsync.bind(this);
-    this.updateState = this.updateState.bind(this);
     this.toggleModalVisibility.bind(this);
-    this.updateState.bind(this);
     this.toggleModalVisibility = this.toggleModalVisibility.bind(
       this,
     );
@@ -57,7 +55,7 @@ class Resources extends Component {
         } = await Location.getCurrentPositionAsync({
           enableHighAccuracy: true,
         });
-        this.props.updateLocation({
+        this.props.changeLocation(this.socket, {
           latitude: location.latitude,
           longitude: location.longitude,
         });
@@ -70,7 +68,7 @@ class Resources extends Component {
       } = await Location.getCurrentPositionAsync({
         enableHighAccuracy: true,
       });
-      this.props.updateLocation({
+      this.props.changeLocation(this.socket, {
         latitude: location.latitude,
         longitude: location.longitude,
       });
@@ -82,24 +80,19 @@ class Resources extends Component {
       modalVisible: !this.state.modalVisible,
     });
   }
-  updateState(obj) {
-    this.setState(obj);
-  }
   render() {
     if (this.props.locationProvided === false) {
       return (
         <Office
+          socket={this.socket}
           language={this.props.language}
           height={this.props.orientation.height}
           width={this.props.orientation.width}
           getLocationAsync={this.getLocationAsync}
-          updateOffice={this.props.updateOffice}
+          changeOffice={this.props.changeOffice}
           modalVisible={this.state.modalVisible}
-          zipValid={this.state.zipValid}
-          updateZipCode={this.props.updateZipCode}
-          updateState={this.updateState}
+          changeZipCode={this.props.changeZipCode}
           fetchOffices={this.props.fetchOffices}
-          zipCode={this.props.zipCode}
           toggleLocationProvided={this.props.toggleLocationProvided}
           toggleModalVisibility={this.toggleModalVisibility}
         />
@@ -108,20 +101,18 @@ class Resources extends Component {
     // location hasn't been provided
     return (
       <Map
+        socket={this.socket}
         orientation={this.props.orientation}
         language={this.props.language}
         location={this.props.location}
         office={this.props.office}
-        updateOffice={this.props.updateOffice}
+        changeOffice={this.props.changeOffice}
         snapOffices={this.props.snapOffices}
         wicOffices={this.props.wicOffices}
         fetchOffices={this.props.fetchOffices}
         mapLoading={this.props.mapLoading}
         modalVisible={this.state.modalVisible}
-        zipCode={this.props.zipCode}
-        zipValid={this.state.zipValid}
-        updateZipCode={this.props.updateZipCode}
-        updateState={this.updateState}
+        changeZipCode={this.props.changeZipCode}
         toggleModalVisibility={this.toggleModalVisibility}
         toggleLocationProvided={this.props.toggleLocationProvided}
       />
@@ -149,7 +140,6 @@ Resources.propTypes = {
     latitudeDelta: number.isRequired,
     longitudeDelta: number.isRequired,
   }).isRequired,
-  zipCode: string.isRequired,
   snapOffices: arrayOf(
     shape({
       id: string.isRequired,
@@ -172,9 +162,9 @@ Resources.propTypes = {
       phone_intl: string,
     }).isRequired,
   ),
-  updateZipCode: func.isRequired,
-  updateOffice: func.isRequired,
-  updateLocation: func.isRequired,
+  changeZipCode: func.isRequired,
+  changeOffice: func.isRequired,
+  changeLocation: func.isRequired,
   fetchOffices: func.isRequired,
   locationProvided: bool.isRequired,
   mapLoading: bool.isRequired,
@@ -187,7 +177,6 @@ const mapStateToProps = ({
   orientation,
   office,
   location,
-  zipCode,
   snapOffices,
   wicOffices,
   mapLoading,
@@ -197,16 +186,15 @@ const mapStateToProps = ({
   orientation,
   office,
   location,
-  zipCode,
   snapOffices,
   wicOffices,
   mapLoading,
 });
 
 const mapDispatchToProps = dispatch => ({
-  updateZipCode: bindActionCreators(updateZipCode, dispatch),
-  updateOffice: bindActionCreators(updateOffice, dispatch),
-  updateLocation: bindActionCreators(updateLocation, dispatch),
+  changeZipCode: bindActionCreators(changeZipCode, dispatch),
+  changeOffice: bindActionCreators(changeOffice, dispatch),
+  changeLocation: bindActionCreators(changeLocation, dispatch),
   fetchOffices: bindActionCreators(fetchOffices, dispatch),
   toggleLocationProvided: bindActionCreators(
     toggleLocationProvided,

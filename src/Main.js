@@ -32,7 +32,7 @@ class Main extends Component {
       started: false,
       isLoading: true,
     };
-    this.socket = SocketIOClient('https://702e886d.ngrok.io', {
+    this.socket = SocketIOClient('https://3c61af58.ngrok.io', {
       transports: ['websocket']
     });
     this.toggleStart = this.toggleStart.bind(this);
