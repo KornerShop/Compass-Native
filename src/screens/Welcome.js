@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { func, shape, number } from 'prop-types';
+import { func, number, object, shape } from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import {
@@ -12,7 +12,7 @@ import {
 import { FontAwesome } from '@expo/vector-icons';
 import { ButtonGroup } from 'react-native-elements';
 
-import { setLanguagePreference } from '../redux/actions/actions';
+import { updateLanguage } from '../redux/actions/actionCreators';
 
 import {
   ActivityIndicatorWrapper,
@@ -33,16 +33,13 @@ class Welcome extends Component {
   async updateIndex(idx) {
     this.setState({ selectedLanguage: idx });
     const language = idx === 1 ? 'es' : 'en';
-    const languageForSocket = language === 'es' ? 'Spanish' : 'English'
     try {
       await AsyncStorage.setItem('language', language);
     } catch (error) {
       console.warn(error);
     }
-    this.props.setLanguagePreference(language);
+    this.props.updateLanguage(this.props.socket, language);
     this.props.toggleStart();
-    this.props.socket.emit('update-language', {lang: languageForSocket})
-    console.warn(languageForSocket)
   }
   render() {
     return (
@@ -113,7 +110,7 @@ class Welcome extends Component {
 }
 
 Welcome.propTypes = {
-  setLanguagePreference: func.isRequired,
+  updateLanguage: func.isRequired,
   toggleStart: func.isRequired,
   orientation: shape({
     scale: number.isRequired,
@@ -121,6 +118,7 @@ Welcome.propTypes = {
     width: number.isRequired,
     fontScale: number.isRequired,
   }).isRequired,
+  socket: object.isRequired
 };
 
 const mapStateToProps = ({ orientation }) => ({
@@ -128,8 +126,8 @@ const mapStateToProps = ({ orientation }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  setLanguagePreference: bindActionCreators(
-    setLanguagePreference,
+  updateLanguage: bindActionCreators(
+    updateLanguage,
     dispatch,
   ),
 });
