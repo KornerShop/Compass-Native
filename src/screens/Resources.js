@@ -13,6 +13,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Permissions, Location } from 'expo';
 
+import { NGROK_ADDR } from '../utilities/config';
+
 import Office from '../containers/Office';
 import Map from '../containers/Map';
 
@@ -27,7 +29,7 @@ class Resources extends Component {
     this.state = {
       modalVisible: false,
     };
-    this.socket = SocketIOClient('https://3c61af58.ngrok.io', {
+    this.socket = SocketIOClient(NGROK_ADDR, {
       transports: ['websocket']
     });
     this.getLocationAsync = this.getLocationAsync.bind(this);
