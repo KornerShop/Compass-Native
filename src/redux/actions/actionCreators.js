@@ -3,12 +3,22 @@ import {
   updateLocation,
   populateSNAP,
   populateWIC,
+  setLanguagePreference,
 } from './actions';
 
 import {
   fetchZipCodeCoords,
   fetchResults,
 } from '../../utilities/mapUtils';
+
+export const updateLanguage = (socket, lang) => dispatch => {
+  socket.emit('update-language', {
+    lang: lang === 'es' ? 'Spanish' : 'English',
+  }, () => {
+    console.warn('\n!!! EMISSION !!!\n');
+  });
+  dispatch(setLanguagePreference(lang));
+}
 
 export const updateOffices = async (
   dispatch,

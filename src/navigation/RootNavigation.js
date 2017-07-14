@@ -14,12 +14,6 @@ export default class RootNavigation extends Component {
       visible: false,
     },
   };
-  constructor() {
-    super();
-    this.state = {
-      activeTab: 'Resources',
-    };
-  }
   render() {
     return (
       <TabNavigation
@@ -78,4 +72,4 @@ export default class RootNavigation extends Component {
       </TabNavigation>
     );
   }
-}
+};

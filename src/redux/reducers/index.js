@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 
 import language from './language';
 import locationProvided from './locationProvided';
-import zipCode from './zipcode';
+import zipCode from './zipCode';
 import snapOffices from './snapOffices';
 import wicOffices from './wicOffices';
 import wicEligible from './wicEligible';
