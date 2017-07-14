@@ -32,15 +32,12 @@ class Main extends Component {
       started: false,
       isLoading: true,
     };
-    this.socket = SocketIOClient('http://localhost:8080', {
+    this.socket = SocketIOClient('https://3c61af58.ngrok.io', {
       transports: ['websocket']
     });
     this.toggleStart = this.toggleStart.bind(this);
   }
   async componentDidMount() {
-    this.socket.on('connect', () => {
-      console.warn('connected!');
-    });
     // Not ideal, but this action is necessary for getting the initial orientation of the device
     this.props.updateOrientation(Dimensions.get('window'));
     this.loadAssetsAsync();

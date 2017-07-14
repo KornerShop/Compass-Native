@@ -1,5 +1,5 @@
 import React from 'react';
-import { string, number, bool, func, oneOf } from 'prop-types';
+import { string, number, bool, func, object, oneOf } from 'prop-types';
 
 import { View, StatusBar, TouchableHighlight } from 'react-native';
 
@@ -14,9 +14,9 @@ import {
 import localizedStrings from '../utilities/localization';
 
 const Office = props => {
-  const officeChosen = async officeNum => {
-    props.updateOffice(officeNum);
-    await props.getLocationAsync();
+  const officeChosen = officeNum => {
+    props.changeOffice(props.socket, officeNum);
+    props.getLocationAsync();
   };
   return (
     <View
@@ -76,7 +76,7 @@ const Office = props => {
               backgroundColor="white"
               title={localizedStrings[
                 props.language
-              ].buttons.office.toUpperCase()}
+                ].buttons.office.toUpperCase()}
               fontFamily="merriweather-sans"
               onPress={() => officeChosen(1)}
             />
@@ -126,19 +126,17 @@ const Office = props => {
               backgroundColor="white"
               title={localizedStrings[
                 props.language
-              ].buttons.office.toUpperCase()}
+                ].buttons.office.toUpperCase()}
               fontFamily="merriweather-sans"
               onPress={() => officeChosen(2)}
             />
           </ImageContainer>
         </TouchableHighlight>
         <ZipModal
+          socket={props.socket}
           language={props.language}
-          zipCode={props.zipCode}
-          zipValid={props.zipValid}
-          updateZipCode={props.updateZipCode}
+          changeZipCode={props.changeZipCode}
           modalVisible={props.modalVisible}
-          updateState={props.updateState}
           fetchOffices={props.fetchOffices}
           toggleLocationProvided={props.toggleLocationProvided}
           toggleModalVisibility={props.toggleModalVisibility}
@@ -150,18 +148,16 @@ const Office = props => {
 
 Office.propTypes = {
   getLocationAsync: func.isRequired,
-  updateOffice: func.isRequired,
+  changeOffice: func.isRequired,
   height: number.isRequired,
   width: number.isRequired,
-  zipCode: string.isRequired,
-  zipValid: bool.isRequired,
-  updateZipCode: func.isRequired,
+  changeZipCode: func.isRequired,
   modalVisible: bool.isRequired,
-  updateState: func.isRequired,
   fetchOffices: func.isRequired,
   toggleLocationProvided: func.isRequired,
   toggleModalVisibility: func.isRequired,
   language: oneOf(['en', 'es']).isRequired,
+  socket: object.isRequired
 };
 
 export default Office;

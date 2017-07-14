@@ -102,7 +102,10 @@ describe('async actions', () => {
 
   test('updateOffices dispatches correct actions', async () => {
     const offices = await mockFetchResults();
-    const expectedActions = [populateSNAP(offices), updateMapLoading(false)];
+    const expectedActions = [
+      populateSNAP(offices),
+      updateMapLoading(false),
+    ];
     const store = mockStore({
       ...initState,
       mapLoading: true,

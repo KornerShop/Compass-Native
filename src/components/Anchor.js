@@ -17,7 +17,7 @@ const Anchor = ({ href, onPress, children }) => {
 Anchor.propTypes = {
   href: string.isRequired,
   onPress: func,
-  children: string.isRequired,
+  children: string,
 };
 
 export default Anchor;

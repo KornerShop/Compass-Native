@@ -4,6 +4,7 @@ import {
   oneOf,
   number,
   bool,
+  object,
   shape,
   arrayOf,
   func,
@@ -37,7 +38,7 @@ class Map extends Component {
       this.props.toggleModalVisibility();
     } else {
       const officeNum = idx === 0 ? 1 : 2;
-      this.props.updateOffice(officeNum);
+      this.props.changeOffice(this.props.socket, officeNum);
       await this.props.fetchOffices();
     }
   }
@@ -61,7 +62,6 @@ class Map extends Component {
       this.props.office === 1
         ? this.props.snapOffices
         : this.props.wicOffices;
-    console.log(JSON.stringify(offices, null, 2))
     if (!this.props.mapLoading) {
       return (
         <View
@@ -145,12 +145,10 @@ class Map extends Component {
             )}
           </MapView>
           <ZipModal
+            socket={this.props.socket}
             language={this.props.language}
-            zipCode={this.props.zipCode}
-            zipValid={this.props.zipValid}
-            updateZipCode={this.props.updateZipCode}
+            changeZipCode={this.props.changeZipCode}
             modalVisible={this.props.modalVisible}
-            updateState={this.props.updateState}
             fetchOffices={this.props.fetchOffices}
             toggleLocationProvided={this.props.toggleLocationProvided}
             toggleModalVisibility={this.props.toggleModalVisibility}
@@ -187,7 +185,7 @@ Map.propTypes = {
   }).isRequired,
   fetchOffices: func.isRequired,
   office: oneOf([0, 1, 2]).isRequired,
-  updateOffice: func.isRequired,
+  changeOffice: func.isRequired,
   snapOffices: arrayOf(
     shape({
       id: string.isRequired,
@@ -212,12 +210,10 @@ Map.propTypes = {
   ),
   mapLoading: bool.isRequired,
   modalVisible: bool.isRequired,
-  zipCode: string.isRequired,
-  zipValid: bool.isRequired,
-  updateZipCode: func.isRequired,
-  updateState: func.isRequired,
+  changeZipCode: func.isRequired,
   toggleModalVisibility: func.isRequired,
   toggleLocationProvided: func.isRequired,
+  socket: object.isRequired,
 };
 
 export default Map;
