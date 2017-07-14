@@ -11,6 +11,8 @@ import {
   Dimensions,
 } from 'react-native';
 
+import { NGROK_ADDR } from './utilities/config';
+
 import NavigationProvider from './containers/NavigationProvider';
 import Welcome from './screens/Welcome';
 import { ActivityIndicatorWrapper } from './components/styled/Styled';
@@ -32,7 +34,7 @@ class Main extends Component {
       started: false,
       isLoading: true,
     };
-    this.socket = SocketIOClient('https://3c61af58.ngrok.io', {
+    this.socket = SocketIOClient(NGROK_ADDR, {
       transports: ['websocket']
     });
     this.toggleStart = this.toggleStart.bind(this);
