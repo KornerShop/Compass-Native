@@ -138,6 +138,8 @@ class Map extends Component {
                 <MapView.Callout>
                   <MarkerView
                     {...office}
+                    socket={this.props.socket}
+                    office={this.props.office}
                     location={this.props.location}
                   />
                 </MapView.Callout>

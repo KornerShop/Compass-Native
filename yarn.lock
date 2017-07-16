@@ -2228,7 +2228,7 @@ enzyme-matchers@^3.5.3:
   dependencies:
     deep-equal-ident "^1.1.1"
 
-enzyme-to-json@^1.4.4, enzyme-to-json@^1.5.0:
+enzyme-to-json@^1.5.0:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/enzyme-to-json/-/enzyme-to-json-1.5.1.tgz#e34f4d126bb3f4696ce3800b51f9ed83df708799"
   dependencies:
@@ -3774,12 +3774,6 @@ jest-runtime@^19.0.2:
     strip-bom "3.0.0"
     yargs "^6.3.0"
 
-jest-serializer-enzyme@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/jest-serializer-enzyme/-/jest-serializer-enzyme-1.0.0.tgz#f8b5090d1ae4d105bbaebf04d33be5df2988f059"
-  dependencies:
-    enzyme-to-json "^1.4.4"
-
 jest-snapshot@^19.0.2:
   version "19.0.2"
   resolved "https://registry.yarnpkg.com/jest-snapshot/-/jest-snapshot-19.0.2.tgz#9c1b216214f7187c38bfd5c70b1efab16b0ff50b"
@@ -4450,7 +4444,7 @@ mkpath@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/mkpath/-/mkpath-0.1.0.tgz#7554a6f8d871834cc97b5462b122c4c124d6de91"
 
-moment@2.x.x, moment@^2.10.6:
+moment@2.x.x, moment@^2.10.6, moment@^2.18.1:
   version "2.18.1"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.18.1.tgz#c36193dd3ce1c2eed2adb7c802dbbc77a81b1c0f"
 

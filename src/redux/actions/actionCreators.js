@@ -1,3 +1,4 @@
+import moment from 'moment';
 import {
   updateMapLoading,
   updateLocation,
@@ -24,6 +25,7 @@ export const updateLanguage = (socket, lang) => dispatch => {
 export const changeOffice = (socket, office) => dispatch => {
   socket.emit('update-office', {
     office: office === 1 ? 'SNAP' : 'WIC',
+    date: moment().format('l')
   });
   dispatch(updateOffice(office));
 };
