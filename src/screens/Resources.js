@@ -94,7 +94,12 @@ class Resources extends Component {
   }
   render() {
     if (!this.state.onboarded) {
-      return <Onboard toggleOnboarded={this.toggleOnboarded} />;
+      return (
+        <Onboard
+          orientation={this.props.orientation}
+          toggleOnboarded={this.toggleOnboarded}
+        />
+      );
     }
     if (this.props.locationProvided === false) {
       return (
