@@ -17,23 +17,28 @@ import { NGROK_ADDR } from '../utilities/config';
 
 import Office from '../containers/Office';
 import Map from '../containers/Map';
+import Onboard from '../containers/Onboard';
 
+import { toggleLocationProvided } from '../redux/actions/actions';
 import {
-  toggleLocationProvided,
-} from '../redux/actions/actions';
-import { changeOffice, changeZipCode, fetchOffices, changeLocation } from '../redux/actions/actionCreators';
+  changeOffice,
+  changeZipCode,
+  fetchOffices,
+  changeLocation,
+} from '../redux/actions/actionCreators';
 
 class Resources extends Component {
   constructor(props) {
     super(props);
     this.state = {
       modalVisible: false,
+      onboarded: false,
     };
     this.socket = SocketIOClient(NGROK_ADDR, {
-      transports: ['websocket']
+      transports: ['websocket'],
     });
     this.getLocationAsync = this.getLocationAsync.bind(this);
-    this.toggleModalVisibility.bind(this);
+    this.toggleOnboarded = this.toggleOnboarded.bind(this);
     this.toggleModalVisibility = this.toggleModalVisibility.bind(
       this,
     );
@@ -77,12 +82,20 @@ class Resources extends Component {
       this.props.toggleLocationProvided(true);
     }
   }
+  toggleOnboarded() {
+    this.setState({
+      onboarded: true,
+    });
+  }
   toggleModalVisibility() {
     this.setState({
       modalVisible: !this.state.modalVisible,
     });
   }
   render() {
+    if (!this.state.onboarded) {
+      return <Onboard toggleOnboarded={this.toggleOnboarded} />;
+    }
     if (this.props.locationProvided === false) {
       return (
         <Office

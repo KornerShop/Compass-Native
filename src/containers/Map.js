@@ -38,6 +38,7 @@ class Map extends Component {
       this.props.toggleModalVisibility();
     } else {
       const officeNum = idx === 0 ? 1 : 2;
+      // these could present an issue if caching
       this.props.changeOffice(this.props.socket, officeNum);
       this.props.fetchOffices();
     }
