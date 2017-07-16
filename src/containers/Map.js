@@ -30,16 +30,16 @@ class Map extends Component {
     super(props);
     this.updateIndex = this.updateIndex.bind(this);
   }
-  async componentDidMount() {
-    await this.props.fetchOffices();
+  componentDidMount() {
+    this.props.fetchOffices();
   }
-  async updateIndex(idx) {
+  updateIndex(idx) {
     if (idx === 2) {
       this.props.toggleModalVisibility();
     } else {
       const officeNum = idx === 0 ? 1 : 2;
       this.props.changeOffice(this.props.socket, officeNum);
-      await this.props.fetchOffices();
+      this.props.fetchOffices();
     }
   }
   render() {

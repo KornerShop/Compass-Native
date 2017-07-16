@@ -1,5 +1,5 @@
 import React from 'react';
-import { string, number, bool, func, object, oneOf } from 'prop-types';
+import { number, bool, func, object, oneOf } from 'prop-types';
 
 import { View, StatusBar, TouchableHighlight } from 'react-native';
 
