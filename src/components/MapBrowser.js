@@ -1,17 +1,20 @@
 import React from 'react';
-import { string, number, shape } from 'prop-types';
+import { string, number, object, shape, oneOf } from 'prop-types';
 import { Button } from 'react-native';
 import { WebBrowser } from 'expo';
+import moment from 'moment';
 
 const MapBrowser = ({
+  socket,
   name,
   address,
   officeLat,
   officeLng,
   place_id,
   location,
+  office,
 }) => {
-  const handlepress = async () => {
+  const initiateNav = async () => {
     const { latitude: lat, longitude: lng } = location;
     const url =
       lat === 0 && lng === 0
@@ -22,7 +25,15 @@ const MapBrowser = ({
           )}&destination_place_id=${place_id}&travelmode=transit`;
     await WebBrowser.openBrowserAsync(url);
   };
-
+  const emitNav = () =>
+    socket.emit('update-nav', {
+      office: office === 1 ? 'SNAP' : 'WIC',
+      date: moment().format('l'),
+    });
+  const handlepress = () => {
+    initiateNav();
+    emitNav();
+  };
   return (
     <Button
       onAccessibilityTap={handlepress}
@@ -33,6 +44,7 @@ const MapBrowser = ({
 };
 
 MapBrowser.propTypes = {
+  office: oneOf([0, 1, 2]).isRequired,
   name: string.isRequired,
   address: string.isRequired,
   officeLat: number.isRequired,
@@ -44,6 +56,7 @@ MapBrowser.propTypes = {
     latitudeDelta: number.isRequired,
     longitudeDelta: number.isRequired,
   }).isRequired,
+  socket: object.isRequired,
 };
 
 export default MapBrowser;

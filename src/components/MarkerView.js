@@ -1,11 +1,9 @@
 import React from 'react';
-import { string, number, shape } from 'prop-types';
+import { string, number, object, shape, oneOf } from 'prop-types';
 import { View, Text } from 'react-native';
 
 import Anchor from './Anchor';
 import MapBrowser from './MapBrowser';
-
-// apply anchor
 
 const MarkerView = ({
   location,
@@ -15,6 +13,8 @@ const MarkerView = ({
   phone_local,
   address,
   id,
+  office,
+  socket
 }) =>
   <View
     style={{
@@ -43,6 +43,8 @@ const MarkerView = ({
       </Anchor>
     </Text>
     <MapBrowser
+      socket={socket}
+      office={office}
       name={name}
       location={location}
       address={address}
@@ -53,6 +55,7 @@ const MarkerView = ({
   </View>;
 
 MarkerView.propTypes = {
+  office: oneOf([0, 1, 2]).isRequired,
   location: shape({
     latitude: number.isRequired,
     longitude: number.isRequired,
@@ -65,6 +68,7 @@ MarkerView.propTypes = {
   lat: number.isRequired,
   lng: number.isRequired,
   id: string.isRequired,
+  socket: object.isRequired
 };
 
 export default MarkerView;
