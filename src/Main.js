@@ -39,7 +39,7 @@ class Main extends Component {
     });
     this.toggleStart = this.toggleStart.bind(this);
   }
-  async componentDidMount() {
+  componentDidMount() {
     // Not ideal, but this action is necessary for getting the initial orientation of the device
     this.props.updateOrientation(Dimensions.get('window'));
     this.loadAssetsAsync();

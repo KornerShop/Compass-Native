@@ -13,6 +13,7 @@
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-prettier": "^2.1.2",
     "eslint-plugin-react": "^7.1.0",
+    "jest-enzyme": "^3.5.3",
     "jest-expo": "~1.0.1",
     "react-dom": "^15.6.1",
     "react-native-scripts": "0.0.31",
@@ -26,12 +27,15 @@
     "android": "react-native-scripts android",
     "ios": "react-native-scripts ios",
     "test": "node node_modules/jest/bin/jest.js",
-    "test:upate": "node node_modules/jest/bin/jest.js -u",
+    "test:update": "node node_modules/jest/bin/jest.js -u",
     "test:cov": "node node_modules/jest/bin/jest.js --coverage",
     "test:watch": "node node_modules/jest/bin/jest.js --watch"
   },
   "jest": {
-    "preset": "jest-expo"
+    "preset": "jest-expo",
+    "snapshotSerializers": [
+      "jest-serializer-enzyme"
+    ]
   },
   "dependencies": {
     "@expo/ex-navigation": "^3.0.0",
