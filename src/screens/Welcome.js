@@ -110,6 +110,7 @@ class Welcome extends Component {
     }
     return (
       <Onboard
+        language={this.state.selectedLanguage === 1 ? 'es' : 'en'}
         orientation={this.props.orientation}
         toggleStart={this.props.toggleStart}
       />
