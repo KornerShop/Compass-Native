@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`shallow tests UnwrappedMain renders correctly 1`] = `
+exports[`renderer tests UnwrappedMain renders correctly 1`] = `
 <Styled(View)>
   <ActivityIndicator
     animating={true}
