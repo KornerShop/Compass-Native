@@ -9,10 +9,13 @@ import styled from 'styled-components/native';
 import OnboardButton from '../components/OnboardButton';
 import localizedStrings from '../utilities/localization';
 
-
 const OnboardScreen = styled.View`flex: 1;`;
 
-const Onboard = ({ orientation: { height, width }, toggleStart, language }) => {
+const Onboard = ({
+  orientation: { height, width },
+  toggleStart,
+  language,
+}) => {
   const orientationObj = {
     height,
     width,
@@ -154,7 +157,10 @@ const Onboard = ({ orientation: { height, width }, toggleStart, language }) => {
           >
             {localizedStrings[language].onboard.wicText}
           </Text>
-          <OnboardButton title={localizedStrings[language].buttons.onboard} onPress={toggleStart} />
+          <OnboardButton
+            title={localizedStrings[language].buttons.onboard}
+            onPress={toggleStart}
+          />
         </View>
       </Carousel>
     </OnboardScreen>
@@ -162,7 +168,7 @@ const Onboard = ({ orientation: { height, width }, toggleStart, language }) => {
 };
 
 Onboard.propTypes = {
-  language: oneOf(["en","es"]).isRequired,
+  language: oneOf(['en', 'es']).isRequired,
   orientation: shape({
     scale: number,
     height: number.isRequired,
