@@ -2,22 +2,13 @@ import React, { Component } from 'react';
 import { shape, number } from 'prop-types';
 import { Text, View, Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-// import { ScreenOrientation } from 'expo';
 import Carousel from 'react-native-looped-carousel';
-
-// import { connect } from 'react-redux';
-// import { bindActionCreators } from 'redux';
-//
-// import { updateOrientation } from '../redux/actions/actions';
 
 import styled from 'styled-components/native';
 
 const OnboardScreen = styled.View`flex: 1;`;
 
 export default class Onboard extends Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     const orientationObj= {
       height: this.props.orientation.height,
