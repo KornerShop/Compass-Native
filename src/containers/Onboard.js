@@ -1,5 +1,5 @@
 import React from 'react';
-import { number, func, shape } from 'prop-types';
+import { number, oneOf, func, shape } from 'prop-types';
 import { Text, View, Platform, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import Carousel from 'react-native-looped-carousel';
@@ -7,10 +7,12 @@ import Carousel from 'react-native-looped-carousel';
 import styled from 'styled-components/native';
 
 import OnboardButton from '../components/OnboardButton';
+import localizedStrings from '../utilities/localization';
+
 
 const OnboardScreen = styled.View`flex: 1;`;
 
-const Onboard = ({ orientation: { height, width }, toggleStart }) => {
+const Onboard = ({ orientation: { height, width }, toggleStart, language }) => {
   const orientationObj = {
     height,
     width,
@@ -65,7 +67,7 @@ const Onboard = ({ orientation: { height, width }, toggleStart }) => {
               fontSize: 40,
             }}
           >
-            Office Search
+            {localizedStrings[language].onboard.officeHeader}
           </Text>
           <Text
             style={{
@@ -74,7 +76,7 @@ const Onboard = ({ orientation: { height, width }, toggleStart }) => {
               fontSize: 20,
             }}
           >
-            You can locate WIC and/or CalFresh offices near you.
+            {localizedStrings[language].onboard.officeText}
           </Text>
         </View>
         <View
@@ -112,8 +114,7 @@ const Onboard = ({ orientation: { height, width }, toggleStart }) => {
               fontSize: 20,
             }}
           >
-            Determine whether your likely to be elegible for CalFresh
-            benefits.
+            {localizedStrings[language].onboard.snapText}
           </Text>
         </View>
         <View
@@ -151,10 +152,9 @@ const Onboard = ({ orientation: { height, width }, toggleStart }) => {
               fontSize: 20,
             }}
           >
-            Determine whether your likely to be elegible for WIC
-            benefits.
+            {localizedStrings[language].onboard.wicText}
           </Text>
-          <OnboardButton title="Got it!" onPress={toggleStart} />
+          <OnboardButton title={localizedStrings[language].buttons.onboard} onPress={toggleStart} />
         </View>
       </Carousel>
     </OnboardScreen>
@@ -162,6 +162,7 @@ const Onboard = ({ orientation: { height, width }, toggleStart }) => {
 };
 
 Onboard.propTypes = {
+  language: oneOf(["en","es"]).isRequired,
   orientation: shape({
     scale: number,
     height: number.isRequired,

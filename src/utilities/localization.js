@@ -27,7 +27,14 @@ export default {
       recheck: 'Recheck',
       accessibilityRecheck: 'Check your eligiblity again',
       office: 'Find Offices',
+      onboard:"Got it!"
     },
+    onboard: {
+      officeHeader: "Office Search",
+      officeText: "You can locate WIC and/or CalFresh offices near you.",
+      snapText: "Determine whether you're likely to be eligible for CalFresh benefits.",
+      wicText:"Determine whether you're likely to be eligible for WIC benefits."
+    }
   },
   es: {
     wic: {
@@ -57,6 +64,13 @@ export default {
       recheck: 'Cambiar',
       accessibilityRecheck: 'Revise su elegibilidad nuevamente',
       office: 'Encuentra Oficinas',
+      onboard:"¡Lo tengo!"
     },
+    onboard: {
+      officeHeader: "Búsqueda de oficinas",
+      officeText: "Puede localizar las oficinas de WIC y / o CalFresh cerca de usted.",
+      snapText: "Determine si es probable que sea elegible para los beneficios de CalFresh.",
+      wicText:"Determine si es probable que sea elegible para los beneficios de WIC."
+    }
   },
 };
