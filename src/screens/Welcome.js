@@ -14,6 +14,8 @@ import { ButtonGroup } from 'react-native-elements';
 
 import { updateLanguage } from '../redux/actions/actionCreators';
 
+import Onboard from '../containers/Onboard';
+
 import {
   ActivityIndicatorWrapper,
   WelcomeUIWrapper,
@@ -26,12 +28,13 @@ class Welcome extends Component {
     this.state = {
       isLoading: true,
       selectedLanguage: 2,
+      onboard: false,
     };
     this.updateIndex = this.updateIndex.bind(this);
   }
 
   async updateIndex(idx) {
-    this.setState({ selectedLanguage: idx });
+    this.setState({ selectedLanguage: idx, onboard: true });
     const language = idx === 1 ? 'es' : 'en';
     try {
       await AsyncStorage.setItem('language', language);
@@ -39,72 +42,77 @@ class Welcome extends Component {
       console.warn(error);
     }
     this.props.updateLanguage(this.props.socket, language);
-    this.props.toggleStart();
   }
   render() {
+    if (!this.state.onboard) {
+      return (
+        <View style={{ flex: 1 }}>
+          <StatusBar barStyle="light-content" />
+          <Image
+            onLoad={() => this.setState({ isLoading: false })}
+            source={require('../assets/shopper.png')}
+            style={{
+              flex: 1,
+              height: this.props.orientation.height,
+              width: this.props.orientation.width,
+              resizeMode: 'cover',
+            }}
+          >
+            {this.state.isLoading
+              ? <ActivityIndicatorWrapper>
+                  <ActivityIndicator color="#00897b" size="large" />
+                </ActivityIndicatorWrapper>
+              : <WelcomeUIWrapper accessible={false}>
+                  <Logo>
+                    C<FontAwesome
+                      name="compass"
+                      size={47}
+                      color="white"
+                    />mpass
+                  </Logo>
+                  <ButtonGroup
+                    accessibilityLabel={'Select a language'}
+                    accessibilityLabels="button"
+                    onAccessibilityTap={this.updateIndex}
+                    accessibilityTraits="button"
+                    onPress={this.updateIndex}
+                    selectedIndex={this.state.selectedLanguage}
+                    buttons={['English', 'Español']}
+                    textStyle={{
+                      color: 'white',
+                      fontSize: 18,
+                      fontWeight: 'bold',
+                    }}
+                    borderRadius={3}
+                    selectedTextStyle={{
+                      color: '#2c2c2c',
+                    }}
+                    innerBorderStyle={{
+                      color: 'white',
+                      width: 3,
+                    }}
+                    containerStyle={{
+                      height: 50,
+                      marginTop: 30,
+                      backgroundColor: 'transparent',
+                      borderWidth: 3,
+                      borderRadius: 3,
+                      borderColor: 'white',
+                      width: 265,
+                      alignSelf: 'center',
+                    }}
+                    selectedBackgroundColor="white"
+                  />
+                </WelcomeUIWrapper>}
+          </Image>
+        </View>
+      );
+    }
     return (
-      <View style={{ flex: 1 }}>
-        <StatusBar barStyle="light-content" />
-        <Image
-          onLoad={() => this.setState({ isLoading: false })}
-          source={require('../assets/shopper.png')}
-          style={{
-            flex: 1,
-            height: this.props.orientation.height,
-            width: this.props.orientation.width,
-            resizeMode: 'cover',
-          }}
-        >
-          {this.state.isLoading
-            ? <ActivityIndicatorWrapper>
-              <ActivityIndicator color="#00897b" size="large" />
-            </ActivityIndicatorWrapper>
-            : <WelcomeUIWrapper accessible={false}>
-              <Logo>
-                C<FontAwesome
-                  name="compass"
-                  size={47}
-                  color="white"
-                 />mpass
-              </Logo>
-              <ButtonGroup
-                accessibilityLabel={'Select a language'}
-                accessibilityLabels="button"
-                onAccessibilityTap={() => {
-                  this.updateIndex;
-                }}
-                accessibilityTraits="button"
-                onPress={this.updateIndex}
-                selectedIndex={this.state.selectedLanguage}
-                buttons={['English', 'Español']}
-                textStyle={{
-                  color: 'white',
-                  fontSize: 18,
-                  fontWeight: 'bold'
-                }}
-                borderRadius={3}
-                selectedTextStyle={{
-                  color: '#2c2c2c'
-                }}
-                innerBorderStyle={{
-                  color: 'white',
-                  width: 3
-                }}
-                containerStyle={{
-                  height: 50,
-                    marginTop: 30,
-                    backgroundColor: 'transparent',
-                    borderWidth: 3,
-                    borderRadius: 3,
-                    borderColor: 'white',
-                    width: 265,
-                  alignSelf: 'center',
-                }}
-                selectedBackgroundColor="white"
-              />
-            </WelcomeUIWrapper>}
-        </Image>
-      </View>
+      <Onboard
+        orientation={this.props.orientation}
+        toggleStart={this.props.toggleStart}
+      />
     );
   }
 }
@@ -118,7 +126,7 @@ Welcome.propTypes = {
     width: number.isRequired,
     fontScale: number.isRequired,
   }).isRequired,
-  socket: object.isRequired
+  socket: object.isRequired,
 };
 
 const mapStateToProps = ({ orientation }) => ({
@@ -126,10 +134,7 @@ const mapStateToProps = ({ orientation }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  updateLanguage: bindActionCreators(
-    updateLanguage,
-    dispatch,
-  ),
+  updateLanguage: bindActionCreators(updateLanguage, dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Welcome);

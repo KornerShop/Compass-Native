@@ -5,19 +5,21 @@
   "devDependencies": {
     "babel-eslint": "^7.2.3",
     "babel-preset-react-native-stage-0": "^1.0.1",
-    "enzyme": "^2.9.1",
-    "eslint": "^4.2.0",
+    "eslint": "^3.19.0",
     "eslint-config-airbnb": "^15.0.2",
     "eslint-config-prettier": "^2.3.0",
     "eslint-plugin-import": "^2.7.0",
-    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-prettier": "^2.1.2",
     "eslint-plugin-react": "^7.1.0",
-    "jest-enzyme": "^3.5.3",
+    "jest": "^20.0.4",
     "jest-expo": "~18.0.0",
+    "prettier": "^1.5.3",
     "react-dom": "^15.6.1",
     "react-native-scripts": "0.0.31",
-    "redux-mock-store": "^1.2.3"
+    "react-test-renderer": "16.0.0-alpha.12",
+    "redux-mock-store": "^1.2.3",
+    "superagent": "*"
   },
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "scripts": {
@@ -31,18 +33,16 @@
     "test:watch": "yarn test -- --watch"
   },
   "jest": {
-    "preset": "jest-expo",
-    "snapshotSerializers": [
-      "jest-serializer-enzyme"
-    ]
+    "preset": "jest-expo"
   },
   "dependencies": {
     "@expo/ex-navigation": "^3.0.0",
     "@expo/vector-icons": "^5.0.0",
+    "ajv": "^5.2.2",
     "expo": "^18.0.1",
     "moment": "^2.18.1",
     "portable-fetch": "^3.0.0",
-    "prop-types": "^15.5.10",
+    "prop-types": "15.5.8",
     "react": "16.0.0-alpha.12",
     "react-native": "https://github.com/expo/react-native/archive/sdk-18.0.1.tar.gz",
     "react-native-elements": "^0.13.0",
