@@ -15,9 +15,9 @@
     "eslint-plugin-react": "^7.1.0",
     "jest-enzyme": "^3.5.3",
     "jest-expo": "~1.0.1",
+    "jest-serializer-enzyme": "^1.0.0",
     "react-dom": "^15.6.1",
     "react-native-scripts": "0.0.31",
-    "react-test-renderer": "^15.6.1",
     "redux-mock-store": "^1.2.3"
   },
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
@@ -27,9 +27,9 @@
     "android": "react-native-scripts android",
     "ios": "react-native-scripts ios",
     "test": "node node_modules/jest/bin/jest.js",
-    "test:update": "node node_modules/jest/bin/jest.js -u",
-    "test:cov": "node node_modules/jest/bin/jest.js --coverage",
-    "test:watch": "node node_modules/jest/bin/jest.js --watch"
+    "test:update": "yarn test -- -u",
+    "test:cov": "yarn test -- --coverage",
+    "test:watch": "yarn test -- --watch"
   },
   "jest": {
     "preset": "jest-expo",
@@ -47,6 +47,7 @@
     "react": "16.0.0-alpha.6",
     "react-native": "^0.44.0",
     "react-native-elements": "^0.13.0",
+    "react-native-looped-carousel": "^0.1.7",
     "react-redux": "^5.0.5",
     "redux": "^3.7.0",
     "redux-actions": "^2.0.3",
