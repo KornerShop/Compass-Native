@@ -1,6 +1,31 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renderer tests UnwrappedMain renders correctly 1`] = `
+exports[`renderer tests Main renders correctly 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#2c2c2c",
+        "flexBasis": 0,
+        "flexGrow": 1,
+        "flexShrink": 1,
+        "justifyContent": "center",
+      },
+      undefined,
+    ]
+  }
+>
+  <ActivityIndicator
+    animating={true}
+    color="#00897b"
+    hidesWhenStopped={true}
+    size="large"
+  />
+</View>
+`;
+
+exports[`renderer tests UnwrappedMain renders correctly (shallow) 1`] = `
 <Styled(View)>
   <ActivityIndicator
     animating={true}
