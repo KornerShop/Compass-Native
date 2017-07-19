@@ -59,7 +59,6 @@ class Wic extends Component {
     }
   }
   render() {
-    console.warn(`props: ${this}`)
     switch (this.props.wicEligible) {
       case 0:
         return (

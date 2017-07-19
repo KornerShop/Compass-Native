@@ -140,7 +140,7 @@ export const ActivityIndicatorWrapper = styled.View`
   flex: 1;
   justify-content: center;
   align-items: center;
-  background-color: #2c2c2c;
+  background-color: white;
 `;
 
 export const WelcomeUIWrapper = styled.View`

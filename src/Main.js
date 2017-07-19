@@ -91,7 +91,7 @@ class Main extends Component {
     if (this.state.isLoading) {
       return (
         <ActivityIndicatorWrapper>
-          <ActivityIndicator color="#00897b" size="large" />
+          <ActivityIndicator color="tomato" size="large" />
         </ActivityIndicatorWrapper>
       );
     }

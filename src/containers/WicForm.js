@@ -25,10 +25,10 @@ const WicForm = props =>
       paddingTop: 10,
       paddingBottom: 5,
       paddingHorizontal: 5,
-      backgroundColor: '#2C2C2C',
+      backgroundColor: 'white',
     }}
   >
-    <StatusBar barStyle="light-content" />
+    <StatusBar barStyle="dark-content" />
     <StyledContainer>
       <ScrollView
         showsVerticalScrollIndicator={false}
@@ -195,7 +195,6 @@ const WicForm = props =>
                   incomeValid: false,
               });
             }
-
           }}
         />
       </ScrollView>

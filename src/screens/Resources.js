@@ -17,7 +17,6 @@ import { NGROK_ADDR } from '../utilities/config';
 
 import Office from '../containers/Office';
 import Map from '../containers/Map';
-import Onboard from '../containers/Onboard';
 
 import { toggleLocationProvided } from '../redux/actions/actions';
 import {
@@ -93,14 +92,6 @@ class Resources extends Component {
     });
   }
   render() {
-    // if (!this.state.onboarded) {
-    //   return (
-    //     <Onboard
-    //       orientation={this.props.orientation}
-    //       toggleOnboarded={this.toggleOnboarded}
-    //     />
-    //   );
-    // }
     if (this.props.locationProvided === false) {
       return (
         <Office

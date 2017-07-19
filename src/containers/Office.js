@@ -23,7 +23,7 @@ const Office = props => {
       accessible
       style={{
         flex: 1,
-        backgroundColor: '#2C2C2C',
+        backgroundColor: 'white',
       }}
     >
       <View
@@ -32,7 +32,7 @@ const Office = props => {
           flexDirection: 'column',
         }}
       >
-        <StatusBar barStyle="light-content" />
+        <StatusBar barStyle="dark-content" />
         <TouchableHighlight
           style={{
             flex: 0.5,

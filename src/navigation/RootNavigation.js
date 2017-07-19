@@ -21,7 +21,7 @@ export default class RootNavigation extends Component {
         initialTab="resources"
         navigatorUID="main"
         tabBarStyle={{
-          backgroundColor: '#2C2C2C',
+          backgroundColor: 'white',
           borderTopWidth: 0,
         }}
       >
@@ -29,11 +29,11 @@ export default class RootNavigation extends Component {
           id="resources"
           renderIcon={() =>
             Platform.OS === 'ios'
-              ? <Ionicons name="md-compass" size={32} color="white" />
+              ? <Ionicons name="md-compass" size={32} color="tomato" />
               : <Ionicons
                 name="ios-locate"
                 size={32}
-                color="white"
+                color="tomato"
                 />}
         >
           <StackNavigation
@@ -47,7 +47,7 @@ export default class RootNavigation extends Component {
             <Ionicons
               name="ios-nutrition-outline"
               size={32}
-              color="white"
+              color="tomato"
             />}
         >
           <StackNavigation
@@ -61,7 +61,7 @@ export default class RootNavigation extends Component {
             <Ionicons
               name="ios-woman-outline"
               size={32}
-              color="white"
+              color="tomato"
             />}
         >
           <StackNavigation

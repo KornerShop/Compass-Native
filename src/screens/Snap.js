@@ -22,10 +22,10 @@ const Snap = ({ language }) => {
         paddingTop: 15,
         paddingBottom: 5,
         paddingHorizontal: 5,
-        backgroundColor: '#2C2C2C',
+        backgroundColor: 'white',
       }}
     >
-      <StatusBar barStyle="light-content" />
+      <StatusBar barStyle="dark-content" />
       <WebView
         accessible={true}
         borderRadius={10}
@@ -34,7 +34,7 @@ const Snap = ({ language }) => {
         startInLoadingState
         renderLoading={() =>
           <ActivityIndicatorWrapper>
-            <ActivityIndicator color="#00897b" size="large" />
+            <ActivityIndicator color="tomato" size="large" />
           </ActivityIndicatorWrapper>}
       />
     </View>
