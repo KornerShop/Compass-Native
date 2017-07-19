@@ -1,11 +1,7 @@
 import React from 'react';
 import { func, oneOf } from 'prop-types';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
 
 import { View, ScrollView, Text } from 'react-native';
-
-import { updateWicEligibility } from '../redux/actions/actions';
 
 import {
   StyledContainer,
@@ -15,7 +11,7 @@ import EligibilityButton from '../components/EligibilityButton';
 
 import localizedStrings from '../utilities/localization';
 
-const Eligible = props =>
+const Eligible = ({ language, updateWicEligibility }) =>
   <View
     style={{
       flex: 1,
@@ -35,7 +31,7 @@ const Eligible = props =>
         }}
       >
         <FormHeader>
-          {localizedStrings[props.language].eligible.header}
+          {localizedStrings[language].eligible.header}
         </FormHeader>
         <Text
           style={{
@@ -48,13 +44,12 @@ const Eligible = props =>
           </span>
         </Text>
         <EligibilityButton
-          language={props.language}
-          title={localizedStrings[props.language].buttons.recheck}
+          language={language}
+          title={localizedStrings[language].buttons.recheck}
           accessibility={
-            localizedStrings[props.language].buttons
-              .accessibilityRecheck
+            localizedStrings[language].buttons.accessibilityRecheck
           }
-          updateWicEligibility={props.updateWicEligibility}
+          updateWicEligibility={updateWicEligibility}
         />
       </ScrollView>
     </StyledContainer>
@@ -65,11 +60,4 @@ Eligible.propTypes = {
   language: oneOf(['es', 'en']).isRequired,
 };
 
-const mapDispatchToProps = dispatch => ({
-  updateWicEligibility: bindActionCreators(
-    updateWicEligibility,
-    dispatch,
-  ),
-});
-
-export default connect(null, mapDispatchToProps)(Eligible);
+export default Eligible;

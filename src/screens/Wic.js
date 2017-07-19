@@ -78,9 +78,9 @@ class Wic extends Component {
           />
         );
       case 1:
-        return <Eligible language={this.props.language} />;
+        return <Eligible language={this.props.language} updateWicEligibility={this.props.updateWicEligibility} />;
       case 2:
-        return <Ineligible language={this.props.language} />;
+        return <Ineligible language={this.props.language} updateWicEligibility={this.props.updateWicEligibility} />;
       default:
         return <View style={{flex: 1}}/>;
     }

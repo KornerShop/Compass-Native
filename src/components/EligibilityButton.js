@@ -30,11 +30,15 @@ const EligibilityButton = props =>
     />
   </View>;
 
+EligibilityButton.defaultProps = {
+  ineligible: false,
+};
+
 EligibilityButton.propTypes = {
   updateWicEligibility: func.isRequired,
   title: string.isRequired,
   language: oneOf(['en', 'es']).isRequired,
-  ineligible: bool.isRequired,
+  ineligible: bool,
 };
 
 export default EligibilityButton;
