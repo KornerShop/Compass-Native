@@ -1,6 +1,5 @@
 import React from 'react';
-import ReactTestUtils from 'react-dom/test-utils';
-import ShallowRenderer from 'react-rest-renderer/shallow';
+import { shallow } from 'enzyme';
 import { Provider } from 'react-redux';
 
 import Main, { Unwrapped as UnwrappedMain } from './Main';
@@ -10,10 +9,9 @@ import NavigationProvider from './containers/NavigationProvider';
 const wait = (exp, ms) =>
   new Promise(resolve => setTimeout(() => resolve(exp), ms));
 
-describe('renderer tests', () => {
+describe('shallow tests', () => {
   test('UnwrappedMain renders correctly', () => {
-    const shallowRenderer = new ShallowRenderer();
-    shallowRenderer.render(<UnwrappedMain />); 
+    const wrapper = shallow(<UnwrappedMain />);
     expect(wrapper.state()).toMatchObject({
       started: false,
       isLoading: true,
@@ -21,23 +19,23 @@ describe('renderer tests', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  xtest('Main renders correctly', () => {
-    const store = mockStore(initState);
-    const wrapper = shallow(
-      <Provider store={store}>
-        <Main />
-      </Provider>
-    );
-    expect(wrapper).toMatchSnapshot();
-  });
+  // test('Main renders correctly', () => {
+  //   const store = mockStore(initState);
+  //   const wrapper = shallow(
+  //     <Provider store={store}>
+  //       <Main />
+  //     </Provider>
+  //   );
+  //   expect(wrapper).toMatchSnapshot();
+  // });
 
-  xtest('Main renders Welcome after initial load', async () => {
+  test('Main renders Welcome after initial load', async () => {
     const wrapper = shallow(<UnwrappedMain />);
     await wait(wrapper.setState({ isLoading: false }), 100);
     expect(wrapper.find(Welcome)).toBeTruthy();
   });
 
-  xtest('Main renders navigationProvider after language chosen', async () => {
+  test('Main renders navigationProvider after language chosen', async () => {
     const wrapper = shallow(<UnwrappedMain />);
     await wait(wrapper.setState({ isLoading: false }), 100);
     wrapper.setState({ started: true });
