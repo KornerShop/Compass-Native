@@ -22,10 +22,8 @@ const Ineligible = ({ language, updateWicEligibility }) =>
     }}
   >
     <StyledContainer>
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        keyboardDismissMode="on-drag"
-        contentContainerStyle={{
+      <View
+        style={{
           flex: 1,
           justifyContent: 'space-around',
         }}
@@ -34,14 +32,14 @@ const Ineligible = ({ language, updateWicEligibility }) =>
           {localizedStrings[language].ineligible.header}
         </FormHeader>
         <Text
+          role="img"
+          aria-label="WIC Office"
           style={{
             fontSize: 80,
             textAlign: 'center',
           }}
         >
-          <span role="img" aria-label="WIC Office">
-            🏢
-          </span>
+          🏢
         </Text>
         <EligibilityButton
           language={language}
@@ -52,7 +50,7 @@ const Ineligible = ({ language, updateWicEligibility }) =>
           }
           updateWicEligibility={updateWicEligibility}
         />
-      </ScrollView>
+      </View>
     </StyledContainer>
   </View>;
 
