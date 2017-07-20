@@ -33,5 +33,8 @@ Code for America's Get CalFresh project has allowed thousands of CA residents to
 
 Coming soon to your local app store!
 
+Choose a langugae 
+
 ![](https://j.gifs.com/vgng0r.gif)
 ![](https://j.gifs.com/X6y6Jk.gif)
+![](https://j.gifs.com/3lzl5n.gif)
