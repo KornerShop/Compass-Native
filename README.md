@@ -22,11 +22,14 @@ Code for America's Get CalFresh project has allowed thousands of CA residents to
 * Localization 🌍
 * Firebase 🔥
 * Socket.io 🌐
+* Jest 🤹‍♀️
+* Enzyme 👩‍🔬
 
 ### Next Steps:
+* Type, finish tests, document code
 * Display stores that accept WIC vouchers
+* Reskin, animate
 * Deploy to Apple/Google Play store
-* Perfect styling 
 
 Coming soon to your local app store!
 
