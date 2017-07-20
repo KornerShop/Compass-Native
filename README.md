@@ -17,15 +17,16 @@ Code for America's Get CalFresh project has allowed thousands of CA residents to
 * Javascript/ES6 6️⃣
 * React & Redux ⚛️
 * React Native 📱
-* Styled Components
+* Styled Components 💅🏼
 * GoogleMaps API 🗺️
 * Localization 🌍
 * Firebase 🔥
+* Socket.io 🌐
 
 ### Next Steps:
-* Develop dashboard for admin use.
-* Send location data/office data to dashboard.
-* Present this data to those who can best utilize it (government agencies/food banks etc.)
+* Eject out
+* Deploy to Apple/Google Play store
+* Perfect styling 
 
 Coming soon to your local app store!
 
