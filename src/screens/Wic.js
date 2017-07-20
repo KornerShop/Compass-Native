@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import { object, func, oneOf } from 'prop-types';
+import { number, func, object, shape, oneOf } from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-
-import { View } from 'react-native';
 
 import { updateWicEligibility } from '../redux/actions/actions';
 
@@ -59,37 +57,49 @@ class Wic extends Component {
     }
   }
   render() {
-    switch (this.props.wicEligible) {
-      case 0:
-        return (
-          <WicForm
-            language={this.props.language}
-            orientation={this.props.orientation}
-            familySize={this.state.familySize}
-            familySizeValid={this.state.familySizeValid}
-            income={this.state.income}
-            incomeValid={this.state.incomeValid}
-            lifeEvents={this.state.lifeEvents}
-            formValid={this.state.formValid}
-            lifeEventsValid={this.state.lifeEventsValid}
-            updateLifeEvents={this.updateLifeEvents}
-            updateState={this.updateState}
-            checkEligibility={this.checkEligibility}
-          />
-        );
-      case 1:
-        return <Eligible language={this.props.language} updateWicEligibility={this.props.updateWicEligibility} />;
-      case 2:
-        return <Ineligible language={this.props.language} updateWicEligibility={this.props.updateWicEligibility} />;
-      default:
-        return <View style={{flex: 1}}/>;
+    if (this.props.wicEligible === 0) {
+      return (
+        <WicForm
+          language={this.props.language}
+          orientation={this.props.orientation}
+          familySize={this.state.familySize}
+          familySizeValid={this.state.familySizeValid}
+          income={this.state.income}
+          incomeValid={this.state.incomeValid}
+          lifeEvents={this.state.lifeEvents}
+          formValid={this.state.formValid}
+          lifeEventsValid={this.state.lifeEventsValid}
+          updateLifeEvents={this.updateLifeEvents}
+          updateState={this.updateState}
+          checkEligibility={this.checkEligibility}
+        />
+      );
+    } else if (this.props.wicEligible === 1) {
+      return (
+        <Eligible
+          language={this.props.language}
+          updateWicEligibility={this.props.updateWicEligibility}
+        />
+      );
     }
+      return (
+        <Ineligible
+          language={this.props.language}
+          updateWicEligibility={this.props.updateWicEligibility}
+        />
+      );
+
   }
 }
 
 Wic.propTypes = {
   wicEligible: oneOf([0, 1, 2]).isRequired,
-  orientation: object.isRequired,
+  orientation: shape({
+    scale: number.isRequired,
+    height: number.isRequired,
+    width: number.isRequired,
+    fontScale: number.isRequired,
+  }).isRequired,
   updateWicEligibility: func.isRequired,
   language: oneOf(['es', 'en']).isRequired,
 };

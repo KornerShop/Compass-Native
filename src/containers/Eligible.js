@@ -22,10 +22,8 @@ const Eligible = ({ language, updateWicEligibility }) =>
     }}
   >
     <StyledContainer>
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        keyboardDismissMode="on-drag"
-        contentContainerStyle={{
+      <View
+        style={{
           flex: 1,
           justifyContent: 'space-around',
         }}
@@ -34,14 +32,14 @@ const Eligible = ({ language, updateWicEligibility }) =>
           {localizedStrings[language].eligible.header}
         </FormHeader>
         <Text
+          role="img"
+          aria-label="Thumbs Up"
           style={{
             fontSize: 80,
             textAlign: 'center',
           }}
         >
-          <span role="img" aria-label="Thumbs Up">
-            👍
-          </span>
+          👍
         </Text>
         <EligibilityButton
           language={language}
@@ -51,7 +49,7 @@ const Eligible = ({ language, updateWicEligibility }) =>
           }
           updateWicEligibility={updateWicEligibility}
         />
-      </ScrollView>
+      </View>
     </StyledContainer>
   </View>;
 
