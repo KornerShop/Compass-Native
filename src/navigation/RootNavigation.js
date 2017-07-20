@@ -5,8 +5,17 @@ import {
   TabNavigation,
   TabNavigationItem as TabItem,
 } from '@expo/ex-navigation';
-import { Platform } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 import Router from './Router';
+
+const styles = StyleSheet.create({
+  selectedIconColor: {
+    color: '#21CFBF',
+  },
+  unselectedIconColor: {
+    color: 'tomato',
+  },
+});
 
 export default class RootNavigation extends Component {
   static route = {
@@ -14,6 +23,26 @@ export default class RootNavigation extends Component {
       visible: false,
     },
   };
+
+  constructor() {
+    super();
+    this.renderIcon = this.renderIcon.bind(this);
+  }
+
+  renderIcon(icon, isSelected) {
+    return (
+      <Ionicons
+        name={icon}
+        size={32}
+        style={[
+          isSelected
+            ? styles.selectedIconColor
+            : styles.unselectedIconColor,
+        ]}
+      />
+    );
+  }
+
   render() {
     return (
       <TabNavigation
@@ -27,14 +56,8 @@ export default class RootNavigation extends Component {
       >
         <TabItem
           id="resources"
-          renderIcon={() =>
-            Platform.OS === 'ios'
-              ? <Ionicons name="md-compass" size={32} color="tomato" />
-              : <Ionicons
-                name="ios-locate"
-                size={32}
-                color="tomato"
-                />}
+          renderIcon={isSelected =>
+            this.renderIcon('md-compass', !!isSelected)}
         >
           <StackNavigation
             id="resources"
@@ -43,12 +66,8 @@ export default class RootNavigation extends Component {
         </TabItem>
         <TabItem
           id="snap"
-          renderIcon={() =>
-            <Ionicons
-              name="ios-nutrition-outline"
-              size={32}
-              color="tomato"
-            />}
+          renderIcon={isSelected =>
+            this.renderIcon('ios-nutrition-outline', !!isSelected)}
         >
           <StackNavigation
             id="snap"
@@ -57,12 +76,8 @@ export default class RootNavigation extends Component {
         </TabItem>
         <TabItem
           id="wic"
-          renderIcon={() =>
-            <Ionicons
-              name="ios-woman-outline"
-              size={32}
-              color="tomato"
-            />}
+          renderIcon={isSelected =>
+            this.renderIcon('ios-woman-outline', !!isSelected)}
         >
           <StackNavigation
             id="wic"
@@ -72,4 +87,4 @@ export default class RootNavigation extends Component {
       </TabNavigation>
     );
   }
-};
+}
