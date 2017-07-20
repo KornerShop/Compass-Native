@@ -9,7 +9,7 @@ const EligibilityButton = props =>
     <Button
       title={props.title}
       raised
-      textStyle={{ color: 'white' }}
+      textStyle={{ fontWeight: 'bold', color: 'white' }}
       buttonStyle={{
         backgroundColor: 'tomato',
       }}

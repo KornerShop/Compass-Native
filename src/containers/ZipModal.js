@@ -37,10 +37,11 @@ class ZipModal extends Component {
           accessible={false}
           style={{
             flex: 1,
-            justifyContent: 'space-around',
+            alignItems: 'center',
+            justifyContent: 'center',
             paddingVertical: 100,
             paddingHorizontal: 20,
-            backgroundColor: '#00897b',
+            backgroundColor: '#21CFBF',
           }}
         >
           <FormHeader zip>
@@ -76,14 +77,19 @@ class ZipModal extends Component {
           </ZipModalInputWrapper>
           <SubmitButton
             zip
-            title={localizedStrings[this.props.language].buttons.submit}
+            title={
+              localizedStrings[this.props.language].buttons.submit
+            }
             accessibility={
               localizedStrings[this.props.language].buttons
                 .accessibilitySubmit
             }
             onPress={() => {
               if (this.state.zipValid && this.state.zipCode) {
-                this.props.changeZipCode(this.props.socket, this.state.zipCode);
+                this.props.changeZipCode(
+                  this.props.socket,
+                  this.state.zipCode,
+                );
                 this.props.fetchOffices(true);
                 this.props.toggleLocationProvided(true);
                 this.props.toggleModalVisibility();
@@ -92,7 +98,10 @@ class ZipModal extends Component {
             }}
             onAccessibilityTap={() => {
               if (this.state.zipValid && this.state.zipCode) {
-                this.props.changeZipCode(this.props.socket, this.state.zipCode);
+                this.props.changeZipCode(
+                  this.props.socket,
+                  this.state.zipCode,
+                );
                 this.props.fetchOffices(true);
                 this.props.toggleLocationProvided(true);
                 this.props.toggleModalVisibility();

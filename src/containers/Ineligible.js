@@ -18,7 +18,7 @@ const Ineligible = ({ language, updateWicEligibility }) =>
       paddingTop: 20,
       paddingHorizontal: 5,
       paddingBottom: 5,
-      backgroundColor: '#2c2c2c',
+      backgroundColor: 'white',
     }}
   >
     <StyledContainer>
