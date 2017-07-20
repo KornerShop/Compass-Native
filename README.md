@@ -33,10 +33,11 @@ Code for America's Get CalFresh project has allowed thousands of CA residents to
 
 Coming soon to your local app store!
 
-Choose a language  ➡️  get aquianted  ➡️  choose WIC or SNP to start ➡️   find offices near you ➡️  determine eligibility
-
+Choose a language  ➡️  get aquianted  ➡️  find offices near you ➡️  determine eligibility
+<p text-align="center">
 ![](https://j.gifs.com/vgng0r.gif)
 <br>
 ![](https://j.gifs.com/X6y6Jk.gif)
 <br>
 ![](https://j.gifs.com/3lzl5n.gif)
+</p>
