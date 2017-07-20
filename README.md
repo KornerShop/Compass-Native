@@ -35,5 +35,5 @@ Coming soon to your local app store!
 
 
 <p align="center">
-  <img src="/readme.jpg?raw=true" alt="Screen shot of my homescreen"/>
+  ![](https://j.gifs.com/vgng0r.gif)
 </p>
