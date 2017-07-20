@@ -98,6 +98,7 @@ export const StyledInput = styled.TextInput`
 
 export const StyledInputZip = StyledInput.extend`
   font-size: 20;
+  width: 300;
   font-weight: 600;
   color: ${props => textInputColorZip(props.valid)};
 `;
@@ -132,7 +133,7 @@ export const FormHeader = styled.Text`
   font-weight: bold;
   font-size: ${props => (props.zip ? 35 : 20)};
   text-align: center;
-  padding-bottom: 10;
+  padding-bottom: ${props => (props.zip ? 80 : 10)};
   color: ${props => (props.zip ? 'white' : '#2C2C2C')};
 `;
 

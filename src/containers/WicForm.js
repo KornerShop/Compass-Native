@@ -110,7 +110,7 @@ const WicForm = props =>
           textStyle={{
             color: styleSwitch(
               props.lifeEventsValid,
-              '#00897b',
+              '#21CFBF',
               'tomato',
             ),
             fontWeight: 'bold',
@@ -119,7 +119,7 @@ const WicForm = props =>
           innerBorderStyle={{
             color: styleSwitch(
               props.lifeEventsValid,
-              '#00897b',
+              '#21CFBF',
               'tomato',
             ),
             width: 3,
@@ -129,7 +129,7 @@ const WicForm = props =>
             borderRadius: 5,
             borderColor: styleSwitch(
               props.lifeEventsValid,
-              '#00897b',
+              '#21CFBF',
               'tomato',
             ),
             backgroundColor: 'transparent',
@@ -137,7 +137,7 @@ const WicForm = props =>
             marginLeft: 20,
           }}
           selectedTextStyle={{ color: 'white' }}
-          selectedBackgroundColor="#00897b"
+          selectedBackgroundColor="#21CFBF"
         />
         <SubmitButton
           title={localizedStrings[props.language].buttons.submit}

@@ -72,10 +72,10 @@ class Map extends Component {
             paddingTop: 10,
             paddingBottom: 5,
             paddingHorizontal: 5,
-            backgroundColor: '#2C2C2C',
+            backgroundColor: 'white',
           }}
         >
-          <StatusBar barStyle="light-content" />
+          <StatusBar barStyle="dark-content" />
           <ButtonGroup
             onAccessibilityTap={this.updateIndex}
             accessibilityTraits="button"
@@ -87,9 +87,8 @@ class Map extends Component {
             ]}
             selectedIndex={this.props.office === 1 ? 0 : 1}
             textStyle={{
-              color: 'white',
-              fontSize: 16,
-              fontFamily: 'merriweather-sans',
+              color: 'black',
+              fontSize: 18,
             }}
             borderRadius={2}
             buttonStyle={{
@@ -111,7 +110,7 @@ class Map extends Component {
               borderRadius: 2,
             }}
             selectedTextStyle={{
-              color: '#304352',
+              color: 'tomato',
               borderRadius: 2,
             }}
             selectedBackgroundColor="white"

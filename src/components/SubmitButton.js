@@ -8,19 +8,19 @@ const SubmitButton = props =>
     title={props.title}
     raised={!props.zip}
     textStyle={{
-      color: props.zip ? '#00897b' : 'white',
-      fontSize: props.zip ? 22 : 15,
-      fontWeight: props.zip ? 'bold' : null,
+      color: props.zip ? '#21CFBF' : 'white',
+      fontSize: props.zip ? 22 : 18,
+      fontWeight: 'bold',
     }}
     buttonStyle={{
+      paddingHorizontal: props.zip ? 20 : null,
       borderWidth: props.zip ? 1 : 0,
       borderColor: props.zip ? 'white' : null,
       backgroundColor: props.zip ? 'white' : 'tomato',
     }}
     containerViewStyle={{
-      width: props.zip ? 150 : null,
-      marginRight: 20,
-      marginLeft: props.zip ? 65 : 20,
+      marginTop: props.zip ? 100 : null,
+      width: props.zip ? 200 : null,
       borderRadius: props.zip ? 25 : 5,
     }}
     borderRadius={props.zip ? 25 : 5}
@@ -31,7 +31,7 @@ const SubmitButton = props =>
 SubmitButton.propTypes = {
   title: string.isRequired,
   onPress: func.isRequired,
-  zip: bool
+  zip: bool,
 };
 
 export default SubmitButton;
