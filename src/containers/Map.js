@@ -88,7 +88,7 @@ class Map extends Component {
             selectedIndex={this.props.office === 1 ? 0 : 1}
             textStyle={{
               color: 'black',
-              fontSize: 18,
+              fontSize: 20,
             }}
             borderRadius={2}
             buttonStyle={{
@@ -160,7 +160,7 @@ class Map extends Component {
     }
     return (
       <ActivityIndicatorWrapper>
-        <ActivityIndicator color="#00897b" size="large" />
+        <ActivityIndicator color="#21CFB" size="large" />
       </ActivityIndicatorWrapper>
     );
   }

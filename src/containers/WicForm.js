@@ -182,17 +182,17 @@ const WicForm = props =>
             }
             if (props.lifeEventsValid === null) {
               return props.updateState({
-                  lifeEventsValid: false,
+                lifeEventsValid: false,
               });
             }
             if (props.familySizeValid === null) {
               return props.updateState({
-                  familySizeValid: false,
+                familySizeValid: false,
               });
             }
             if (props.incomeValid === null) {
               return props.updateState({
-                  incomeValid: false,
+                incomeValid: false,
               });
             }
           }}

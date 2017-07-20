@@ -35,7 +35,7 @@ class Main extends Component {
       isLoading: true,
     };
     this.socket = SocketIOClient(NGROK_ADDR, {
-      transports: ['websocket']
+      transports: ['websocket'],
     });
     this.toggleStart = this.toggleStart.bind(this);
   }
@@ -91,7 +91,7 @@ class Main extends Component {
     if (this.state.isLoading) {
       return (
         <ActivityIndicatorWrapper>
-          <ActivityIndicator color="tomato" size="large" />
+          <ActivityIndicator color="#21CFBF" size="large" />
         </ActivityIndicatorWrapper>
       );
     }

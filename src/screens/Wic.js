@@ -82,13 +82,12 @@ class Wic extends Component {
         />
       );
     }
-      return (
-        <Ineligible
-          language={this.props.language}
-          updateWicEligibility={this.props.updateWicEligibility}
-        />
-      );
-
+    return (
+      <Ineligible
+        language={this.props.language}
+        updateWicEligibility={this.props.updateWicEligibility}
+      />
+    );
   }
 }
 
