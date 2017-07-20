@@ -24,7 +24,7 @@ Code for America's Get CalFresh project has allowed thousands of CA residents to
 * Socket.io 🌐
 
 ### Next Steps:
-* Eject out
+* Display stores that accept WIC vouchers
 * Deploy to Apple/Google Play store
 * Perfect styling 
 
