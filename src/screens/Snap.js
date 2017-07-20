@@ -15,7 +15,7 @@ const Snap = ({ language }) => {
   const url = language === 'en' ? host : `${host}?new_locale=es`;
   return (
     <View
-      accessible={true}
+      accessible
       accessibilityLabel={'Determine eligibility for Food Stamps'}
       style={{
         flex: 1,
@@ -27,14 +27,14 @@ const Snap = ({ language }) => {
     >
       <StatusBar barStyle="dark-content" />
       <WebView
-        accessible={true}
+        accessible
         borderRadius={10}
         source={{ uri: url }}
         style={{ marginTop: 15 }}
         startInLoadingState
         renderLoading={() =>
           <ActivityIndicatorWrapper>
-            <ActivityIndicator color="tomato" size="large" />
+            <ActivityIndicator color="#21CFBF" size="large" />
           </ActivityIndicatorWrapper>}
       />
     </View>
