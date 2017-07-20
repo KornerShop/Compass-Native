@@ -18,14 +18,21 @@ const MarkerView = ({
 }) =>
   <View
     style={{
+      borderRadius: 10,
       flex: 1,
       justifyContent: 'center',
       width: 300,
+      height:200,
+      backgroundColor:'white',
+      paddingBottom: 15,
     }}
   >
     <View
       style={{
         flex: 1,
+        borderTopLeftRadius: 10,
+        borderTopRightRadius: 10,
+        paddingVertical: 5,
         backgroundColor: '#21CFBF',
       }}
     >
@@ -43,7 +50,7 @@ const MarkerView = ({
         {name}
       </Text>
     </View>
-    <View style={{ flex: 1, backgroundColor: 'white', marginTop: 5 }}>
+    <View style={{flex: 1, backgroundColor: 'white', marginTop: 5 }}>
       <Text
         style={{
           color: 'royalblue',

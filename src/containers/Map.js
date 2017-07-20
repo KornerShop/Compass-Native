@@ -135,7 +135,7 @@ class Map extends Component {
                   longitude: office.lng,
                 }}
               >
-                <MapView.Callout>
+                <MapView.Callout tooltip={true}>
                   <MarkerView
                     {...office}
                     socket={this.props.socket}
@@ -160,7 +160,7 @@ class Map extends Component {
     }
     return (
       <ActivityIndicatorWrapper>
-        <ActivityIndicator color="#21CFB" size="large" />
+        <ActivityIndicator color="#21CFBF" size="large" />
       </ActivityIndicatorWrapper>
     );
   }

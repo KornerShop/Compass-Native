@@ -17,6 +17,7 @@ const Anchor = ({ href, onPress, children }) => {
       {children &&
         <View
           style={{
+            backgroundColor: 'white',
             width: 20,
             height: 30,
             flex: 1,
