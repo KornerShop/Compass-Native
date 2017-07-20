@@ -1,6 +1,7 @@
 import React from 'react';
 import { string, func } from 'prop-types';
-import { Linking, Text } from 'react-native';
+import { Linking, Text, View } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 const Anchor = ({ href, onPress, children }) => {
   const handlePress = () => {
@@ -8,8 +9,27 @@ const Anchor = ({ href, onPress, children }) => {
     onPress && onPress();
   };
   return (
-    <Text onPress={handlePress}>
+    <Text
+      onPress={handlePress}
+      style={{ fontWeight: 'bold', textAlign: 'center' }}
+    >
       {children}
+      {children &&
+        <View
+          style={{
+            width: 20,
+            height: 30,
+            flex: 1,
+            marginLeft: 10,
+            paddingTop: 5,
+          }}
+        >
+          <Ionicons
+            name="ios-call-outline"
+            size={28}
+            color="royalblue"
+          />
+        </View>}
     </Text>
   );
 };
