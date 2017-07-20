@@ -14,7 +14,7 @@ const MarkerView = ({
   address,
   id,
   office,
-  socket
+  socket,
 }) =>
   <View
     style={{
@@ -23,25 +23,41 @@ const MarkerView = ({
       width: 300,
     }}
   >
-    <Text
+    <View
       style={{
-        fontWeight: 'bold',
-        marginTop: 10,
-        marginBottom: 10,
+        flex: 1,
+        backgroundColor: '#21CFBF',
       }}
     >
-      {name}
-    </Text>
-    <Text
-      style={{
-        color: 'royalblue',
-        marginBottom: 10,
-      }}
-    >
-      <Anchor href={`tel: ${phone_local}`}>
-        {phone_local}
-      </Anchor>
-    </Text>
+      <Text
+        style={{
+          color: 'white',
+          fontSize: 20,
+          fontWeight: 'bold',
+          marginTop: 5,
+          marginBottom: 5,
+          padding: 5,
+          textAlign: 'center',
+        }}
+      >
+        {name}
+      </Text>
+    </View>
+    <View style={{ flex: 1, backgroundColor: 'white', marginTop: 5 }}>
+      <Text
+        style={{
+          color: 'royalblue',
+          fontSize: 18,
+          marginTop: 10,
+          marginBottom: 10,
+          textAlign: 'center',
+        }}
+      >
+        <Anchor href={`tel: ${phone_local}`}>
+          {phone_local}
+        </Anchor>
+      </Text>
+    </View>
     <MapBrowser
       socket={socket}
       office={office}
@@ -68,7 +84,7 @@ MarkerView.propTypes = {
   lat: number.isRequired,
   lng: number.isRequired,
   id: string.isRequired,
-  socket: object.isRequired
+  socket: object.isRequired,
 };
 
 export default MarkerView;
