@@ -11,15 +11,6 @@ Array [
     "phone_intl": "+1 877-699-6868",
     "phone_local": "(877) 699-6868",
   },
-  Object {
-    "address": "520 Mendocino Ave, Santa Rosa, CA 95402, USA",
-    "id": "ChIJ2S8f1PhHhIARUVCsEnyrOEw",
-    "lat": 38.443262,
-    "lng": -122.715587,
-    "name": "Sonoma County Economic Assistance 2",
-    "phone_intl": "+1 877-699-6868",
-    "phone_local": "(877) 699-6868",
-  },
 ]
 `;
 
