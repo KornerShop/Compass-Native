@@ -46,6 +46,7 @@ class Map extends Component {
   render() {
     const colors = [
       'coral',
+      '#d500f9',
       'crimson',
       'aquamarine',
       'darkturquoise',
