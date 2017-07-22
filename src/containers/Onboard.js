@@ -31,7 +31,7 @@ const Onboard = ({
           backgroundColor: '#cfd8dc',
         }}
         bulletsContainerStyle={{
-          marginBottom: 50,
+          marginBottom: 30,
         }}
         chosenBulletStyle={{
           backgroundColor: '#78909c',
@@ -42,7 +42,7 @@ const Onboard = ({
           style={[
             {
               backgroundColor: 'white',
-              marginTop: 120,
+              marginTop: 110,
               alignItems: 'center',
               flexDirection: 'column',
             },
