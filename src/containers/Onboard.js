@@ -52,8 +52,8 @@ const Onboard = ({
           <Text>
             {Platform.OS === 'ios'
               ? <Ionicons
-                  name="md-compass"
-                  size={190}
+                name="md-compass"
+                size={190}
                   color="tomato"
                 />
               : <Ionicons

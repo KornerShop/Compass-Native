@@ -4,7 +4,7 @@ exports[`shallow tests UnwrappedMain renders correctly 1`] = `
 <Styled(View)>
   <ActivityIndicator
     animating={true}
-    color="#00897b"
+    color="#21CFBF"
     hidesWhenStopped={true}
     size="large"
   />
