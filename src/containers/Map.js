@@ -145,6 +145,7 @@ class Map extends Component {
                     <MapView.Callout tooltip>
                       <MarkerView
                         {...vendor}
+                        socket={this.props.socket}
                         office={this.props.office}
                         location={this.props.location}
                       />
