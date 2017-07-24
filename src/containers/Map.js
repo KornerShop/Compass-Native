@@ -115,6 +115,7 @@ class Map extends Component {
                   latitude: office.lat,
                   longitude: office.lng,
                 }}
+                image={require('../assets/building.png')}
               >
                 <MapView.Callout tooltip>
                   <MarkerView
@@ -139,6 +140,7 @@ class Map extends Component {
                       latitude: vendor.lat,
                       longitude: vendor.lng,
                     }}
+                    image={require('../assets/groceries.png')}
                   >
                     <MapView.Callout tooltip>
                       <MarkerView
