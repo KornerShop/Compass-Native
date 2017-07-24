@@ -1,7 +1,7 @@
 import React from 'react';
 import { func, oneOf } from 'prop-types';
 
-import { View, ScrollView, Text } from 'react-native';
+import { View, Text, Linking} from 'react-native';
 
 import {
   StyledContainer,
@@ -10,6 +10,7 @@ import {
 import EligibilityButton from '../components/EligibilityButton';
 
 import localizedStrings from '../utilities/localization';
+import Anchor from '../components/Anchor'
 
 const Eligible = ({ language, updateWicEligibility }) =>
   <View
@@ -32,14 +33,36 @@ const Eligible = ({ language, updateWicEligibility }) =>
           {localizedStrings[language].eligible.header}
         </FormHeader>
         <Text
-          role="img"
-          aria-label="Thumbs Up"
           style={{
-            fontSize: 80,
-            textAlign: 'center',
+            padding:20,
+            fontSize: 20,
+            textAlign: 'left',
           }}
         >
-          👍
+          {localizedStrings[language].eligible.stepOne}
+        </Text>
+        <View style={{flex: 1}}>
+          <Text style={{fontSize: 20}}>
+            <Anchor href={'tel:+18889429675}'} eligible>
+              1-888-942-9675
+            </Anchor>
+          </Text>
+        </View>
+        <Text
+          style={{
+            padding:20,
+            fontSize: 20,
+            textAlign: 'left',
+          }}>
+          {localizedStrings[language].eligible.stepTwo}
+        </Text>
+        <Text
+          style={{
+            padding:20,
+            fontSize: 20,
+            textAlign: 'left',
+          }}>
+          {localizedStrings[language].eligible.stepThree}
         </Text>
         <EligibilityButton
           language={language}

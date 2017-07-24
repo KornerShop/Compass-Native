@@ -11,7 +11,10 @@ export default {
       no: 'No',
     },
     eligible: {
-      header: 'You may be eligible! Go to a local office to confirm',
+      header: 'You may be eligible! Next steps:',
+      stepOne: '1) Tap the compass below to find a WIC office near you, or call: ',
+      stepTwo: '2) After you have located an office, call to make an appointment to confirm eligibility and begin the application process.',
+      stepThree: '3) Once you have been approved use Compass to find WIC friendly grocery stores near you!',
     },
     ineligible: {
       header:
@@ -48,7 +51,11 @@ export default {
     },
     eligible: {
       header:
-        '¡Puede ser elegible! Ir a una oficina local para confirmar',
+        '¡Puede ser elegible! Próximos pasos:',
+      stepOne:'1) Toque la brújula abajo para encontrar una oficina de WIC cerca de usted, o llame al:',
+      stepTwo:'2) Después de haber localizado una oficina, llame para hacer una cita para confirmar la elegibilidad y comenzar el proceso de solicitud.',
+      stepThree:'3) Una vez que haya sido aprobado, use Compass para encontrar tiendas de comestibles amigables de WIC cerca de usted.',
+
     },
     ineligible: {
       header:
