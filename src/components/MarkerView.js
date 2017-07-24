@@ -22,8 +22,8 @@ const MarkerView = ({
       flex: 1,
       justifyContent: 'center',
       width: 300,
-      height:200,
-      backgroundColor:'white',
+      height: 200,
+      backgroundColor: 'white',
       paddingBottom: 15,
     }}
   >
@@ -50,7 +50,7 @@ const MarkerView = ({
         {name}
       </Text>
     </View>
-    <View style={{flex: 1, backgroundColor: 'white', marginTop: 5 }}>
+    <View style={{ flex: 1, backgroundColor: 'white', marginTop: 5 }}>
       <Text
         style={{
           color: 'royalblue',
@@ -60,9 +60,10 @@ const MarkerView = ({
           textAlign: 'center',
         }}
       >
-        <Anchor href={`tel: ${phone_local}`}>
-          {phone_local}
-        </Anchor>
+        {phone_local &&
+          <Anchor href={`tel: ${phone_local}`}>
+            {phone_local}
+          </Anchor>}
       </Text>
     </View>
     <MapBrowser
@@ -91,7 +92,7 @@ MarkerView.propTypes = {
   lat: number.isRequired,
   lng: number.isRequired,
   id: string.isRequired,
-  socket: object.isRequired,
+  socket: object,
 };
 
 export default MarkerView;

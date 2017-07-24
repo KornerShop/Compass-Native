@@ -56,7 +56,7 @@ MapBrowser.propTypes = {
     latitudeDelta: number.isRequired,
     longitudeDelta: number.isRequired,
   }).isRequired,
-  socket: object.isRequired,
+  socket: object,
 };
 
 export default MapBrowser;

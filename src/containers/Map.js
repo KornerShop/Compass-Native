@@ -38,28 +38,11 @@ class Map extends Component {
       this.props.toggleModalVisibility();
     } else {
       const officeNum = idx === 0 ? 1 : 2;
-      // these could present an issue if caching
       this.props.changeOffice(this.props.socket, officeNum);
       this.props.fetchOffices();
     }
   }
   render() {
-    const colors = [
-      'coral',
-      '#d500f9',
-      'crimson',
-      'aquamarine',
-      'darkturquoise',
-      'deeppink',
-      'indianred',
-      'mediumspringgreen',
-      'sandybrown',
-      'plum',
-      'tomato',
-      'aqua',
-      'palevioletred',
-      'salmon',
-    ];
     const offices =
       this.props.office === 1
         ? this.props.snapOffices
@@ -127,16 +110,13 @@ class Map extends Component {
             {offices.map(office =>
               <MapView.Marker
                 accessibilityLabels="button"
-                pinColor={
-                  colors[Math.floor(Math.random() * colors.length)]
-                }
                 key={office.id}
                 coordinate={{
                   latitude: office.lat,
                   longitude: office.lng,
                 }}
               >
-                <MapView.Callout tooltip={true}>
+                <MapView.Callout tooltip>
                   <MarkerView
                     {...office}
                     socket={this.props.socket}
@@ -146,6 +126,30 @@ class Map extends Component {
                 </MapView.Callout>
               </MapView.Marker>,
             )}
+            {this.props.wicVendors &&
+              this.props.wicVendors.map(vendor => {
+                console.log(
+                  `vendor: ${JSON.stringify(vendor, null, 2)}`,
+                );
+                return (
+                  <MapView.Marker
+                    accessibilityLabels="button"
+                    key={vendor.id}
+                    coordinate={{
+                      latitude: vendor.lat,
+                      longitude: vendor.lng,
+                    }}
+                  >
+                    <MapView.Callout tooltip>
+                      <MarkerView
+                        {...vendor}
+                        office={this.props.office}
+                        location={this.props.location}
+                      />
+                    </MapView.Callout>
+                  </MapView.Marker>
+                );
+              })}
           </MapView>
           <ZipModal
             socket={this.props.socket}
@@ -170,6 +174,7 @@ class Map extends Component {
 Map.defaultProps = {
   snapOffices: [],
   wicOffices: [],
+  wicVendors: [],
 };
 
 Map.propTypes = {
@@ -210,6 +215,15 @@ Map.propTypes = {
       phone_local: string,
       phone_intl: string,
     }).isRequired,
+  ),
+  wicVendors: arrayOf(
+    shape({
+      id: string.isRequired,
+      name: string.isRequired,
+      address: string.isRequired,
+      lat: number.isRequired,
+      lng: number.isRequired,
+    }),
   ),
   mapLoading: bool.isRequired,
   modalVisible: bool.isRequired,

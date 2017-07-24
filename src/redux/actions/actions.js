@@ -49,3 +49,8 @@ export const populateWIC = offices => ({
   type: types.POPULATE_WIC_OFFICES,
   payload: offices,
 });
+
+export const populateWICVendors = vendors => ({
+  type: types.POPULATE_WIC_VENDORS,
+  payload: vendors
+});

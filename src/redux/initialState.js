@@ -11,6 +11,7 @@ export default {
   zipCode: '',
   snapOffices: [],
   wicOffices: [],
+  wicVendors: [],
   wicEligible: 0,
   orientation: {
     scale: '',
