@@ -1,67 +1,75 @@
-import React from 'react';
-import { func, oneOf } from 'prop-types';
+import React from "react";
+import { func, oneOf } from "prop-types";
 
-import { View, Text, Linking} from 'react-native';
+import { View, Text, Linking } from "react-native";
 
-import {
-  StyledContainer,
-  FormHeader,
-} from '../components/styled/Styled';
-import EligibilityButton from '../components/EligibilityButton';
+import { StyledContainer, EligibleHeader } from "../components/styled/Styled";
+import EligibilityButton from "../components/EligibilityButton";
 
-import localizedStrings from '../utilities/localization';
-import Anchor from '../components/Anchor'
+import localizedStrings from "../utilities/localization";
+import Anchor from "../components/Anchor";
 
 const Eligible = ({ language, updateWicEligibility }) =>
   <View
     style={{
       flex: 1,
-      paddingTop: 20,
+      paddingTop: 10,
       paddingHorizontal: 5,
-      paddingBottom: 5,
-      backgroundColor: 'white',
+      paddingBottom: 15,
+      backgroundColor: "white"
     }}
   >
     <StyledContainer>
       <View
         style={{
           flex: 1,
-          justifyContent: 'space-around',
+          justifyContent: "space-around",
+          paddingVertical: 25,
         }}
       >
-        <FormHeader>
+        <EligibleHeader>
           {localizedStrings[language].eligible.header}
-        </FormHeader>
+        </EligibleHeader>
+        <EligibleHeader>
+          {localizedStrings[language].eligible.next}
+        </EligibleHeader>
         <Text
           style={{
-            padding:20,
+            paddingTop: 5,
+            paddingRight:10,
+            paddingLeft: 10,
+            paddingBottom:2,
             fontSize: 20,
-            textAlign: 'left',
+            textAlign: "left"
           }}
         >
           {localizedStrings[language].eligible.stepOne}
         </Text>
-        <View style={{flex: 1}}>
-          <Text style={{fontSize: 20}}>
-            <Anchor href={'tel:+18889429675}'} eligible>
-              1-888-942-9675
-            </Anchor>
-          </Text>
-        </View>
+        <Anchor href={"tel:+18889429675"} eligible>
+          1-888-942-9675
+        </Anchor>
         <Text
           style={{
-            padding:20,
+            paddingTop: 5,
+            paddingRight:10,
+            paddingLeft: 10,
+            paddingBottom:2,
             fontSize: 20,
-            textAlign: 'left',
-          }}>
+            textAlign: "left"
+          }}
+        >
           {localizedStrings[language].eligible.stepTwo}
         </Text>
         <Text
           style={{
-            padding:20,
+            paddingTop: 5,
+            paddingRight:10,
+            paddingLeft: 10,
+            paddingBottom:2,
             fontSize: 20,
-            textAlign: 'left',
-          }}>
+            textAlign: "left"
+          }}
+        >
           {localizedStrings[language].eligible.stepThree}
         </Text>
         <EligibilityButton
@@ -78,7 +86,7 @@ const Eligible = ({ language, updateWicEligibility }) =>
 
 Eligible.propTypes = {
   updateWicEligibility: func.isRequired,
-  language: oneOf(['es', 'en']).isRequired,
+  language: oneOf(["es", "en"]).isRequired
 };
 
 export default Eligible;

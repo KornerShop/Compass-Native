@@ -137,6 +137,15 @@ export const FormHeader = styled.Text`
   color: ${props => (props.zip ? 'white' : '#2C2C2C')};
 `;
 
+export const EligibleHeader = FormHeader.extend`
+  font-size: 30;
+  letter-spacing: 2;
+  padding-top: 2;
+  padding-right:10;
+  padding-bottom:0;
+  padding-left: 10;
+`
+
 export const ActivityIndicatorWrapper = styled.View`
   flex: 1;
   justify-content: center;
