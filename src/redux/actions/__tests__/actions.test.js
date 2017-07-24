@@ -77,7 +77,6 @@ test('populateWIC', () => {
       {
         id: 'ChIJ697sM6e2hYARGih3Xt7SAAE',
         lat: 38.2319379,
-
         lng: -122.6442755,
         name: 'WIC Petaluma',
         address: '11 English St, Petaluma, CA 94952, USA',
@@ -121,5 +120,26 @@ test('populateWIC', () => {
         phone_intl: '+1 707-645-7316',
       },
     ]),
-  );
+  ).toMatchSnapshot();
+});
+
+test('populateWICVendors', () => {
+  expect(
+    actions.populateWICVendors([
+      {
+        id: 'ChIJZ1aAHdxHhIARO2o8VNCrzvo',
+        name: 'Safeway #1562',
+        address: '2751 4th St, Santa Rosa, CA,  95404, USA',
+        lat: 38.450691,
+        lng: -122.69104,
+      },
+      {
+        id: 'ChIJD2VCHBhIhIAR-pleXyzr54s',
+        name: "Lola's Market",
+        address: '1680 Petaluma Hill Rd, Santa Rosa, CA,  95404, USA',
+        lat: 38.42281,
+        lng: -122.70693,
+      },
+    ]),
+  ).toMatchSnapshot();
 });

@@ -14,6 +14,25 @@ Array [
 ]
 `;
 
+exports[`fetchWICVendors 1`] = `
+Array [
+  Object {
+    "address": "2751 4th St, Santa Rosa, CA,  95404, USA",
+    "id": "ChIJZ1aAHdxHhIARO2o8VNCrzvo",
+    "lat": 38.450691,
+    "lng": -122.69104,
+    "name": "Safeway #1562",
+  },
+  Object {
+    "address": "1680 Petaluma Hill Rd, Santa Rosa, CA,  95404, USA",
+    "id": "ChIJD2VCHBhIhIAR-pleXyzr54s",
+    "lat": 38.42281,
+    "lng": -122.70693,
+    "name": "Lola's Market",
+  },
+]
+`;
+
 exports[`fetchZipCode 1`] = `"95404"`;
 
 exports[`fetchZipCodeCoords 1`] = `
