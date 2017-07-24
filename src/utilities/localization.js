@@ -30,10 +30,10 @@ export default {
       onboard:"Got it!"
     },
     onboard: {
-      officeHeader: "Office Search",
-      officeText: "You can locate WIC and/or CalFresh offices near you.",
-      snapText: "Determine whether you're likely to be eligible for CalFresh benefits.",
-      wicText:"Determine whether you're likely to be eligible for WIC benefits."
+      officeHeader: "Find Offices & Grocery Stores",
+      officeText: "Use the compass icon to locate WIC and CalFresh offices near you and find grocery stores that accept WIC vouchers.",
+      snapText: "Tap on the carrot icon to determine whether you're likely to be eligible for CalFresh benefits. After determining eligibility search for an office near you and make an appointment to apply in person.",
+      wicText:"To determine whether you're likely to be eligible for WIC benefits, fill out the form provided. Once you've successfully applied and obtained vouchers, use the map to locate grocery stores that accept your vouchers."
     }
   },
   es: {
@@ -67,10 +67,10 @@ export default {
       onboard:"¡Lo tengo!"
     },
     onboard: {
-      officeHeader: "Búsqueda de oficinas",
-      officeText: "Puede localizar las oficinas de WIC y / o CalFresh cerca de usted.",
-      snapText: "Determine si es probable que sea elegible para los beneficios de CalFresh.",
-      wicText:"Determine si es probable que sea elegible para los beneficios de WIC."
+      officeHeader: "Encuentra Oficinas y Tiendas de Abarrotes",
+      officeText: "Usa el ícono de la brújula para localizar las oficinas de WIC y CalFresh cerca de ti y encontrar tiendas de comestibles que aceptan vales de WIC.",
+      snapText: "Toque el ícono de la zanahoria para determinar si es probable que califique para los beneficios de CalFresh. Después de determinar la elegibilidad buscar una oficina cerca de usted y hacer una cita para solicitar en persona",
+      wicText:"Para determinar si es probable que sea elegible para los beneficios de WIC, llene el formulario proporcionado. Una vez que haya aplicado y obtenido cupones con éxito, use el mapa para localizar las tiendas de comestibles que aceptan sus vales."
     }
   },
 };
