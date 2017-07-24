@@ -1,6 +1,14 @@
 import { MAPS_API_KEY } from './config';
 import get from './fetch';
 
+const titleCase = str =>
+  str
+    .split(' ')
+    .map(word => `${word[0]}${word.toLowerCase().substring(1)}`)
+    .join(' ')
+    .replace(undefined, '')
+    .trim();
+
 export const findZipCode = arr => {
   const targetObj = arr.find(obj =>
     obj.types.includes('postal_code'),
@@ -43,4 +51,36 @@ export const fetchResults = async (lat, lng, keyword) => {
     phone_local: place.result.formatted_phone_number,
     phone_intl: place.result.international_phone_number,
   }));
+};
+
+export const fetchWICVendors = async zipCode => {
+  console.log(`zipCode: ${zipCode}`);
+  const uri = `https://data.chhs.ca.gov/api/action/datastore_search?resource_id=ee10b67b-2b93-47e7-aa41-cecfbbd32e17&limit=5&q=${zipCode}`;
+  const vendors = await get(uri);
+  return Promise.all(
+    vendors.result.records.map(async vendor => {
+      let lat;
+      let lng;
+      vendor.Location.split('  , ').forEach(coord => {
+        if (coord.includes('(')) {
+          lat = parseFloat(coord.replace('(', ''));
+        }
+        if (coord.includes(')')) {
+          lng = parseFloat(coord.replace(')', ''));
+        }
+      });
+      const data = await get(
+        `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${MAPS_API_KEY}`,
+      );
+      return {
+        id: data.results[0].place_id,
+        name: titleCase(vendor.Vendor),
+        address: `${titleCase(vendor.Address)}, ${titleCase(
+          vendor.City,
+        )}, CA, ${vendor['Zip Code']}, USA`,
+        lat,
+        lng,
+      };
+    }),
+  );
 };

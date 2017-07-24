@@ -90,7 +90,7 @@ class ZipModal extends Component {
                   this.props.socket,
                   this.state.zipCode,
                 );
-                this.props.fetchOffices(true);
+                this.props.fetchOffices();
                 this.props.toggleLocationProvided(true);
                 this.props.toggleModalVisibility();
               }
@@ -102,7 +102,7 @@ class ZipModal extends Component {
                   this.props.socket,
                   this.state.zipCode,
                 );
-                this.props.fetchOffices(true);
+                this.props.fetchOffices();
                 this.props.toggleLocationProvided(true);
                 this.props.toggleModalVisibility();
               }

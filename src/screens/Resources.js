@@ -120,7 +120,9 @@ class Resources extends Component {
         changeOffice={this.props.changeOffice}
         snapOffices={this.props.snapOffices}
         wicOffices={this.props.wicOffices}
+        wicVendors={this.props.wicVendors}
         fetchOffices={this.props.fetchOffices}
+        getWICVendors={this.props.getWICVendors}
         mapLoading={this.props.mapLoading}
         modalVisible={this.state.modalVisible}
         changeZipCode={this.props.changeZipCode}
@@ -134,6 +136,7 @@ class Resources extends Component {
 Resources.defaultProps = {
   snapOffices: [],
   wicOffices: [],
+  wicVendors: [],
 };
 
 Resources.propTypes = {
@@ -160,7 +163,7 @@ Resources.propTypes = {
       address: string.isRequired,
       phone_local: string,
       phone_intl: string,
-    }).isRequired,
+    }),
   ),
   wicOffices: arrayOf(
     shape({
@@ -171,7 +174,16 @@ Resources.propTypes = {
       address: string.isRequired,
       phone_local: string,
       phone_intl: string,
-    }).isRequired,
+    }),
+  ),
+  wicVendors: arrayOf(
+    shape({
+      id: string.isRequired,
+      name: string.isRequired,
+      address: string.isRequired,
+      lat: number.isRequired,
+      lng: number.isRequired,
+    }),
   ),
   changeZipCode: func.isRequired,
   changeOffice: func.isRequired,
@@ -190,6 +202,7 @@ const mapStateToProps = ({
   location,
   snapOffices,
   wicOffices,
+  wicVendors,
   mapLoading,
 }) => ({
   locationProvided,
@@ -199,6 +212,7 @@ const mapStateToProps = ({
   location,
   snapOffices,
   wicOffices,
+  wicVendors,
   mapLoading,
 });
 
