@@ -69,7 +69,7 @@ test('fetchZipCodeCoords', async () => {
   expect(coords).toMatchSnapshot();
 });
 
-test('fetchResults', async () => {
+test('fetchResults SNAP', async () => {
   const results = await fetchResults(
     38.5386881,
     -122.695547,
@@ -77,6 +77,16 @@ test('fetchResults', async () => {
   );
   expect(results).toMatchSnapshot();
 });
+
+test('fetchResults WIC', async () => {
+  const results = await fetchResults(
+    38.5386881,
+    -122.695547,
+    'wic',
+  );
+  expect(results).toMatchSnapshot();
+});
+
 
 test('fetchWICVendors', async () => {
   const results = await fetchWICVendors(95404);

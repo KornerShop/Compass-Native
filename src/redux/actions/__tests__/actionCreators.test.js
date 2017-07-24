@@ -111,6 +111,24 @@ describe('async actionCreators', () => {
       phone_local: '(707) 573-3399',
     },
     {
+      address: '14560 Lakeshore Dr, Clearlake, CA 95422, USA',
+      id: 'ChIJOxU8Es2Lg4ARckmR67XizWc',
+      lat: 38.9514114,
+      lng: -122.64106,
+      name: 'People Services Inc',
+      phone_intl: '+1 707-994-1560',
+      phone_local: '(707) 994-1560',
+    },
+    {
+      address: '3245 Bowers Ave, Clearlake, CA 95422, USA',
+      id: 'ChIJEdUAINmLg4ARDIrhkLyozSI',
+      lat: 38.96586389999999,
+      lng: -122.6307496,
+      name: 'Red Cross Shelters',
+      phone_intl: '+1 800-733-2767',
+      phone_local: '(800) 733-2767',
+    },
+    {
       address: '1530 Solano Ave, Vallejo, CA 94590, USA',
       id: 'ChIJD2NWug1zhYARmELjE9P_loU',
       lat: 38.1016731,
@@ -139,11 +157,6 @@ describe('async actionCreators', () => {
     },
   ];
 
-  const mockFetchZipCode = () =>
-    new Promise(resolve => {
-      setTimeout(() => resolve('95404'), 250);
-    });
-
   const vendors = [
     {
       id: 'ChIJZ1aAHdxHhIARO2o8VNCrzvo',
@@ -160,6 +173,11 @@ describe('async actionCreators', () => {
       lng: -122.70693,
     },
   ];
+
+  const mockFetchZipCode = () =>
+    new Promise(resolve => {
+      setTimeout(() => resolve('95404'), 250);
+    });
 
   test('updateLanguage emits, dispatches', () => {
     const socket = {
