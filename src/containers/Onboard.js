@@ -9,7 +9,10 @@ import styled from 'styled-components/native';
 import OnboardButton from '../components/OnboardButton';
 import localizedStrings from '../utilities/localization';
 
-const OnboardScreen = styled.View`flex: 1;`;
+const OnboardScreen = styled.View`
+  flex: 1;
+  background-color: #21CFBF;
+  `;
 
 const Onboard = ({
   orientation: { height, width },
@@ -28,10 +31,7 @@ const Onboard = ({
         bullets
         swipe
         bulletStyle={{
-          backgroundColor: '#cfd8dc',
-        }}
-        bulletsContainerStyle={{
-          marginBottom: 30,
+          backgroundColor: 'white',
         }}
         chosenBulletStyle={{
           backgroundColor: '#78909c',
@@ -41,8 +41,7 @@ const Onboard = ({
         <View
           style={[
             {
-              backgroundColor: 'white',
-              marginTop: 110,
+              marginTop: 90,
               alignItems: 'center',
               flexDirection: 'column',
             },
@@ -54,29 +53,33 @@ const Onboard = ({
               ? <Ionicons
                 name="md-compass"
                 size={180}
-                  color="tomato"
+                  color="white"
                 />
               : <Ionicons
                   name="ios-locate"
                   size={180}
-                  color="tomato"
+                  color="white"
                 />}
           </Text>
           <Text
             style={{
-              marginTop: 20,
+              marginTop: 18,
+              fontWeight: "bold",
               padding: 20,
               textAlign: 'center',
-              fontSize: 35,
+              fontSize: 40,
+              color: 'white',
+              letterSpacing: 3
             }}
           >
             {localizedStrings[language].onboard.officeHeader}
           </Text>
           <Text
             style={{
-              padding: 30,
-              textAlign: 'center',
-              fontSize: 20,
+              padding:40,
+              textAlign: 'left',
+              fontSize: 25,
+              color: 'white'
             }}
           >
             {localizedStrings[language].onboard.officeText}
@@ -85,10 +88,9 @@ const Onboard = ({
         <View
           style={[
             {
-              marginTop: 120,
+              marginTop: 90,
               alignItems: 'center',
               flexDirection: 'column',
-              backgroundColor: 'white',
             },
             orientationObj,
           ]}
@@ -97,24 +99,28 @@ const Onboard = ({
             <Ionicons
               name="ios-nutrition-outline"
               size={180}
-              color="tomato"
+              color="white"
             />
           </Text>
           <Text
             style={{
-              marginTop: 20,
+              marginTop: 18,
+              fontWeight: "bold",
               padding: 20,
               textAlign: 'center',
-              fontSize: 35,
+              fontSize: 40,
+              color: 'white',
+              letterSpacing: 4
             }}
           >
             CalFresh
           </Text>
           <Text
             style={{
-              padding: 30,
-              textAlign: 'center',
-              fontSize: 20,
+              padding:40,
+              textAlign: 'left',
+              fontSize: 25,
+              color: 'white'
             }}
           >
             {localizedStrings[language].onboard.snapText}
@@ -123,8 +129,7 @@ const Onboard = ({
         <View
           style={[
             {
-              backgroundColor: 'white',
-              marginTop: 120,
+              marginTop: 80,
               alignItems: 'center',
               flexDirection: 'column',
             },
@@ -135,24 +140,28 @@ const Onboard = ({
             <Ionicons
               name="ios-woman-outline"
               size={180}
-              color="tomato"
+              color="white"
             />
           </Text>
           <Text
             style={{
-              marginTop: 20,
-              padding: 20,
+              marginTop: 15,
+              fontWeight: "bold",
+              padding: 10,
               textAlign: 'center',
-              fontSize: 35,
+              fontSize: 40,
+              color: 'white',
+              letterSpacing: 4
             }}
           >
             WIC
           </Text>
           <Text
             style={{
-              padding: 30,
-              textAlign: 'center',
-              fontSize: 20,
+              padding:30,
+              textAlign: 'left',
+              fontSize: 25,
+              color: 'white'
             }}
           >
             {localizedStrings[language].onboard.wicText}
