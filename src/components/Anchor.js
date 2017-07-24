@@ -1,9 +1,9 @@
 import React from 'react';
-import { string, func } from 'prop-types';
+import { string, func, bool } from 'prop-types';
 import { Linking, Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-const Anchor = ({ href, onPress, children }) => {
+const Anchor = ({ href, onPress, children, eligible}) => {
   const handlePress = () => {
     Linking.openURL(href);
     onPress && onPress();
@@ -11,10 +11,10 @@ const Anchor = ({ href, onPress, children }) => {
   return (
     <Text
       onPress={handlePress}
-      style={{ fontWeight: 'bold', textAlign: 'center' }}
+      style={{ fontWeight: 'bold', textAlign: 'center', color: 'royalblue'}}
     >
       {children}
-      {children &&
+      {children && !eligible &&
         <View
           style={{
             backgroundColor: 'white',
@@ -30,7 +30,8 @@ const Anchor = ({ href, onPress, children }) => {
             size={28}
             color="royalblue"
           />
-        </View>}
+        </View>
+    }
     </Text>
   );
 };
@@ -39,6 +40,7 @@ Anchor.propTypes = {
   href: string.isRequired,
   onPress: func,
   children: string,
+  eligible: bool
 };
 
 export default Anchor;
