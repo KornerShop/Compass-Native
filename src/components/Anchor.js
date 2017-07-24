@@ -11,7 +11,7 @@ const Anchor = ({ href, onPress, children, eligible}) => {
   return (
     <Text
       onPress={handlePress}
-      style={{ fontWeight: 'bold', textAlign: 'center', color: 'royalblue'}}
+      style={{ fontSize: eligible && 25, fontWeight: 'bold', textAlign: 'center', color: 'royalblue'}}
     >
       {children}
       {children && !eligible &&
