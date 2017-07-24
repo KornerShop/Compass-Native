@@ -77,7 +77,7 @@ const Onboard = ({
           <Text
             style={{
               padding:40,
-              textAlign: 'left',
+              textAlign: 'center',
               fontSize: 25,
               color: 'white'
             }}
@@ -118,7 +118,7 @@ const Onboard = ({
           <Text
             style={{
               padding:40,
-              textAlign: 'left',
+              textAlign: 'center',
               fontSize: 25,
               color: 'white'
             }}
@@ -159,7 +159,7 @@ const Onboard = ({
           <Text
             style={{
               padding:30,
-              textAlign: 'left',
+              textAlign: 'center',
               fontSize: 25,
               color: 'white'
             }}
