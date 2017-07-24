@@ -53,12 +53,12 @@ const Onboard = ({
             {Platform.OS === 'ios'
               ? <Ionicons
                 name="md-compass"
-                size={190}
+                size={180}
                   color="tomato"
                 />
               : <Ionicons
                   name="ios-locate"
-                  size={190}
+                  size={180}
                   color="tomato"
                 />}
           </Text>
@@ -67,7 +67,7 @@ const Onboard = ({
               marginTop: 20,
               padding: 20,
               textAlign: 'center',
-              fontSize: 40,
+              fontSize: 35,
             }}
           >
             {localizedStrings[language].onboard.officeHeader}
@@ -96,7 +96,7 @@ const Onboard = ({
           <Text>
             <Ionicons
               name="ios-nutrition-outline"
-              size={190}
+              size={180}
               color="tomato"
             />
           </Text>
@@ -105,7 +105,7 @@ const Onboard = ({
               marginTop: 20,
               padding: 20,
               textAlign: 'center',
-              fontSize: 40,
+              fontSize: 35,
             }}
           >
             CalFresh
@@ -134,7 +134,7 @@ const Onboard = ({
           <Text>
             <Ionicons
               name="ios-woman-outline"
-              size={190}
+              size={180}
               color="tomato"
             />
           </Text>
@@ -143,7 +143,7 @@ const Onboard = ({
               marginTop: 20,
               padding: 20,
               textAlign: 'center',
-              fontSize: 40,
+              fontSize: 35,
             }}
           >
             WIC
