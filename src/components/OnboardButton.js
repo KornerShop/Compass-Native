@@ -1,5 +1,5 @@
 import React from 'react';
-import { string, bool, func } from 'prop-types';
+import { string, func } from 'prop-types';
 
 import { Button } from 'react-native-elements';
 
@@ -14,18 +14,18 @@ const OnboardButton = props =>
       fontWeight: 'bold',
     }}
     buttonStyle={{
-      borderWidth: 1,
+      borderWidth: 3,
       width: 140,
       borderColor: 'white',
-      backgroundColor: 'tomato',
+      backgroundColor: '#21CFBF',
     }}
     containerViewStyle={{
-      marginTop:20,
+      marginTop:5,
+      marginBottom:5,
       width: 500,
       borderRadius: 25,
     }}
     borderRadius={25}
-    fontSize={18}
     onPress={props.onPress}
   />;
 
