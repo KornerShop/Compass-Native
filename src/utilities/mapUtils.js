@@ -54,7 +54,6 @@ export const fetchResults = async (lat, lng, keyword) => {
 };
 
 export const fetchWICVendors = async zipCode => {
-  console.log(`zipCode: ${zipCode}`);
   const uri = `https://data.chhs.ca.gov/api/action/datastore_search?resource_id=ee10b67b-2b93-47e7-aa41-cecfbbd32e17&limit=5&q=${zipCode}`;
   const vendors = await get(uri);
   return Promise.all(

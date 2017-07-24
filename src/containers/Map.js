@@ -127,32 +127,27 @@ class Map extends Component {
                 </MapView.Callout>
               </MapView.Marker>,
             )}
-            {this.props.wicVendors &&
-              this.props.wicVendors.map(vendor => {
-                console.log(
-                  `vendor: ${JSON.stringify(vendor, null, 2)}`,
-                );
-                return (
-                  <MapView.Marker
-                    accessibilityLabels="button"
-                    key={vendor.id}
-                    coordinate={{
-                      latitude: vendor.lat,
-                      longitude: vendor.lng,
-                    }}
-                    image={require('../assets/groceries.png')}
-                  >
-                    <MapView.Callout tooltip>
-                      <MarkerView
-                        {...vendor}
-                        socket={this.props.socket}
-                        office={this.props.office}
-                        location={this.props.location}
-                      />
-                    </MapView.Callout>
-                  </MapView.Marker>
-                );
-              })}
+            {this.props.office === 2 &&
+              this.props.wicVendors.map(vendor =>
+                <MapView.Marker
+                  accessibilityLabels="button"
+                  key={vendor.id}
+                  coordinate={{
+                    latitude: vendor.lat,
+                    longitude: vendor.lng,
+                  }}
+                  image={require('../assets/groceries.png')}
+                >
+                  <MapView.Callout tooltip>
+                    <MarkerView
+                      {...vendor}
+                      socket={this.props.socket}
+                      office={this.props.office}
+                      location={this.props.location}
+                    />
+                  </MapView.Callout>
+                </MapView.Marker>,
+              )}
           </MapView>
           <ZipModal
             socket={this.props.socket}
