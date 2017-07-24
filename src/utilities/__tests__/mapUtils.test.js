@@ -3,6 +3,7 @@ import {
   fetchZipCode,
   fetchZipCodeCoords,
   fetchResults,
+  fetchWICVendors
 } from '../mapUtils';
 
 test('findZipCode', () => {
@@ -64,7 +65,7 @@ test('fetchZipCode', async () => {
 });
 
 test('fetchZipCodeCoords', async () => {
-  const coords = await fetchZipCodeCoords('95404');
+  const coords = await fetchZipCodeCoords(95404);
   expect(coords).toMatchSnapshot();
 });
 
@@ -74,5 +75,10 @@ test('fetchResults', async () => {
     -122.695547,
     'calfresh',
   );
+  expect(results).toMatchSnapshot();
+});
+
+test('fetchWICVendors', async () => {
+  const results = await fetchWICVendors(95404);
   expect(results).toMatchSnapshot();
 });
