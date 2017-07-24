@@ -68,6 +68,8 @@ class Main extends Component {
       require('./assets/shopper.png'),
       require('./assets/snap1.jpg'),
       require('./assets/wic1.jpeg'),
+      require('./assets/groceries.png'),
+      require('./assets/building.png')
     ]);
     await cacheFonts({
       'merriweather-sans': require('./assets/fonts/MerriweatherSans-Regular.ttf'),
