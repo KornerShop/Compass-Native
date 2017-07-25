@@ -85,6 +85,8 @@ export const fetchOffices = () => async (dispatch, getState) => {
   } else {
     var { latitude, longitude } = getState().location;
   }
+  console.warn(`lat: ${latitude}`)
+  console.warn(`lng: ${longitude}`)
   dispatch(updateLocation({ latitude, longitude }));
   updateOffices(dispatch, office, latitude, longitude);
 };

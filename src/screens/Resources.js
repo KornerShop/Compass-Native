@@ -60,6 +60,7 @@ class Resources extends Component {
       var { coords: location } = await Location.getCurrentPositionAsync({
         enableHighAccuracy: true
       });
+      console.warn(`location: ${JSON.stringify(location, null, 2)}`)
       this.props.changeLocation(this.socket, {
         latitude: location.latitude,
         longitude: location.longitude
