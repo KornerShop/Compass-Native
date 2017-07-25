@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import SocketIOClient from 'socket.io-client';
 import {
   oneOf,
   string,
@@ -12,6 +11,7 @@ import {
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Permissions, Location } from 'expo';
+import SocketIOClient from 'socket.io-client';
 
 import { NGROK_ADDR } from '../utilities/config';
 

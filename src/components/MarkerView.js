@@ -19,6 +19,7 @@ const MarkerView = ({
   <View
     style={{
       borderRadius: 10,
+      zIndex: 10,
       flex: 1,
       justifyContent: 'center',
       width: 300,
@@ -30,6 +31,7 @@ const MarkerView = ({
     <View
       style={{
         flex: 1,
+        zIndex: 10,
         borderTopLeftRadius: 10,
         borderTopRightRadius: 10,
         paddingVertical: 5,

@@ -69,7 +69,7 @@ const Onboard = ({
               textAlign: 'center',
               fontSize: 40,
               color: 'white',
-              letterSpacing: 3
+              letterSpacing: 1
             }}
           >
             {localizedStrings[language].onboard.officeHeader}
