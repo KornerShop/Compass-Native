@@ -1,58 +1,55 @@
-import React, { Component } from 'react';
-import { func } from 'prop-types';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import SocketIOClient from 'socket.io-client';
+import React, { Component } from "react";
+import { func } from "prop-types";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import SocketIOClient from "socket.io-client";
 
 import {
   AsyncStorage,
   ActivityIndicator,
   View,
-  Dimensions,
-} from 'react-native';
+  Dimensions
+} from "react-native";
 
-import { NGROK_ADDR } from './utilities/config';
+import { NGROK_ADDR } from "./utilities/config";
 
-import NavigationProvider from './containers/NavigationProvider';
-import Welcome from './screens/Welcome';
-import { ActivityIndicatorWrapper } from './components/styled/Styled';
+import NavigationProvider from "./containers/NavigationProvider";
+import Welcome from "./screens/Welcome";
+import { ActivityIndicatorWrapper } from "./components/styled/Styled";
 
 import {
   updateOrientation,
-  setLanguagePreference,
-} from './redux/actions/actions';
+  setLanguagePreference
+} from "./redux/actions/actions";
 
-import {
-  cacheImages,
-  cacheFonts,
-} from './utilities/cacheAssetsAsync';
+import { cacheImages, cacheFonts } from "./utilities/cacheAssetsAsync";
 
 class Main extends Component {
   constructor() {
     super();
     this.state = {
       started: false,
-      isLoading: true,
+      isLoading: true
     };
     this.socket = SocketIOClient(NGROK_ADDR, {
-      transports: ['websocket'],
+      transports: ["websocket"]
     });
     this.toggleStart = this.toggleStart.bind(this);
   }
   componentDidMount() {
     // Not ideal, but this action is necessary for getting the initial orientation of the device
-    this.props.updateOrientation(Dimensions.get('window'));
+    this.props.updateOrientation(Dimensions.get("window"));
     this.loadAssetsAsync();
   }
   async getLanguage() {
     try {
-      const language = await AsyncStorage.getItem('language');
+      const language = await AsyncStorage.getItem("language");
       this.setState({
-        isLoading: false,
+        isLoading: false
       });
       if (language) {
         this.setState({
-          started: true,
+          started: true
         });
         this.props.setLanguagePreference(language);
       }
@@ -65,25 +62,25 @@ class Main extends Component {
   }
   async loadAssetsAsync() {
     await cacheImages([
-      require('./assets/shopper.png'),
-      require('./assets/snap1.jpg'),
-      require('./assets/wic1.jpeg'),
-      require('./assets/groceries.png'),
-      require('./assets/building.png')
+      require("./assets/shopper.png"),
+      require("./assets/snap1.jpg"),
+      require("./assets/wic1.jpeg"),
+      require("./assets/groceries.png"),
+      require("./assets/building.png"),
+      require("./assets/apple.png")
     ]);
     await cacheFonts({
-      'merriweather-sans': require('./assets/fonts/MerriweatherSans-Regular.ttf'),
+      "merriweather-sans": require("./assets/fonts/MerriweatherSans-Regular.ttf")
     });
     this.setState({
-      isLoading: false,
+      isLoading: false
     });
   }
   renderRoot(Comp) {
     return (
       <View
         style={{ flex: 1 }}
-        onLayout={() =>
-          this.props.updateOrientation(Dimensions.get('window'))}
+        onLayout={() => this.props.updateOrientation(Dimensions.get("window"))}
       >
         <Comp socket={this.socket} toggleStart={this.toggleStart} />
       </View>
@@ -105,15 +102,12 @@ class Main extends Component {
 
 Main.propTypes = {
   updateOrientation: func.isRequired,
-  setLanguagePreference: func.isRequired,
+  setLanguagePreference: func.isRequired
 };
 
 const mapDispatchToProps = dispatch => ({
   updateOrientation: bindActionCreators(updateOrientation, dispatch),
-  setLanguagePreference: bindActionCreators(
-    setLanguagePreference,
-    dispatch,
-  ),
+  setLanguagePreference: bindActionCreators(setLanguagePreference, dispatch)
 });
 
 export const Unwrapped = Main;
