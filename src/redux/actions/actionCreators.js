@@ -60,7 +60,7 @@ export const changeZipCode = (socket, zipCode) => dispatch => {
 };
 
 export const changeLocation = (socket, location) => async dispatch => {
-  dispatch(updateLocation(location));
+  await dispatch(updateLocation(location));
   const zipCode = await fetchZipCode(location);
   socket.emit("update-zip", {
     zipCode

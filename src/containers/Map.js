@@ -125,7 +125,7 @@ class Map extends Component {
                     location={this.props.location}
                   />
                 </MapView.Callout>
-              </MapView.Marker>,
+              </MapView.Marker>
             )}
             {this.props.office === 2 &&
               this.props.wicVendors.map(vendor =>
