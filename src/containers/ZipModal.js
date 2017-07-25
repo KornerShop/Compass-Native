@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { string, bool, func, object, oneOf } from "prop-types";
+import { bool, func, object, oneOf } from "prop-types";
 
 import { Modal, View, Platform } from "react-native";
 
@@ -31,6 +31,7 @@ class ZipModal extends Component {
       ? (localization =
           localizedStrings[this.props.language].zipModal.foodBanks)
       : (localization = localizedStrings[this.props.language].zipModal.header);
+    console.warn(this.props.updateWICVendorsZipModal)
     return (
       <Modal
         style={{ flex: 1 }}
@@ -89,9 +90,12 @@ class ZipModal extends Component {
             onPress={() => {
               if (this.state.zipValid && this.state.zipCode) {
                 this.props.changeZipCode(this.props.socket, this.state.zipCode);
-                this.props.foodBanks
-                  ? this.props.getFoodBanks()
-                  : this.props.fetchOffices();
+                if (this.props.foodBanks) {
+                  this.props.getFoodBanks()
+                } else {
+                  this.props.updateOffices();
+                  this.props.updateWICVendorsZipModal(this.state.zipCode);
+                }
                 this.props.toggleLocationProvided(true);
                 this.props.toggleModalVisibility();
               }
@@ -99,9 +103,12 @@ class ZipModal extends Component {
             onAccessibilityTap={() => {
               if (this.state.zipValid && this.state.zipCode) {
                 this.props.changeZipCode(this.props.socket, this.state.zipCode);
-                this.props.foodBanks
-                  ? this.props.getFoodBanks()
-                  : this.props.fetchOffices();
+                if (this.props.foodBanks) {
+                  this.props.getFoodBanks()
+                } else {
+                  this.props.updateOffices();
+                  this.props.updateWICVendorsZipModal(this.state.zipCode);
+                }
                 this.props.toggleLocationProvided(true);
                 this.props.toggleModalVisibility();
               }
@@ -116,13 +123,14 @@ class ZipModal extends Component {
 ZipModal.propTypes = {
   modalVisible: bool.isRequired,
   changeZipCode: func.isRequired,
-  fetchOffices: func,
+  updateOffices: func,
   getFoodBanks: func,
   toggleModalVisibility: func.isRequired,
   language: oneOf(["en", "es"]).isRequired,
   toggleLocationProvided: func.isRequired,
   socket: object.isRequired,
-  foodBanks: bool
+  foodBanks: bool,
+  updateWICVendorsZipModal: func.isRequired
 };
 
 export default ZipModal;

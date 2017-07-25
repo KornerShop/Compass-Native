@@ -31,7 +31,7 @@ class Map extends Component {
     this.updateIndex = this.updateIndex.bind(this);
   }
   componentDidMount() {
-    this.props.fetchOffices();
+    this.props.updateOffices();
   }
   updateIndex(idx) {
     if (idx === 2) {
@@ -39,7 +39,7 @@ class Map extends Component {
     } else {
       const officeNum = idx === 0 ? 1 : 2;
       this.props.changeOffice(this.props.socket, officeNum);
-      this.props.fetchOffices();
+      this.props.updateOffices();
     }
   }
   render() {
@@ -154,7 +154,7 @@ class Map extends Component {
             language={this.props.language}
             changeZipCode={this.props.changeZipCode}
             modalVisible={this.props.modalVisible}
-            fetchOffices={this.props.fetchOffices}
+            updateOffices={this.props.updateOffices}
             toggleLocationProvided={this.props.toggleLocationProvided}
             toggleModalVisibility={this.props.toggleModalVisibility}
           />
@@ -189,7 +189,7 @@ Map.propTypes = {
     latitudeDelta: number.isRequired,
     longitudeDelta: number.isRequired,
   }).isRequired,
-  fetchOffices: func.isRequired,
+  updateOffices: func.isRequired,
   office: oneOf([0, 1, 2]).isRequired,
   changeOffice: func.isRequired,
   snapOffices: arrayOf(
