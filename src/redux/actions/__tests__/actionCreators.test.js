@@ -48,6 +48,7 @@ describe('async actionCreators', () => {
       id: 'ChIJWcnjX3c4hIAReEaEIu-h5Dg',
       lat: 38.464769,
       lng: -122.721573,
+
       name: 'Sonoma County Human Services Department',
       phone_intl: '+1 877-699-6868',
       phone_local: '(877) 699-6868',

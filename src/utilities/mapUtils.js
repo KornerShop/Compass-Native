@@ -18,7 +18,7 @@ export const fetchZipCode = async ({ latitude, longitude }) => {
   const data = await get(
     `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${MAPS_API_KEY}`
   );
-  return findZipCode(data.results[0].address_components);
+  return data.results[0] ? findZipCode(data.results[0].address_components) : 95404;
 };
 
 export const fetchZipCodeCoords = async zip => {
@@ -70,7 +70,8 @@ export const fetchFoodBanks = async (lat, lng) => {
   }));
 };
 
-export const fetchWICVendors = async zipCode => {
+export const fetchWICVendors = async (latitude, longitude) => {
+  const zipCode = await fetchZipCode({ latitude, longitude });
   const uri = `https://data.chhs.ca.gov/api/action/datastore_search?resource_id=ee10b67b-2b93-47e7-aa41-cecfbbd32e17&limit=5&q=${zipCode}`;
   const vendors = await get(uri);
   return Promise.all(

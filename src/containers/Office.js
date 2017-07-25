@@ -11,9 +11,9 @@ import { ImageContainer, OfficeText } from "../components/styled/Styled";
 import localizedStrings from "../utilities/localization";
 
 const Office = props => {
-  const officeChosen = async officeNum => {
+  const officeChosen = officeNum => {
     props.changeOffice(props.socket, officeNum);
-    await props.getLocationAsync();
+    props.getLocationAsync();
   };
   return (
     <View
@@ -73,7 +73,7 @@ const Office = props => {
               backgroundColor="white"
               title={localizedStrings[
                 props.language
-              ].buttons.office.toUpperCase()}
+                ].buttons.office.toUpperCase()}
               fontFamily="merriweather-sans"
               onPress={() => officeChosen(1)}
             />
@@ -123,7 +123,7 @@ const Office = props => {
               backgroundColor="white"
               title={localizedStrings[
                 props.language
-              ].buttons.office.toUpperCase()}
+                ].buttons.office.toUpperCase()}
               fontFamily="merriweather-sans"
               onPress={() => officeChosen(2)}
             />
