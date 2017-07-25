@@ -9,7 +9,7 @@ const OnboardButton = props =>
     title={props.title}
     textStyle={{
       color: 'white',
-      fontSize: 22,
+      fontSize: 25,
       textAlign:'center',
       fontWeight: 'bold',
     }}
@@ -23,9 +23,9 @@ const OnboardButton = props =>
       marginTop:5,
       marginBottom:5,
       width: 500,
-      borderRadius: 25,
+      borderRadius: 35,
     }}
-    borderRadius={25}
+    borderRadius={35}
     onPress={props.onPress}
   />;
 

@@ -1,24 +1,24 @@
-import React, { Component } from 'react';
-import { string, bool, func, object, oneOf } from 'prop-types';
+import React, { Component } from "react";
+import { string, bool, func, object, oneOf } from "prop-types";
 
-import { Modal, View, Platform } from 'react-native';
+import { Modal, View, Platform } from "react-native";
 
 import {
   FormHeader,
   StyledInputZip,
-  ZipModalInputWrapper,
-} from '../components/styled/Styled';
+  ZipModalInputWrapper
+} from "../components/styled/Styled";
 
-import SubmitButton from '../components/SubmitButton';
+import SubmitButton from "../components/SubmitButton";
 
-import localizedStrings from '../utilities/localization';
+import localizedStrings from "../utilities/localization";
 
 class ZipModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      zipCode: '',
-      zipValid: true,
+      zipCode: "",
+      zipValid: true
     };
     this.onChangeZip = this.onChangeZip.bind(this);
   }
@@ -26,6 +26,11 @@ class ZipModal extends Component {
     this.setState({ zipCode });
   }
   render() {
+    let localization;
+    this.props.foodBanks
+      ? (localization =
+          localizedStrings[this.props.language].zipModal.foodBanks)
+      : (localization = localizedStrings[this.props.language].zipModal.header);
     return (
       <Modal
         style={{ flex: 1 }}
@@ -37,15 +42,15 @@ class ZipModal extends Component {
           accessible={false}
           style={{
             flex: 1,
-            alignItems: 'center',
-            justifyContent: 'center',
+            alignItems: "center",
+            justifyContent: "center",
             paddingVertical: 100,
             paddingHorizontal: 20,
-            backgroundColor: '#21CFBF',
+            backgroundColor: "#21CFBF"
           }}
         >
           <FormHeader zip>
-            {localizedStrings[this.props.language].zipModal.header}
+            {localization}
           </FormHeader>
           <ZipModalInputWrapper zip valid={this.state.zipValid}>
             <StyledInputZip
@@ -59,54 +64,47 @@ class ZipModal extends Component {
               valid={this.state.zipValid}
               maxLength={5}
               returnKeyType="done"
-              keyboardType={`${Platform.OS === 'ios'
-                ? 'numbers-and-punctuation'
-                : 'numeric'}`}
+              keyboardType={`${Platform.OS === "ios"
+                ? "numbers-and-punctuation"
+                : "numeric"}`}
               onChangeText={zipCode => {
                 this.onChangeZip(zipCode);
                 if (/^9[0-6]\d\d\d$/.test(zipCode)) {
                   return this.setState({
-                    zipValid: true,
+                    zipValid: true
                   });
                 }
                 return this.setState({
-                  zipValid: false,
+                  zipValid: false
                 });
               }}
             />
           </ZipModalInputWrapper>
           <SubmitButton
             zip
-            title={
-              localizedStrings[this.props.language].buttons.submit
-            }
+            title={localizedStrings[this.props.language].buttons.submit}
             accessibility={
-              localizedStrings[this.props.language].buttons
-                .accessibilitySubmit
+              localizedStrings[this.props.language].buttons.accessibilitySubmit
             }
             onPress={() => {
               if (this.state.zipValid && this.state.zipCode) {
-                this.props.changeZipCode(
-                  this.props.socket,
-                  this.state.zipCode,
-                );
-                this.props.fetchOffices();
+                this.props.changeZipCode(this.props.socket, this.state.zipCode);
+                this.props.foodBanks
+                  ? this.props.getFoodBanks()
+                  : this.props.fetchOffices();
                 this.props.toggleLocationProvided(true);
                 this.props.toggleModalVisibility();
               }
-              return null;
             }}
             onAccessibilityTap={() => {
               if (this.state.zipValid && this.state.zipCode) {
-                this.props.changeZipCode(
-                  this.props.socket,
-                  this.state.zipCode,
-                );
-                this.props.fetchOffices();
+                this.props.changeZipCode(this.props.socket, this.state.zipCode);
+                this.props.foodBanks
+                  ? this.props.getFoodBanks()
+                  : this.props.fetchOffices();
                 this.props.toggleLocationProvided(true);
                 this.props.toggleModalVisibility();
               }
-              return null;
             }}
           />
         </View>
@@ -118,11 +116,13 @@ class ZipModal extends Component {
 ZipModal.propTypes = {
   modalVisible: bool.isRequired,
   changeZipCode: func.isRequired,
-  fetchOffices: func.isRequired,
+  fetchOffices: func,
+  getFoodBanks: func,
   toggleModalVisibility: func.isRequired,
-  language: oneOf(['en', 'es']).isRequired,
+  language: oneOf(["en", "es"]).isRequired,
   toggleLocationProvided: func.isRequired,
   socket: object.isRequired,
+  foodBanks: bool
 };
 
 export default ZipModal;
