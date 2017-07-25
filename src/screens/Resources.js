@@ -1,98 +1,84 @@
-import React, { Component } from 'react';
-import {
-  oneOf,
-  string,
-  number,
-  bool,
-  func,
-  arrayOf,
-  shape,
-} from 'prop-types';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { Permissions, Location } from 'expo';
-import SocketIOClient from 'socket.io-client';
+import React, { Component } from "react";
+import { oneOf, string, number, bool, func, arrayOf, shape } from "prop-types";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { Permissions, Location } from "expo";
+import SocketIOClient from "socket.io-client";
 
-import { NGROK_ADDR } from '../utilities/config';
+import { NGROK_ADDR } from "../utilities/config";
 
-import Office from '../containers/Office';
-import Map from '../containers/Map';
+import Office from "../containers/Office";
+import Map from "../containers/Map";
 
-import { toggleLocationProvided } from '../redux/actions/actions';
+import { toggleLocationProvided } from "../redux/actions/actions";
 import {
   changeOffice,
   changeZipCode,
   fetchOffices,
-  changeLocation,
-} from '../redux/actions/actionCreators';
+  changeLocation
+} from "../redux/actions/actionCreators";
 
 class Resources extends Component {
   constructor(props) {
     super(props);
     this.state = {
       modalVisible: false,
-      onboarded: false,
+      onboarded: false
     };
     this.socket = SocketIOClient(NGROK_ADDR, {
-      transports: ['websocket'],
+      transports: ["websocket"]
     });
     this.getLocationAsync = this.getLocationAsync.bind(this);
     this.toggleOnboarded = this.toggleOnboarded.bind(this);
-    this.toggleModalVisibility = this.toggleModalVisibility.bind(
-      this,
-    );
+    this.toggleModalVisibility = this.toggleModalVisibility.bind(this);
   }
   async getLocationAsync() {
     const { status: currentStatus } = await Permissions.getAsync(
-      Permissions.LOCATION,
+      Permissions.LOCATION
     );
-    if (currentStatus !== 'granted') {
+    if (currentStatus !== "granted") {
       // if app doesn't already have the user's location permission
       const { status: newStatus } = await Permissions.askAsync(
-        Permissions.LOCATION,
+        Permissions.LOCATION
       );
-      if (newStatus !== 'granted') {
+      if (newStatus !== "granted") {
         // if user has denied app their location
         this.toggleModalVisibility();
       } else {
         // if user is giving us location permission for the first time
-        var {
-          coords: location,
-        } = await Location.getCurrentPositionAsync({
-          enableHighAccuracy: true,
+        var { coords: location } = await Location.getCurrentPositionAsync({
+          enableHighAccuracy: true
         });
         this.props.changeLocation(this.socket, {
           latitude: location.latitude,
-          longitude: location.longitude,
+          longitude: location.longitude
         });
         this.props.toggleLocationProvided(true);
       }
     } else {
       // app already has user's location
-      var {
-        coords: location,
-      } = await Location.getCurrentPositionAsync({
-        enableHighAccuracy: true,
+      var { coords: location } = await Location.getCurrentPositionAsync({
+        enableHighAccuracy: true
       });
       this.props.changeLocation(this.socket, {
         latitude: location.latitude,
-        longitude: location.longitude,
+        longitude: location.longitude
       });
       this.props.toggleLocationProvided(true);
     }
   }
   toggleOnboarded() {
     this.setState({
-      onboarded: true,
+      onboarded: true
     });
   }
   toggleModalVisibility() {
     this.setState({
-      modalVisible: !this.state.modalVisible,
+      modalVisible: !this.state.modalVisible
     });
   }
   render() {
-    if (this.props.locationProvided === false) {
+    if (this.props.office === 0) {
       return (
         <Office
           socket={this.socket}
@@ -109,7 +95,7 @@ class Resources extends Component {
         />
       );
     }
-    // location hasn't been provided
+    // Office has been choosen
     return (
       <Map
         socket={this.socket}
@@ -136,23 +122,23 @@ class Resources extends Component {
 Resources.defaultProps = {
   snapOffices: [],
   wicOffices: [],
-  wicVendors: [],
+  wicVendors: []
 };
 
 Resources.propTypes = {
-  language: oneOf(['en', 'es']).isRequired,
+  language: oneOf(["en", "es"]).isRequired,
   orientation: shape({
     scale: number.isRequired,
     height: number.isRequired,
     width: number.isRequired,
-    fontScale: number.isRequired,
+    fontScale: number.isRequired
   }).isRequired,
   office: oneOf([0, 1, 2]).isRequired,
   location: shape({
     latitude: number.isRequired,
     longitude: number.isRequired,
     latitudeDelta: number.isRequired,
-    longitudeDelta: number.isRequired,
+    longitudeDelta: number.isRequired
   }).isRequired,
   snapOffices: arrayOf(
     shape({
@@ -162,8 +148,8 @@ Resources.propTypes = {
       name: string.isRequired,
       address: string.isRequired,
       phone_local: string,
-      phone_intl: string,
-    }),
+      phone_intl: string
+    })
   ),
   wicOffices: arrayOf(
     shape({
@@ -173,8 +159,8 @@ Resources.propTypes = {
       name: string.isRequired,
       address: string.isRequired,
       phone_local: string,
-      phone_intl: string,
-    }),
+      phone_intl: string
+    })
   ),
   wicVendors: arrayOf(
     shape({
@@ -182,8 +168,8 @@ Resources.propTypes = {
       name: string.isRequired,
       address: string.isRequired,
       lat: number.isRequired,
-      lng: number.isRequired,
-    }),
+      lng: number.isRequired
+    })
   ),
   changeZipCode: func.isRequired,
   changeOffice: func.isRequired,
@@ -191,7 +177,7 @@ Resources.propTypes = {
   fetchOffices: func.isRequired,
   locationProvided: bool.isRequired,
   mapLoading: bool.isRequired,
-  toggleLocationProvided: func.isRequired,
+  toggleLocationProvided: func.isRequired
 };
 
 const mapStateToProps = ({
@@ -203,7 +189,7 @@ const mapStateToProps = ({
   snapOffices,
   wicOffices,
   wicVendors,
-  mapLoading,
+  mapLoading
 }) => ({
   locationProvided,
   language,
@@ -213,7 +199,7 @@ const mapStateToProps = ({
   snapOffices,
   wicOffices,
   wicVendors,
-  mapLoading,
+  mapLoading
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -221,12 +207,7 @@ const mapDispatchToProps = dispatch => ({
   changeOffice: bindActionCreators(changeOffice, dispatch),
   changeLocation: bindActionCreators(changeLocation, dispatch),
   fetchOffices: bindActionCreators(fetchOffices, dispatch),
-  toggleLocationProvided: bindActionCreators(
-    toggleLocationProvided,
-    dispatch,
-  ),
+  toggleLocationProvided: bindActionCreators(toggleLocationProvided, dispatch)
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  Resources,
-);
+export default connect(mapStateToProps, mapDispatchToProps)(Resources);
