@@ -16,12 +16,12 @@ According to the PEW research institute, about 13% of low-income Americans rely 
 ## User flow 🌊
 * Choose your language (English or Spanish).
 * Determine eligibility for CalFresh and/or WIC resources.
-* CalFresh eligibility is determined by Code for America's (Get CalFresh)[https://www.getcalfresh.org/]
-* WIC eligibility is determined by filling out a short form
-* If you're likely eligible for WIC, you'll be given a short list of next steps.
-* If you're likely ineligble for WIC, we'll display a map of food banks near you.
-* Once you've determined likelihood of eligibilty for either resource, head over to the map and locate offices near you (user's must apply in person).
-* Once you've applied in person and have been approved for WIC, you can use Compass's map to find WIC friendly grocery stores near you (all grocery stores accept CalFresh in the state of CA)! 
+* CalFresh eligibility is determined by Code for America's [Get CalFresh](https://www.getcalfresh.org/).
+* WIC eligibility is determined by filling out a short form.
+* If you're likely eligible for WIC, you'll be given a short list of next steps (necessary phone numbers included).
+* If you're likely ineligble for WIC, we'll display a map full of food banks near you (phone numbers & addresses included).
+* Once you've determined likelihood of eligibilty for either resource, head over to the map tab and locate offices near you (user's must apply in person for both CalFresh and WIC).
+* WIC specific: Once you've applied in person and have been approved, you can use Compass's map to locate WIC friendly grocery stores near you (all grocery stores accept CalFresh in the state of CA)! 
 
 ### Technologies used:
 * Javascript/ES6 6️⃣
