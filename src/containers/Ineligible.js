@@ -4,7 +4,7 @@ import { bool, object, func, oneOf } from "prop-types";
 import { View, Platform, ActivityIndicator } from "react-native";
 import { MapView } from "expo";
 
-import { StyledContainer, EligibleHeader, ActivityIndicatorWrapper } from "../components/styled/Styled";
+import { StyledContainer, IneligibleHeader, ActivityIndicatorWrapper } from "../components/styled/Styled";
 
 import ZipModal from "./ZipModal";
 import EligibilityButton from "../components/EligibilityButton";
@@ -35,10 +35,10 @@ export default class Ineligible extends Component {
               justifyContent: "space-around"
             }}
           >
-            <EligibleHeader>
+            <IneligibleHeader>
               {localizedStrings[this.props.language].ineligible.header}
               {localizedStrings[this.props.language].ineligible.foodBanks}
-            </EligibleHeader>
+            </IneligibleHeader>
             {this.props.mapLoading
               ? <ActivityIndicatorWrapper>
                   <ActivityIndicator color="#21CFBF" size="large" />
@@ -59,7 +59,7 @@ export default class Ineligible extends Component {
                         latitude: foodBank.lat,
                         longitude: foodBank.lng
                       }}
-                      image={require("../assets/groceries.png")}
+                      image={require("../assets/apple.png")}
                     >
                       <MapView.Callout tooltip>
                         <MarkerView

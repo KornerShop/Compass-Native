@@ -145,7 +145,10 @@ export const EligibleHeader = FormHeader.extend`
   padding-bottom:0;
   padding-left: 10;
 `
-
+export const IneligibleHeader = EligibleHeader.extend`
+  font-size: 20;
+  letter-spacing: 0;
+`
 export const ActivityIndicatorWrapper = styled.View`
   flex: 1;
   justify-content: center;
