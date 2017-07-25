@@ -1,9 +1,9 @@
-import React from 'react';
-import { string, number, object, shape, oneOf } from 'prop-types';
-import { View, Text } from 'react-native';
+import React from "react";
+import { string, number, object, shape, oneOf } from "prop-types";
+import { View, Text } from "react-native";
 
-import Anchor from './Anchor';
-import MapBrowser from './MapBrowser';
+import Anchor from "./Anchor";
+import MapBrowser from "./MapBrowser";
 
 const MarkerView = ({
   location,
@@ -14,52 +14,56 @@ const MarkerView = ({
   address,
   id,
   office,
-  socket,
+  socket
 }) =>
   <View
     style={{
       borderRadius: 10,
-      zIndex: 10,
       flex: 1,
-      justifyContent: 'center',
+      justifyContent: "center",
       width: 300,
       height: 200,
-      backgroundColor: 'white',
-      paddingBottom: 15,
+      backgroundColor: "white",
+      paddingBottom: 15
     }}
   >
     <View
       style={{
         flex: 1,
-        zIndex: 10,
         borderTopLeftRadius: 10,
         borderTopRightRadius: 10,
         paddingVertical: 5,
-        backgroundColor: '#21CFBF',
+        backgroundColor: "#21CFBF"
       }}
     >
       <Text
         style={{
-          color: 'white',
+          color: "white",
           fontSize: 20,
-          fontWeight: 'bold',
+          fontWeight: "bold",
           marginTop: 5,
           marginBottom: 5,
           padding: 5,
-          textAlign: 'center',
+          textAlign: "center"
         }}
       >
         {name}
       </Text>
     </View>
-    <View style={{ flex: 1, backgroundColor: 'white', marginTop: 5 }}>
+    <View
+      style={{
+        flex: 1,
+        backgroundColor: "white",
+        marginTop: 5
+      }}
+    >
       <Text
         style={{
-          color: 'royalblue',
+          color: "royalblue",
           fontSize: 18,
           marginTop: 10,
           marginBottom: 10,
-          textAlign: 'center',
+          textAlign: "center"
         }}
       >
         {phone_local &&
@@ -86,7 +90,7 @@ MarkerView.propTypes = {
     latitude: number.isRequired,
     longitude: number.isRequired,
     latitudeDelta: number.isRequired,
-    longitudeDelta: number.isRequired,
+    longitudeDelta: number.isRequired
   }).isRequired,
   name: string.isRequired,
   phone_local: string,
@@ -94,7 +98,7 @@ MarkerView.propTypes = {
   lat: number.isRequired,
   lng: number.isRequired,
   id: string.isRequired,
-  socket: object,
+  socket: object
 };
 
 export default MarkerView;

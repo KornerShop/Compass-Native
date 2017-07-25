@@ -16,11 +16,25 @@ import localizedStrings from "../utilities/localization";
 import MarkerView from "../components/MarkerView";
 
 export default class Ineligible extends Component {
+  constructor() {
+    super();
+    this.state = {
+      selectedCalloutIndex: 0
+    };
+    this.onCalloutPressed = this.onCalloutPressed.bind(this);
+  }
   async componentDidMount() {
     await this.props.getLocationAsync();
     this.props.getFoodBanks();
   }
+  onCalloutPressed(index) {
+    const calloutRef = `callout-${index}`;
+    const item = this.refs[calloutRef];
+    this.setState({ selectedCalloutIndex: index });
+  }
+
   render() {
+    let index;
     return (
       <View
         accessible={false}
@@ -70,6 +84,9 @@ export default class Ineligible extends Component {
                       longitude: foodBank.lng
                     }}
                     image={require("../assets/apple.png")}
+                    zIndex={this.state.selectedCalloutIndex === index ? 999 : 0}
+                    onPress={() => this.onCalloutPressed(index)}
+                    ref={`callout-${index}`}
                   >
                     <MapView.Callout tooltip>
                       <MarkerView
