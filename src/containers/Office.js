@@ -11,9 +11,9 @@ import { ImageContainer, OfficeText } from "../components/styled/Styled";
 import localizedStrings from "../utilities/localization";
 
 const Office = props => {
-  const officeChosen = officeNum => {
+  const officeChosen = async officeNum => {
+    await props.getLocationAsync();
     props.changeOffice(props.socket, officeNum);
-    props.getLocationAsync();
   };
   return (
     <View
