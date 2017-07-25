@@ -1,81 +1,104 @@
-import React, { Component } from "react";
-import { oneOf, string, number, bool, func, arrayOf, shape } from "prop-types";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import { Permissions, Location } from "expo";
-import SocketIOClient from "socket.io-client";
+import React, { Component } from 'react';
+import {
+  oneOf,
+  string,
+  number,
+  bool,
+  func,
+  arrayOf,
+  shape,
+} from 'prop-types';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { Permissions, Location } from 'expo';
+import SocketIOClient from 'socket.io-client';
 
-import { NGROK_ADDR } from "../utilities/config";
+import { NGROK_ADDR } from '../utilities/config';
 
-import Office from "../containers/Office";
-import Map from "../containers/Map";
+import Office from '../containers/Office';
+import Map from '../containers/Map';
 
-import { toggleLocationProvided } from "../redux/actions/actions";
+import { toggleLocationProvided } from '../redux/actions/actions';
 import {
   changeOffice,
   changeZipCode,
-  fetchOffices,
-  changeLocation
-} from "../redux/actions/actionCreators";
+  updateOffices,
+  changeLocation,
+  updateWICVendorsLocationPermission,
+  updateWICVendorsZipModal
+} from '../redux/actions/actionCreators';
 
 class Resources extends Component {
   constructor(props) {
     super(props);
     this.state = {
       modalVisible: false,
-      onboarded: false
+      onboarded: false,
     };
     this.socket = SocketIOClient(NGROK_ADDR, {
-      transports: ["websocket"]
+      transports: ['websocket'],
     });
     this.getLocationAsync = this.getLocationAsync.bind(this);
     this.toggleOnboarded = this.toggleOnboarded.bind(this);
-    this.toggleModalVisibility = this.toggleModalVisibility.bind(this);
-  }
-  async getLocationAsync() {
-    const { status: currentStatus } = await Permissions.getAsync(
-      Permissions.LOCATION
+    this.toggleModalVisibility = this.toggleModalVisibility.bind(
+      this,
     );
-    if (currentStatus !== "granted") {
+  }
+  async getLocationAsync(office) {
+    const { status: currentStatus } = await Permissions.getAsync(
+      Permissions.LOCATION,
+    );
+    if (currentStatus !== 'granted') {
       // if app doesn't already have the user's location permission
       const { status: newStatus } = await Permissions.askAsync(
-        Permissions.LOCATION
+        Permissions.LOCATION,
       );
-      if (newStatus !== "granted") {
+      if (newStatus !== 'granted') {
         // if user has denied app their location
         this.toggleModalVisibility();
       } else {
         // if user is giving us location permission for the first time
-        var { coords: location } = await Location.getCurrentPositionAsync({
-          enableHighAccuracy: true
+        var {
+          coords: { latitude, longitude },
+        } = await Location.getCurrentPositionAsync({
+          enableHighAccuracy: true,
         });
         this.props.changeLocation(this.socket, {
-          latitude: location.latitude,
-          longitude: location.longitude
+          latitude,
+          longitude,
         });
+        office === 2 && this.props.updateWICVendorsLocationPermission(
+          latitude,
+          longitude,
+        );
         this.props.toggleLocationProvided(true);
       }
     } else {
       // app already has user's location
-      var { coords: location } = await Location.getCurrentPositionAsync({
-        enableHighAccuracy: true
+      var {
+        coords: { latitude, longitude },
+      } = await Location.getCurrentPositionAsync({
+        enableHighAccuracy: true,
       });
-      console.warn(`location: ${JSON.stringify(location, null, 2)}`)
       this.props.changeLocation(this.socket, {
-        latitude: location.latitude,
-        longitude: location.longitude
+        latitude,
+        longitude,
       });
+      office === 2 && this.props.updateWICVendorsLocationPermission(
+        latitude,
+        longitude,
+      );
       this.props.toggleLocationProvided(true);
     }
   }
   toggleOnboarded() {
     this.setState({
-      onboarded: true
+      onboarded: true,
     });
   }
   toggleModalVisibility() {
     this.setState({
-      modalVisible: !this.state.modalVisible
+      modalVisible: !this.state.modalVisible,
     });
   }
   render() {
@@ -90,9 +113,10 @@ class Resources extends Component {
           changeOffice={this.props.changeOffice}
           modalVisible={this.state.modalVisible}
           changeZipCode={this.props.changeZipCode}
-          fetchOffices={this.props.fetchOffices}
+          updateOffices={this.props.updateOffices}
           toggleLocationProvided={this.props.toggleLocationProvided}
           toggleModalVisibility={this.toggleModalVisibility}
+          updateWICVendorsZipModal={this.props.updateWICVendorsZipModal}
         />
       );
     }
@@ -107,7 +131,7 @@ class Resources extends Component {
         snapOffices={this.props.snapOffices}
         wicOffices={this.props.wicOffices}
         wicVendors={this.props.wicVendors}
-        fetchOffices={this.props.fetchOffices}
+        updateOffices={this.props.updateOffices}
         getWICVendors={this.props.getWICVendors}
         mapLoading={this.props.mapLoading}
         modalVisible={this.state.modalVisible}
@@ -122,23 +146,23 @@ class Resources extends Component {
 Resources.defaultProps = {
   snapOffices: [],
   wicOffices: [],
-  wicVendors: []
+  wicVendors: [],
 };
 
 Resources.propTypes = {
-  language: oneOf(["en", "es"]).isRequired,
+  language: oneOf(['en', 'es']).isRequired,
   orientation: shape({
     scale: number.isRequired,
     height: number.isRequired,
     width: number.isRequired,
-    fontScale: number.isRequired
+    fontScale: number.isRequired,
   }).isRequired,
   office: oneOf([0, 1, 2]).isRequired,
   location: shape({
     latitude: number.isRequired,
     longitude: number.isRequired,
     latitudeDelta: number.isRequired,
-    longitudeDelta: number.isRequired
+    longitudeDelta: number.isRequired,
   }).isRequired,
   snapOffices: arrayOf(
     shape({
@@ -148,8 +172,8 @@ Resources.propTypes = {
       name: string.isRequired,
       address: string.isRequired,
       phone_local: string,
-      phone_intl: string
-    })
+      phone_intl: string,
+    }),
   ),
   wicOffices: arrayOf(
     shape({
@@ -159,8 +183,8 @@ Resources.propTypes = {
       name: string.isRequired,
       address: string.isRequired,
       phone_local: string,
-      phone_intl: string
-    })
+      phone_intl: string,
+    }),
   ),
   wicVendors: arrayOf(
     shape({
@@ -168,16 +192,18 @@ Resources.propTypes = {
       name: string.isRequired,
       address: string.isRequired,
       lat: number.isRequired,
-      lng: number.isRequired
-    })
+      lng: number.isRequired,
+    }),
   ),
   changeZipCode: func.isRequired,
   changeOffice: func.isRequired,
   changeLocation: func.isRequired,
-  fetchOffices: func.isRequired,
+  updateOffices: func.isRequired,
   locationProvided: bool.isRequired,
   mapLoading: bool.isRequired,
-  toggleLocationProvided: func.isRequired
+  toggleLocationProvided: func.isRequired,
+  updateWICVendorsZipModal: func.isRequired,
+  updateWICVendorsLocationPermission: func.isRequired
 };
 
 const mapStateToProps = ({
@@ -189,7 +215,7 @@ const mapStateToProps = ({
   snapOffices,
   wicOffices,
   wicVendors,
-  mapLoading
+  mapLoading,
 }) => ({
   locationProvided,
   language,
@@ -199,15 +225,28 @@ const mapStateToProps = ({
   snapOffices,
   wicOffices,
   wicVendors,
-  mapLoading
+  mapLoading,
 });
 
 const mapDispatchToProps = dispatch => ({
   changeZipCode: bindActionCreators(changeZipCode, dispatch),
   changeOffice: bindActionCreators(changeOffice, dispatch),
   changeLocation: bindActionCreators(changeLocation, dispatch),
-  fetchOffices: bindActionCreators(fetchOffices, dispatch),
-  toggleLocationProvided: bindActionCreators(toggleLocationProvided, dispatch)
+  updateOffices: bindActionCreators(updateOffices, dispatch),
+  toggleLocationProvided: bindActionCreators(
+    toggleLocationProvided,
+    dispatch,
+  ),
+  updateWICVendorsLocationPermission: bindActionCreators(
+    updateWICVendorsLocationPermission,
+    dispatch,
+  ),
+  updateWICVendorsZipModal: bindActionCreators(
+    updateWICVendorsZipModal,
+    dispatch
+  )
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Resources);
+export default connect(mapStateToProps, mapDispatchToProps)(
+  Resources,
+);

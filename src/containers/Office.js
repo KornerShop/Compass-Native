@@ -10,9 +10,9 @@ import { ImageContainer, OfficeText } from "../components/styled/Styled";
 
 import localizedStrings from "../utilities/localization";
 
-const Office = props => {
+const Office = (props) => {
   const officeChosen = async officeNum => {
-    await props.getLocationAsync();
+    await props.getLocationAsync(officeNum);
     props.changeOffice(props.socket, officeNum);
   };
   return (
@@ -134,9 +134,10 @@ const Office = props => {
           language={props.language}
           changeZipCode={props.changeZipCode}
           modalVisible={props.modalVisible}
-          fetchOffices={props.fetchOffices}
+          updateOffices={props.updateOffices}
           toggleLocationProvided={props.toggleLocationProvided}
           toggleModalVisibility={props.toggleModalVisibility}
+          updateWICVendorsZipModal={props.updateWICVendorsZipModal}
         />
       </View>
     </View>
@@ -150,10 +151,11 @@ Office.propTypes = {
   width: number.isRequired,
   changeZipCode: func.isRequired,
   modalVisible: bool.isRequired,
-  fetchOffices: func.isRequired,
+  updateOffices: func.isRequired,
   toggleLocationProvided: func.isRequired,
   toggleModalVisibility: func.isRequired,
   language: oneOf(["en", "es"]).isRequired,
+  updateWICVendorsZipModal: func.isRequired,
   socket: object.isRequired
 };
 
