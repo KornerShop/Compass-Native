@@ -26,16 +26,13 @@ export const updateFoodBanks = async (dispatch, latitude, longitude) => {
 };
 
 export const getFoodBanks = () => async (dispatch, getState) => {
-  console.log('fetching food banks in action creators');
   dispatch(updateMapLoading(true));
   const { zipCode } = getState();
   if (zipCode) {
-    console.log(`zipCode at action Creator: ${zipCode}`);
     const { lat: latitude, lng: longitude } = await fetchZipCodeCoords(zipCode);
     updateFoodBanks(dispatch, latitude, longitude);
   } else {
     const { latitude, longitude } = getState().location;
-    console.log(`lat and long at action Creator: ${getState().location}`);
     updateFoodBanks(dispatch, latitude, longitude);
   }
 };

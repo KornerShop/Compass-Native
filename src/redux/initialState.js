@@ -1,7 +1,7 @@
 export default {
   language: 'en',
   locationProvided: false,
-  mapLoading: false,
+  mapLoading: true,
   location: {
     latitude: 0,
     longitude: 0,
