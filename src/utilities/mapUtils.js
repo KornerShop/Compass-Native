@@ -50,8 +50,11 @@ export const fetchResults = async (lat, lng, keyword) => {
 };
 
 export const fetchFoodBanks = async (lat, lng) => {
+  console.warn(`lat and lng at fetchFoodBanks: ${lat}, ${lng}`);
+  // this is initially getting 0 , 0
   const placeUri = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=50000&keyword=foodbank&key=${MAPS_API_KEY}`;
   const places = await get(placeUri);
+  console.log(`place URI: ${placeUri}`);
   const placesWithDetails = await Promise.all(
     places.results.map(async place => {
       const placeDetailsUri = `https://maps.googleapis.com/maps/api/place/details/json?placeid=${place.place_id}&key=${MAPS_API_KEY}`;

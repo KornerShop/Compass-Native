@@ -20,6 +20,7 @@ import {
 } from "../../utilities/mapUtils";
 
 export const updateFoodBanks = async (dispatch, latitude, longitude) => {
+  dispatch(updateLocation({latitude, longitude}));
   const foodBanks = await fetchFoodBanks(latitude, longitude);
   dispatch(populateFoodBanks(foodBanks));
   dispatch(updateMapLoading(false));
