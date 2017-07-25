@@ -33,7 +33,6 @@ class Resources extends Component {
     this.toggleModalVisibility = this.toggleModalVisibility.bind(this);
   }
   async getLocationAsync() {
-    console.log(`this is running`);
     const { status: currentStatus } = await Permissions.getAsync(
       Permissions.LOCATION
     );
@@ -96,7 +95,6 @@ class Resources extends Component {
         />
       );
     }
-    // Office has been choosen
     return (
       <Map
         socket={this.socket}

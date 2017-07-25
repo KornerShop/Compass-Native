@@ -45,7 +45,6 @@ export const updateLanguage = (socket, lang) => dispatch => {
 };
 
 export const changeOffice = (socket, office) => dispatch => {
-  console.log(`changeOffice in action creators:  ${office}`);
   socket.emit("update-office", {
     office: office === 1 ? "SNAP" : "WIC",
     date: moment().format("l")
@@ -69,20 +68,12 @@ export const changeLocation = (socket, location) => async dispatch => {
 };
 
 export const updateOffices = async (dispatch, office, latitude, longitude) => {
-  let keyword;
-  let action;
   if (office === 1) {
-    keyword = "calfresh";
-    action = populateSNAP;
+    dispatch(populateSNAP(await fetchResults(latitude, longitude, "calfresh")));
   } else {
-    keyword = "wic";
-    action = populateWIC;
-    const zipCode = await fetchZipCode({ latitude, longitude });
-    const vendors = await fetchWICVendors(zipCode);
-    dispatch(populateWICVendors(vendors));
+    dispatch(populateWICVendors(await fetchWICVendors(latitude, longitude)));
+    dispatch(populateWIC(await fetchResults(latitude, longitude, "wic")));
   }
-  const offices = await fetchResults(latitude, longitude, keyword);
-  dispatch(action(offices));
   dispatch(updateMapLoading(false));
 };
 
