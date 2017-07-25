@@ -12,6 +12,7 @@ export default {
   snapOffices: [],
   wicOffices: [],
   wicVendors: [],
+  foodBanks: [],
   wicEligible: 0,
   orientation: {
     scale: '',

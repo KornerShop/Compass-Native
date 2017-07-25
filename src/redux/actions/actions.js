@@ -54,3 +54,8 @@ export const populateWICVendors = vendors => ({
   type: types.POPULATE_WIC_VENDORS,
   payload: vendors
 });
+
+export const populateFoodBanks = foodBanks => ({
+  type: types.POPULATE_FOOD_BANKS,
+  payload:foodBanks
+});

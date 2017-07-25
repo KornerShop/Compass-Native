@@ -20,6 +20,7 @@ export default {
     ineligible: {
       header:
         'You may be ineligible, but you do have options. Go to a local office to learn more',
+      foodBank: 'Below are food banks near you'
     },
     zipModal: {
       header: 'Find Offices Near You',
@@ -62,6 +63,7 @@ export default {
     ineligible: {
       header:
         'Usted puede ser inelegible, pero usted tiene opciones. Ir a una oficina local para obtener más información',
+      foodBank: 'Abajo hay bancos de alimentos cerca de usted',
     },
     zipModal: {
       header: 'Encuentre oficinas cerca de usted',
