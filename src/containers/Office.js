@@ -12,8 +12,8 @@ import localizedStrings from "../utilities/localization";
 
 const Office = props => {
   const officeChosen = async officeNum => {
-    await props.getLocationAsync();
     props.changeOffice(props.socket, officeNum);
+    await props.getLocationAsync();
   };
   return (
     <View

@@ -33,6 +33,7 @@ class Resources extends Component {
     this.toggleModalVisibility = this.toggleModalVisibility.bind(this);
   }
   async getLocationAsync() {
+    console.log(`this is running`);
     const { status: currentStatus } = await Permissions.getAsync(
       Permissions.LOCATION
     );

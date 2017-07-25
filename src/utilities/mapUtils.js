@@ -11,7 +11,6 @@ const titleCase = str =>
 
 export const findZipCode = arr => {
   const targetObj = arr.find(obj => obj.types.includes("postal_code"));
-  console.log(`targetObj ${JSON.stringify(targetObj, null, 2)}`);
   return targetObj.short_name ? targetObj.short_name : targetObj.long_name;
 };
 
@@ -19,12 +18,10 @@ export const fetchZipCode = async ({ latitude, longitude }) => {
   const data = await get(
     `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${MAPS_API_KEY}`
   );
-  console.log(`fetchZipCode at map Utils: ${JSON.stringify(data.results[0].address_components)}`);
   return findZipCode(data.results[0].address_components);
 };
 
 export const fetchZipCodeCoords = async zip => {
-  console.log(`zip at fetchZipCOde Coords: ${zip}`);
   const data = await get(
     `https://maps.googleapis.com/maps/api/geocode/json?components=postal_code:${zip}|country:US&key=${MAPS_API_KEY}`
   );
@@ -32,7 +29,6 @@ export const fetchZipCodeCoords = async zip => {
 };
 
 export const fetchResults = async (lat, lng, keyword) => {
-  console.log(`keyword at fetch results in map utils: ${keyword}`);
   const placeUri = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=50000&keyword=${keyword}&key=${MAPS_API_KEY}`;
   const places = await get(placeUri);
   const placesWithDetails = await Promise.all(
@@ -54,7 +50,6 @@ export const fetchResults = async (lat, lng, keyword) => {
 };
 
 export const fetchFoodBanks = async (lat, lng) => {
-  console.log(lat, lng);
   const placeUri = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=50000&keyword=foodbank&key=${MAPS_API_KEY}`;
   const places = await get(placeUri);
   const placesWithDetails = await Promise.all(
