@@ -11,6 +11,7 @@ import location from './location';
 import orientation from './orientation';
 import office from './office';
 import mapLoading from './mapLoading';
+import foodBanks from './foodBanks'
 
 export default combineReducers({
   language,
@@ -19,6 +20,7 @@ export default combineReducers({
   snapOffices,
   wicOffices,
   wicVendors,
+  foodBanks,
   wicEligible,
   orientation,
   location,

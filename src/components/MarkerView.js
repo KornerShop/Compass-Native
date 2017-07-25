@@ -92,7 +92,7 @@ MarkerView.propTypes = {
   lat: number.isRequired,
   lng: number.isRequired,
   id: string.isRequired,
-  socket: object.isRequired,
+  socket: object,
 };
 
 export default MarkerView;

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { number, func, object, shape, oneOf } from 'prop-types';
+import { number, func, shape, oneOf } from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import { updateWicEligibility } from '../redux/actions/actions';
+import { getFoodBanks } from '../redux/actions/actionCreators';
 
 import WicForm from '../containers/WicForm';
 import Eligible from '../containers/Eligible';
@@ -86,6 +87,9 @@ class Wic extends Component {
       <Ineligible
         language={this.props.language}
         updateWicEligibility={this.props.updateWicEligibility}
+        foodBanks={this.props.foodBanks}
+        getFoodBanks={this.props.getFoodBanks}
+        office={2}
       />
     );
   }
@@ -103,15 +107,20 @@ Wic.propTypes = {
   language: oneOf(['es', 'en']).isRequired,
 };
 
-const mapStateToProps = ({ wicEligible, orientation, language }) => ({
+const mapStateToProps = ({ wicEligible, orientation, language, foodBanks }) => ({
   wicEligible,
   orientation,
   language,
+  foodBanks
 });
 
 const mapDispatchToProps = dispatch => ({
   updateWicEligibility: bindActionCreators(
     updateWicEligibility,
+    dispatch,
+  ),
+  getFoodBanks: bindActionCreators(
+    getFoodBanks,
     dispatch,
   ),
 });
