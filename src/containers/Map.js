@@ -150,6 +150,7 @@ class Map extends Component {
               )}
           </MapView>
           <ZipModal
+            updateWICVendorsZipModal={this.props.updateWICVendorsZipModal}
             socket={this.props.socket}
             language={this.props.language}
             changeZipCode={this.props.changeZipCode}
@@ -182,6 +183,7 @@ Map.propTypes = {
     width: number.isRequired,
     fontScale: number.isRequired,
   }).isRequired,
+  updateWICVendorsZipModal: func.isRequired,
   language: oneOf(['en', 'es']).isRequired,
   location: shape({
     latitude: number.isRequired,

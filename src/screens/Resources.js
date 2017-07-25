@@ -122,6 +122,7 @@ class Resources extends Component {
     }
     return (
       <Map
+        updateWICVendorsZipModal={this.props.updateWICVendorsZipModal}
         socket={this.socket}
         orientation={this.props.orientation}
         language={this.props.language}
