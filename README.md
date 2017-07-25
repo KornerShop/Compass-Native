@@ -1,7 +1,7 @@
 [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
-# Compass-Native ⭐
+# Compass ⭐
 Compass is an iOS/Android app designed to point people to the California State resources they need. Compass communicates with [Compass Analytics](https://www.github.com/kornershop/Compass-Analytics), by way of socket.io, to ananomously track data to help better inform those whose mission it is to provide these resources.   
 
 ## What problem are we solving?
