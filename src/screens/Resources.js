@@ -67,7 +67,7 @@ class Resources extends Component {
           latitude,
           longitude,
         });
-        office === 2 && this.props.updateWICVendorsLocationPermission(
+        this.props.updateWICVendorsLocationPermission(
           latitude,
           longitude,
         );
@@ -84,7 +84,7 @@ class Resources extends Component {
         latitude,
         longitude,
       });
-      office === 2 && this.props.updateWICVendorsLocationPermission(
+      this.props.updateWICVendorsLocationPermission(
         latitude,
         longitude,
       );

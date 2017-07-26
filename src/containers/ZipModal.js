@@ -31,7 +31,6 @@ class ZipModal extends Component {
       ? (localization =
           localizedStrings[this.props.language].zipModal.foodBanks)
       : (localization = localizedStrings[this.props.language].zipModal.header);
-    console.warn(this.props.updateWICVendorsZipModal)
     return (
       <Modal
         style={{ flex: 1 }}
@@ -130,7 +129,7 @@ ZipModal.propTypes = {
   toggleLocationProvided: func.isRequired,
   socket: object.isRequired,
   foodBanks: bool,
-  updateWICVendorsZipModal: func.isRequired
+  updateWICVendorsZipModal: func
 };
 
 export default ZipModal;

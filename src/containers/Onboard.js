@@ -36,7 +36,6 @@ const Onboard = ({
         chosenBulletStyle={{
           backgroundColor: '#78909c',
         }}
-        onAnimateNextPage={p => console.log(p)}
       >
         <View
           style={[
