@@ -8,8 +8,8 @@ import {
   fetchZipCodeCoords,
   fetchResults,
   fetchWICVendorsZipCode,
-  fetchFoodBanks
-} from '../../../utilities/__tests__/mapUtils.test';
+  fetchFoodBanks,
+} from '../../../utilities/mapUtils';
 
 import {
   updateOffice,
@@ -81,18 +81,6 @@ const mockWicOffices = [
   },
 ];
 
-const mockFoodBanks = [
-  {
-    address: '1766 Industrial Way, Napa, CA 94558, USA',
-    id: 'ChIJi_4gLBsmdkAROG8pXQJfljQ',
-    lat: 38.3197489,
-    lng: -122.3052978,
-    name: 'Napa Food Bank',
-    phone_intl: '+1 707-253-6128',
-    phone_local: '(707) 253-6128',
-  }
-];
-
 const mockFetchZipCode = () =>
   new Promise(resolve => {
     setTimeout(() => resolve('95404'), 250);
@@ -157,7 +145,11 @@ test('changeLocation emits, dispatches', async () => {
 describe('updateOffices', () => {
   it("dispatches correct actions when office is SNAP & Zip isn't known", async () => {
     const { latitude, longitude } = location;
-    const snapOffices = await fetchResults(latitude, longitude, 'calfresh');
+    const snapOffices = await fetchResults(
+      latitude,
+      longitude,
+      'calfresh',
+    );
     const expectedActions = [
       updateMapLoading(true),
       updateLocation({ latitude, longitude }),
@@ -205,9 +197,11 @@ test('updateWICVendorsZipModal', async () => {
     mockWicOffices,
     mockSnapOffices,
   });
-  return store.dispatch(updateWICVendorsZipModal(zipCode)).then(() => {
-    expect(store.getActions()).toEqual(expectedActions);
-  });
+  return store
+    .dispatch(updateWICVendorsZipModal(zipCode))
+    .then(() => {
+      expect(store.getActions()).toEqual(expectedActions);
+    });
 });
 
 test('updateWICVendorsLocationPermission', async () => {
@@ -260,21 +254,21 @@ describe('updateFoodBanks', () => {
     ];
     const store = mockStore({
       ...initState,
-      location
+      location,
     });
     return store.dispatch(updateFoodBanks()).then(() => {
       expect(store.getActions()).toEqual(expectedActions);
     });
   });
-  xit("dispatches correct actions when zip is known", () => {
+  it('dispatches correct actions when zip is known', () => {
     const { latitude, longitude } = location;
-    const getFoodBanksMock = jest.fn();
     const expectedActions = [
       updateMapLoading(true),
+      updateLocation({ latitude, longitude }),
     ];
     const store = mockStore({
       ...initState,
-      zipCode
+      zipCode,
     });
     return store.dispatch(updateFoodBanks()).then(() => {
       expect(store.getActions()).toEqual(expectedActions);
