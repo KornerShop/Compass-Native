@@ -1,14 +1,12 @@
 import React from "react";
 import { number, bool, func, object, oneOf } from "prop-types";
-
 import { View, StatusBar, TouchableHighlight } from "react-native";
-
 import { Button } from "react-native-elements";
+
+import localizedStrings from "../utilities/localization";
 
 import ZipModal from "./ZipModal";
 import { ImageContainer, OfficeText } from "../components/styled/Styled";
-
-import localizedStrings from "../utilities/localization";
 
 const Office = (props) => {
   const officeChosen = async officeNum => {
