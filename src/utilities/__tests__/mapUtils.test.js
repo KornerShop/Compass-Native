@@ -80,15 +80,27 @@ test('fetchZipCodeCoords', async () => {
 
 describe('fetchResults', () => {
   it('returns an array of length 1 or more: SNAP', async () => {
-    const results = await fetchResults(38.5386881, -122.695547, 'calfresh');
+    const results = await fetchResults(
+      38.5386881,
+      -122.695547,
+      'calfresh',
+    );
     expect(results.length).toBeGreaterThanOrEqual(1);
-  })
+  });
   it('returns an array of length 1 or more: WIC', async () => {
-    const results = await fetchResults(38.5386881, -122.695547, 'wic');
+    const results = await fetchResults(
+      38.5386881,
+      -122.695547,
+      'wic',
+    );
     expect(results.length).toBeGreaterThanOrEqual(1);
-  })
+  });
   it('returns objects of proper shape: SNAP', async () => {
-    const results = await fetchResults(38.5386881, -122.695547, 'calfresh');
+    const results = await fetchResults(
+      38.5386881,
+      -122.695547,
+      'calfresh',
+    );
     const firstResult = results[0];
     expect(firstResult).toHaveProperty('address');
     expect(firstResult).toHaveProperty('id');
@@ -99,7 +111,11 @@ describe('fetchResults', () => {
     expect(firstResult).toHaveProperty('phone_local');
   });
   it('returns objects of proper shape: WIC', async () => {
-    const results = await fetchResults(38.5386881, -122.695547, 'wic');
+    const results = await fetchResults(
+      38.5386881,
+      -122.695547,
+      'wic',
+    );
     const firstResult = results[0];
     expect(firstResult).toHaveProperty('address');
     expect(firstResult).toHaveProperty('id');
@@ -109,7 +125,7 @@ describe('fetchResults', () => {
     expect(firstResult).toHaveProperty('phone_intl');
     expect(firstResult).toHaveProperty('phone_local');
   });
-})
+});
 
 describe('fetchFoodBanks', () => {
   it('returns an array of length 1 or more', async () => {
@@ -129,20 +145,56 @@ describe('fetchFoodBanks', () => {
   });
 });
 
-test('fetchVendorDetails', async () => {
-  const results = await fetchWICVendorDetails(95404);
-  expect(results).toMatchSnapshot();
+describe('fetchVendorDetails', () => {
+  it('returns an array of length 1 or more', async () => {
+    const results = await fetchWICVendorDetails(95404);
+    expect(results.length).toBeGreaterThanOrEqual(1);
+  });
+  it('returns objects of proper shape', async () => {
+    const results = await fetchWICVendorDetails(95404);
+    const firstResult = results[0];
+    expect(firstResult).toHaveProperty('address');
+    expect(firstResult).toHaveProperty('id');
+    expect(firstResult).toHaveProperty('lat');
+    expect(firstResult).toHaveProperty('lng');
+    expect(firstResult).toHaveProperty('name');
+  });
 });
 
-test('fetchWICVendorsLocationPermission', async () => {
-  const results = await fetchWICVendorsLocationPermission(
-    38.5386881,
-    -122.695547,
-  );
-  expect(results).toMatchSnapshot();
+describe('fetchWICVendorsLocationPermission', () => {
+  it('returns an array of length 1 or more', async () => {
+    const results = await fetchWICVendorsLocationPermission(
+      38.5386881,
+      -122.695547,
+    );
+    expect(results.length).toBeGreaterThanOrEqual(1);
+  });
+  it('returns objects of proper shape', async () => {
+    const results = await fetchWICVendorsLocationPermission(
+      38.5386881,
+      -122.695547,
+    );
+    const firstResult = results[0];
+    expect(firstResult).toHaveProperty('address');
+    expect(firstResult).toHaveProperty('id');
+    expect(firstResult).toHaveProperty('lat');
+    expect(firstResult).toHaveProperty('lng');
+    expect(firstResult).toHaveProperty('name');
+  });
 });
 
-test('fetchWICVendorsZipCode', async () => {
-  const results = await fetchWICVendorsZipCode(95404);
-  expect(results).toMatchSnapshot();
+describe('fetchWICVendorsZipCode', () => {
+  it('returns an array of length 1 or more', async () => {
+    const results = await fetchWICVendorsZipCode(95404);
+    expect(results.length).toBeGreaterThanOrEqual(1);
+  });
+  it('returns objects of proper shape', async () => {
+    const results = await fetchWICVendorsZipCode(95404);
+    const firstResult = results[0];
+    expect(firstResult).toHaveProperty('address');
+    expect(firstResult).toHaveProperty('id');
+    expect(firstResult).toHaveProperty('lat');
+    expect(firstResult).toHaveProperty('lng');
+    expect(firstResult).toHaveProperty('name');
+  });
 });
