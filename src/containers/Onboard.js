@@ -1,27 +1,23 @@
-import React from 'react';
-import { number, oneOf, func, shape } from 'prop-types';
-import { Text, View, Platform, TouchableOpacity } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import Carousel from 'react-native-looped-carousel';
+import React from "react";
+import { number, oneOf, func, shape } from "prop-types";
+import { Text, View, Platform, TouchableOpacity } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import Carousel from "react-native-looped-carousel";
 
-import styled from 'styled-components/native';
+import styled from "styled-components/native";
 
-import OnboardButton from '../components/OnboardButton';
-import localizedStrings from '../utilities/localization';
+import OnboardButton from "../components/OnboardButton";
+import localizedStrings from "../utilities/localization";
 
 const OnboardScreen = styled.View`
   flex: 1;
-  background-color: #21CFBF;
-  `;
+  background-color: #21cfbf;
+`;
 
-const Onboard = ({
-  orientation: { height, width },
-  toggleStart,
-  language,
-}) => {
+const Onboard = ({ orientation: { height, width }, toggleStart, language }) => {
   const orientationObj = {
     height,
-    width,
+    width
   };
   return (
     <OnboardScreen>
@@ -31,43 +27,35 @@ const Onboard = ({
         bullets
         swipe
         bulletStyle={{
-          backgroundColor: 'white',
+          backgroundColor: "white"
         }}
         chosenBulletStyle={{
-          backgroundColor: '#78909c',
+          backgroundColor: "#78909c"
         }}
       >
         <View
           style={[
             {
-              marginTop: 90,
-              alignItems: 'center',
-              flexDirection: 'column',
+              alignItems: "center",
+              justifyContent: "center",
+              flexDirection: "column"
             },
-            orientationObj,
+            orientationObj
           ]}
         >
           <Text>
-            {Platform.OS === 'ios'
-              ? <Ionicons
-                name="md-compass"
-                size={180}
-                  color="white"
-                />
-              : <Ionicons
-                  name="ios-locate"
-                  size={180}
-                  color="white"
-                />}
+            {Platform.OS === "ios"
+              ? <Ionicons name="md-compass" size={160} color="white" />
+              : <Ionicons name="ios-locate" size={160} color="white" />}
           </Text>
           <Text
             style={{
-              marginTop: 18,
+              marginTop: 15,
               fontWeight: "bold",
               padding: 20,
-              textAlign: 'center',
-              fontSize: 40,
-              color: 'white',
+              textAlign: "center",
+              fontSize: 30,
+              color: "white",
               letterSpacing: 1
             }}
           >
@@ -75,10 +63,10 @@ const Onboard = ({
           </Text>
           <Text
             style={{
-              padding:40,
-              textAlign: 'center',
-              fontSize: 25,
-              color: 'white'
+              padding: 40,
+              textAlign: "center",
+              fontSize: 23,
+              color: "white"
             }}
           >
             {localizedStrings[language].onboard.officeText}
@@ -87,28 +75,24 @@ const Onboard = ({
         <View
           style={[
             {
-              marginTop: 90,
-              alignItems: 'center',
-              flexDirection: 'column',
+              justifyContent: "center",
+              alignItems: "center",
+              flexDirection: "column"
             },
-            orientationObj,
+            orientationObj
           ]}
         >
           <Text>
-            <Ionicons
-              name="ios-nutrition-outline"
-              size={180}
-              color="white"
-            />
+            <Ionicons name="ios-nutrition-outline" size={160} color="white" />
           </Text>
           <Text
             style={{
               marginTop: 18,
               fontWeight: "bold",
               padding: 20,
-              textAlign: 'center',
-              fontSize: 40,
-              color: 'white',
+              textAlign: "center",
+              fontSize: 30,
+              color: "white",
               letterSpacing: 4
             }}
           >
@@ -116,10 +100,10 @@ const Onboard = ({
           </Text>
           <Text
             style={{
-              padding:40,
-              textAlign: 'center',
-              fontSize: 25,
-              color: 'white'
+              padding: 40,
+              textAlign: "center",
+              fontSize: 23,
+              color: "white"
             }}
           >
             {localizedStrings[language].onboard.snapText}
@@ -128,28 +112,24 @@ const Onboard = ({
         <View
           style={[
             {
-              marginTop: 80,
-              alignItems: 'center',
-              flexDirection: 'column',
+              justifyContent: "center",
+              alignItems: "center",
+              flexDirection: "column"
             },
-            orientationObj,
+            orientationObj
           ]}
         >
           <Text>
-            <Ionicons
-              name="ios-woman-outline"
-              size={180}
-              color="white"
-            />
+            <Ionicons name="ios-woman-outline" size={160} color="white" />
           </Text>
           <Text
             style={{
               marginTop: 15,
               fontWeight: "bold",
               padding: 10,
-              textAlign: 'center',
-              fontSize: 40,
-              color: 'white',
+              textAlign: "center",
+              fontSize: 30,
+              color: "white",
               letterSpacing: 4
             }}
           >
@@ -157,10 +137,11 @@ const Onboard = ({
           </Text>
           <Text
             style={{
-              padding:30,
-              textAlign: 'center',
-              fontSize: 25,
-              color: 'white'
+              padding: 30,
+              textAlign: "center",
+              fontSize: 23,
+              color: "white",
+              marginBottom: 20
             }}
           >
             {localizedStrings[language].onboard.wicText}
@@ -176,14 +157,14 @@ const Onboard = ({
 };
 
 Onboard.propTypes = {
-  language: oneOf(['en', 'es']).isRequired,
+  language: oneOf(["en", "es"]).isRequired,
   orientation: shape({
     scale: number,
     height: number.isRequired,
     width: number.isRequired,
-    fontScale: number,
+    fontScale: number
   }).isRequired,
-  toggleStart: func.isRequired,
+  toggleStart: func.isRequired
 };
 
 export default Onboard;

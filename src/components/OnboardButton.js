@@ -8,16 +8,16 @@ const OnboardButton = props =>
     style={{ justifyContent: 'center', alignItems: 'center' }}
     title={props.title}
     textStyle={{
-      color: 'white',
-      fontSize: 25,
+      color: '#21CFBF',
+      fontSize: 23,
       textAlign:'center',
       fontWeight: 'bold',
     }}
     buttonStyle={{
       borderWidth: 3,
-      width: 140,
+      width: 168,
       borderColor: 'white',
-      backgroundColor: '#21CFBF',
+      backgroundColor: 'white',
     }}
     containerViewStyle={{
       marginTop:5,
