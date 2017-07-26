@@ -51,4 +51,4 @@ Coming soon to your local app store!
 <br>
 ![](https://j.gifs.com/LgjpYv.gif)
 <br>
-![](https://j.gifs.com/3lzl5n.gif)
+![](https://j.gifs.com/nZ2AGp.gif)
