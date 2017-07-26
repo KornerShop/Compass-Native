@@ -49,7 +49,7 @@ Coming soon to your local app store!
 
 Choose a language  ➡️  get aquianted  ➡️  find offices near you ➡️  determine eligibility
 <br>
-![](https://j.gifs.com/vgng0r.gif)
+![](https://j.gifs.com/qjgElD.gif)
 <br>
 ![](https://j.gifs.com/X6y6Jk.gif)
 <br>
