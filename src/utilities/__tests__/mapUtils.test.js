@@ -1,10 +1,19 @@
 import {
+  titleCase,
   findZipCode,
   fetchZipCode,
   fetchZipCodeCoords,
   fetchResults,
-  fetchWICVendors
+  fetchFoodBanks,
+  fetchWICVendorDetails,
+  fetchWICVendorsLocationPermission,
+  fetchWICVendorsZipCode,
 } from '../mapUtils';
+
+test('titleCase', () => {
+  const properlyCased = titleCase('ONE TWO THREE, 1ST, 2ND, 3RD');
+  expect(properlyCased).toMatchSnapshot();
+});
 
 test('findZipCode', () => {
   const results = [
@@ -69,26 +78,71 @@ test('fetchZipCodeCoords', async () => {
   expect(coords).toMatchSnapshot();
 });
 
-test('fetchResults SNAP', async () => {
-  const results = await fetchResults(
+describe('fetchResults', () => {
+  it('returns an array of length 1 or more: SNAP', async () => {
+    const results = await fetchResults(38.5386881, -122.695547, 'calfresh');
+    expect(results.length).toBeGreaterThanOrEqual(1);
+  })
+  it('returns an array of length 1 or more: WIC', async () => {
+    const results = await fetchResults(38.5386881, -122.695547, 'wic');
+    expect(results.length).toBeGreaterThanOrEqual(1);
+  })
+  it('returns objects of proper shape: SNAP', async () => {
+    const results = await fetchResults(38.5386881, -122.695547, 'calfresh');
+    const firstResult = results[0];
+    expect(firstResult).toHaveProperty('address');
+    expect(firstResult).toHaveProperty('id');
+    expect(firstResult).toHaveProperty('lat');
+    expect(firstResult).toHaveProperty('lng');
+    expect(firstResult).toHaveProperty('name');
+    expect(firstResult).toHaveProperty('phone_intl');
+    expect(firstResult).toHaveProperty('phone_local');
+  });
+  it('returns objects of proper shape: WIC', async () => {
+    const results = await fetchResults(38.5386881, -122.695547, 'wic');
+    const firstResult = results[0];
+    expect(firstResult).toHaveProperty('address');
+    expect(firstResult).toHaveProperty('id');
+    expect(firstResult).toHaveProperty('lat');
+    expect(firstResult).toHaveProperty('lng');
+    expect(firstResult).toHaveProperty('name');
+    expect(firstResult).toHaveProperty('phone_intl');
+    expect(firstResult).toHaveProperty('phone_local');
+  });
+})
+
+describe('fetchFoodBanks', () => {
+  it('returns an array of length 1 or more', async () => {
+    const results = await fetchFoodBanks(38.5386881, -122.695547);
+    expect(results.length).toBeGreaterThanOrEqual(1);
+  });
+  it('returns objects of proper shape', async () => {
+    const results = await fetchFoodBanks(38.5386881, -122.695547);
+    const firstResult = results[0];
+    expect(firstResult).toHaveProperty('address');
+    expect(firstResult).toHaveProperty('id');
+    expect(firstResult).toHaveProperty('lat');
+    expect(firstResult).toHaveProperty('lng');
+    expect(firstResult).toHaveProperty('name');
+    expect(firstResult).toHaveProperty('phone_intl');
+    expect(firstResult).toHaveProperty('phone_local');
+  });
+});
+
+test('fetchVendorDetails', async () => {
+  const results = await fetchWICVendorDetails(95404);
+  expect(results).toMatchSnapshot();
+});
+
+test('fetchWICVendorsLocationPermission', async () => {
+  const results = await fetchWICVendorsLocationPermission(
     38.5386881,
     -122.695547,
-    'calfresh',
   );
   expect(results).toMatchSnapshot();
 });
 
-test('fetchResults WIC', async () => {
-  const results = await fetchResults(
-    38.5386881,
-    -122.695547,
-    'wic',
-  );
-  expect(results).toMatchSnapshot();
-});
-
-
-test('fetchWICVendors', async () => {
-  const results = await fetchWICVendors(95404);
+test('fetchWICVendorsZipCode', async () => {
+  const results = await fetchWICVendorsZipCode(95404);
   expect(results).toMatchSnapshot();
 });

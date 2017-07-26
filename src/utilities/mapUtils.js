@@ -1,7 +1,7 @@
 import { MAPS_API_KEY } from './config';
 import get from './fetch';
 
-const titleCase = str =>
+export const titleCase = str =>
   str
     .split(' ')
     .map(word => `${word[0]}${word.toLowerCase().substring(1)}`)

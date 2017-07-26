@@ -1,0 +1,207 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`fetchResults SNAP 1`] = `
+Array [
+  Object {
+    "address": "2550 Paulin Dr # 1, Santa Rosa, CA 95403, USA",
+    "id": "ChIJWcnjX3c4hIAReEaEIu-h5Dg",
+    "lat": 38.464769,
+    "lng": -122.721573,
+    "name": "Sonoma County Human Services Department",
+    "phone_intl": "+1 877-699-6868",
+    "phone_local": "(877) 699-6868",
+  },
+]
+`;
+
+exports[`fetchResults WIC 1`] = `
+Array [
+  Object {
+    "address": "1450 Guerneville Rd, Santa Rosa, CA 95403, USA",
+    "id": "ChIJmWPLhYw4hIARhkTo_qBYWnE",
+    "lat": 38.45666319999999,
+    "lng": -122.7343426,
+    "name": "WIC",
+    "phone_intl": "+1 707-565-6590",
+    "phone_local": "(707) 565-6590",
+  },
+  Object {
+    "address": "355 Tuolumne St, Vallejo, CA 94590, USA",
+    "id": "ChIJV8qY6w1zhYARuBchWPvtlFU",
+    "lat": 38.1032892,
+    "lng": -122.2389585,
+    "name": "Solano County WIC Program",
+    "phone_intl": "+1 707-553-5381",
+    "phone_local": "(707) 553-5381",
+  },
+  Object {
+    "address": "2751 Napa Valley Corporate Dr, Napa, CA 94558, USA",
+    "id": "ChIJ9aJDDEYGhYARxsRkUv2iQPk",
+    "lat": 38.249683,
+    "lng": -122.27593,
+    "name": "WIC",
+    "phone_intl": "+1 707-253-4853",
+    "phone_local": "(707) 253-4853",
+  },
+  Object {
+    "address": "Suite 4, 14085 Lakeshore Dr, Clearlake, CA 95422, USA",
+    "id": "ChIJdYrbm8eLg4ARbJp5ZzRVBDA",
+    "lat": 38.95860439999999,
+    "lng": -122.6493012,
+    "name": "Women Infant & Children",
+    "phone_intl": "+1 707-994-1151",
+    "phone_local": "(707) 994-1151",
+  },
+  Object {
+    "address": "11 English St, Petaluma, CA 94952, USA",
+    "id": "ChIJ697sM6e2hYARGih3Xt7SAAE",
+    "lat": 38.2319379,
+    "lng": -122.6442755,
+    "name": "WIC Petaluma",
+    "phone_intl": "+1 800-816-3663",
+    "phone_local": "(800) 816-3663",
+  },
+  Object {
+    "address": "153 Stony Cir #100, Santa Rosa, CA 95401, USA",
+    "id": "ChIJ8RLqxDw4hIARCChYAI7Tp20",
+    "lat": 38.439528,
+    "lng": -122.7437988,
+    "name": "Volunteer Center of Sonoma County",
+    "phone_intl": "+1 707-573-3399",
+    "phone_local": "(707) 573-3399",
+  },
+  Object {
+    "address": "3245 Bowers Ave, Clearlake, CA 95422, USA",
+    "id": "ChIJEdUAINmLg4ARDIrhkLyozSI",
+    "lat": 38.96586389999999,
+    "lng": -122.6307496,
+    "name": "Red Cross Shelters",
+    "phone_intl": "+1 800-733-2767",
+    "phone_local": "(800) 733-2767",
+  },
+  Object {
+    "address": "3890 Old Redwood Hwy, Santa Rosa, CA 95403, USA",
+    "id": "ChIJKamGOJA4hIAR5wSry0DpZxs",
+    "lat": 38.481584,
+    "lng": -122.731351,
+    "name": "Easter Seals",
+    "phone_intl": "+1 831-684-2380",
+    "phone_local": "(831) 684-2380",
+  },
+  Object {
+    "address": "5440 State Farm Dr # 3, Rohnert Park, CA 94928, USA",
+    "id": "ChIJUe8BRQRKhIAR4SGcdZbVMA4",
+    "lat": 38.3578149,
+    "lng": -122.7105528,
+    "name": "Easter Seals",
+    "phone_intl": "+1 707-584-1443",
+    "phone_local": "(707) 584-1443",
+  },
+  Object {
+    "address": "1530 Solano Ave, Vallejo, CA 94590, USA",
+    "id": "ChIJD2NWug1zhYARmELjE9P_loU",
+    "lat": 38.1016731,
+    "lng": -122.2390356,
+    "name": "Prime Time Nutrition",
+    "phone_intl": "+1 707-644-6600",
+    "phone_local": "(707) 644-6600",
+  },
+  Object {
+    "address": "8465 Old Redwood Hwy #320, Windsor, CA 95492, USA",
+    "id": "ChIJ24DSyww-hIAROpzUsj2K5Zs",
+    "lat": 38.5431579,
+    "lng": -122.8017116,
+    "name": "Alliance Medical Center",
+    "phone_intl": "+1 707-433-5494",
+    "phone_local": "(707) 433-5494",
+  },
+  Object {
+    "address": "3313 Chanate Rd, Santa Rosa, CA 95404, USA",
+    "id": "ChIJCQF-io9HhIARvAObofcLV_8",
+    "lat": 38.46875,
+    "lng": -122.708432,
+    "name": "Public Health Laboratory",
+    "phone_intl": "+1 707-565-4700",
+    "phone_local": "(707) 565-4700",
+  },
+  Object {
+    "address": "210 Hospital Dr, Vallejo, CA 94589, USA",
+    "id": "ChIJy1-q0DRzhYARuIqXldjxVYw",
+    "lat": 38.13150350000001,
+    "lng": -122.2387657,
+    "name": "La Clinica Vallejo Great Begin",
+    "phone_intl": "+1 707-645-7316",
+    "phone_local": "(707) 645-7316",
+  },
+]
+`;
+
+exports[`fetchVendorDetails 1`] = `
+Array [
+  Object {
+    "address": "2751 4th St, Santa Rosa, CA,  95404, USA",
+    "id": "ChIJZ1aAHdxHhIARO2o8VNCrzvo",
+    "lat": 38.450691,
+    "lng": -122.69104,
+    "name": "Safeway #1562",
+  },
+  Object {
+    "address": "1680 Petaluma Hill Rd, Santa Rosa, CA,  95404, USA",
+    "id": "ChIJD2VCHBhIhIAR-pleXyzr54s",
+    "lat": 38.42281,
+    "lng": -122.70693,
+    "name": "Lola's Market",
+  },
+]
+`;
+
+exports[`fetchWICVendorsLocationPermission 1`] = `
+Array [
+  Object {
+    "address": "2751 4th St, Santa Rosa, CA,  95404, USA",
+    "id": "ChIJZ1aAHdxHhIARO2o8VNCrzvo",
+    "lat": 38.450691,
+    "lng": -122.69104,
+    "name": "Safeway #1562",
+  },
+  Object {
+    "address": "1680 Petaluma Hill Rd, Santa Rosa, CA,  95404, USA",
+    "id": "ChIJD2VCHBhIhIAR-pleXyzr54s",
+    "lat": 38.42281,
+    "lng": -122.70693,
+    "name": "Lola's Market",
+  },
+]
+`;
+
+exports[`fetchWICVendorsZipCode 1`] = `
+Array [
+  Object {
+    "address": "2751 4th St, Santa Rosa, CA,  95404, USA",
+    "id": "ChIJZ1aAHdxHhIARO2o8VNCrzvo",
+    "lat": 38.450691,
+    "lng": -122.69104,
+    "name": "Safeway #1562",
+  },
+  Object {
+    "address": "1680 Petaluma Hill Rd, Santa Rosa, CA,  95404, USA",
+    "id": "ChIJD2VCHBhIhIAR-pleXyzr54s",
+    "lat": 38.42281,
+    "lng": -122.70693,
+    "name": "Lola's Market",
+  },
+]
+`;
+
+exports[`fetchZipCode 1`] = `"95404"`;
+
+exports[`fetchZipCodeCoords 1`] = `
+Object {
+  "lat": 38.5386881,
+  "lng": -122.695547,
+}
+`;
+
+exports[`findZipCode 1`] = `"95404"`;
+
+exports[`titleCase 1`] = `"One Two Three, 1st, 2nd, 3rd"`;

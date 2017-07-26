@@ -11,7 +11,7 @@ import {
   updateWicEligibility,
   toggleLocationProvided
 } from "../redux/actions/actions";
-import { getFoodBanks, changeZipCode, changeLocation} from "../redux/actions/actionCreators";
+import { updateFoodBanks, changeZipCode, changeLocation} from "../redux/actions/actionCreators";
 
 import WicForm from "../containers/WicForm";
 import Eligible from "../containers/Eligible";
@@ -60,22 +60,20 @@ class Wic extends Component {
           latitude: location.latitude,
           longitude: location.longitude
         });
+        this.props.updateFoodBanks();
         this.props.toggleLocationProvided(true);
       }
     } else {
       // app already has user's location
-      console.log('i have your location');
       var { coords: location } = await Location.getCurrentPositionAsync({
         enableHighAccuracy: true
       });
-      console.log(`here are your coords: ${JSON.stringify(location, null, 2)}`);
       this.props.changeLocation(this.socket, {
         latitude: location.latitude,
         longitude: location.longitude
       });
+      this.props.updateFoodBanks();
       this.props.toggleLocationProvided(true);
-      console.log('I should now run get food banks');
-      getFoodBanks();
     }
   }
 
@@ -152,7 +150,7 @@ class Wic extends Component {
         updateWicEligibility={this.props.updateWicEligibility}
         changeZipCode={this.props.changeZipCode}
         foodBanks={this.props.foodBanks}
-        getFoodBanks={this.props.getFoodBanks}
+        updateFoodBanks={this.props.updateFoodBanks}
         location={this.props.location}
         locationProvided={this.props.locationProvided}
         toggleModalVisibility={this.toggleModalVisibility}
@@ -200,7 +198,7 @@ const mapDispatchToProps = dispatch => ({
   changeZipCode: bindActionCreators(changeZipCode, dispatch),
   changeLocation: bindActionCreators(changeLocation, dispatch),
   updateWicEligibility: bindActionCreators(updateWicEligibility, dispatch),
-  getFoodBanks: bindActionCreators(getFoodBanks, dispatch),
+  updateFoodBanks: bindActionCreators(updateFoodBanks, dispatch),
   toggleLocationProvided: bindActionCreators(toggleLocationProvided, dispatch)
 });
 

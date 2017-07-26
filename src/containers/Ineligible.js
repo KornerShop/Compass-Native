@@ -25,7 +25,7 @@ export default class Ineligible extends Component {
   }
   async componentDidMount() {
     await this.props.getLocationAsync();
-    this.props.getFoodBanks();
+    this.props.updateFoodBanks();
   }
   onCalloutPressed(index) {
     const calloutRef = `callout-${index}`;
@@ -48,10 +48,10 @@ export default class Ineligible extends Component {
       >
         {this.props.mapLoading
           ? <ActivityIndicatorWrapper>
-              <ActivityIndicator color="#21CFBF" size="large" />
-            </ActivityIndicatorWrapper>
+            <ActivityIndicator color="#21CFBF" size="large" />
+          </ActivityIndicatorWrapper>
           : <View
-              style={{
+            style={{
                 flex: 1,
                 justifyContent: "space-between",
                 paddingLeft: 5,
@@ -59,51 +59,51 @@ export default class Ineligible extends Component {
                 paddingBottom: 20,
                 paddingTop: 30,
                 marginTop: 10
-              }}
+            }}
             >
-              <IneligibleHeader>
-                {localizedStrings[this.props.language].ineligible.header}
-                {localizedStrings[this.props.language].ineligible.foodBanks}
-              </IneligibleHeader>
-              <MapView
-                style={{
+            <IneligibleHeader>
+              {localizedStrings[this.props.language].ineligible.header}
+              {localizedStrings[this.props.language].ineligible.foodBanks}
+            </IneligibleHeader>
+            <MapView
+              style={{
                   flex: 1,
                   marginBottom: 25,
                   marginTop: 20,
                   borderRadius: 2
-                }}
-                provider={Platform.OS === "ios" ? null : "google"}
-                region={this.props.location}
-              >
-                {this.props.foodBanks.map(foodBank =>
-                  <MapView.Marker
-                    accessibilityLabels="button"
-                    key={foodBank.id}
-                    coordinate={{
+              }}
+              provider={Platform.OS === "ios" ? null : "google"}
+              region={this.props.location}
+            >
+              {this.props.foodBanks.map(foodBank =>
+                <MapView.Marker
+                  accessibilityLabels="button"
+                  key={foodBank.id}
+                  coordinate={{
                       latitude: foodBank.lat,
                       longitude: foodBank.lng
-                    }}
-                    image={require("../assets/apple.png")}
-                    zIndex={this.state.selectedCalloutIndex === index ? 999 : 0}
-                    onPress={() => this.onCalloutPressed(index)}
-                    ref={`callout-${index}`}
-                  >
-                    <MapView.Callout tooltip>
-                      <MarkerView
-                        {...foodBank}
-                        socket={this.props.socket}
-                        office={2}
-                        location={this.props.location}
-                      />
-                    </MapView.Callout>
-                  </MapView.Marker>
-                )}
-              </MapView>
-              <EligibilityButton
-                ineligible
-                language={this.props.language}
-                title={localizedStrings[this.props.language].buttons.recheck}
-                accessibility={
+                  }}
+                  image={require("../assets/apple.png")}
+                  zIndex={this.state.selectedCalloutIndex === index ? 999 : 0}
+                  onPress={() => this.onCalloutPressed(index)}
+                  ref={`callout-${index}`}
+                >
+                  <MapView.Callout tooltip>
+                    <MarkerView
+                      {...foodBank}
+                      socket={this.props.socket}
+                      office={2}
+                      location={this.props.location}
+                    />
+                  </MapView.Callout>
+                </MapView.Marker>
+              )}
+            </MapView>
+            <EligibilityButton
+              ineligible
+              language={this.props.language}
+              title={localizedStrings[this.props.language].buttons.recheck}
+              accessibility={
                   localizedStrings[this.props.language].buttons
                     .accessibilityRecheck
                 }
@@ -115,7 +115,7 @@ export default class Ineligible extends Component {
                 language={this.props.language}
                 changeZipCode={this.props.changeZipCode}
                 modalVisible={this.props.modalVisible}
-                getFoodBanks={this.props.getFoodBanks}
+                updateFoodBanks={this.props.updateFoodBanks}
                 toggleLocationProvided={this.props.toggleLocationProvided}
                 toggleModalVisibility={this.props.toggleModalVisibility}
               />
@@ -130,7 +130,7 @@ Ineligible.propTypes = {
   locationProvided: bool.isRequired,
   updateWicEligibility: func.isRequired,
   language: oneOf(["es", "en"]).isRequired,
-  getFoodBanks: func.isRequired,
+  updateFoodBanks: func.isRequired,
   changeZipCode: func.isRequired,
   modalVisible: bool.isRequired,
   toggleLocationProvided: func.isRequired,
