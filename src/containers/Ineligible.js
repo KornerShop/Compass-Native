@@ -40,8 +40,6 @@ export default class Ineligible extends Component {
         accessible={false}
         style={{
           flex: 1,
-          // paddingTop: 10,
-          // paddingBottom: 5,
           paddingHorizontal: 5,
           backgroundColor: "white"
         }}
@@ -56,7 +54,7 @@ export default class Ineligible extends Component {
                 justifyContent: "space-between",
                 paddingLeft: 5,
                 paddingRight: 5,
-                paddingBottom: 20,
+                paddingBottom: 15,
                 paddingTop: 30,
                 marginTop: 5
             }}
