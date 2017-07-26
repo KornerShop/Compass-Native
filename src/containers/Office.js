@@ -10,7 +10,7 @@ import { ImageContainer, OfficeText } from "../components/styled/Styled";
 
 const Office = (props) => {
   const officeChosen = async officeNum => {
-    await props.getLocationAsync(officeNum);
+    await props.getLocationAsync();
     props.changeOffice(props.socket, officeNum);
   };
   return (
