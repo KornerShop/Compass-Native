@@ -40,8 +40,8 @@ export default class Ineligible extends Component {
         accessible={false}
         style={{
           flex: 1,
-          paddingTop: 10,
-          paddingBottom: 5,
+          // paddingTop: 10,
+          // paddingBottom: 5,
           paddingHorizontal: 5,
           backgroundColor: "white"
         }}
@@ -58,7 +58,7 @@ export default class Ineligible extends Component {
                 paddingRight: 5,
                 paddingBottom: 20,
                 paddingTop: 30,
-                marginTop: 10
+                marginTop: 5
             }}
             >
             <IneligibleHeader>
@@ -68,8 +68,8 @@ export default class Ineligible extends Component {
             <MapView
               style={{
                   flex: 1,
-                  marginBottom: 25,
-                  marginTop: 20,
+                  marginBottom: 15,
+                  marginTop: 15,
                   borderRadius: 2
               }}
               provider={Platform.OS === "ios" ? null : "google"}

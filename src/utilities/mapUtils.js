@@ -42,6 +42,8 @@ export const fetchResults = async (lat, lng, keyword) => {
       return { ...place, ...placeDetails };
     }),
   );
+  console.log(`${JSON.stringify(placesWithDetails)}`);
+  
   return placesWithDetails.map(place => ({
     id: place.place_id,
     lat: place.geometry.location.lat,
