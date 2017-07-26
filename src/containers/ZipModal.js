@@ -90,7 +90,7 @@ class ZipModal extends Component {
               if (this.state.zipValid && this.state.zipCode) {
                 this.props.changeZipCode(this.props.socket, this.state.zipCode);
                 if (this.props.foodBanks) {
-                  this.props.getFoodBanks()
+                  this.props.updateFoodBanks()
                 } else {
                   this.props.updateOffices();
                   this.props.updateWICVendorsZipModal(this.state.zipCode);
@@ -103,7 +103,7 @@ class ZipModal extends Component {
               if (this.state.zipValid && this.state.zipCode) {
                 this.props.changeZipCode(this.props.socket, this.state.zipCode);
                 if (this.props.foodBanks) {
-                  this.props.getFoodBanks()
+                  this.props.updateFoodBanks()
                 } else {
                   this.props.updateOffices();
                   this.props.updateWICVendorsZipModal(this.state.zipCode);
@@ -123,7 +123,7 @@ ZipModal.propTypes = {
   modalVisible: bool.isRequired,
   changeZipCode: func.isRequired,
   updateOffices: func,
-  getFoodBanks: func,
+  updateFoodBanks: func,
   toggleModalVisibility: func.isRequired,
   language: oneOf(["en", "es"]).isRequired,
   toggleLocationProvided: func.isRequired,

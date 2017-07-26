@@ -20,32 +20,6 @@ import {
   fetchFoodBanks,
 } from '../../utilities/mapUtils';
 
-export const updateFoodBanks = async (
-  dispatch,
-  latitude,
-  longitude,
-) => {
-  dispatch(updateLocation({ latitude, longitude }));
-  const foodBanks = await fetchFoodBanks(latitude, longitude);
-  dispatch(populateFoodBanks(foodBanks));
-  dispatch(updateMapLoading(false));
-};
-
-export const getFoodBanks = () => async (dispatch, getState) => {
-  dispatch(updateMapLoading(true));
-  const { zipCode } = getState();
-  if (zipCode) {
-    const {
-      lat: latitude,
-      lng: longitude,
-    } = await fetchZipCodeCoords(zipCode);
-    updateFoodBanks(dispatch, latitude, longitude);
-  } else {
-    const { latitude, longitude } = getState().location;
-    updateFoodBanks(dispatch, latitude, longitude);
-  }
-};
-
 export const updateLanguage = (socket, lang) => dispatch => {
   socket.emit('update-language', {
     lang: lang === 'es' ? 'Spanish' : 'English',
@@ -109,7 +83,9 @@ export const updateWICVendorsZipModal = zipCode => async (
   getState,
 ) => {
   dispatch(populateWICVendors(await fetchWICVendorsZipCode(zipCode)));
-  getState().wicOffices && getState().snapOffices && dispatch(updateMapLoading(false));
+  getState().wicOffices &&
+    getState().snapOffices &&
+    dispatch(updateMapLoading(false));
 };
 
 export const updateWICVendorsLocationPermission = (
@@ -121,5 +97,33 @@ export const updateWICVendorsLocationPermission = (
       await fetchWICVendorsLocationPermission(latitude, longitude),
     ),
   );
-  getState().wicOffices && getState().snapOffices && dispatch(updateMapLoading(false));
-}
+  getState().wicOffices &&
+    getState().snapOffices &&
+    dispatch(updateMapLoading(false));
+};
+
+export const getFoodBanks = async (
+  dispatch,
+  latitude,
+  longitude,
+) => {
+  dispatch(updateLocation({ latitude, longitude }));
+  const foodBanks = await fetchFoodBanks(latitude, longitude);
+  dispatch(populateFoodBanks(foodBanks));
+  dispatch(updateMapLoading(false));
+};
+
+export const updateFoodBanks = () => async (dispatch, getState) => {
+  dispatch(updateMapLoading(true));
+  const { zipCode } = getState();
+  if (zipCode) {
+    const {
+      lat: latitude,
+      lng: longitude,
+    } = await fetchZipCodeCoords(zipCode);
+    getFoodBanks(dispatch, latitude, longitude);
+  } else {
+    const { latitude, longitude } = getState().location;
+    getFoodBanks(dispatch, latitude, longitude);
+  }
+};
