@@ -16,7 +16,7 @@ const EligibilityButton = props =>
       containerViewStyle={{
         marginRight: props.ineligible ? 0 : 20,
         marginLeft: props.ineligible ? 0 : 20,
-        marginBottom: props.ineligible ? 5 : 20,
+        marginBottom: props.ineligible ? 0 : 20,
         borderRadius: 5
       }}
       borderRadius={5}
