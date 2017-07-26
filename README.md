@@ -47,7 +47,6 @@ According to the PEW research institute, about 13% of low-income Americans rely 
 
 Coming soon to your local app store!
 
-Choose a language  ➡️  get aquianted  ➡️  find offices near you ➡️  determine eligibility
 <br>
 ![](https://j.gifs.com/qjgElD.gif)
 <br>
