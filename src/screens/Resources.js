@@ -44,7 +44,7 @@ class Resources extends Component {
       this,
     );
   }
-  async getLocationAsync(office) {
+  async getLocationAsync() {
     const { status: currentStatus } = await Permissions.getAsync(
       Permissions.LOCATION,
     );

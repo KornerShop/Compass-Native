@@ -102,11 +102,7 @@ export const updateWICVendorsLocationPermission = (
     dispatch(updateMapLoading(false));
 };
 
-export const getFoodBanks = async (
-  dispatch,
-  latitude,
-  longitude,
-) => {
+export const getFoodBanks = async (dispatch, latitude, longitude) => {
   dispatch(updateLocation({ latitude, longitude }));
   const foodBanks = await fetchFoodBanks(latitude, longitude);
   dispatch(populateFoodBanks(foodBanks));
