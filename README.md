@@ -52,3 +52,5 @@ Coming soon to your local app store!
 ![](https://j.gifs.com/LgjpYv.gif)
 <br>
 ![](https://j.gifs.com/nZ2AGp.gif)
+<br>
+![](https://j.gifs.com/1j0oBZ.gif)
