@@ -1,4 +1,7 @@
 [ignore]
+<PROJECT_ROOT>/node_modules/styled-components/*
+<PROJECT_ROOT>/node_modules/@expo/ex-navigation/*
+<PROJECT_ROOT>/node_modules/react-native/*
 ; We fork some components by platform
 .*/*[.]android.js
 
@@ -60,4 +63,4 @@ suppress_comment=\\(.\\|\n\\)*\\$FlowExpectedError
 unsafe.enable_getters_and_setters=true
 
 [version]
-^0.42.0
+^0.51.1
