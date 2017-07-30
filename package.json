@@ -36,9 +36,9 @@
     "android": "react-native-scripts android",
     "ios": "react-native-scripts ios",
     "test": "node node_modules/jest/bin/jest.js",
-    "test:ci": "yarn test --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "test:update": "yarn test -- -u",
     "test:cov": "yarn test -- --coverage",
+    "test:report": "yarn test:cov && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "test:watch": "yarn test -- --watch",
     "appr": "appr"
   },
