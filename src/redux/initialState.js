@@ -8,7 +8,6 @@ export default {
     latitudeDelta: 0.4,
     longitudeDelta: 0.4,
   },
-  zipCode: '',
   snapOffices: [],
   wicOffices: [],
   wicVendors: [],
@@ -21,6 +20,7 @@ export default {
     fontScale: '',
   },
   office: 0,
+  zipCode: '',
 };
 
 // wicEligible states
