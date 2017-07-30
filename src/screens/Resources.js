@@ -13,7 +13,7 @@ import { bindActionCreators } from 'redux';
 import { Permissions, Location } from 'expo';
 import SocketIOClient from 'socket.io-client';
 
-import { NGROK_ADDR } from '../utilities/config';
+import { SOCKET_ADDR } from '../utilities/config';
 
 import Office from '../containers/Office';
 import Map from '../containers/Map';
@@ -35,7 +35,7 @@ class Resources extends Component {
       modalVisible: false,
       onboarded: false,
     };
-    this.socket = SocketIOClient(NGROK_ADDR, {
+    this.socket = SocketIOClient(SOCKET_ADDR, {
       transports: ['websocket'],
     });
     this.getLocationAsync = this.getLocationAsync.bind(this);
