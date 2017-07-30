@@ -1,9 +1,15 @@
 dependencies:
   override:
     - yarn
+
 machine:
   node:
     version: 7.10.0
+
+test:
+  override:
+    - yarn test:ci
+
 deployment:
   appr:
     branch: /.*/
