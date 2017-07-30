@@ -25,23 +25,16 @@ import {
 import { cacheImages, cacheFonts } from "./utilities/cacheAssetsAsync";
 
 class Main extends Component {
-  constructor() {
-    super();
-    this.state = {
-      started: false,
-      isLoading: true
-    };
-    this.socket = SocketIOClient(SOCKET_ADDR, {
-      transports: ["websocket"]
-    });
-    this.toggleStart = this.toggleStart.bind(this);
-  }
+  state = {
+    started: false,
+    isLoading: true
+  };
   componentDidMount() {
     // Not ideal, but this action is necessary for getting the initial orientation of the device
     this.props.updateOrientation(Dimensions.get("window"));
     this.loadAssetsAsync();
   }
-  async getLanguage() {
+  getLanguage = async () => {
     try {
       const language = await AsyncStorage.getItem("language");
       this.setState({
@@ -56,11 +49,14 @@ class Main extends Component {
     } catch (err) {
       console.warn(err);
     }
-  }
-  toggleStart() {
+  };
+  socket = SocketIOClient(SOCKET_ADDR, {
+    transports: ["websocket"]
+  });
+  toggleStart = () => {
     this.setState({ started: !this.state.started });
-  }
-  async loadAssetsAsync() {
+  };
+  loadAssetsAsync = async () => {
     await cacheImages([
       require("./assets/shopper.png"),
       require("./assets/snap1.jpg"),
@@ -75,17 +71,14 @@ class Main extends Component {
     this.setState({
       isLoading: false
     });
-  }
-  renderRoot(Comp) {
-    return (
-      <View
-        style={{ flex: 1 }}
-        onLayout={() => this.props.updateOrientation(Dimensions.get("window"))}
-      >
-        <Comp socket={this.socket} toggleStart={this.toggleStart} />
-      </View>
-    );
-  }
+  };
+  renderRoot = Comp =>
+    <View
+      style={{ flex: 1 }}
+      onLayout={() => this.props.updateOrientation(Dimensions.get("window"))}
+    >
+      <Comp socket={this.socket} toggleStart={this.toggleStart} />
+    </View>;
   render() {
     if (this.state.isLoading) {
       return (

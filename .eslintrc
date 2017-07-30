@@ -1,5 +1,6 @@
 {
   "extends": [
+    "plugin:flowtype/recommended",
     "airbnb",
     "prettier",
     "prettier/react"
@@ -9,6 +10,7 @@
     "jsx-a11y/anchor-is-valid": ["warn", { "aspects": ["invalidHref"] }]
   },
   "plugins": [
+    "flowtype",
     "prettier"
   ],
   "parser": "babel-eslint",
