@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/KornerShop/Compass-Native.svg?style=shield&circle-token=9f6a9128bd9f6ca839a32da67c02794ab1f027ea)](https://circleci.com/gh/KornerShop/Compass-Native)[![Coverage Status](https://coveralls.io/repos/github/kornershop/compass-native/badge.svg?branch=master)](https://coveralls.io/github/kornershop/compass-native?branch=master)
+[![CircleCI](https://circleci.com/gh/KornerShop/Compass-Native.svg?style=shield&circle-token=5669e4b04a128a85fe31d6f4e7d6c2dd3c09a1eb)](https://circleci.com/gh/KornerShop/Compass-Native)[![Coverage Status](https://coveralls.io/repos/github/kornershop/compass-native/badge.svg?branch=master)](https://coveralls.io/github/kornershop/compass-native?branch=master)
 [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
