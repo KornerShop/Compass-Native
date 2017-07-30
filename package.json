@@ -36,6 +36,7 @@
     "android": "react-native-scripts android",
     "ios": "react-native-scripts ios",
     "test": "node node_modules/jest/bin/jest.js",
+    "test:ci": "yarn test --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "test:update": "yarn test -- -u",
     "test:cov": "yarn test -- --coverage",
     "test:watch": "yarn test -- --watch",
@@ -43,6 +44,10 @@
   },
   "jest": {
     "preset": "jest-expo",
+    "collectCoverageFrom": [
+      "**/*.{js,jsx}",
+      "!**/node_modules/**"
+    ],
     "snapshotSerializers": [
       "jest-serializer-enzyme"
     ]
@@ -51,6 +56,7 @@
     "@expo/ex-navigation": "^3.0.0",
     "@expo/vector-icons": "^5.0.0",
     "ajv": "^5.2.2",
+    "coveralls": "^2.13.1",
     "expo": "^17.0.0",
     "moment": "^2.18.1",
     "portable-fetch": "^3.0.0",
