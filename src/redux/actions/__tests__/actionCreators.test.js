@@ -5,7 +5,6 @@ import moment from 'moment';
 import initState from '../../initialState';
 
 import {
-  fetchZipCodeCoords,
   fetchResults,
   fetchWICVendorsZipCode,
   fetchFoodBanks,

@@ -351,6 +351,6 @@ Object {
 exports[`updateZipCode 1`] = `
 Object {
   "payload": 95404,
-  "type": "UPDATE_ZIPCODE",
+  "type": "UPDATE_ZIP_CODE",
 }
 `;

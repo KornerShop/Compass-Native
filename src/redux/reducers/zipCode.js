@@ -1,9 +1,12 @@
 import initState from '../initialState';
-import { UPDATE_ZIPCODE } from '../actions/types';
+import { UPDATE_ZIP_CODE } from '../actions/types';
 
-export default (state = initState.zipCode, { type, payload }) => {
+export default (
+  state = initState.zipCode,
+  { type, payload },
+) => {
   switch (type) {
-    case UPDATE_ZIPCODE:
+    case UPDATE_ZIP_CODE:
       return payload;
     default:
       return state;

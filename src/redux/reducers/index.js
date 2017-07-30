@@ -2,11 +2,11 @@ import { combineReducers } from 'redux';
 
 import language from './language';
 import locationProvided from './locationProvided';
-import zipCode from './zipCode';
 import snapOffices from './snapOffices';
 import wicOffices from './wicOffices';
 import wicVendors from './wicVendors';
 import wicEligible from './wicEligible';
+import zipCode from './zipCode';
 import location from './location';
 import orientation from './orientation';
 import office from './office';

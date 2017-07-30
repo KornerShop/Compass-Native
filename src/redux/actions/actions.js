@@ -11,7 +11,7 @@ export const toggleLocationProvided = provided => ({
 });
 
 export const updateZipCode = zipCode => ({
-  type: types.UPDATE_ZIPCODE,
+  type: types.UPDATE_ZIP_CODE,
   payload: zipCode,
 });
 

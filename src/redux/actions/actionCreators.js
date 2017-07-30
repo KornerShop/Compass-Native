@@ -61,7 +61,7 @@ export const updateOffices = () => async (dispatch, getState) => {
       zipCode,
     );
   } else {
-    var { latitude, longitude } = getState().location;
+    var { location: { latitude, longitude } } = getState();
   }
   dispatch(updateLocation({ latitude, longitude }));
   if (office === 1) {
@@ -82,24 +82,22 @@ export const updateWICVendorsZipModal = zipCode => async (
   dispatch,
   getState,
 ) => {
+  const { wicOffices, snapOffices } = getState();
   dispatch(populateWICVendors(await fetchWICVendorsZipCode(zipCode)));
-  getState().wicOffices &&
-    getState().snapOffices &&
-    dispatch(updateMapLoading(false));
+  wicOffices && snapOffices && dispatch(updateMapLoading(false));
 };
 
 export const updateWICVendorsLocationPermission = (
   latitude,
   longitude,
 ) => async (dispatch, getState) => {
+  const { wicOffices, snapOffices } = getState();
   dispatch(
     populateWICVendors(
       await fetchWICVendorsLocationPermission(latitude, longitude),
     ),
   );
-  getState().wicOffices &&
-    getState().snapOffices &&
-    dispatch(updateMapLoading(false));
+  wicOffices && snapOffices && dispatch(updateMapLoading(false));
 };
 
 export const getFoodBanks = async (dispatch, latitude, longitude) => {
