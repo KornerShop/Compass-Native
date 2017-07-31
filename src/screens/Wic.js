@@ -1,17 +1,21 @@
 import React, { Component } from "react";
-import { Permissions, Location } from 'expo';
+import { Permissions, Location } from "expo";
 import { number, func, shape, oneOf } from "prop-types";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import SocketIOClient from "socket.io-client";
 
-import { NGROK_ADDR } from "../utilities/config";
+import { SOCKET_ADDR } from "../utilities/config";
 
 import {
   updateWicEligibility,
   toggleLocationProvided
 } from "../redux/actions/actions";
-import { updateFoodBanks, changeZipCode, changeLocation} from "../redux/actions/actionCreators";
+import {
+  updateFoodBanks,
+  changeZipCode,
+  changeLocation
+} from "../redux/actions/actionCreators";
 
 import WicForm from "../containers/WicForm";
 import Eligible from "../containers/Eligible";
@@ -29,17 +33,11 @@ class Wic extends Component {
       lifeEventsValid: null,
       modalVisible: false
     };
-    this.socket = SocketIOClient(NGROK_ADDR, {
+    this.socket = SocketIOClient(SOCKET_ADDR, {
       transports: ["websocket"]
     });
-    this.updateLifeEvents = this.updateLifeEvents.bind(this);
-    this.updateState = this.updateState.bind(this);
-    this.checkEligibility = this.checkEligibility.bind(this);
-    this.getLocationAsync = this.getLocationAsync.bind(this);
-    this.toggleModalVisibility = this.toggleModalVisibility.bind(this);
   }
-  async getLocationAsync() {
-    console.log('this is running')
+  getLocationAsync = async () => {
     const { status: currentStatus } = await Permissions.getAsync(
       Permissions.LOCATION
     );
@@ -75,10 +73,10 @@ class Wic extends Component {
       this.props.updateFoodBanks();
       this.props.toggleLocationProvided(true);
     }
-  }
+  };
 
   // determines eligibility and then stores it in AsyncStorage
-  checkEligibility(lifeEvents, familySize, income) {
+  checkEligibility = (lifeEvents, familySize, income) => {
     const qualifyingIncomes = [
       0,
       1832.0,
@@ -99,22 +97,22 @@ class Wic extends Component {
     } else {
       this.props.updateWicEligibility(2);
     }
-  }
+  };
 
-  toggleModalVisibility() {
+  toggleModalVisibility = () => {
     this.setState({
       modalVisible: !this.state.modalVisible
     });
-  }
-  updateState(obj) {
+  };
+  updateState = obj => {
     this.setState(obj);
-  }
-  updateLifeEvents(idx) {
+  };
+  updateLifeEvents = idx => {
     this.setState({
       lifeEvents: idx,
       lifeEventsValid: true
     });
-  }
+  };
 
   render() {
     if (this.props.wicEligible === 0) {

@@ -20,11 +20,10 @@ class ZipModal extends Component {
       zipCode: "",
       zipValid: true
     };
-    this.onChangeZip = this.onChangeZip.bind(this);
   }
-  onChangeZip(zipCode) {
+  onChangeZip = zipCode => {
     this.setState({ zipCode });
-  }
+  };
   render() {
     let localization;
     this.props.foodBanks
@@ -90,7 +89,7 @@ class ZipModal extends Component {
               if (this.state.zipValid && this.state.zipCode) {
                 this.props.changeZipCode(this.props.socket, this.state.zipCode);
                 if (this.props.foodBanks) {
-                  this.props.updateFoodBanks()
+                  this.props.updateFoodBanks();
                 } else {
                   this.props.updateOffices();
                   this.props.updateWICVendorsZipModal(this.state.zipCode);
@@ -103,7 +102,7 @@ class ZipModal extends Component {
               if (this.state.zipValid && this.state.zipCode) {
                 this.props.changeZipCode(this.props.socket, this.state.zipCode);
                 if (this.props.foodBanks) {
-                  this.props.updateFoodBanks()
+                  this.props.updateFoodBanks();
                 } else {
                   this.props.updateOffices();
                   this.props.updateWICVendorsZipModal(this.state.zipCode);

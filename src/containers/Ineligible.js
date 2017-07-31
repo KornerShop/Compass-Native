@@ -16,18 +16,17 @@ import localizedStrings from "../utilities/localization";
 import MarkerView from "../components/MarkerView";
 
 export default class Ineligible extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       selectedCalloutIndex: 0
     };
-    this.onCalloutPressed = this.onCalloutPressed.bind(this);
   }
   async componentDidMount() {
     await this.props.getLocationAsync();
     this.props.updateFoodBanks();
   }
-  onCalloutPressed(index) {
+  onCalloutPressed = index => {
     const calloutRef = `callout-${index}`;
     const item = this.refs[calloutRef];
     this.setState({ selectedCalloutIndex: index });
@@ -46,10 +45,10 @@ export default class Ineligible extends Component {
       >
         {this.props.mapLoading
           ? <ActivityIndicatorWrapper>
-            <ActivityIndicator color="#21CFBF" size="large" />
-          </ActivityIndicatorWrapper>
+              <ActivityIndicator color="#21CFBF" size="large" />
+            </ActivityIndicatorWrapper>
           : <View
-            style={{
+              style={{
                 flex: 1,
                 justifyContent: "space-between",
                 paddingLeft: 5,
@@ -57,51 +56,51 @@ export default class Ineligible extends Component {
                 paddingBottom: 15,
                 paddingTop: 30,
                 marginTop: 5
-            }}
+              }}
             >
-            <IneligibleHeader>
-              {localizedStrings[this.props.language].ineligible.header}
-              {localizedStrings[this.props.language].ineligible.foodBanks}
-            </IneligibleHeader>
-            <MapView
-              style={{
+              <IneligibleHeader>
+                {localizedStrings[this.props.language].ineligible.header}
+                {localizedStrings[this.props.language].ineligible.foodBanks}
+              </IneligibleHeader>
+              <MapView
+                style={{
                   flex: 1,
                   marginBottom: 15,
                   marginTop: 15,
                   borderRadius: 2
-              }}
-              provider={Platform.OS === "ios" ? null : "google"}
-              region={this.props.location}
-            >
-              {this.props.foodBanks.map(foodBank =>
-                <MapView.Marker
-                  accessibilityLabels="button"
-                  key={foodBank.id}
-                  coordinate={{
+                }}
+                provider={Platform.OS === "ios" ? null : "google"}
+                region={this.props.location}
+              >
+                {this.props.foodBanks.map(foodBank =>
+                  <MapView.Marker
+                    accessibilityLabels="button"
+                    key={foodBank.id}
+                    coordinate={{
                       latitude: foodBank.lat,
                       longitude: foodBank.lng
-                  }}
-                  image={require("../assets/apple.png")}
-                  zIndex={this.state.selectedCalloutIndex === index ? 999 : 0}
-                  onPress={() => this.onCalloutPressed(index)}
-                  ref={`callout-${index}`}
-                >
-                  <MapView.Callout tooltip>
-                    <MarkerView
-                      {...foodBank}
-                      socket={this.props.socket}
-                      office={2}
-                      location={this.props.location}
-                    />
-                  </MapView.Callout>
-                </MapView.Marker>
-              )}
-            </MapView>
-            <EligibilityButton
-              ineligible
-              language={this.props.language}
-              title={localizedStrings[this.props.language].buttons.recheck}
-              accessibility={
+                    }}
+                    image={require("../assets/apple.png")}
+                    zIndex={this.state.selectedCalloutIndex === index ? 999 : 0}
+                    onPress={() => this.onCalloutPressed(index)}
+                    ref={`callout-${index}`}
+                  >
+                    <MapView.Callout tooltip>
+                      <MarkerView
+                        {...foodBank}
+                        socket={this.props.socket}
+                        office={2}
+                        location={this.props.location}
+                      />
+                    </MapView.Callout>
+                  </MapView.Marker>
+                )}
+              </MapView>
+              <EligibilityButton
+                ineligible
+                language={this.props.language}
+                title={localizedStrings[this.props.language].buttons.recheck}
+                accessibility={
                   localizedStrings[this.props.language].buttons
                     .accessibilityRecheck
                 }

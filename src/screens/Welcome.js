@@ -1,26 +1,26 @@
-import React, { Component } from 'react';
-import { func, number, object, shape } from 'prop-types';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
+import React, { Component } from "react";
+import { func, number, object, shape } from "prop-types";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
 import {
   Image,
   View,
   AsyncStorage,
   ActivityIndicator,
-  StatusBar,
-} from 'react-native';
-import { FontAwesome } from '@expo/vector-icons';
-import { ButtonGroup } from 'react-native-elements';
+  StatusBar
+} from "react-native";
+import { FontAwesome } from "@expo/vector-icons";
+import { ButtonGroup } from "react-native-elements";
 
-import { updateLanguage } from '../redux/actions/actionCreators';
+import { updateLanguage } from "../redux/actions/actionCreators";
 
-import Onboard from '../containers/Onboard';
+import Onboard from "../containers/Onboard";
 
 import {
   ActivityIndicatorWrapper,
   WelcomeUIWrapper,
-  Logo,
-} from '../components/styled/Styled';
+  Logo
+} from "../components/styled/Styled";
 
 class Welcome extends Component {
   constructor(props) {
@@ -28,21 +28,20 @@ class Welcome extends Component {
     this.state = {
       isLoading: true,
       selectedLanguage: 2,
-      onboard: false,
+      onboard: false
     };
-    this.updateIndex = this.updateIndex.bind(this);
   }
 
-  async updateIndex(idx) {
+  updateIndex = async idx => {
     this.setState({ selectedLanguage: idx, onboard: true });
-    const language = idx === 1 ? 'es' : 'en';
+    const language = idx === 1 ? "es" : "en";
     try {
-      await AsyncStorage.setItem('language', language);
+      await AsyncStorage.setItem("language", language);
     } catch (error) {
       console.warn(error);
     }
     this.props.updateLanguage(this.props.socket, language);
-  }
+  };
   render() {
     if (!this.state.onboard) {
       return (
@@ -50,12 +49,12 @@ class Welcome extends Component {
           <StatusBar barStyle="light-content" />
           <Image
             onLoad={() => this.setState({ isLoading: false })}
-            source={require('../assets/shopper.png')}
+            source={require("../assets/shopper.png")}
             style={{
               flex: 1,
               height: this.props.orientation.height,
               width: this.props.orientation.width,
-              resizeMode: 'cover',
+              resizeMode: "cover"
             }}
           >
             {this.state.isLoading
@@ -64,42 +63,38 @@ class Welcome extends Component {
                 </ActivityIndicatorWrapper>
               : <WelcomeUIWrapper accessible={false}>
                   <Logo>
-                    C<FontAwesome
-                      name="compass"
-                      size={47}
-                      color="white"
-                    />mpass
+                    C<FontAwesome name="compass" size={47} color="white" />mpass
                   </Logo>
                   <ButtonGroup
-                    accessibilityLabel={'Select a language'}
+                    accessibilityLabel={"Select a language"}
                     accessibilityLabels="button"
                     onAccessibilityTap={this.updateIndex}
                     accessibilityTraits="button"
                     onPress={this.updateIndex}
                     selectedIndex={this.state.selectedLanguage}
-                    buttons={['English', 'Español']}
+                    buttons={["English", "Español"]}
                     textStyle={{
-                      color: 'white',
+                      color: "white",
                       fontSize: 18,
-                      fontWeight: 'bold',
+                      fontWeight: "bold"
                     }}
                     borderRadius={3}
                     selectedTextStyle={{
-                      color: '#2c2c2c',
+                      color: "#2c2c2c"
                     }}
                     innerBorderStyle={{
-                      color: 'white',
-                      width: 3,
+                      color: "white",
+                      width: 3
                     }}
                     containerStyle={{
                       height: 50,
                       marginTop: 30,
-                      backgroundColor: 'transparent',
+                      backgroundColor: "transparent",
                       borderWidth: 3,
                       borderRadius: 3,
-                      borderColor: 'white',
+                      borderColor: "white",
                       width: 265,
-                      alignSelf: 'center',
+                      alignSelf: "center"
                     }}
                     selectedBackgroundColor="white"
                   />
@@ -110,7 +105,7 @@ class Welcome extends Component {
     }
     return (
       <Onboard
-        language={this.state.selectedLanguage === 1 ? 'es' : 'en'}
+        language={this.state.selectedLanguage === 1 ? "es" : "en"}
         orientation={this.props.orientation}
         toggleStart={this.props.toggleStart}
       />
@@ -125,17 +120,17 @@ Welcome.propTypes = {
     scale: number.isRequired,
     height: number.isRequired,
     width: number.isRequired,
-    fontScale: number.isRequired,
+    fontScale: number.isRequired
   }).isRequired,
-  socket: object.isRequired,
+  socket: object.isRequired
 };
 
 const mapStateToProps = ({ orientation }) => ({
-  orientation,
+  orientation
 });
 
 const mapDispatchToProps = dispatch => ({
-  updateLanguage: bindActionCreators(updateLanguage, dispatch),
+  updateLanguage: bindActionCreators(updateLanguage, dispatch)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Welcome);
