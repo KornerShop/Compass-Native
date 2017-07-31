@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`populateFoodBanks 1`] = `
+exports[`actions populateFoodBanks 1`] = `
 Object {
   "payload": Array [
     Object {
@@ -188,7 +188,7 @@ Object {
 }
 `;
 
-exports[`populateSNAP 1`] = `
+exports[`actions populateSNAP 1`] = `
 Object {
   "payload": Array [
     Object {
@@ -214,7 +214,7 @@ Object {
 }
 `;
 
-exports[`populateWIC 1`] = `
+exports[`actions populateWIC 1`] = `
 Object {
   "payload": Array [
     Object {
@@ -267,7 +267,7 @@ Object {
 }
 `;
 
-exports[`populateWICVendors 1`] = `
+exports[`actions populateWICVendors 1`] = `
 Object {
   "payload": Array [
     Object {
@@ -289,21 +289,21 @@ Object {
 }
 `;
 
-exports[`setLanguagePreference 1`] = `
+exports[`actions setLanguagePreference 1`] = `
 Object {
   "payload": "es",
   "type": "SET_LANGUAGE_PREFERENCE",
 }
 `;
 
-exports[`toggleLocationProvided 1`] = `
+exports[`actions toggleLocationProvided 1`] = `
 Object {
   "payload": true,
   "type": "TOGGLE_LOCATION_PROVIDED",
 }
 `;
 
-exports[`updateLocation 1`] = `
+exports[`actions updateLocation 1`] = `
 Object {
   "payload": Object {
     "latitude": 38.5386881,
@@ -315,21 +315,21 @@ Object {
 }
 `;
 
-exports[`updateMapLoading 1`] = `
+exports[`actions updateMapLoading 1`] = `
 Object {
   "payload": false,
   "type": "TOGGLE_MAP_LOADING",
 }
 `;
 
-exports[`updateOffice 1`] = `
+exports[`actions updateOffice 1`] = `
 Object {
   "payload": 1,
   "type": "UPDATE_OFFICE",
 }
 `;
 
-exports[`updateOrientation 1`] = `
+exports[`actions updateOrientation 1`] = `
 Object {
   "payload": Object {
     "fontScale": 1,
@@ -341,14 +341,14 @@ Object {
 }
 `;
 
-exports[`updateWicEligibility 1`] = `
+exports[`actions updateWicEligibility 1`] = `
 Object {
   "payload": 1,
   "type": "UPDATE_WIC_ELIGIBILITY",
 }
 `;
 
-exports[`updateZipCode 1`] = `
+exports[`actions updateZipCode 1`] = `
 Object {
   "payload": 95404,
   "type": "UPDATE_ZIP_CODE",
