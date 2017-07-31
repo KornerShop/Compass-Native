@@ -9,7 +9,6 @@ const Snap = ({ language }) => {
   const host = "https://getcalfresh.org/en/apply";
   const url = language === "en" ? host : `${host}?new_locale=es`;
   const translatedMessage = localizedStrings[language].snap.accessible;
-
   return (
     <View
       accessible

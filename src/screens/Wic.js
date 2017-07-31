@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Permissions, Location } from "expo";
-import { number, func, shape, oneOf } from "prop-types";
+import { string, number, bool, func, shape, oneOf } from "prop-types";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import SocketIOClient from "socket.io-client";
@@ -17,26 +17,20 @@ import {
   changeLocation
 } from "../redux/actions/actionCreators";
 
-import WicForm from "../containers/WicForm";
-import Eligible from "../containers/Eligible";
-import Ineligible from "../containers/Ineligible";
+import WicForm from "../views/WicForm";
+import Eligible from "../views/Eligible";
+import Ineligible from "../views/Ineligible";
 
 class Wic extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      familySize: "",
-      income: "",
-      lifeEvents: 2,
-      familySizeValid: null,
-      incomeValid: null,
-      lifeEventsValid: null,
-      modalVisible: false
-    };
-    this.socket = SocketIOClient(SOCKET_ADDR, {
-      transports: ["websocket"]
-    });
-  }
+  state = {
+    familySize: "",
+    income: "",
+    lifeEvents: 2,
+    familySizeValid: null,
+    incomeValid: null,
+    lifeEventsValid: null,
+    modalVisible: false
+  };
   getLocationAsync = async () => {
     const { status: currentStatus } = await Permissions.getAsync(
       Permissions.LOCATION
@@ -74,8 +68,9 @@ class Wic extends Component {
       this.props.toggleLocationProvided(true);
     }
   };
-
-  // determines eligibility and then stores it in AsyncStorage
+  socket = SocketIOClient(SOCKET_ADDR, {
+    transports: ["websocket"]
+  });
   checkEligibility = (lifeEvents, familySize, income) => {
     const qualifyingIncomes = [
       0,
@@ -169,14 +164,25 @@ Wic.propTypes = {
     fontScale: number.isRequired
   }).isRequired,
   updateWicEligibility: func.isRequired,
-  language: oneOf(["es", "en"]).isRequired
+  language: oneOf(["es", "en"]).isRequired,
+  location: shape({
+    latitude: number.isRequired,
+    longitude: number.isRequired,
+    latitudeDelta: number.isRequired,
+    longitudeDelta: number.isRequired
+  }).isRequired,
+  locationProvided: bool.isRequired,
+  mapLoading: bool.isRequired,
+  toggleLocationProvided: func.isRequired,
+  changeZipCode: func.isRequired,
+  updateFoodBanks: func.isRequired,
+  changeLocation: func.isRequired,
 };
 
 const mapStateToProps = ({
   wicEligible,
   orientation,
   language,
-  zipCode,
   foodBanks,
   location,
   locationProvided,
@@ -185,7 +191,6 @@ const mapStateToProps = ({
   wicEligible,
   orientation,
   language,
-  zipCode,
   foodBanks,
   location,
   locationProvided,

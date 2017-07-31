@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import {
   string,
   oneOf,
@@ -7,33 +7,24 @@ import {
   object,
   shape,
   arrayOf,
-  func,
-} from 'prop-types';
+  func
+} from "prop-types";
 
-import {
-  Platform,
-  StatusBar,
-  View,
-  ActivityIndicator,
-} from 'react-native';
-import { MapView } from 'expo';
-import { ButtonGroup } from 'react-native-elements';
+import { Platform, StatusBar, View, ActivityIndicator } from "react-native";
+import { MapView } from "expo";
+import { ButtonGroup } from "react-native-elements";
 
-import ZipModal from './ZipModal';
-import { ActivityIndicatorWrapper } from '../components/styled/Styled';
-import MarkerView from '../components/MarkerView';
+import ZipModal from "./ZipModal";
+import { ActivityIndicatorWrapper } from "../components/styled/Styled";
+import MarkerView from "../components/MarkerView";
 
-import localizedStrings from '../utilities/localization';
+import localizedStrings from "../utilities/localization";
 
 class Map extends Component {
-  constructor(props) {
-    super(props);
-    this.updateIndex = this.updateIndex.bind(this);
-  }
   componentDidMount() {
     this.props.updateOffices();
   }
-  updateIndex(idx) {
+  updateIndex = idx => {
     if (idx === 2) {
       this.props.toggleModalVisibility();
     } else {
@@ -41,12 +32,10 @@ class Map extends Component {
       this.props.changeOffice(this.props.socket, officeNum);
       this.props.updateOffices();
     }
-  }
+  };
   render() {
     const offices =
-      this.props.office === 1
-        ? this.props.snapOffices
-        : this.props.wicOffices;
+      this.props.office === 1 ? this.props.snapOffices : this.props.wicOffices;
     if (!this.props.mapLoading) {
       return (
         <View
@@ -56,7 +45,7 @@ class Map extends Component {
             paddingTop: 10,
             paddingBottom: 5,
             paddingHorizontal: 5,
-            backgroundColor: 'white',
+            backgroundColor: "white"
           }}
         >
           <StatusBar barStyle="dark-content" />
@@ -65,46 +54,46 @@ class Map extends Component {
             accessibilityTraits="button"
             onPress={this.updateIndex}
             buttons={[
-              'Calfresh',
-              'WIC',
-              localizedStrings[this.props.language].buttons.recheck,
+              "Calfresh",
+              "WIC",
+              localizedStrings[this.props.language].buttons.recheck
             ]}
             selectedIndex={this.props.office === 1 ? 0 : 1}
             textStyle={{
-              color: 'black',
-              fontSize: 20,
+              color: "black",
+              fontSize: 20
             }}
             borderRadius={2}
             buttonStyle={{
               borderWidth: 1,
-              borderColor: 'white',
+              borderColor: "white"
             }}
             innerBorderStyle={{
               width: 1,
-              color: 'white',
+              color: "white"
             }}
             containerStyle={{
-              alignSelf: 'center',
+              alignSelf: "center",
               marginTop: 20,
               marginBottom: 10,
               borderWidth: 1,
-              borderColor: 'white',
-              backgroundColor: 'transparent',
+              borderColor: "white",
+              backgroundColor: "transparent",
               width: this.props.orientation.width - 10,
-              borderRadius: 2,
+              borderRadius: 2
             }}
             selectedTextStyle={{
-              color: 'tomato',
-              borderRadius: 2,
+              color: "tomato",
+              borderRadius: 2
             }}
             selectedBackgroundColor="white"
           />
           <MapView
             style={{
               flex: 1,
-              borderRadius: 2,
+              borderRadius: 2
             }}
-            provider={Platform.OS === 'ios' ? null : 'google'}
+            provider={Platform.OS === "ios" ? null : "google"}
             region={this.props.location}
           >
             {offices.map(office =>
@@ -113,9 +102,9 @@ class Map extends Component {
                 key={office.id}
                 coordinate={{
                   latitude: office.lat,
-                  longitude: office.lng,
+                  longitude: office.lng
                 }}
-                image={require('../assets/building.png')}
+                image={require("../assets/building.png")}
               >
                 <MapView.Callout tooltip>
                   <MarkerView
@@ -134,9 +123,9 @@ class Map extends Component {
                   key={vendor.id}
                   coordinate={{
                     latitude: vendor.lat,
-                    longitude: vendor.lng,
+                    longitude: vendor.lng
                   }}
-                  image={require('../assets/groceries.png')}
+                  image={require("../assets/groceries.png")}
                 >
                   <MapView.Callout tooltip>
                     <MarkerView
@@ -146,7 +135,7 @@ class Map extends Component {
                       location={this.props.location}
                     />
                   </MapView.Callout>
-                </MapView.Marker>,
+                </MapView.Marker>
               )}
           </MapView>
           <ZipModal
@@ -173,7 +162,7 @@ class Map extends Component {
 Map.defaultProps = {
   snapOffices: [],
   wicOffices: [],
-  wicVendors: [],
+  wicVendors: []
 };
 
 Map.propTypes = {
@@ -181,15 +170,15 @@ Map.propTypes = {
     scale: number.isRequired,
     height: number.isRequired,
     width: number.isRequired,
-    fontScale: number.isRequired,
+    fontScale: number.isRequired
   }).isRequired,
   updateWICVendorsZipModal: func.isRequired,
-  language: oneOf(['en', 'es']).isRequired,
+  language: oneOf(["en", "es"]).isRequired,
   location: shape({
     latitude: number.isRequired,
     longitude: number.isRequired,
     latitudeDelta: number.isRequired,
-    longitudeDelta: number.isRequired,
+    longitudeDelta: number.isRequired
   }).isRequired,
   updateOffices: func.isRequired,
   office: oneOf([0, 1, 2]).isRequired,
@@ -202,8 +191,8 @@ Map.propTypes = {
       name: string.isRequired,
       address: string.isRequired,
       phone_local: string,
-      phone_intl: string,
-    }).isRequired,
+      phone_intl: string
+    }).isRequired
   ),
   wicOffices: arrayOf(
     shape({
@@ -213,8 +202,8 @@ Map.propTypes = {
       name: string.isRequired,
       address: string.isRequired,
       phone_local: string,
-      phone_intl: string,
-    }).isRequired,
+      phone_intl: string
+    }).isRequired
   ),
   wicVendors: arrayOf(
     shape({
@@ -222,15 +211,15 @@ Map.propTypes = {
       name: string.isRequired,
       address: string.isRequired,
       lat: number.isRequired,
-      lng: number.isRequired,
-    }),
+      lng: number.isRequired
+    })
   ),
   mapLoading: bool.isRequired,
   modalVisible: bool.isRequired,
   changeZipCode: func.isRequired,
   toggleModalVisibility: func.isRequired,
   toggleLocationProvided: func.isRequired,
-  socket: object.isRequired,
+  socket: object.isRequired
 };
 
 export default Map;

@@ -16,12 +16,9 @@ import localizedStrings from "../utilities/localization";
 import MarkerView from "../components/MarkerView";
 
 export default class Ineligible extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      selectedCalloutIndex: 0
-    };
-  }
+  state = {
+    selectedCalloutIndex: 0
+  };
   async componentDidMount() {
     await this.props.getLocationAsync();
     this.props.updateFoodBanks();
@@ -31,7 +28,6 @@ export default class Ineligible extends Component {
     const item = this.refs[calloutRef];
     this.setState({ selectedCalloutIndex: index });
   }
-
   render() {
     let index;
     return (
@@ -124,7 +120,6 @@ export default class Ineligible extends Component {
 
 Ineligible.propTypes = {
   getLocationAsync: func.isRequired,
-  locationProvided: bool.isRequired,
   updateWicEligibility: func.isRequired,
   language: oneOf(["es", "en"]).isRequired,
   updateFoodBanks: func.isRequired,

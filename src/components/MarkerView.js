@@ -84,6 +84,10 @@ const MarkerView = ({
     />
   </View>;
 
+MarkerView.defaultProps = {
+  phone_local: null
+};
+
 MarkerView.propTypes = {
   office: oneOf([0, 1, 2]).isRequired,
   location: shape({

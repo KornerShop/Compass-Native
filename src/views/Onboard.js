@@ -1,6 +1,6 @@
 import React from "react";
 import { number, oneOf, func, shape } from "prop-types";
-import { Text, View, Platform, TouchableOpacity } from "react-native";
+import { Text, View, Platform } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import Carousel from "react-native-looped-carousel";
 

@@ -28,6 +28,10 @@ const SubmitButton = props =>
     onPress={props.onPress}
   />;
 
+SubmitButton.defaultProps = {
+  zip: null,
+};
+
 SubmitButton.propTypes = {
   title: string.isRequired,
   onPress: func.isRequired,

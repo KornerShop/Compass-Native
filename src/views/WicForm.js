@@ -190,6 +190,12 @@ const WicForm = props =>
     </StyledContainer>
   </View>;
 
+WicForm.defaultProps = {
+  familySizeValid: null,
+  incomeValid: null,
+  lifeEventsValid: null
+};
+
 WicForm.propTypes = {
   familySize: string.isRequired,
   income: string.isRequired,

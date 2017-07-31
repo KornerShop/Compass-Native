@@ -14,7 +14,7 @@ import { ButtonGroup } from "react-native-elements";
 
 import { updateLanguage } from "../redux/actions/actionCreators";
 
-import Onboard from "../containers/Onboard";
+import Onboard from "../views/Onboard";
 
 import {
   ActivityIndicatorWrapper,
@@ -23,15 +23,11 @@ import {
 } from "../components/styled/Styled";
 
 class Welcome extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isLoading: true,
-      selectedLanguage: 2,
-      onboard: false
-    };
-  }
-
+  state = {
+    isLoading: true,
+    selectedLanguage: 2,
+    onboard: false
+  };
   updateIndex = async idx => {
     this.setState({ selectedLanguage: idx, onboard: true });
     const language = idx === 1 ? "es" : "en";
