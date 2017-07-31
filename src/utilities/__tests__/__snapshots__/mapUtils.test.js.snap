@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`mapUtils fetchZipCode 1`] = `"95404"`;
+
+exports[`mapUtils fetchZipCodeCoords 1`] = `
+Object {
+  "lat": 38.5386881,
+  "lng": -122.695547,
+}
+`;
+
+exports[`mapUtils findZipCode 1`] = `"95404"`;
+
+exports[`mapUtils titleCase 1`] = `"One Two Three, 1st, 2nd, 3rd"`;
