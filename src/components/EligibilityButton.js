@@ -32,7 +32,7 @@ const EligibilityButton = props =>
   </View>;
 
 EligibilityButton.defaultProps = {
-  ineligible: false
+  ineligible: null
 };
 
 EligibilityButton.propTypes = {

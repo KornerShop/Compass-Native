@@ -1,8 +1,8 @@
-import React from 'react';
-import { string, number, object, shape, oneOf } from 'prop-types';
-import { Button } from 'react-native';
-import { WebBrowser } from 'expo';
-import moment from 'moment';
+import React from "react";
+import { string, number, object, shape, oneOf } from "prop-types";
+import { Button } from "react-native";
+import { WebBrowser } from "expo";
+import moment from "moment";
 
 const MapBrowser = ({
   socket,
@@ -12,27 +12,25 @@ const MapBrowser = ({
   officeLng,
   place_id,
   location,
-  office,
+  office
 }) => {
-  const initiateNav = async () => {
+  const initiateNav = () => {
     const { latitude: lat, longitude: lng } = location;
     const url =
       lat === 0 && lng === 0
         ? `https://www.google.com/maps/search/?api=1&query=${officeLat},${officeLng}&query_place_id=${place_id}`
         : `https://www.google.com/maps/dir/?api=1&origin=${lat},${lng}&destination=${name.replace(
             /\s/g,
-            '+',
+            "+"
           )}&destination_place_id=${place_id}&travelmode=transit`;
-    await WebBrowser.openBrowserAsync(url);
-  };
-  const emitNav = () =>
-    socket.emit('update-nav', {
-      office: office === 1 ? 'SNAP' : 'WIC',
-      date: moment().format('l'),
+    WebBrowser.openBrowserAsync(url);
+    socket.emit("update-nav", {
+      office: office === 1 ? "SNAP" : "WIC",
+      date: moment().format("l")
     });
+  };
   const handlepress = () => {
     initiateNav();
-    emitNav();
   };
   return (
     <Button
@@ -54,9 +52,9 @@ MapBrowser.propTypes = {
     latitude: number.isRequired,
     longitude: number.isRequired,
     latitudeDelta: number.isRequired,
-    longitudeDelta: number.isRequired,
+    longitudeDelta: number.isRequired
   }).isRequired,
-  socket: object,
+  socket: object
 };
 
 export default MapBrowser;

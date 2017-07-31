@@ -13,7 +13,7 @@ import {
 
 import { SOCKET_ADDR } from "./utilities/config";
 
-import NavigationProvider from "./containers/NavigationProvider";
+import NavigationProvider from "./components/NavigationProvider";
 import Welcome from "./screens/Welcome";
 import { ActivityIndicatorWrapper } from "./components/styled/Styled";
 
@@ -30,7 +30,6 @@ class Main extends Component {
     isLoading: true
   };
   componentDidMount() {
-    // Not ideal, but this action is necessary for getting the initial orientation of the device
     this.props.updateOrientation(Dimensions.get("window"));
     this.loadAssetsAsync();
   }

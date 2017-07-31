@@ -1,48 +1,36 @@
-import React, { Component } from 'react';
-import { Ionicons } from '@expo/vector-icons';
+import React, { Component } from "react";
+import { Ionicons } from "@expo/vector-icons";
 import {
   StackNavigation,
   TabNavigation,
-  TabNavigationItem as TabItem,
-} from '@expo/ex-navigation';
-import { Platform, StyleSheet } from 'react-native';
-import Router from './Router';
+  TabNavigationItem as TabItem
+} from "@expo/ex-navigation";
+import { StyleSheet } from "react-native";
+import Router from "./Router";
 
 const styles = StyleSheet.create({
   selectedIconColor: {
-    color: '#21CFBF',
+    color: "#21CFBF"
   },
   unselectedIconColor: {
-    color: 'tomato',
-  },
+    color: "tomato"
+  }
 });
 
 export default class RootNavigation extends Component {
   static route = {
     navigationBar: {
-      visible: false,
-    },
+      visible: false
+    }
   };
-
-  constructor() {
-    super();
-    this.renderIcon = this.renderIcon.bind(this);
-  }
-
-  renderIcon(icon, isSelected) {
-    return (
-      <Ionicons
-        name={icon}
-        size={32}
-        style={[
-          isSelected
-            ? styles.selectedIconColor
-            : styles.unselectedIconColor,
-        ]}
-      />
-    );
-  }
-
+  renderIcon = (icon, isSelected) =>
+    <Ionicons
+      name={icon}
+      size={32}
+      style={[
+        isSelected ? styles.selectedIconColor : styles.unselectedIconColor
+      ]}
+    />;
   render() {
     return (
       <TabNavigation
@@ -50,39 +38,32 @@ export default class RootNavigation extends Component {
         initialTab="resources"
         navigatorUID="main"
         tabBarStyle={{
-          backgroundColor: 'white',
-          borderTopWidth: 0,
+          backgroundColor: "white",
+          borderTopWidth: 0
         }}
       >
         <TabItem
           id="resources"
-          renderIcon={isSelected =>
-            this.renderIcon('md-compass', !!isSelected)}
+          renderIcon={isSelected => this.renderIcon("md-compass", !!isSelected)}
         >
           <StackNavigation
             id="resources"
-            initialRoute={Router.getRoute('resources')}
+            initialRoute={Router.getRoute("resources")}
           />
         </TabItem>
         <TabItem
           id="snap"
           renderIcon={isSelected =>
-            this.renderIcon('ios-nutrition-outline', !!isSelected)}
+            this.renderIcon("ios-nutrition-outline", !!isSelected)}
         >
-          <StackNavigation
-            id="snap"
-            initialRoute={Router.getRoute('snap')}
-          />
+          <StackNavigation id="snap" initialRoute={Router.getRoute("snap")} />
         </TabItem>
         <TabItem
           id="wic"
           renderIcon={isSelected =>
-            this.renderIcon('ios-woman-outline', !!isSelected)}
+            this.renderIcon("ios-woman-outline", !!isSelected)}
         >
-          <StackNavigation
-            id="wic"
-            initialRoute={Router.getRoute('wic')}
-          />
+          <StackNavigation id="wic" initialRoute={Router.getRoute("wic")} />
         </TabItem>
       </TabNavigation>
     );

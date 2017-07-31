@@ -1,9 +1,9 @@
-import React from 'react';
-import { string, func, bool } from 'prop-types';
-import { Linking, Text, View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import React from "react";
+import { string, func, bool } from "prop-types";
+import { Linking, Text, View } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 
-const Anchor = ({ href, onPress, children, eligible}) => {
+const Anchor = ({ href, onPress, children, eligible }) => {
   const handlePress = () => {
     Linking.openURL(href);
     onPress && onPress();
@@ -11,29 +11,36 @@ const Anchor = ({ href, onPress, children, eligible}) => {
   return (
     <Text
       onPress={handlePress}
-      style={{ fontSize: eligible && 25, fontWeight: 'bold', textAlign: 'center', color: 'royalblue'}}
+      style={{
+        fontSize: eligible && 25,
+        fontWeight: "bold",
+        textAlign: "center",
+        color: "royalblue"
+      }}
     >
       {children}
-      {children && !eligible &&
+      {children &&
+        !eligible &&
         <View
           style={{
-            backgroundColor: 'white',
+            backgroundColor: "white",
             width: 20,
             height: 30,
             flex: 1,
             marginLeft: 10,
-            paddingTop: 5,
+            paddingTop: 5
           }}
         >
-          <Ionicons
-            name="ios-call-outline"
-            size={28}
-            color="royalblue"
-          />
-        </View>
-    }
+          <Ionicons name="ios-call-outline" size={28} color="royalblue" />
+        </View>}
     </Text>
   );
+};
+
+Anchor.defaultProps = {
+  onPress: null,
+  children: null,
+  eligible: null
 };
 
 Anchor.propTypes = {

@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 
 import Main, { Unwrapped as UnwrappedMain } from './Main';
 import Welcome from './screens/Welcome';
-import NavigationProvider from './containers/NavigationProvider';
+import NavigationProvider from './components/NavigationProvider';
 
 const wait = (exp, ms) =>
   new Promise(resolve => setTimeout(() => resolve(exp), ms));

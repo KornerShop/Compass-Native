@@ -7,8 +7,8 @@ import SocketIOClient from "socket.io-client";
 
 import { SOCKET_ADDR } from "../utilities/config";
 
-import Office from "../containers/Office";
-import Map from "../containers/Map";
+import Office from "../views/Office";
+import Map from "../views/Map";
 
 import { toggleLocationProvided } from "../redux/actions/actions";
 import {
@@ -21,16 +21,10 @@ import {
 } from "../redux/actions/actionCreators";
 
 class Resources extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      modalVisible: false,
-      onboarded: false
-    };
-    this.socket = SocketIOClient(SOCKET_ADDR, {
-      transports: ["websocket"]
-    });
-  }
+  state = {
+    modalVisible: false,
+    onboarded: false
+  };
   getLocationAsync = async () => {
     const { status: currentStatus } = await Permissions.getAsync(
       Permissions.LOCATION
@@ -72,6 +66,9 @@ class Resources extends Component {
       this.props.toggleLocationProvided(true);
     }
   };
+  socket = SocketIOClient(SOCKET_ADDR, {
+    transports: ["websocket"]
+  });
   toggleOnboarded = () => {
     this.setState({
       onboarded: true

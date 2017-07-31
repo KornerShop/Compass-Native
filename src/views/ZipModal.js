@@ -14,22 +14,17 @@ import SubmitButton from "../components/SubmitButton";
 import localizedStrings from "../utilities/localization";
 
 class ZipModal extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      zipCode: "",
-      zipValid: true
-    };
-  }
+  state = {
+    zipCode: "",
+    zipValid: true
+  };
   onChangeZip = zipCode => {
     this.setState({ zipCode });
   };
   render() {
-    let localization;
-    this.props.foodBanks
-      ? (localization =
-          localizedStrings[this.props.language].zipModal.foodBanks)
-      : (localization = localizedStrings[this.props.language].zipModal.header);
+    const localization = this.props.foodBanks
+      ? localizedStrings[this.props.language].zipModal.foodBanks
+      : localizedStrings[this.props.language].zipModal.header;
     return (
       <Modal
         style={{ flex: 1 }}
@@ -117,6 +112,13 @@ class ZipModal extends Component {
     );
   }
 }
+
+ZipModal.defaultProps = {
+  foodBanks: null,
+  updateOffices: null,
+  updateFoodBanks: null,
+  updateWICVendorsZipModal: null
+};
 
 ZipModal.propTypes = {
   modalVisible: bool.isRequired,
