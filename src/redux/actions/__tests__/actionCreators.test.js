@@ -38,7 +38,7 @@ describe('actionCreators', () => {
   const middleware = [thunk];
   const mockStore = configureMockStore(middleware);
 
-  const zipCode = 95404;
+  const zipCode = '95404';
 
   const location = {
     latitude: 38.5386881,
@@ -80,11 +80,6 @@ describe('actionCreators', () => {
       phone_local: '(707) 553-5381',
     },
   ];
-
-  const mockFetchZipCode = () =>
-    new Promise(resolve => {
-      setTimeout(() => resolve('95404'), 250);
-    });
 
   describe('socket actions', () => {
     test('updateLanguage emits, dispatches', () => {
@@ -135,11 +130,10 @@ describe('actionCreators', () => {
       };
       const expectedActions = [updateLocation(location)];
       const store = mockStore(initState);
-      store.dispatch(changeLocation(socket, location));
-      const zip = await mockFetchZipCode(location);
+      await store.dispatch(changeLocation(socket, location));
       expect(store.getActions()).toEqual(expectedActions);
       expect(socket.emit).toHaveBeenCalledWith('update-zip', {
-        zipCode: zip,
+        zipCode,
       });
     });
   });
@@ -184,7 +178,7 @@ describe('actionCreators', () => {
       const store = mockStore({
         ...initState,
         office: 2,
-        zipCode: 95404,
+        zipCode,
       });
       return store.dispatch(updateOffices()).then(() => {
         expect(store.getActions()).toEqual(expectedActions);
