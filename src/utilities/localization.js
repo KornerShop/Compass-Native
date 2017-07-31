@@ -8,6 +8,9 @@ export default {
       yes: "Yes",
       no: "No"
     },
+    snap: {
+      accessible: "Determine eligibility for Food Stamps"
+    },
     eligible: {
       header: "You may be eligible!",
       next: "Next steps:",
@@ -54,6 +57,9 @@ export default {
       lifeEvents: "¿Está usted embarazada y / o tiene un hijo menor de 5 años?",
       yes: "Sí",
       no: "No"
+    },
+    snap: {
+      accessible: "Determinar la elegibilidad para estampillas de comida"
     },
     eligible: {
       header: "¡Puede ser elegible!",

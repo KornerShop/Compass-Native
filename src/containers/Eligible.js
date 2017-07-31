@@ -1,7 +1,7 @@
 import React from "react";
 import { func, oneOf } from "prop-types";
 
-import { View, Text, Linking } from "react-native";
+import { View, Text } from "react-native";
 
 import { StyledContainer, EligibleHeader } from "../components/styled/Styled";
 import EligibilityButton from "../components/EligibilityButton";
@@ -24,7 +24,7 @@ const Eligible = ({ language, updateWicEligibility }) =>
         style={{
           flex: 1,
           justifyContent: "space-around",
-          paddingVertical: 25,
+          paddingVertical: 25
         }}
       >
         <EligibleHeader>
@@ -36,9 +36,9 @@ const Eligible = ({ language, updateWicEligibility }) =>
         <Text
           style={{
             paddingTop: 5,
-            paddingRight:10,
+            paddingRight: 10,
             paddingLeft: 10,
-            paddingBottom:2,
+            paddingBottom: 2,
             fontSize: 20,
             textAlign: "left"
           }}
@@ -51,9 +51,9 @@ const Eligible = ({ language, updateWicEligibility }) =>
         <Text
           style={{
             paddingTop: 5,
-            paddingRight:10,
+            paddingRight: 10,
             paddingLeft: 10,
-            paddingBottom:2,
+            paddingBottom: 2,
             fontSize: 20,
             textAlign: "left"
           }}
@@ -63,9 +63,9 @@ const Eligible = ({ language, updateWicEligibility }) =>
         <Text
           style={{
             paddingTop: 5,
-            paddingRight:10,
+            paddingRight: 10,
             paddingLeft: 10,
-            paddingBottom:2,
+            paddingBottom: 2,
             fontSize: 20,
             textAlign: "left"
           }}

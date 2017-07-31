@@ -1,28 +1,25 @@
-import React from 'react';
-import { oneOf } from 'prop-types';
-import {
-  View,
-  StatusBar,
-  ActivityIndicator,
-  WebView,
-} from 'react-native';
-import { connect } from 'react-redux';
-
-import { ActivityIndicatorWrapper } from '../components/styled/Styled';
+import React from "react";
+import { oneOf } from "prop-types";
+import { View, StatusBar, ActivityIndicator, WebView } from "react-native";
+import { connect } from "react-redux";
+import localizedStrings from "../utilities/localization";
+import { ActivityIndicatorWrapper } from "../components/styled/Styled";
 
 const Snap = ({ language }) => {
-  const host = 'https://getcalfresh.org/en/apply';
-  const url = language === 'en' ? host : `${host}?new_locale=es`;
+  const host = "https://getcalfresh.org/en/apply";
+  const url = language === "en" ? host : `${host}?new_locale=es`;
+  const translatedMessage = localizedStrings[language].snap.accessible;
+
   return (
     <View
       accessible
-      accessibilityLabel={'Determine eligibility for Food Stamps'}
+      accessibilityLabel={translatedMessage}
       style={{
         flex: 1,
         paddingTop: 15,
         paddingBottom: 5,
         paddingHorizontal: 5,
-        backgroundColor: 'white',
+        backgroundColor: "white"
       }}
     >
       <StatusBar barStyle="dark-content" />
@@ -42,11 +39,11 @@ const Snap = ({ language }) => {
 };
 
 Snap.propTypes = {
-  language: oneOf(['en', 'es']).isRequired,
+  language: oneOf(["en", "es"]).isRequired
 };
 
 const mapStateToProps = ({ language }) => ({
-  language,
+  language
 });
 
 export default connect(mapStateToProps)(Snap);

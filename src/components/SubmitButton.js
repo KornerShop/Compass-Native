@@ -1,27 +1,27 @@
-import React from 'react';
-import { string, bool, func } from 'prop-types';
+import React from "react";
+import { string, bool, func } from "prop-types";
 
-import { Button } from 'react-native-elements';
+import { Button } from "react-native-elements";
 
 const SubmitButton = props =>
   <Button
     title={props.title}
     raised={!props.zip}
     textStyle={{
-      color: props.zip ? '#21CFBF' : 'white',
+      color: props.zip ? "#21CFBF" : "white",
       fontSize: props.zip ? 22 : 18,
-      fontWeight: 'bold',
+      fontWeight: "bold"
     }}
     buttonStyle={{
       paddingHorizontal: props.zip ? 20 : null,
       borderWidth: props.zip ? 1 : 0,
-      borderColor: props.zip ? 'white' : null,
-      backgroundColor: props.zip ? 'white' : 'tomato',
+      borderColor: props.zip ? "white" : null,
+      backgroundColor: props.zip ? "white" : "tomato"
     }}
     containerViewStyle={{
       marginTop: props.zip ? 100 : null,
       width: props.zip ? 200 : null,
-      borderRadius: props.zip ? 25 : 5,
+      borderRadius: props.zip ? 25 : 5
     }}
     borderRadius={props.zip ? 25 : 5}
     fontSize={18}
@@ -31,7 +31,7 @@ const SubmitButton = props =>
 SubmitButton.propTypes = {
   title: string.isRequired,
   onPress: func.isRequired,
-  zip: bool,
+  zip: bool
 };
 
 export default SubmitButton;
